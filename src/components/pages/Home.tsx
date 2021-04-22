@@ -1,9 +1,13 @@
 import React from 'react'
 
+import { Header } from '../Header';
+import { Main } from '../Main';
+
 export const Home = () => {
     return (
-        <div className="py-6 flex justify-center">
-            <h2 className="text-red-500">Home page</h2>
+        <div className="flex justify-center flex-col items-center">
+            <Header />
+            <Main />
         </div>
     )
 }
