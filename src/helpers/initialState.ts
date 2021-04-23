@@ -1,6 +1,7 @@
 const initialState = {
     appname: '',
     typescript: false,
+    prettier: false,
     tailwind: false,
     bootstrap: false,
     styledcomponents: false,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 const { ipcRenderer } = require('electron');
 
 import initialState from '../helpers/initialState';
-import { generateProject } from '../services/project_creation';
+import { generateProject } from '../services/installation';
 import validateInput from '../utils/validate_input';
 import Checkbox from './Checkbox';
 
@@ -48,7 +48,13 @@ export const Form = () => {
                 />
             </div>
             
-            <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
+            <div className="w-full border-gray-200 border-t-2">
+                <h3 className="font-bold text-center py-4">Syntax :</h3>
+                <div className="flex flex-wrap space-x-6 justify-center">
+                <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
+                <Checkbox name="prettier" change={setInput} input={input}>Prettier : </Checkbox>
+                </div>
+            </div>
 
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold text-center py-4">Styles :</h3>
