@@ -17,7 +17,7 @@ export const ConsoleLogs = () => {
     
 
     return (
-        <div className="bg-black rounded overflow-hidden">
+        <div className="bg-black rounded overflow-auto h-56">
             <Console logs={logs} variant="dark" />
         </div>
     )
