@@ -15,22 +15,19 @@ export const Form = () => {
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        console.log(input);
         e.preventDefault();
         if (!validateInput(input.appname)) {
             console.log('pas cool');
         } else {
-            ipcRenderer.send('open-directory', input.appname);
+            ipcRenderer.send('open-directory', input);
         }
     }
 
     useEffect(() => {
         ipcRenderer.on('open-dialog-directory-selected', async (event, arg) => {
-            console.log(input.appname);
-            const [filepath, appname] = arg;
+            const [filepath, input] = arg;
             if (arg) {
-                console.log(arg);
-                //generateProject(filepath, appname);
+                generateProject(filepath, input);
             }
           });
           return () => {

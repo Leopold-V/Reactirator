@@ -1,19 +1,9 @@
-const exec = require('child_process').exec;
+import { formInputType } from '../helpers/types';
+import runCmd from '../utils/runCmd';
 
-export const generateProject = (filepath: string, projectName: string): void => {
+export const generateProject = (filepath: string, input: formInputType): void => {
     try {
-        const installProcess = exec(`cd ${filepath} && npx create-react-app ${projectName}`);
-        console.log(`cd ${filepath} && npx create-react-app ${projectName}`);
-        
-        installProcess.stdout.on('data', (data: any) => {
-            console.log(data);
-        })
-        installProcess.stderr.on('data', (data: any) => {
-            console.log(data);
-        })
-        installProcess.on('error', (error: any) => {
-            console.error(`error: ${error.message}`);
-        });
+        runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
     } catch (error) {
         console.log(error);
     }
