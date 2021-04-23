@@ -73,4 +73,4 @@ const cracoData = `module.exports = {
     },
 }`;
 
-const tailwindimport = ` @tailwind base;\n@tailwind components;\n@tailwind utilities;\n`;
+const tailwindimport = `@tailwind base;\n@tailwind components;\n@tailwind utilities;\n`;
