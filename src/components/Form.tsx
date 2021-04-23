@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 const { ipcRenderer } = require('electron');
 
 import initialState from '../helpers/initialState';
-import { generateProject } from '../services/project_creation';
+import { generateProject } from '../services/installation';
 import validateInput from '../utils/validate_input';
 import Checkbox from './Checkbox';
 
@@ -15,22 +15,19 @@ export const Form = () => {
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        console.log(input);
         e.preventDefault();
         if (!validateInput(input.appname)) {
             console.log('pas cool');
         } else {
-            ipcRenderer.send('open-directory', input.appname);
+            ipcRenderer.send('open-directory', input); 
         }
     }
 
     useEffect(() => {
         ipcRenderer.on('open-dialog-directory-selected', async (event, arg) => {
-            console.log(input.appname);
-            const [filepath, appname] = arg;
+            const [filepath, input] = arg;
             if (arg) {
-                console.log(arg);
-                //generateProject(filepath, appname);
+                generateProject(filepath, input);
             }
           });
           return () => {
@@ -51,7 +48,13 @@ export const Form = () => {
                 />
             </div>
             
-            <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
+            <div className="w-full border-gray-200 border-t-2">
+                <h3 className="font-bold text-center py-4">Syntax :</h3>
+                <div className="flex flex-wrap space-x-6 justify-center">
+                <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
+                <Checkbox name="prettier" change={setInput} input={input}>Prettier : </Checkbox>
+                </div>
+            </div>
 
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold text-center py-4">Styles :</h3>
@@ -66,7 +69,7 @@ export const Form = () => {
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold w-full text-center py-4">Packages :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="react-router" change={setInput} input={input}>react-router-dom : </Checkbox>
+                    <Checkbox name="reactrouter" change={setInput} input={input}>react-router-dom : </Checkbox>
                     <Checkbox name="propstype" change={setInput} input={input}>Props-type : </Checkbox>
                 </div>
             </div>
