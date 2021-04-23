@@ -66,7 +66,7 @@ export const Form = () => {
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold w-full text-center py-4">Packages :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="react-router" change={setInput} input={input}>react-router-dom : </Checkbox>
+                    <Checkbox name="reactrouter" change={setInput} input={input}>react-router-dom : </Checkbox>
                     <Checkbox name="propstype" change={setInput} input={input}>Props-type : </Checkbox>
                 </div>
             </div>
