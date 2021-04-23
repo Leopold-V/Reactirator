@@ -19,7 +19,7 @@ export const Form = () => {
         if (!validateInput(input.appname)) {
             console.log('pas cool');
         } else {
-            ipcRenderer.send('open-directory', input);
+            ipcRenderer.send('open-directory', input); 
         }
     }
 
