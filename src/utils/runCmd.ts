@@ -1,7 +1,14 @@
 const exec = require('child_process').exec;
 
-const runCmd = (cmd: string) : void => {
-    const installProcess = exec(cmd);
+const runCmd = (cmd: string, callback?: any) : void => {
+    const installProcess = exec(cmd, (error: Error) => {
+        if (error) {
+            console.log(error);
+        }
+        if (callback) {
+            callback();
+        }
+    });
     installProcess.stdout.on('data', (data: any) => {
         console.log(data);
     })
