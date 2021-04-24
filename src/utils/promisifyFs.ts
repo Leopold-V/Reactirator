@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-export const promisifyReadFs = (filepath: string, filename: string): Promise<string> => {
+export const promisifyReadFs = (fullpath: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        fs.readFile(`${filepath}\\${filename}`, 'utf8', (err: Error, data: string) => {
+        fs.readFile(`${fullpath}`, 'utf8', (err: Error, data: string) => {
             if (err) {
                 reject(err)
             }
@@ -11,9 +11,9 @@ export const promisifyReadFs = (filepath: string, filename: string): Promise<str
     })
 }
 
-export const promisifyWriteFs = (filepath: string, filename: string, dataToWrite: string): Promise<string> => {
+export const promisifyWriteFs = (fullpath: string, dataToWrite: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        fs.writeFile(`${filepath}\\${filename}`, dataToWrite, (err: Error, data: string) => {
+        fs.writeFile(`${fullpath}`, dataToWrite, (err: Error, data: string) => {
             if (err) {
                 reject(err)
             }
@@ -22,9 +22,9 @@ export const promisifyWriteFs = (filepath: string, filename: string, dataToWrite
     })
 }
 
-export const promisifyAppendFs = (filepath: string, filename: string, dataToWrite: string): Promise<string> => {
+export const promisifyAppendFs = (fullpath: string, dataToWrite: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        fs.appendFile(`${filepath}\\${filename}`, dataToWrite, (err: Error, data: string) => {
+        fs.appendFile(`${fullpath}`, dataToWrite, (err: Error, data: string) => {
             if (err) {
                 reject(err)
             }
