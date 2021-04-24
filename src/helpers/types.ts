@@ -7,5 +7,5 @@ export type formInputType = {
     styledcomponents: boolean,
     normalize: boolean,
     reactrouter: boolean,
-    propstype: boolean
+    proptypes: boolean
 }

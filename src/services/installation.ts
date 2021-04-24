@@ -24,6 +24,9 @@ export const generateProject = async (filepath: string, input: formInputType) =>
     if (input.reactrouter) {
         await installReactRouter(fullPath);
     }
+    if (input.proptypes) {
+        await installPropTypes(fullPath);
+    }
     if (input.prettier) {
         await installPrettier(fullPath);
     }
@@ -40,6 +43,14 @@ const installReactRouter = async (fullPath: string) => {
 const installStyledComponents = async (fullPath: string) => {
     try {
         await runCmd(`cd ${fullPath} && npm install styled-components`);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const installPropTypes = async (fullPath: string) => {
+    try {
+        await runCmd(`cd ${fullPath} && npm install prop-types`);
     } catch (error) {
         console.log(error);
     }
