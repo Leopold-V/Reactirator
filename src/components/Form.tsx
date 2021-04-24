@@ -42,7 +42,7 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
                 await toast.promise(
                     generateProject(filepath, input),
                     {
-                      loading: 'Installation...',
+                      loading: 'Installation start !',
                       success: () => `Successfully installed !`,
                       error: (err) => `An error happened: ${err.toString()}`
                     },
@@ -52,6 +52,9 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
                             borderRadius: '10px',
                             background: '#333',
                             color: '#fff',
+                        },
+                        loading: {
+                            duration: 2000
                         },
                         success: {
                             duration: 5000,
