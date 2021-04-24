@@ -8,7 +8,7 @@ const Checkbox = ({children, name, setInput, input}: {children: ReactNode, name:
 
     return (
         <div className="flex flex-row items-center">
-            <label className="font-bold pr-4" htmlFor={name}>{children}</label>
+            <label className="font-bold pr-2" htmlFor={name}>{children}</label>
             <input className="py-2 px-4 rounded-sm border-gray-300 border-2" 
                 type="checkbox" 
                 onChange={handleChange}
