@@ -1,10 +1,9 @@
 import React, { ReactNode } from 'react'
 //import { formInputType } from '../helpers/types';
 
-const Checkbox = ({children, name, change, input}: {children: ReactNode, name: string, change: any, input: any}) => {
-
+const Checkbox = ({children, name, setInput, input}: {children: ReactNode, name: string, setInput: any, input: any}) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        change({...input, [e.target.name]: !input[e.target.name]});
+        setInput({...input, [e.target.name]: !input[e.target.name]});
     }
 
     return (

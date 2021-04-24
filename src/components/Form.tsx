@@ -9,6 +9,7 @@ import Checkbox from './Checkbox';
 export const Form = () => {
 
     const [input, setInput] = useState(initialState);
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
@@ -27,7 +28,9 @@ export const Form = () => {
         ipcRenderer.on('open-dialog-directory-selected', async (event, arg) => {
             const [filepath, input] = arg;
             if (arg) {
-                generateProject(filepath, input);
+                setLoading(true);
+                await generateProject(filepath, input);
+                setLoading(false);
             }
           });
           return () => {
@@ -51,26 +54,26 @@ export const Form = () => {
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold text-center py-4">Syntax :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
-                    <Checkbox name="prettier" change={setInput} input={input}>Prettier : </Checkbox>
+                    <Checkbox name="typescript" setInput={setInput} input={input}>Typescript : </Checkbox>
+                    <Checkbox name="prettier" setInput={setInput} input={input}>Prettier : </Checkbox>
                 </div>
             </div>
 
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold text-center py-4">Styles :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="tailwind" change={setInput} input={input}>Tailwind : </Checkbox>
-                    <Checkbox name="bootstrap" change={setInput} input={input}>Bootstrap : </Checkbox>
-                    <Checkbox name="normalize" change={setInput} input={input}>normalize.css : </Checkbox>
-                    <Checkbox name="styledcomponents" change={setInput} input={input}>Styled-components : </Checkbox>
+                    <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
+                    <Checkbox name="bootstrap" setInput={setInput} input={input}>Bootstrap : </Checkbox>
+                    <Checkbox name="normalize" setInput={setInput} input={input}>normalize.css : </Checkbox>
+                    <Checkbox name="styledcomponents" setInput={setInput} input={input}>Styled-components : </Checkbox>
                 </div>
             </div>
 
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold text-center py-4">Packages :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="reactrouter" change={setInput} input={input}>react-router-dom : </Checkbox>
-                    <Checkbox name="propstype" change={setInput} input={input}>Props-type : </Checkbox>
+                    <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
+                    <Checkbox name="propstype" setInput={setInput} input={input}>Props-type : </Checkbox>
                 </div>
             </div>
 
