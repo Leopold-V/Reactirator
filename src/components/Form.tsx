@@ -6,10 +6,9 @@ import { generateProject } from '../services/installation';
 import validateInput from '../utils/validate_input';
 import Checkbox from './Checkbox';
 
-export const Form = () => {
+export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}) => {
 
     const [input, setInput] = useState(initialState);
-    const [loading, setLoading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
