@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 const { ipcRenderer } = require('electron');
 import { toast } from 'react-hot-toast';
 
+import { toastInstallMsg, toastInstallStyle, toastValidationStyle } from '../helpers/toast';
 import initialState from '../helpers/initialState';
 import { generateProject } from '../services/installation';
 import validateInput from '../utils/validate_input';
@@ -18,54 +19,18 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!validateInput(input.appname)) {
-            toast('The project name is invalid !',
-                {
-                    icon: '❌',
-                    style: {
-                        margin: '16px',
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                }
-            );
+            toast('The project name is invalid !', toastValidationStyle);
         } else {
             ipcRenderer.send('open-directory', input); 
         }
     }
 
     useEffect(() => {
-        ipcRenderer.on('open-dialog-directory-selected', async (event, arg) => {
+        ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: any) => {
             const [filepath, input] = arg;
             if (arg) {
                 setLoading(true);
-                await toast.promise(
-                    generateProject(filepath, input),
-                    {
-                      loading: 'Installation start !',
-                      success: () => `Successfully installed !`,
-                      error: (err) => `An error happened: ${err.toString()}`
-                    },
-                    {
-                        style: {
-                            margin: '16px',
-                            borderRadius: '10px',
-                            background: '#333',
-                            color: '#fff',
-                        },
-                        loading: {
-                            duration: 2000
-                        },
-                        success: {
-                            duration: 5000,
-                            icon: '✅',
-                        },
-                        error: {
-                            duration: 5000,
-                            icon: '❌',
-                        },
-                    }
-                  );
+                await toast.promise(generateProject(filepath, input), toastInstallMsg, toastInstallStyle);
                 setLoading(false);
             }
           });
