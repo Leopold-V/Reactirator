@@ -6,6 +6,8 @@ import { toastInstallMsg, toastInstallStyle, toastValidationStyle } from '../hel
 import initialState from '../helpers/initialState';
 import { generateProject } from '../services/installation';
 import validateInput from '../utils/validate_input';
+
+import FormSection from './FormSection';
 import Checkbox from './Checkbox';
 
 export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}) => {
@@ -50,31 +52,21 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
                     placeholder="Application name" 
                 />
             </div>
-            <div className="w-full border-gray-200 border-t-2">
-                <h3 className="font-bold text-center py-4">Syntax :</h3>
-                <div className="flex flex-wrap space-x-6 justify-center">
+            <FormSection title="Syntax">
                     <Checkbox name="typescript" setInput={setInput} input={input}>Typescript : </Checkbox>
                     <Checkbox name="prettier" setInput={setInput} input={input}>Prettier : </Checkbox>
-                </div>
-            </div>
+            </FormSection>
+            <FormSection title="Styles">
+                <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
+                <Checkbox name="bootstrap" setInput={setInput} input={input}>Bootstrap : </Checkbox>
+                <Checkbox name="normalize" setInput={setInput} input={input}>normalize.css : </Checkbox>
+                <Checkbox name="styledcomponents" setInput={setInput} input={input}>Styled-components : </Checkbox>
+            </FormSection>
+            <FormSection title="Packages">
+                <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
+                <Checkbox name="proptypes" setInput={setInput} input={input}>Props-type : </Checkbox>
+            </FormSection>
 
-            <div className="w-full border-gray-200 border-t-2">
-                <h3 className="font-bold text-center py-4">Styles :</h3>
-                <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
-                    <Checkbox name="bootstrap" setInput={setInput} input={input}>Bootstrap : </Checkbox>
-                    <Checkbox name="normalize" setInput={setInput} input={input}>normalize.css : </Checkbox>
-                    <Checkbox name="styledcomponents" setInput={setInput} input={input}>Styled-components : </Checkbox>
-                </div>
-            </div>
-
-            <div className="w-full border-gray-200 border-t-2">
-                <h3 className="font-bold text-center py-4">Packages :</h3>
-                <div className="flex flex-wrap space-x-6 justify-center">
-                    <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
-                    <Checkbox name="proptypes" setInput={setInput} input={input}>Props-type : </Checkbox>
-                </div>
-            </div>
             {loading ?
             <button className="bg-red-300 px-4 py-2 font-semibold text-center tracking-wider text-white rounded cursor-not-allowed" disabled>
                     <svg className="animate-spin -ml-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -86,8 +78,7 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             <button 
                 className="bg-red-500 px-4 py-2 font-semibold tracking-wider text-white rounded hover:bg-red-700 transition duration-250">
                 Create
-            </button>
-            }
+            </button>}
         </form>
     )
 }
