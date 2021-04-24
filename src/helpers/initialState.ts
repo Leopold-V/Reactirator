@@ -7,7 +7,7 @@ const initialState = {
     styledcomponents: false,
     normalize: false,
     reactrouter: false,
-    propstype: false
+    proptypes: false
 };
 
 export default initialState;
