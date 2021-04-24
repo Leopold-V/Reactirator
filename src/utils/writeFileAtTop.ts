@@ -1,7 +1,17 @@
 const fs = require('fs');
 import { promisifyReadFs, promisifyWriteFs, promisifyAppendFs } from './promisifyFs';
 
-export const writeFileAtTop = (filepath: string, filename: string, dataToWrite: string) : void => {
+export const writeFileAtTop = async (fullpath: string, dataToWrite: string) => {
+    try {
+        const data: any = await promisifyReadFs(fullpath);
+        await promisifyWriteFs(fullpath, dataToWrite);
+        await promisifyAppendFs(fullpath, data);
+    } catch (error) {
+       throw error;
+    }
+};
+
+/*export const writeFileAtTop = (filepath: string, filename: string, dataToWrite: string) : void => {
     fs.readFile(`${filepath}\\${filename}`, 'utf8', (err: any, data: any) => {
         if (err) {
             console.log(err);
@@ -18,10 +28,4 @@ export const writeFileAtTop = (filepath: string, filename: string, dataToWrite: 
             });
         });
     });
-};
-
-export const writeFileAtTopAsync = async (filepath: string, filename: string, dataToWrite: string) => {
-    const data: any = await promisifyReadFs(filepath, filename);
-    await promisifyWriteFs(filepath, filename, dataToWrite);
-    await promisifyAppendFs(filepath, filename, data);
-};
+};*/

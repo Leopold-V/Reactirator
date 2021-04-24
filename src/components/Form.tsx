@@ -32,7 +32,11 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             const [filepath, input] = arg;
             if (arg) {
                 setLoading(true);
-                await toast.promise(generateProject(filepath, input), toastInstallMsg, toastInstallStyle);
+                try {
+                    await toast.promise(generateProject(filepath, input), toastInstallMsg, toastInstallStyle);
+                } catch (error) {
+                    console.log(error);
+                }
                 setLoading(false);
             }
           });
