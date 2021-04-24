@@ -6,12 +6,16 @@ import { formInputType } from '../helpers/types';
 
 export const generateProject = async (filepath: string, input: formInputType) => {
     const fullPath: string = `${filepath}\\${input.appname}`
-    /*if (input.typescript) {
-        runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`);
-    }*/
-    await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
+
+    input.typescript ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
+    : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
+
     if (input.bootstrap) {
-        await installBootstrap(fullPath);
+        try {
+            await installBootstrap(fullPath, input.typescript);
+        } catch (error) {
+            throw error;
+        }
     }
     if (input.normalize) {
         await installNormalize(fullPath);
@@ -57,12 +61,13 @@ const installPropTypes = async (fullPath: string) => {
     }
 }
 
-const installBootstrap = async (fullPath: string) => {
+const installBootstrap = async (fullPath: string, withTypescript: boolean) => {
     try {
         await runCmd(`cd ${fullPath} && npm install bootstrap`)
-        await writeFileAtTop(`${fullPath}\\src\\index.js`, "import 'bootstrap/dist/css/bootstrap.css';\n");
+        withTypescript ? await writeFileAtTop(`${fullPath}\\src\\index.ts`, "import 'bootstrap/dist/css/bootstrap.css';\n")
+        : await writeFileAtTop(`${fullPath}\\src\\index.js`, "import 'bootstrap/dist/css/bootstrap.css';\n");
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 
@@ -90,7 +95,7 @@ const installTailwind = async (fullPath: string) => {
         const packagejson = JSON.parse(data);
         packagejson.scripts = cracoPackagejson;
         await promisifyWriteFs(`${fullPath}\\craco.config.js`, cracoConfig);
-        await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson))
+        await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
         await writeFileAtTop(`${fullPath}\\src\\index.css`, tailwindimport);
     } catch (error) {
         console.log(error);
