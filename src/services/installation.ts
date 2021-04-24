@@ -4,15 +4,21 @@ import { formInputType } from '../helpers/types';
 const fs = require('fs');
 
 export const generateProject = (filepath: string, input: formInputType): void => {
-    runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`, () => {
-        /*if (input.bootstrap) {
-            installBootstrap(filepath, input);
+    runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`, async () => {
+        if (input.bootstrap) {
+           await installBootstrap(filepath, input);
         }
         if (input.normalize) {
             installNormalize(filepath, input);
-        }*/
+        }
         if (input.tailwind) {
-            installTailwind(filepath, input);
+            await installTailwind(filepath, input);
+        }
+        if (input.styledcomponents) {
+            await installStyledComponents(filepath, input);
+        }
+        if (input.reactrouter) {
+            await installReactRouter(filepath, input);
         }
     });
     /*if (input.typescript) {
@@ -20,25 +26,33 @@ export const generateProject = (filepath: string, input: formInputType): void =>
     }*/
 }
 
-const installBootstrap = (filepath: string, input: formInputType): void => {
-    runCmd(`cd ${filepath}\\${input.appname} && npm install bootstrap`, () => {
+const installReactRouter = async (filepath: string, input: formInputType) => {
+    await runCmd(`cd ${filepath}\\${input.appname} && npm install react-router-dom`);
+}
+
+const installStyledComponents = async (filepath: string, input: formInputType) => {
+    await runCmd(`cd ${filepath}\\${input.appname} && npm install styled-components`);
+}
+
+const installBootstrap = async (filepath: string, input: formInputType) => {
+    await runCmd(`cd ${filepath}\\${input.appname} && npm install bootstrap`, () => {
         writeFileAtTop(`${filepath}\\${input.appname}\\src`, 'index.js', "import 'bootstrap/dist/css/bootstrap.css';\n");
     });
 }
 
-const installNormalize = (filepath: string, input: formInputType): void => {
+const installNormalize = (filepath: string, input: formInputType) => {
     writeFileAtTop(`${filepath}\\${input.appname}\\src`, 'index.css', '@import-normalize;\n');
 }
 
-const installPrettier = (filepath: string, input: formInputType): void => {
-    runCmd(`cd ${filepath}\\${input.appname} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json
+const installPrettier = async (filepath: string, input: formInputType) => {
+    await runCmd(`cd ${filepath}\\${input.appname} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json
     && mkdir .prettierignore`, () => {
         fs.writeFile(`${filepath}\\${input.appname}\\src\\.prettierignore`,  `# Ignore artifacts:\nbuild\ncoverage\n`)
     });
 }
 
-const installTailwind = (filepath: string, input: formInputType): void => {
-    runCmd(`cd ${filepath}\\${input.appname} && npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 && npm install @craco/craco && npx tailwindcss init`,
+const installTailwind = async (filepath: string, input: formInputType) => {
+    await runCmd(`cd ${filepath}\\${input.appname} && npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 && npm install @craco/craco && npx tailwindcss init`,
     () => {
         fs.readFile(`${filepath}\\${input.appname}\\package.json`, 'utf8', (err: Error, data: any) => {
             if (err) {
