@@ -51,8 +51,8 @@ export const Form = () => {
             <div className="w-full border-gray-200 border-t-2">
                 <h3 className="font-bold text-center py-4">Syntax :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
-                <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
-                <Checkbox name="prettier" change={setInput} input={input}>Prettier : </Checkbox>
+                    <Checkbox name="typescript" change={setInput} input={input}>Typescript : </Checkbox>
+                    <Checkbox name="prettier" change={setInput} input={input}>Prettier : </Checkbox>
                 </div>
             </div>
 
@@ -67,7 +67,7 @@ export const Form = () => {
             </div>
 
             <div className="w-full border-gray-200 border-t-2">
-                <h3 className="font-bold w-full text-center py-4">Packages :</h3>
+                <h3 className="font-bold text-center py-4">Packages :</h3>
                 <div className="flex flex-wrap space-x-6 justify-center">
                     <Checkbox name="reactrouter" change={setInput} input={input}>react-router-dom : </Checkbox>
                     <Checkbox name="propstype" change={setInput} input={input}>Props-type : </Checkbox>
