@@ -2,19 +2,19 @@ const exec = require('child_process').exec;
 
 const runCmd = (cmd: string) => {
     return new Promise((resolve, reject) => {
-        const installProcess = exec(cmd, (error: Error, data: any) => {
+        const installProcess = exec(cmd, (error: Error, data: string) => {
             if (error) {
                 reject(error);
             }
             resolve(data);
         });
-        installProcess.stdout.on('data', (data: any) => {
+        installProcess.stdout.on('data', (data: string) => {
             console.log(data);
         })
-        installProcess.stderr.on('data', (data: any) => {
+        installProcess.stderr.on('data', (data: string) => {
             console.log(data);
         })
-        installProcess.on('error', (error: any) => {
+        installProcess.on('error', (error: Error) => {
             console.error(`error: ${error.message}`);
         });
     })
