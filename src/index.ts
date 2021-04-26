@@ -8,6 +8,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     titleBarStyle: 'hidden',
+    show: false,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
@@ -17,6 +18,11 @@ const createWindow = (): void => {
   });
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.maximize();
+    mainWindow.show();
+  });
 
   mainWindow.webContents.openDevTools();
 };
