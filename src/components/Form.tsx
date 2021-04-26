@@ -73,12 +73,12 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             <FormSection title="Styles">
                 <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
                 <Checkbox name="bootstrap" setInput={setInput} input={input}>Bootstrap : </Checkbox>
-                <Checkbox name="normalize" setInput={setInput} input={input}>normalize.css : </Checkbox>
+                <Checkbox name="normalize" setInput={setInput} input={input}>CSS reset : </Checkbox>
                 <Checkbox name="styledcomponents" setInput={setInput} input={input}>Styled-components : </Checkbox>
             </FormSection>
             <FormSection title="Packages">
                 <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
-                <Checkbox name="proptypes" setInput={setInput} input={input}>Prop-types : </Checkbox>
+                <Checkbox name="proptypes" setInput={setInput} input={input}>prop-types : </Checkbox>
             </FormSection>
 
             {loading ?

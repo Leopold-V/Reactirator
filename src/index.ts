@@ -20,8 +20,8 @@ const createWindow = (): void => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   mainWindow.once('ready-to-show', () => {
-    mainWindow.maximize();
     mainWindow.show();
+    mainWindow.maximize();
   });
 
   mainWindow.webContents.openDevTools();
