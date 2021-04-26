@@ -1,4 +1,3 @@
-const fs = require('fs');
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
@@ -11,11 +10,7 @@ export const generateProject = async (filepath: string, input: formInputType) =>
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
 
     if (input.bootstrap) {
-        try {
-            await installBootstrap(fullPath, input.typescript);
-        } catch (error) {
-            throw error;
-        }
+        await installBootstrap(fullPath, input.typescript);
     }
     if (input.normalize) {
         await installNormalize(fullPath);
@@ -41,7 +36,7 @@ const installReactRouter = async (fullPath: string) => {
     try {
         await runCmd(`cd ${fullPath} && npm install react-router-dom`);
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 
@@ -49,7 +44,7 @@ const installStyledComponents = async (fullPath: string) => {
     try {
         await runCmd(`cd ${fullPath} && npm install styled-components`);
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 
@@ -57,14 +52,14 @@ const installPropTypes = async (fullPath: string) => {
     try {
         await runCmd(`cd ${fullPath} && npm install prop-types`);
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 }
 
 const installBootstrap = async (fullPath: string, withTypescript: boolean) => {
     try {
         await runCmd(`cd ${fullPath} && npm install bootstrap`)
-        withTypescript ? await writeFileAtTop(`${fullPath}\\src\\index.ts`, "import 'bootstrap/dist/css/bootstrap.css';\n")
+        withTypescript ? await writeFileAtTop(`${fullPath}\\src\\index.tsx`, "import 'bootstrap/dist/css/bootstrap.css';\n")
         : await writeFileAtTop(`${fullPath}\\src\\index.js`, "import 'bootstrap/dist/css/bootstrap.css';\n");
     } catch (error) {
         throw error;
@@ -75,7 +70,7 @@ const installNormalize = async (fullPath: string) => {
     try {
         await writeFileAtTop(`${fullPath}\\src\\index.css`, '@import-normalize;\n');
     } catch (error) {
-        console.log(error);
+        throw error
     }
 }
 
@@ -84,7 +79,7 @@ const installPrettier = async (fullPath: string) => {
         await runCmd(`cd ${fullPath} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json`);
         await promisifyWriteFs(`${fullPath}\\src\\.prettierignore`,  `# Ignore artifacts:\nbuild\ncoverage\n`)
     } catch (error) {
-        console.log(error);
+        throw error
     }
 }
 
@@ -98,7 +93,7 @@ const installTailwind = async (fullPath: string) => {
         await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
         await writeFileAtTop(`${fullPath}\\src\\index.css`, tailwindimport);
     } catch (error) {
-        console.log(error);
+        throw error
     }
 }
 

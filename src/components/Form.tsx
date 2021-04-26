@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 const { ipcRenderer } = require('electron');
 import { toast } from 'react-hot-toast';
 
@@ -14,6 +14,8 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
 
     const [input, setInput] = useState(initialState);
 
+    const appname_ref = useRef(null)
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
     }
@@ -26,6 +28,10 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             ipcRenderer.send('open-directory', input); 
         }
     }
+
+    useEffect(() => {
+        appname_ref.current.focus();
+    }, [])
 
     useEffect(() => {
         ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: any) => {
@@ -49,16 +55,20 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
         <form onSubmit={handleSubmit} className="flex flex-col items-center py-6 space-y-6">
             <div className="flex flex-row justify-between items-center w-full">
                 <label className="font-bold pr-4" htmlFor="appname">Project name :</label>
-                <input onChange={handleChange} value={input.appname} className="py-2 px-4 rounded-sm border-gray-300 border-2" 
+                <input 
+                    onChange={handleChange} 
+                    value={input.appname} 
+                    className="py-2 px-4 rounded-sm outline-none bg-gray-50 focus:bg-white transition duration-200 border-gray-300 border-2" 
                     type="text" 
                     name="appname" 
                     id="appname" 
                     placeholder="Application name" 
+                    ref={appname_ref}
                 />
             </div>
             <FormSection title="Syntax">
-                    <Checkbox name="typescript" setInput={setInput} input={input}>Typescript : </Checkbox>
-                    <Checkbox name="prettier" setInput={setInput} input={input}>Prettier : </Checkbox>
+                <Checkbox name="typescript" setInput={setInput} input={input}>Typescript : </Checkbox>
+                <Checkbox name="prettier" setInput={setInput} input={input}>Prettier : </Checkbox>
             </FormSection>
             <FormSection title="Styles">
                 <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
@@ -68,15 +78,15 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             </FormSection>
             <FormSection title="Packages">
                 <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
-                <Checkbox name="proptypes" setInput={setInput} input={input}>Props-type : </Checkbox>
+                <Checkbox name="proptypes" setInput={setInput} input={input}>Prop-types : </Checkbox>
             </FormSection>
 
             {loading ?
             <button className="bg-red-300 px-4 py-2 font-semibold text-center tracking-wider text-white rounded cursor-not-allowed" disabled>
-                    <svg className="animate-spin -ml-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
+                <svg className="animate-spin -ml-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
             </button>
             :
             <button 
