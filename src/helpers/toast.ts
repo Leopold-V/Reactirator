@@ -9,11 +9,11 @@ export const toastInstallStyle = {
         duration: 2000
     },
     success: {
-        duration: 5000,
+        duration: 8000,
         icon: '✅',
     },
     error: {
-        duration: 5000,
+        duration: 8000,
         icon: '❌',
     },
 }
