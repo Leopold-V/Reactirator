@@ -1,4 +1,3 @@
-const fs = require('fs');
 import { promisifyReadFs, promisifyWriteFs, promisifyAppendFs } from './promisifyFs';
 
 export const writeFileAtTop = async (fullpath: string, dataToWrite: string) => {
