@@ -96,6 +96,11 @@ body {
   }
 }
 
+#button_git {
+  user-select: none;
+  -webkit-app-region: no-drag;
+}
+
 #window-controls .button {
   user-select: none;
 }
