@@ -1,13 +1,10 @@
 import './index.css';
 import './App';
-//import './icons/min-k-12.png';
 
 const remote = require('electron').remote;
 
-const win = remote.getCurrentWindow(); /* Note this is different to the
-html global `window` variable */
+const win = remote.getCurrentWindow();
 
-// When document has loaded, initialise
 document.onreadystatechange = (event: Electron.IpcRendererEvent) => {
     if (document.readyState == "complete") {
         handleWindowControls();
@@ -19,7 +16,6 @@ window.onbeforeunload = (event: Electron.IpcRendererEvent) => {
 }
 
 function handleWindowControls() {
-    // Make minimise/maximise/restore/close buttons work when they are clicked
     document.getElementById('min-button').addEventListener("click", event => {
         win.minimize();
     });
@@ -36,7 +32,6 @@ function handleWindowControls() {
         win.close();
     });
 
-    // Toggle maximise/restore buttons when maximisation/unmaximisation occurs
     toggleMaxRestoreButtons();
     win.on('maximize', toggleMaxRestoreButtons);
     win.on('unmaximize', toggleMaxRestoreButtons);
