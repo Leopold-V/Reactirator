@@ -10,6 +10,7 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
     show: false,
     frame: false,
+    backgroundColor: '#4e46e5',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -17,12 +18,12 @@ const createWindow = (): void => {
     },
   });
 
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
     mainWindow.maximize();
   });
+  
+  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   mainWindow.webContents.openDevTools();
 };
