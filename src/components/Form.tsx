@@ -74,6 +74,8 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             <FormSection title="Styles">
                 <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
                 <Checkbox name="bootstrap" setInput={setInput} input={input}>Bootstrap : </Checkbox>
+                <Checkbox name="reactbootstrap" setInput={setInput} input={input}>React Bootstrap : </Checkbox>
+                <Checkbox name="materialui" setInput={setInput} input={input}>Material UI : </Checkbox>
                 <Checkbox name="normalize" setInput={setInput} input={input}>CSS reset : </Checkbox>
                 <Checkbox name="styledcomponents" setInput={setInput} input={input}>Styled-components : </Checkbox>
             </FormSection>

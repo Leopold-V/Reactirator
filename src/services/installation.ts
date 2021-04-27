@@ -12,6 +12,12 @@ export const generateProject = async (filepath: string, input: formInputType) =>
     if (input.bootstrap) {
         await installBootstrap(fullPath, input.typescript);
     }
+    if (input.reactbootstrap) {
+        await installReactBootstrap(fullPath);
+    }
+    if (input.materialui) {
+        await installMaterialUI(fullPath);
+    }
     if (input.normalize) {
         await installNormalize(fullPath);
     }
@@ -38,6 +44,22 @@ export const generateProject = async (filepath: string, input: formInputType) =>
     }
     if (input.storybook) {
         await installStorybook(fullPath);
+    }
+}
+
+const installMaterialUI = async (fullPath: string) => {
+    try {
+        await runCmd(`cd ${fullPath} && npm install @material-ui/core`);
+    } catch (error) {
+        throw error;
+    }
+}
+
+const installReactBootstrap = async (fullPath: string) => {
+    try {
+        runCmd(`cd ${fullPath} && npm install react-bootstrap bootstrap`);
+    } catch (error) {
+        throw error;
     }
 }
 

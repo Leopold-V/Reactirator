@@ -5,6 +5,8 @@ export type formInputType = {
     flow: boolean,
     tailwind: boolean,
     bootstrap: boolean,
+    reactbootstrap: boolean,
+    materialui: boolean,
     styledcomponents: boolean,
     normalize: boolean,
     reactrouter: boolean,

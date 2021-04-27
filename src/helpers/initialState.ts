@@ -5,6 +5,8 @@ const initialState = {
     flow: false,
     tailwind: false,
     bootstrap: false,
+    reactbootstrap: false,
+    materialui: false,
     styledcomponents: false,
     normalize: false,
     reactrouter: false,
