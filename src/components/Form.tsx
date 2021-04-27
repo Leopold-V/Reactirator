@@ -69,6 +69,7 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             <FormSection title="Syntax">
                 <Checkbox name="typescript" setInput={setInput} input={input}>Typescript : </Checkbox>
                 <Checkbox name="prettier" setInput={setInput} input={input}>Prettier : </Checkbox>
+                <Checkbox name="flow" setInput={setInput} input={input}>Flow : </Checkbox>
             </FormSection>
             <FormSection title="Styles">
                 <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
@@ -79,6 +80,8 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             <FormSection title="Packages">
                 <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
                 <Checkbox name="proptypes" setInput={setInput} input={input}>prop-types : </Checkbox>
+                <Checkbox name="sourcemapexplorer" setInput={setInput} input={input}>source-map-explorer : </Checkbox>
+                <Checkbox name="storybook" setInput={setInput} input={input}>Storybook : </Checkbox>
             </FormSection>
 
             {loading ?

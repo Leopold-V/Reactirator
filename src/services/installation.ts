@@ -30,6 +30,48 @@ export const generateProject = async (filepath: string, input: formInputType) =>
     if (input.prettier) {
         await installPrettier(fullPath);
     }
+    if (input.flow) {
+        await installFlow(fullPath);
+    }
+    if (input.sourcemapexplorer) {
+        await installSourceMapExplorer(fullPath);
+    }
+    if (input.storybook) {
+        await installStorybook(fullPath);
+    }
+}
+
+const installStorybook = async (fullPath: string) => {
+    try {
+        await runCmd(`cd ${fullPath} && npx -p @storybook/cli sb init`)
+    } catch (error) {
+        throw error;
+    }
+}
+
+const installFlow = async (fullPath: string) => {
+    try {
+        await runCmd(`cd ${fullPath} && npm install flow-bin`);
+        const data = await promisifyReadFs(`${fullPath}\\package.json`)
+        const packagejson = JSON.parse(data);
+        packagejson.scripts["flow"] = "flow";
+        await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
+        await runCmd(`cd ${fullPath} && npm run flow init`)
+    } catch (error) {
+        throw error;
+    }
+}
+
+const installSourceMapExplorer = async (fullPath: string) => {
+    try {
+        await runCmd(`cd ${fullPath} && npm install source-map-explorer`);
+        const data = await promisifyReadFs(`${fullPath}\\package.json`)
+        const packagejson = JSON.parse(data);
+        packagejson.scripts["analyze"] = "source-map-explorer 'build/static/js/*.js'";
+        await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
+    } catch (error) {
+        throw error;
+    }
 }
 
 const installReactRouter = async (fullPath: string) => {
