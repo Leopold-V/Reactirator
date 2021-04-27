@@ -11,4 +11,4 @@ Desktop application built with Electron + React.js.
 ...
 
 
-![screen](https://i.gyazo.com/1c86356342fc85765f43799fac744fe8.png)
+![screen](https://i.gyazo.com/09b6f7abde372801ef82df2db16641f4.png)
