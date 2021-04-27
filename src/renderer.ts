@@ -1,18 +1,28 @@
+const { shell } = require('electron')
+const remote = require('electron').remote;
+
 import './index.css';
 import './App';
-
-const remote = require('electron').remote;
 
 const win = remote.getCurrentWindow();
 
 document.onreadystatechange = (event: Electron.IpcRendererEvent) => {
     if (document.readyState == "complete") {
         handleWindowControls();
+        addExternalLink();
     }
 };
 
 window.onbeforeunload = (event: Electron.IpcRendererEvent) => {
     win.removeAllListeners();
+}
+
+// https://github.com/Leopold-V/cra-generator.git
+
+function addExternalLink() {
+    document.getElementById('button_git').addEventListener("click", event => {
+        shell.openExternal('https://github.com/Leopold-V/cra-generator.git')
+    })
 }
 
 function handleWindowControls() {

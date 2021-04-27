@@ -97,6 +97,7 @@ body {
 #button_git {
   user-select: none;
   -webkit-app-region: no-drag;
+  cursor: pointer;
 }
 
 #window-controls .button {
