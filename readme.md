@@ -10,5 +10,6 @@ Desktop application built with Electron + React.js.
 
 ...
 
+## Progression :
 
 ![screen](https://i.gyazo.com/09b6f7abde372801ef82df2db16641f4.png)
