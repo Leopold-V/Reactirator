@@ -1,6 +1,6 @@
 const exec = require('child_process').exec;
 
-const runCmd = (cmd: string) => {
+const runCmd = (cmd: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         const installProcess = exec(cmd, (error: Error, data: string) => {
             if (error) {
