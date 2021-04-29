@@ -10,10 +10,9 @@ import validateInput from '../utils/validate_input';
 import FormSection from './FormSection';
 import Checkbox from './Checkbox';
 
-export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}) => {
-
+export const Form = ({loading, setLoading, toggleModal} : {loading: boolean, setLoading: any, toggleModal: any}) => {
     const [input, setInput] = useState(initialState);
-
+    
     const appname_ref = useRef(null)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -38,12 +37,17 @@ export const Form = ({loading, setLoading} : {loading: boolean, setLoading: any}
             const [filepath, input] = arg;
             if (arg) {
                 setLoading(true);
+                toggleModal();
                 try {
-                    await toast.promise(generateProject(filepath, input), toastInstallMsg, toastInstallStyle);
+                    //await toast.promise(generateProject(filepath, input), toastInstallMsg, toastInstallStyle);
+                    setTimeout(() => {
+                        console.log('done');
+                        setLoading(false);
+                    }, 3000);
                 } catch (error) {
                     console.log(error);
                 }
-                setLoading(false);
+                //setLoading(false);
             }
           });
           return () => {
