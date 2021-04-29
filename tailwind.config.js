@@ -24,7 +24,10 @@ module.exports = {
       },
       minHeight: {
         big: '33rem',
-       }
+      },
+      height: {
+        big: '33rem',
+      },
     },
   },
   variants: {
