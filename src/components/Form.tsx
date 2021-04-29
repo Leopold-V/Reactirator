@@ -57,12 +57,12 @@ export const Form = ({loading, setLoading, toggleModal} : {loading: boolean, set
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center py-6 space-y-6">
-            <div className="flex flex-row justify-between items-center w-full">
+            <div className="flex flex-row justify-around items-center w-full">
                 <label className="font-bold pr-4" htmlFor="appname">Project name :</label>
                 <input 
                     onChange={handleChange} 
                     value={input.appname} 
-                    className="py-2 px-4 rounded-sm outline-none bg-gray-50 focus:bg-white transition duration-200 border-gray-300 border-2" 
+                    className="py-2 px-4 outline-none bg-white ring-1 focus:ring-2 ring-indigo-300 transition duration-200" 
                     type="text" 
                     name="appname" 
                     id="appname" 
