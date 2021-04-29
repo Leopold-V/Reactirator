@@ -15,7 +15,7 @@ export const Main = () => {
     const [listPackages, dispatch] = useReducer(reducerPackages, []);
 
     return (
-        <div className="pt-8 flex justify-start items-start flex-wrap w-11/12">
+        <div className="pt-8 flex justify-start items-center flex-wrap w-11/12">
             <Toaster position="top-center" />
             <div className="bg-gray-50 text-gray-800 px-8 rounded mx-auto flex justify-start max-h-full lg:w-1/3">
                 <Form loading={loading} setLoading={setLoading} toggleModal={toggleModal} />

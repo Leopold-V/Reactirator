@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export const useModal = () => {
 
@@ -7,8 +7,6 @@ export const useModal = () => {
     const toggleModal = () => {
         return setShow(show => !show);
     }
-
-    console.log(show);
 
     return [show, toggleModal] as const;
 }
