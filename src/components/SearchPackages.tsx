@@ -1,5 +1,6 @@
 import React, { useState} from 'react'
 import { ListPackagesFound } from './ListPackagesFound';
+import { ListPackagesSelected } from './ListPackagesSelected';
 
 const API_URL = "https://api.npms.io/v2/search?q=";
 
@@ -33,6 +34,7 @@ export const SearchPackages = ({listPackages, dispatchPackages} : {listPackages:
             </div>
             <div className="flex flex-col items-center w-1/2">
                 <h1 className="font-bold pb-4">Packages selected :</h1>
+                <ListPackagesSelected listPackages={listPackages} dispatchPackages={dispatchPackages} />
             </div>
         </div>
     )
