@@ -4,11 +4,12 @@ import runCmd from '../utils/runCmd';
 import { formInputType } from '../helpers/types';
 
 export const generateProject = async (filepath: string, input: formInputType, listPackages: string[]) => {
-    console.log(listPackages);
     const fullPath: string = `${filepath}\\${input.appname}`
 
     input.typescript ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
+
+    await installPackages(fullPath, listPackages);
 
     if (input.bootstrap) {
         await installBootstrap(fullPath, input.typescript);
@@ -46,12 +47,12 @@ export const generateProject = async (filepath: string, input: formInputType, li
     if (input.storybook) {
         await installStorybook(fullPath);
     }
-    await installPackages(fullPath, listPackages);
 }
 
 const installPackages = async (fullPath: string, listPackages: string[]) => {
     try {
-        listPackages.forEach(async (ele) => {return await runCmd(`cd ${fullPath} && npm install --save ${ele}`)});       
+        const listPromises = listPackages.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm install ${ele}`)});
+        await Promise.all(listPromises);       
     } catch (error) {
         throw error;
     }
