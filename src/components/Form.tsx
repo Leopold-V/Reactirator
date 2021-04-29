@@ -11,15 +11,17 @@ import FormSection from './FormSection';
 import Checkbox from './Checkbox';
 
 export const Form = (
-        {loading, setLoading, toggleModal, listPackages}: 
-        {loading: boolean, setLoading: any, toggleModal: any, listPackages: string[]}
+        {loading, setLoading, toggleModal, listPackages, packageJson, setPackageJson}: 
+        {loading: boolean, setLoading: any, toggleModal: any, listPackages: string[], packageJson: any, setPackageJson: any}
     ) => {
     const [input, setInput] = useState(initialState);
     
-    const appname_ref = useRef(null)
+    const appname_ref = useRef(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
+        packageJson.name = e.target.value;
+        setPackageJson({...packageJson});
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,7 +38,6 @@ export const Form = (
     }, [])
 
     useEffect(() => {
-        console.log(listPackages);
         ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: any) => {
             const [filepath, input] = arg;
             if (arg) {

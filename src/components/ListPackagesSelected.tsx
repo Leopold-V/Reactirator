@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export const ListPackagesSelected = ({listPackages, dispatchPackages}: {listPackages: any[], dispatchPackages: any}) => {
     const removePackages = (e: React.MouseEvent<HTMLElement>) => {
-        dispatchPackages({type : 'REMOVE', payload: e.currentTarget.dataset.name})
+        dispatchPackages({type : 'REMOVE', payload: e.currentTarget.dataset.name});
     }
 
     return (
@@ -15,7 +15,7 @@ export const ListPackagesSelected = ({listPackages, dispatchPackages}: {listPack
                 >
                     <button 
                         data-name={ele}
-                        className="px-1 h-full border-none bg-red-100 hover:bg-red-200 transition duration-200"
+                        className="px-2 h-full border-none bg-red-100 hover:bg-red-200 transition duration-200"
                         onClick={removePackages}
                     >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="#3f3f3f">
