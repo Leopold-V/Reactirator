@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react'
 
 export const ListPackagesFound = ({results, listPackages, dispatchPackages}: {results: any[], listPackages: any[], dispatchPackages: any}) => {
     const addPackages = (e: React.MouseEvent<HTMLElement>) => {
-        console.log(e.currentTarget.dataset.name);
+        dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name})
     }
 
     return (
