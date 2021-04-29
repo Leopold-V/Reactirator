@@ -10,7 +10,10 @@ import validateInput from '../utils/validate_input';
 import FormSection from './FormSection';
 import Checkbox from './Checkbox';
 
-export const Form = ({loading, setLoading, toggleModal} : {loading: boolean, setLoading: any, toggleModal: any}) => {
+export const Form = (
+        {loading, setLoading, toggleModal, listPackages}: 
+        {loading: boolean, setLoading: any, toggleModal: any, listPackages: string[]}
+    ) => {
     const [input, setInput] = useState(initialState);
     
     const appname_ref = useRef(null)
@@ -33,27 +36,24 @@ export const Form = ({loading, setLoading, toggleModal} : {loading: boolean, set
     }, [])
 
     useEffect(() => {
+        console.log(listPackages);
         ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: any) => {
             const [filepath, input] = arg;
             if (arg) {
                 setLoading(true);
                 toggleModal();
                 try {
-                    //await toast.promise(generateProject(filepath, input), toastInstallMsg, toastInstallStyle);
-                    setTimeout(() => {
-                        console.log('done');
-                        setLoading(false);
-                    }, 3000);
+                    await toast.promise(generateProject(filepath, input, listPackages), toastInstallMsg, toastInstallStyle);
                 } catch (error) {
                     console.log(error);
                 }
-                //setLoading(false);
+                setLoading(false);
             }
           });
           return () => {
             ipcRenderer.removeAllListeners('open-dialog-directory-selected');
           };
-    }, [])
+    }, [listPackages])
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center py-6 space-y-6">

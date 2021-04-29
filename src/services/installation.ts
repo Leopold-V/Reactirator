@@ -3,7 +3,8 @@ import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
 import { formInputType } from '../helpers/types';
 
-export const generateProject = async (filepath: string, input: formInputType) => {
+export const generateProject = async (filepath: string, input: formInputType, listPackages: string[]) => {
+    console.log(listPackages);
     const fullPath: string = `${filepath}\\${input.appname}`
 
     input.typescript ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
@@ -44,6 +45,15 @@ export const generateProject = async (filepath: string, input: formInputType) =>
     }
     if (input.storybook) {
         await installStorybook(fullPath);
+    }
+    await installPackages(fullPath, listPackages);
+}
+
+const installPackages = async (fullPath: string, listPackages: string[]) => {
+    try {
+        listPackages.forEach(async (ele) => {return await runCmd(`cd ${fullPath} && npm install --save ${ele}`)});       
+    } catch (error) {
+        throw error;
     }
 }
 
