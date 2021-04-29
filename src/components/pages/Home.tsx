@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import initialPackageJson from '../../helpers/initialPackageJson';
 
 import { Header } from '../Header';
@@ -7,10 +7,6 @@ import { ResultLog } from '../ResultLog';
 
 export const Home = () => {
     const [packageJson, setPackageJson] = useState(initialPackageJson);
-
-    useEffect(() => {
-        console.log(packageJson);
-    }, [packageJson]);
 
     return (
         <div className="flex justify-center flex-col items-center">

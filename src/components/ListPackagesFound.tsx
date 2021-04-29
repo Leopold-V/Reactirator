@@ -1,8 +1,12 @@
 import React from 'react'
 
-export const ListPackagesFound = ({results, listPackages, dispatchPackages}: {results: any[], listPackages: any[], dispatchPackages: any}) => {
+export const ListPackagesFound = (
+    {results, listPackages, dispatchPackages, packageJson, setPackageJson}:
+    {results: any[], listPackages: any[], dispatchPackages: any, packageJson: any, setPackageJson: any}) => {
     const addPackages = (e: React.MouseEvent<HTMLElement>) => {
-        dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name})
+        dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name});
+        packageJson.dependencies[e.currentTarget.dataset.name] =  e.currentTarget.dataset.version
+        setPackageJson({...packageJson});
     }
 
     return (
@@ -16,6 +20,7 @@ export const ListPackagesFound = ({results, listPackages, dispatchPackages}: {re
                     {listPackages.includes(ele.name) ? <div className="h-7 w-8"></div>
                     : <button 
                         data-name={ele.name}
+                        data-version={ele.version}
                         className="px-1 h-full border-none bg-blue-100 hover:bg-blue-200 transition duration-200"
                         onClick={addPackages}
                     >

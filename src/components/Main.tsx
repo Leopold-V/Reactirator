@@ -24,6 +24,7 @@ export const Main = ({packageJson, setPackageJson}: {packageJson: any, setPackag
     const propsSearchPackages = {
         listPackages: listPackages,
         dispatchPackages: dispatch,
+        packageJson: packageJson,
         setPackageJson: setPackageJson
     }
 
@@ -33,7 +34,6 @@ export const Main = ({packageJson, setPackageJson}: {packageJson: any, setPackag
             <div className="bg-gray-50 text-gray-800 px-8 rounded mx-auto flex justify-start max-h-full lg:w-1/3">
                 <Form {...propsForm} />
             </div>
-            <div className={`text-7xl hidden lg:block ${loading ? 'animate-arrow-bounce' : ''}`}>&#10140;</div>
             <div className="bg-gray-50 text-gray-800 px-8 rounded mx-auto flex justify-start lg:w-1/2">
                 <SearchPackages {...propsSearchPackages} />
             </div>
@@ -41,3 +41,6 @@ export const Main = ({packageJson, setPackageJson}: {packageJson: any, setPackag
         </div>
     )
 }
+
+
+// <div className={`text-7xl hidden lg:block ${loading ? 'animate-arrow-bounce' : ''}`}>&#10140;</div>

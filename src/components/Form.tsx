@@ -24,7 +24,7 @@ export const Form = (
         setPackageJson({...packageJson});
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (!validateInput(input.appname)) {
             toast('The project name is invalid !', toastValidationStyle);
@@ -57,7 +57,7 @@ export const Form = (
     }, [listPackages])
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center py-6 space-y-6">
+        <div className="flex flex-col items-center py-6 space-y-6">
             <div className="flex flex-row justify-around items-center w-full">
                 <label className="font-bold pr-4" htmlFor="appname">Project name :</label>
                 <input 
@@ -72,23 +72,23 @@ export const Form = (
                 />
             </div>
             <FormSection title="Syntax">
-                <Checkbox name="typescript" setInput={setInput} input={input}>Typescript : </Checkbox>
-                <Checkbox name="prettier" setInput={setInput} input={input}>Prettier : </Checkbox>
-                <Checkbox name="flow" setInput={setInput} input={input}>Flow : </Checkbox>
+                <Checkbox name="typescript" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Typescript : </Checkbox>
+                <Checkbox name="prettier" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Prettier : </Checkbox>
+                <Checkbox name="flow" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Flow : </Checkbox>
             </FormSection>
             <FormSection title="Styles">
-                <Checkbox name="tailwind" setInput={setInput} input={input}>Tailwind : </Checkbox>
-                <Checkbox name="bootstrap" setInput={setInput} input={input}>Bootstrap : </Checkbox>
-                <Checkbox name="reactbootstrap" setInput={setInput} input={input}>React Bootstrap : </Checkbox>
-                <Checkbox name="materialui" setInput={setInput} input={input}>Material UI : </Checkbox>
-                <Checkbox name="normalize" setInput={setInput} input={input}>CSS reset : </Checkbox>
-                <Checkbox name="styledcomponents" setInput={setInput} input={input}>Styled-components : </Checkbox>
+                <Checkbox name="tailwind" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Tailwind : </Checkbox>
+                <Checkbox name="bootstrap" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Bootstrap : </Checkbox>
+                <Checkbox name="reactbootstrap" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>React Bootstrap : </Checkbox>
+                <Checkbox name="materialui" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Material UI : </Checkbox>
+                <Checkbox name="normalize" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>CSS reset : </Checkbox>
+                <Checkbox name="styledcomponents" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Styled-components : </Checkbox>
             </FormSection>
             <FormSection title="Packages">
-                <Checkbox name="reactrouter" setInput={setInput} input={input}>react-router-dom : </Checkbox>
-                <Checkbox name="proptypes" setInput={setInput} input={input}>prop-types : </Checkbox>
-                <Checkbox name="sourcemapexplorer" setInput={setInput} input={input}>source-map-explorer : </Checkbox>
-                <Checkbox name="storybook" setInput={setInput} input={input}>Storybook : </Checkbox>
+                <Checkbox name="reactrouter" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>react-router-dom : </Checkbox>
+                <Checkbox name="proptypes" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>prop-types : </Checkbox>
+                <Checkbox name="sourcemapexplorer" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>source-map-explorer : </Checkbox>
+                <Checkbox name="storybook" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Storybook : </Checkbox>
             </FormSection>
 
             {loading ?
@@ -99,10 +99,11 @@ export const Form = (
                 </svg>
             </button>
             :
-            <button 
+            <button
+                onClick={handleSubmit}
                 className="bg-red-500 px-4 py-2 font-semibold tracking-wider text-white rounded hover:bg-red-700 transition duration-250">
                 Create
             </button>}
-        </form>
+        </div>
     )
 }

@@ -1,10 +1,11 @@
 import React, { ReactNode } from 'react'
-//import { formInputType } from '../helpers/types';
+import manageSpecialCases from '../utils/manageSpecialCases';
 
-const Checkbox = ({children, name, setInput, input}: {children: ReactNode, name: string, setInput: any, input: any}) => {
+const Checkbox = ({children, name, setInput, input, packageJson, setPackageJson}: {children: ReactNode, name: string, setInput: any, input: any, packageJson: any, setPackageJson: any}) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, [e.target.name]: !input[e.target.name]});
-    }
+        setPackageJson(manageSpecialCases(e.target.name, packageJson));
+    };
 
     return (
         <div className="flex flex-row items-center">

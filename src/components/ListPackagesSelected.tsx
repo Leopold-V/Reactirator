@@ -1,8 +1,12 @@
 import React from 'react';
 
-export const ListPackagesSelected = ({listPackages, dispatchPackages}: {listPackages: any[], dispatchPackages: any}) => {
+export const ListPackagesSelected = (
+    {listPackages, dispatchPackages, packageJson, setPackageJson}:
+    {listPackages: any[], dispatchPackages: any, packageJson: any, setPackageJson: any}) => {
     const removePackages = (e: React.MouseEvent<HTMLElement>) => {
         dispatchPackages({type : 'REMOVE', payload: e.currentTarget.dataset.name});
+        delete packageJson.dependencies[e.currentTarget.dataset.name];
+        setPackageJson({...packageJson});
     }
 
     return (
