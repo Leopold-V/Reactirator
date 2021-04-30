@@ -21,21 +21,21 @@ export const SearchPackages = ({listPackages, dispatchPackages}: {listPackages: 
     };
 
     return (
-        <div className="py-6 flex justify-start min-h-big w-full divide-x-2">
-            <div className="flex flex-col items-center w-1/2">
-                <h1 className="font-bold pb-4">Add more packages :</h1>
-                <div className="w-4/5">
-                    <input className="w-full mb-1 text-center py-2 px-4 outline-none rounded bg-white ring-2 focus:ring-2 ring-indigo-400 transition duration-200" 
+        <div className="bg-white text-gray-800 rounded shadow w-3/5">
+            <div className="py-6 flex justify-start min-h-big w-full divide-x-2">
+                <div className="flex flex-col items-center w-1/2">
+                    <h1 className="font-bold pb-4">Add more packages :</h1>
+                    <input className="w-4/5 mb-1 text-center py-2 px-4 outline-none rounded bg-white ring-2 focus:ring-2 ring-blue-500 transition duration-200" 
                         type="text" 
                         placeholder="react-router-dom, react-spinner etc."
                         onChange={handleChange}
                     />
                     <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />
                 </div>
-            </div>
-            <div className="flex flex-col items-center w-1/2">
-                <h1 className="font-bold pb-4">Packages selected :</h1>
-                <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages} />
+                <div className="flex flex-col items-center w-1/2">
+                    <h1 className="font-bold pb-4">Packages selected :</h1>
+                    <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages} />
+                </div>
             </div>
         </div>
     )

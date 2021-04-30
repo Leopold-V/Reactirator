@@ -13,7 +13,7 @@ export const ListPackagesFound = (
     }
 
     return (
-        <ul>
+        <ul className="w-11/12">
             {results.map((ele) => (
                 <li 
                     key={ele.name} 

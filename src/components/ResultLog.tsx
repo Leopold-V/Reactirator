@@ -7,7 +7,7 @@ export const ResultLog = () => {
     const { packageJson } = useContext(PackageContext);
 
     return (
-        <div className="mt-10 p-6 rounded bg-gray-800 h-big overflow-auto text-yellow-300 w-1/3">
+        <div className="p-6 w-10/12 rounded text-sm bg-gray-800 shadow min-h-big overflow-x-auto text-yellow-300">
             <pre>{JSON.stringify(packageJson, null, 2)}</pre>
         </div>
     )
