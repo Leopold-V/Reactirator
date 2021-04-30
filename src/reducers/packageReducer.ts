@@ -1,10 +1,14 @@
-const packageReducer = (state: any, { type, payload }: {type: string, payload: string}) => {
+const packageReducer = (state: any, { type, payload }: {type: string, payload: {name: string, version: string}}) => {
     switch (type) {
+        case 'CHANGE_NAME':
+          state.name = payload;
+          return {...state};
         case 'ADD':
-          return {...state, payload};
+          state.dependencies[payload.name] = payload.version
+          return {...state};
         case 'REMOVE':
-          const newState = state.filter((ele: string) => ele !== payload);
-          return {...newState};
+          delete state.dependencies[payload.name];
+          return {...state};
         default:
           throw new Error();
     }

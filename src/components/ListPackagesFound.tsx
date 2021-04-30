@@ -5,12 +5,11 @@ export const ListPackagesFound = (
     {results, listPackages, dispatchPackages}:
     {results: any[], listPackages: any[], dispatchPackages: any}) => {
 
-    const { packageJson, dispatch } = useContext(PackageContext);
+    const { packageJson, dispatchJson } = useContext(PackageContext);
 
     const addPackages = (e: React.MouseEvent<HTMLElement>) => {
         dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name});
-        packageJson.dependencies[e.currentTarget.dataset.name] =  e.currentTarget.dataset.version
-        //setPackageJson({...packageJson});
+        dispatchJson({type : 'ADD', payload: {name: e.currentTarget.dataset.name, version: e.currentTarget.dataset.version}});
     }
 
     return (

@@ -16,14 +16,14 @@ export const Form = (
         {loading: boolean, setLoading: any, toggleModal: any, listPackages: string[]}
     ) => {
     const [input, setInput] = useState(initialState);
-    const { packageJson, dispatch } = useContext(PackageContext);
+    const { packageJson, dispatchJson } = useContext(PackageContext);
 
     const appname_ref = useRef(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
         packageJson.name = e.target.value;
-        //setPackageJson({...packageJson});
+        dispatchJson({type: 'CHANGE_NAME', payload: e.target.value})
     };
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
