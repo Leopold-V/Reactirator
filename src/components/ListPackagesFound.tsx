@@ -5,7 +5,7 @@ export const ListPackagesFound = (
     {results, listPackages, dispatchPackages}:
     {results: any[], listPackages: any[], dispatchPackages: any}) => {
 
-    const { packageJson, dispatchJson } = useContext(PackageContext);
+    const { dispatchJson } = useContext(PackageContext);
 
     const addPackages = (e: React.MouseEvent<HTMLElement>) => {
         dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name});
