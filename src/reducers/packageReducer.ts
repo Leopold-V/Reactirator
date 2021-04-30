@@ -70,11 +70,12 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
           }
           return {...state};
         case 'flow':
-          if (!state.dependencies['flow']) {
+          if (!state.dependencies['flow-bin']) {
             state.dependencies['flow-bin'] = "^0.150.0";
             state.scripts['flow'] = 'flow';
           } else {
             delete state.dependencies['flow-bin'];
+            delete state.scripts['flow'];
           }
           return {...state};
         case 'bootstrap': {
