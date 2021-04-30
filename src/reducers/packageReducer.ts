@@ -91,7 +91,8 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
             state.dependencies['source-map-explorer'] = "^2.5.2";
             state.scripts['analyze'] = "source-map-explorer 'build/static/js/*.js'";
           } else {
-            delete state.dependencies['flow-bin'];
+            delete state.dependencies['source-map-explorer'];
+            delete state.scripts['analyze'];
           }
           return {...state};
         }
