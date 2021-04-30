@@ -61,6 +61,50 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
             delete state.devDependencies["@storybook/react"]
             return {...state};
           }
+        case 'prettier': {
+          if (!state.devDependencies?.prettier) {
+            if (!state.devDependencies) {
+              state.devDependencies = {};
+            }
+            state.devDependencies["prettier"] = "2.2.1";
+            return {...state};
+          } else {
+            delete state.devDependencies["prettier"];
+            return {...state};
+          }
+        }
+        case 'flow': {
+          if (!state.dependencies['flow']) {
+            state.dependencies['flow-bin'] = "^0.150.0";
+            state.scripts['flow'] = 'flow';
+            return {...state};
+          } else {
+            delete state.dependencies['flow-bin'];
+            return {...state};
+          }
+        }
+        case 'bootstrap': {
+          if (!state.dependencies['bootstrap']) {
+            state.dependencies['bootstrap'] = "^4.6.0";
+            return {...state};
+          } else {
+            delete state.dependencies['bootstrap'];
+            return {...state};
+          }
+        }
+        case 'sourcemapexplorer': {
+          if (!state.dependencies['source-map-explorer']) {
+            state.dependencies['source-map-explorer'] = "^2.5.2";
+            state.scripts['analyze'] = "source-map-explorer 'build/static/js/*.js'";
+            return {...state};
+          } else {
+            delete state.dependencies['flow-bin'];
+            return {...state};
+          }
+        }
+        case 'typescript': {
+          return {...state};
+        }
         default:
           throw new Error();
     }
