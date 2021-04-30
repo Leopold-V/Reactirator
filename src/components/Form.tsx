@@ -65,7 +65,7 @@ export const Form = (
                 <input 
                     onChange={handleChange} 
                     value={input.appname} 
-                    className="py-2 px-4 outline-none bg-white ring-1 focus:ring-2 ring-indigo-300 transition duration-200" 
+                    className="py-2 px-4 outline-none rounded bg-white ring-2 focus:ring-2 ring-indigo-400 transition duration-200" 
                     type="text" 
                     name="appname" 
                     id="appname" 
@@ -81,14 +81,9 @@ export const Form = (
             <FormSection title="Styles">
                 <Checkbox name="tailwind" setInput={setInput} input={input} >Tailwind : </Checkbox>
                 <Checkbox name="bootstrap" setInput={setInput} input={input} >Bootstrap : </Checkbox>
-                <Checkbox name="reactbootstrap" setInput={setInput} input={input} >React Bootstrap : </Checkbox>
-                <Checkbox name="materialui" setInput={setInput} input={input} >Material UI : </Checkbox>
                 <Checkbox name="normalize" setInput={setInput} input={input} >CSS reset : </Checkbox>
-                <Checkbox name="styledcomponents" setInput={setInput} input={input} >Styled-components : </Checkbox>
             </FormSection>
             <FormSection title="Packages">
-                <Checkbox name="reactrouter" setInput={setInput} input={input} >react-router-dom : </Checkbox>
-                <Checkbox name="proptypes" setInput={setInput} input={input} >prop-types : </Checkbox>
                 <Checkbox name="sourcemapexplorer" setInput={setInput} input={input} >source-map-explorer : </Checkbox>
                 <Checkbox name="storybook" setInput={setInput} input={input} >Storybook : </Checkbox>
             </FormSection>
