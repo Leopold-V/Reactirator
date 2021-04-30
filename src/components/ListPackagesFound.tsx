@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { PackageContext } from './context/PackageContext';
 
 export const ListPackagesFound = (
-    {results, listPackages, dispatchPackages}:
-    {results: any[], listPackages: any[], dispatchPackages: any}) => {
+    {results, dispatchPackages}:
+    {results: any[], dispatchPackages: any}) => {
 
-    const { dispatchJson } = useContext(PackageContext);
+    const { packageJson ,dispatchJson } = useContext(PackageContext);
 
     const addPackages = (e: React.MouseEvent<HTMLElement>) => {
         dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name});
@@ -20,7 +20,7 @@ export const ListPackagesFound = (
                     className="text-blue-700 border-1 bg-blue-50 transition duration-200
                     flex items-center justify-start w-auto h-9"
                 >
-                    {listPackages.includes(ele.name) ? <div className="h-7 w-8"></div>
+                    {Object.keys(packageJson.dependencies).includes(ele.name) ? <div className="h-7 w-8"></div>
                     : <button 
                         data-name={ele.name}
                         data-version={ele.version}
