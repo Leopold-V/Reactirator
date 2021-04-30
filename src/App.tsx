@@ -2,11 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Home } from './components/pages/Home';
 import Layout from './components/Layout';
+import PackageProvider from './components/context/PackageContext';
 
 const App = () => {
   return (
     <Layout>
-      <Home />
+      <PackageProvider>
+        <Home />
+      </PackageProvider>
     </Layout>
   )
 }

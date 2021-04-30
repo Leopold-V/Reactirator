@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { PackageContext } from './context/PackageContext';
 
-export const ResultLog = ({packageJson, setPackageJson}: {packageJson: any, setPackageJson: any}) => {
+
+export const ResultLog = () => {
+
+    const { packageJson, dispatch } = useContext(PackageContext);
 
     useEffect(() => {
         console.log(packageJson);

@@ -4,9 +4,7 @@ import { ListPackagesSelected } from './ListPackagesSelected';
 
 const API_URL = "https://api.npms.io/v2/search?q=";
 
-export const SearchPackages = (
-    {listPackages, dispatchPackages, packageJson, setPackageJson}: 
-    {listPackages: any[], dispatchPackages: any, packageJson: any, setPackageJson: any}) => {
+export const SearchPackages = ({listPackages, dispatchPackages}: {listPackages: any[], dispatchPackages: any}) => {
 
     const [input, setInput] = useState([]);
 
@@ -14,15 +12,11 @@ export const SearchPackages = (
         listPackages: listPackages,
         dispatchPackages: dispatchPackages,
         results: input,
-        packageJson: packageJson,
-        setPackageJson: setPackageJson
     };
 
     const propsPackagesSelected = {
         listPackages: listPackages,
         dispatchPackages: dispatchPackages,
-        packageJson: packageJson,
-        setPackageJson: setPackageJson
     };
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {

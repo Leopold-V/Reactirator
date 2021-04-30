@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 const { ipcRenderer } = require('electron');
 import { toast } from 'react-hot-toast';
 
@@ -9,20 +9,22 @@ import validateInput from '../utils/validate_input';
 
 import FormSection from './FormSection';
 import Checkbox from './Checkbox';
+import { PackageContext } from './context/PackageContext';
 
 export const Form = (
-        {loading, setLoading, toggleModal, listPackages, packageJson, setPackageJson}: 
-        {loading: boolean, setLoading: any, toggleModal: any, listPackages: string[], packageJson: any, setPackageJson: any}
+        {loading, setLoading, toggleModal, listPackages}: 
+        {loading: boolean, setLoading: any, toggleModal: any, listPackages: string[]}
     ) => {
     const [input, setInput] = useState(initialState);
-    
+    const { packageJson, dispatch } = useContext(PackageContext);
+
     const appname_ref = useRef(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
         packageJson.name = e.target.value;
-        setPackageJson({...packageJson});
-    }
+        //setPackageJson({...packageJson});
+    };
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -31,11 +33,11 @@ export const Form = (
         } else {
             ipcRenderer.send('open-directory', input); 
         }
-    }
+    };
 
     useEffect(() => {
         appname_ref.current.focus();
-    }, [])
+    }, []);
 
     useEffect(() => {
         ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: any) => {
@@ -72,23 +74,23 @@ export const Form = (
                 />
             </div>
             <FormSection title="Syntax">
-                <Checkbox name="typescript" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Typescript : </Checkbox>
-                <Checkbox name="prettier" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Prettier : </Checkbox>
-                <Checkbox name="flow" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Flow : </Checkbox>
+                <Checkbox name="typescript" setInput={setInput} input={input} >Typescript : </Checkbox>
+                <Checkbox name="prettier" setInput={setInput} input={input} >Prettier : </Checkbox>
+                <Checkbox name="flow" setInput={setInput} input={input} >Flow : </Checkbox>
             </FormSection>
             <FormSection title="Styles">
-                <Checkbox name="tailwind" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Tailwind : </Checkbox>
-                <Checkbox name="bootstrap" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Bootstrap : </Checkbox>
-                <Checkbox name="reactbootstrap" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>React Bootstrap : </Checkbox>
-                <Checkbox name="materialui" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Material UI : </Checkbox>
-                <Checkbox name="normalize" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>CSS reset : </Checkbox>
-                <Checkbox name="styledcomponents" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Styled-components : </Checkbox>
+                <Checkbox name="tailwind" setInput={setInput} input={input} >Tailwind : </Checkbox>
+                <Checkbox name="bootstrap" setInput={setInput} input={input} >Bootstrap : </Checkbox>
+                <Checkbox name="reactbootstrap" setInput={setInput} input={input} >React Bootstrap : </Checkbox>
+                <Checkbox name="materialui" setInput={setInput} input={input} >Material UI : </Checkbox>
+                <Checkbox name="normalize" setInput={setInput} input={input} >CSS reset : </Checkbox>
+                <Checkbox name="styledcomponents" setInput={setInput} input={input} >Styled-components : </Checkbox>
             </FormSection>
             <FormSection title="Packages">
-                <Checkbox name="reactrouter" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>react-router-dom : </Checkbox>
-                <Checkbox name="proptypes" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>prop-types : </Checkbox>
-                <Checkbox name="sourcemapexplorer" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>source-map-explorer : </Checkbox>
-                <Checkbox name="storybook" setInput={setInput} input={input} packageJson={packageJson} setPackageJson={setPackageJson}>Storybook : </Checkbox>
+                <Checkbox name="reactrouter" setInput={setInput} input={input} >react-router-dom : </Checkbox>
+                <Checkbox name="proptypes" setInput={setInput} input={input} >prop-types : </Checkbox>
+                <Checkbox name="sourcemapexplorer" setInput={setInput} input={input} >source-map-explorer : </Checkbox>
+                <Checkbox name="storybook" setInput={setInput} input={input} >Storybook : </Checkbox>
             </FormSection>
 
             {loading ?

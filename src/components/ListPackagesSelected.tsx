@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PackageContext } from './context/PackageContext';
 
-export const ListPackagesSelected = (
-    {listPackages, dispatchPackages, packageJson, setPackageJson}:
-    {listPackages: any[], dispatchPackages: any, packageJson: any, setPackageJson: any}) => {
+export const ListPackagesSelected = ({listPackages, dispatchPackages}: {listPackages: any[], dispatchPackages: any}) => {
+    const { packageJson, dispatch } = useContext(PackageContext);
+
     const removePackages = (e: React.MouseEvent<HTMLElement>) => {
         dispatchPackages({type : 'REMOVE', payload: e.currentTarget.dataset.name});
-        delete packageJson.dependencies[e.currentTarget.dataset.name];
-        setPackageJson({...packageJson});
+        //delete packageJson.dependencies[e.currentTarget.dataset.name];
+        //setPackageJson({...packageJson});
     }
 
     return (
