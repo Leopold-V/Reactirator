@@ -1,14 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { PackageContext } from './context/PackageContext';
 
 
 export const ResultLog = () => {
 
-    const { packageJson, dispatch } = useContext(PackageContext);
-
-    useEffect(() => {
-        console.log(packageJson);
-    }, [packageJson]);
+    const { packageJson } = useContext(PackageContext);
 
     return (
         <div className="mt-10 p-6 rounded bg-gray-800 h-big overflow-auto text-yellow-300 w-1/3">

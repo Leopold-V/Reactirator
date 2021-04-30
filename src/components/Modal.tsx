@@ -8,7 +8,7 @@ export const Modal = ({loading, show, toggleModal}: {loading: boolean, show: boo
     }
 
     return (
-        <div className="absolute w-screen h-screen flex justify-center items-center top-0 left-0">
+        <div className="fixed w-screen h-screen flex justify-center items-center top-0 left-0">
             <div className="absolute bg-gray-700 opacity-60 w-screen h-screen top-0 left-0"></div>
             <div className="bg-white rounded z-50 flex flex-col justify-center items-center p-6 lg:w-1/3">
                 <h2 className="text-xl text-black font-bold py-4">Installation...</h2>

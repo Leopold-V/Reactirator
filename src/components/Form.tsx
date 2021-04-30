@@ -46,11 +46,15 @@ export const Form = (
                 setLoading(true);
                 toggleModal();
                 try {
-                    await toast.promise(generateProject(filepath, input, listPackages), toastInstallMsg, toastInstallStyle);
+                    setTimeout(() => {
+                        console.log('hello');
+                setLoading(false);
+                        
+                    }, 3000);
+                    //await toast.promise(generateProject(filepath, input, listPackages), toastInstallMsg, toastInstallStyle);
                 } catch (error) {
                     console.log(error);
                 }
-                setLoading(false);
             }
           });
           return () => {
