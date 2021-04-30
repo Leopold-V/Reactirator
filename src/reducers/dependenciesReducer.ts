@@ -1,4 +1,4 @@
-const reducerPackages = (state: any[], { type, payload }: {type: string, payload: string}) => {
+const dependenciesReducer = (state: any[], { type, payload }: {type: string, payload: string}) => {
     switch (type) {
         case 'ADD':
           return [...state, payload];
@@ -10,4 +10,4 @@ const reducerPackages = (state: any[], { type, payload }: {type: string, payload
     }
 }
 
-export default reducerPackages;
+export default dependenciesReducer;
