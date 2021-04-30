@@ -57,11 +57,11 @@ export const MainContent = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center w-full pt-6">
+                    <div className="flex justify-end w-full mr-20 pt-4">
                         <SearchPackages listPackages={listPackages} dispatchPackages={dispatch} />
                     </div>
                 </div>
-                <div className="w-2/6 flex justify-center">
+                <div className="w-2/6 flex pt-6">
                     <ResultLog />
                 </div>
             </div>

@@ -11,7 +11,7 @@ const App = () => {
   return (
     <PackageProvider>
       <Navbar />
-      <div id="layout" className="relative py-10 bg-gray-200 text-gray-500 h-screen overflow-y-auto">
+      <div id="layout" className="relative py-8 bg-gray-200 text-gray-500 h-screen overflow-y-auto">
         <div className="flex justify-center flex-col items-center">
           <div className="absolute top-0 left-0 h-72 w-full bg-navbar"></div>
           <Header />

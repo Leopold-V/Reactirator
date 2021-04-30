@@ -14,12 +14,12 @@ export const ListPackagesSelected = ({listPackages, dispatchPackages}: {listPack
             {listPackages.map((ele) => (
                 <li 
                     key={ele} 
-                    className="text-red-700 border-1 bg-red-50 transition duration-200
+                    className="text-red-700 border-1 bg-red-50 hover:bg-red-200 transition duration-200
                     flex items-center justify-start rounded shadow-md h-9 my-2 w-full"
                 >
                     <button 
                         data-name={ele}
-                        className="px-2 h-full border-none bg-red-100 hover:bg-red-200 transition duration-200"
+                        className="px-2 h-full border-none focus:bg-red-300 focus:outline-none transition duration-200"
                         onClick={removePackages}
                     >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="#3f3f3f">

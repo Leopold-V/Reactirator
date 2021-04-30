@@ -24,7 +24,7 @@ export const CardProjectName = ({input, setInput}: {input: any, setInput: any}) 
                 <label className="pr-4 font-semibold" htmlFor="appname">Name ?</label>
                 <input 
                     onChange={handleChange} 
-                    className="py-2 px-4 outline-none rounded bg-white ring-2 focus:ring-2 ring-blue-500 transition duration-200" 
+                    className="py-2 px-4 outline-none rounded bg-white ring-1 focus:ring-2 ring-blue-500 transition duration-200" 
                     type="text" 
                     name="appname" 
                     id="appname" 
