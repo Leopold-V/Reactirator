@@ -6,7 +6,7 @@ import Checkbox from './Checkbox';
 export const FormCustomProject = ({input, setInput}: {input: any, setInput: any}) => {
     return (
         <div className="bg-white text-gray-800 p-6 rounded shadow">
-            <h2 className="font-extrabold text-xl py-6 text-center">✏️ Customization ✏️</h2>
+            <h2 className="font-extrabold text-xl pb-6 text-center">Customization</h2>
             <div className="flex flex-col items-center divide-y-2 divide-gray-100 space-y-6">
                 <FormSection title="Syntax">
                     <Checkbox name="typescript" setInput={setInput} input={input} >Typescript : </Checkbox>

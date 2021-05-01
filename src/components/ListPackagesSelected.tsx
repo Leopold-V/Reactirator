@@ -1,7 +1,11 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, useContext } from 'react';
 import { PackageContext } from './context/PackageContext';
+import { actionPackageType } from '../helpers/types';
 
-export const ListPackagesSelected = ({listPackages, dispatchPackages}: {listPackages: string[], dispatchPackages: any}) => {
+export const ListPackagesSelected = (
+    {listPackages, dispatchPackages}: 
+    {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
+        
     const { dispatchJson } = useContext(PackageContext);
 
     const removePackages = (e: React.MouseEvent<HTMLElement>) => {

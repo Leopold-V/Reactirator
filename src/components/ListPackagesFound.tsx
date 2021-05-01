@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, Dispatch } from 'react'
+import { actionPackageType, listPackageType } from '../helpers/types';
 import { PackageContext } from './context/PackageContext';
 
 export const ListPackagesFound = (
     {results, dispatchPackages}:
-    {results: any[], dispatchPackages: any}) => {
+    {results: listPackageType, dispatchPackages: Dispatch<actionPackageType>}) => {
 
-    const { packageJson ,dispatchJson } = useContext(PackageContext);
+    const { packageJson, dispatchJson } = useContext(PackageContext);
 
     const addPackages = (e: React.MouseEvent<HTMLElement>) => {
         dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name});

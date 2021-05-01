@@ -2,7 +2,7 @@ import React, { ReactNode, useContext } from 'react'
 import { PackageContext } from './context/PackageContext';
 
 const Checkbox = ({children, name, setInput, input}: {children: ReactNode, name: string, setInput: any, input: any}) => {
-    const { packageJson, dispatchJson } = useContext(PackageContext);
+    const { dispatchJson } = useContext(PackageContext);
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, [e.target.name]: !input[e.target.name]});

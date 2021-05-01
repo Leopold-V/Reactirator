@@ -17,8 +17,6 @@ window.onbeforeunload = (event: Electron.IpcRendererEvent) => {
     win.removeAllListeners();
 }
 
-// https://github.com/Leopold-V/cra-generator.git
-
 function addExternalLink() {
     document.getElementById('button_git').addEventListener("click", event => {
         shell.openExternal('https://github.com/Leopold-V/cra-generator.git')

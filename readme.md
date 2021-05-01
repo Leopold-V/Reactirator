@@ -10,6 +10,13 @@ Desktop application built with Electron + React.js.
 
 ...
 
+### For developper
+
+To keep the installation up-to-date verify :
+- ./src/helpers/initialPackageJson.ts : use for the UI only, check for initial package.json structure, including react and react-testing-library version.
+- ./src/services/installation.ts : use for custom tools installation, command and some package dependencies version like tailwind.
+- ./src/reducers/packageReducer.ts : use for the UI only, hardcoded custom tools version in package.json.
+
 ## Progression :
 
 UPDATE 30/04/21 

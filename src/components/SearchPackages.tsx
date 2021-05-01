@@ -1,18 +1,20 @@
-import React, { useState} from 'react'
+import React, { useState, Dispatch } from 'react'
 import { ListPackagesFound } from './ListPackagesFound';
 import { ListPackagesSelected } from './ListPackagesSelected';
+import { listPackageType } from '../helpers/types';
+import { actionPackageType } from '../helpers/types';
 
 const API_URL = "https://api.npms.io/v2/search?q=";
 
-export const SearchPackages = ({listPackages, dispatchPackages}: {listPackages: string[], dispatchPackages: any}) => {
+export const SearchPackages = ({listPackages, dispatchPackages}: {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
 
-    const [input, setInput] = useState([]);
+    const [input, setInput] = useState<listPackageType>([]);
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.value !== "") {
         const rep = await fetch(`${API_URL}${e.target.value}`);
         const res = await rep.json();
-        const results = res.results.map((ele: any) => ele.package);
+        const results: listPackageType = res.results.map((ele: any) => ({name: ele.package.name, version: ele.package.version}));
         results.length = 10;
         setInput(results);
       } else {
