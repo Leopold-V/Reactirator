@@ -33,7 +33,10 @@ export const SearchPackages = ({listPackages, dispatchPackages}: {listPackages: 
                     <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />
                 </div>
                 <div className="flex flex-col items-center w-1/2">
-                    <h1 className="font-bold pb-4">Packages selected :</h1>
+                    <h1 className="font-bold pb-4">
+                        {listPackages.length > 0 ? listPackages.length+' ' : ''}
+                        Package{listPackages.length > 1 && 's'} to install :
+                    </h1>
                     <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages} />
                 </div>
             </div>
