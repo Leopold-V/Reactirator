@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Toaster } from 'react-hot-toast';
 
 import PackageProvider from './components/context/PackageContext';
 
@@ -18,6 +19,14 @@ const App = () => {
           <MainContent />
         </div>
       </div>
+      <Toaster 
+        position="top-center"
+        toastOptions={{
+            style: {
+              margin: '300px',
+            },
+        }}
+      />
     </PackageProvider>
   )
 }

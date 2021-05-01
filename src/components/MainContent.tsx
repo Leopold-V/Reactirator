@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react'
 const { ipcRenderer } = require('electron');
 
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import dependenciesReducer from '../reducers/dependenciesReducer';
 import { useModal } from '../hooks/useModal';
@@ -65,18 +65,7 @@ export const MainContent = () => {
                     <ResultLog />
                 </div>
             </div>
-            <Toaster 
-                position="top-center"
-                toastOptions={{
-                    style: {
-                      margin: '300px',
-                    },
-                }}
-             />
             <Modal loading={loading} show={show} toggleModal={toggleModal} />
         </div>
     )
 }
-
-
-// <div className={`text-7xl hidden lg:block ${loading ? 'animate-arrow-bounce' : ''}`}>&#10140;</div>
