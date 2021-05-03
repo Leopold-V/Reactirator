@@ -7,8 +7,8 @@ import { formInputType } from '../helpers/types';
 export const FormCustomProject = ({input, setInput}: {input: formInputType, setInput: (input: formInputType) => void}) => {
     return (
         <div className="bg-white text-gray-800 p-6 rounded shadow">
-            <h2 className="font-extrabold text-xl pb-6 text-center">Customization</h2>
-            <div className="flex flex-col items-center divide-y-2 divide-gray-100 space-y-6">
+            <h2 className="font-extrabold text-xl pb-6 text-center border-b-2 border-blue-100">Customization</h2>
+            <div className="flex flex-col items-center divide-y-2 divide-blue-100 space-y-6">
                 <FormSection title="Syntax">
                     <Checkbox name="typescript" setInput={setInput} input={input} >Typescript : </Checkbox>
                     <Checkbox name="prettier" setInput={setInput} input={input} >Prettier : </Checkbox>

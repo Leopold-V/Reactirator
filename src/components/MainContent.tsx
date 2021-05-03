@@ -63,7 +63,8 @@ export const MainContent = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-end w-full mr-20 pt-4">
+                    <div className="flex flex-col items-center w-full">
+                        <h2 className="font-extrabold text-2xl text-blue-900 pt-6 pb-10">Packages manager</h2>
                         <SearchPackages listPackages={listPackages} dispatchPackages={dispatch} />
                     </div>
                 </div>
