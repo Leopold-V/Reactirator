@@ -3,8 +3,8 @@ import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
 import { formInputType } from '../helpers/types';
 
-export const generateProject = async (filepath: string, input: formInputType, listPackages: string[]) => {
-    const fullPath: string = `${filepath}\\${input.appname}`
+export const generateProject = async (filepath: string, input: formInputType, listPackages: string[]): Promise<void> => {
+    const fullPath = `${filepath}\\${input.appname}`
 
     input.typescript ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
@@ -26,15 +26,6 @@ export const generateProject = async (filepath: string, input: formInputType, li
     if (input.tailwind) {
         await installTailwind(fullPath);
     }
-    if (input.styledcomponents) {
-        await installStyledComponents(fullPath);
-    }
-    if (input.reactrouter) {
-        await installReactRouter(fullPath);
-    }
-    if (input.proptypes) {
-        await installPropTypes(fullPath);
-    }
     if (input.prettier) {
         await installPrettier(fullPath);
     }
@@ -49,7 +40,7 @@ export const generateProject = async (filepath: string, input: formInputType, li
     }
 }
 
-const installPackages = async (fullPath: string, listPackages: string[]) => {
+const installPackages = async (fullPath: string, listPackages: string[]): Promise<void> => {
     try {
         const listPromises = listPackages.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm install ${ele}`)});
         await Promise.all(listPromises);       
@@ -58,7 +49,7 @@ const installPackages = async (fullPath: string, listPackages: string[]) => {
     }
 }
 
-const installMaterialUI = async (fullPath: string) => {
+const installMaterialUI = async (fullPath: string): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npm install @material-ui/core`);
     } catch (error) {
@@ -66,7 +57,7 @@ const installMaterialUI = async (fullPath: string) => {
     }
 }
 
-const installReactBootstrap = async (fullPath: string) => {
+const installReactBootstrap = async (fullPath: string): Promise<void> => {
     try {
         runCmd(`cd ${fullPath} && npm install react-bootstrap bootstrap`);
     } catch (error) {
@@ -74,7 +65,7 @@ const installReactBootstrap = async (fullPath: string) => {
     }
 }
 
-const installStorybook = async (fullPath: string) => {
+const installStorybook = async (fullPath: string): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npx -p @storybook/cli sb init`)
     } catch (error) {
@@ -82,7 +73,7 @@ const installStorybook = async (fullPath: string) => {
     }
 }
 
-const installFlow = async (fullPath: string) => {
+const installFlow = async (fullPath: string): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npm install flow-bin`);
         const data = await promisifyReadFs(`${fullPath}\\package.json`)
@@ -95,7 +86,7 @@ const installFlow = async (fullPath: string) => {
     }
 }
 
-const installSourceMapExplorer = async (fullPath: string) => {
+const installSourceMapExplorer = async (fullPath: string): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npm install source-map-explorer`);
         const data = await promisifyReadFs(`${fullPath}\\package.json`)
@@ -107,31 +98,7 @@ const installSourceMapExplorer = async (fullPath: string) => {
     }
 }
 
-const installReactRouter = async (fullPath: string) => {
-    try {
-        await runCmd(`cd ${fullPath} && npm install react-router-dom`);
-    } catch (error) {
-        throw error;
-    }
-}
-
-const installStyledComponents = async (fullPath: string) => {
-    try {
-        await runCmd(`cd ${fullPath} && npm install styled-components`);
-    } catch (error) {
-        throw error;
-    }
-}
-
-const installPropTypes = async (fullPath: string) => {
-    try {
-        await runCmd(`cd ${fullPath} && npm install prop-types`);
-    } catch (error) {
-        throw error;
-    }
-}
-
-const installBootstrap = async (fullPath: string, withTypescript: boolean) => {
+const installBootstrap = async (fullPath: string, withTypescript: boolean): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npm install bootstrap`)
         withTypescript ? await writeFileAtTop(`${fullPath}\\src\\index.tsx`, "import 'bootstrap/dist/css/bootstrap.css';\n")
@@ -141,7 +108,7 @@ const installBootstrap = async (fullPath: string, withTypescript: boolean) => {
     }
 }
 
-const installNormalize = async (fullPath: string) => {
+const installNormalize = async (fullPath: string): Promise<void> => {
     try {
         await writeFileAtTop(`${fullPath}\\src\\index.css`, '@import-normalize;\n');
     } catch (error) {
@@ -149,7 +116,7 @@ const installNormalize = async (fullPath: string) => {
     }
 }
 
-const installPrettier = async (fullPath: string) => {
+const installPrettier = async (fullPath: string): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json`);
         await promisifyWriteFs(`${fullPath}\\src\\.prettierignore`,  `# Ignore artifacts:\nbuild\ncoverage\n`)
@@ -158,7 +125,7 @@ const installPrettier = async (fullPath: string) => {
     }
 }
 
-const installTailwind = async (fullPath: string) => {
+const installTailwind = async (fullPath: string): Promise<void> => {
     try {
         await runCmd(`cd ${fullPath} && npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 && npm install @craco/craco && npx tailwindcss init`)
         const data = await promisifyReadFs(`${fullPath}\\package.json`)
