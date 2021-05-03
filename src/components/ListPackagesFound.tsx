@@ -8,7 +8,7 @@ export const ListPackagesFound = (
 
     const { packageJson, dispatchJson } = useContext(PackageContext);
 
-    const addPackages = (e: React.MouseEvent<HTMLElement>) => {
+    const addPackages = (e: React.MouseEvent<HTMLElement>): void => {
         dispatchPackages({type : 'ADD', payload: e.currentTarget.dataset.name});
         dispatchJson({type : 'ADD', payload: {name: e.currentTarget.dataset.name, version: e.currentTarget.dataset.version}});
     }

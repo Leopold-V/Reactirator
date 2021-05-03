@@ -1,7 +1,10 @@
 import React, { ReactNode, useContext } from 'react'
+import { formInputType } from '../helpers/types';
 import { PackageContext } from './context/PackageContext';
 
-const Checkbox = ({children, name, setInput, input}: {children: ReactNode, name: string, setInput: any, input: any}) => {
+const Checkbox = (
+    {children, name, setInput, input}:
+    {children: ReactNode, name: string, setInput: (input: any) => void, input: any}) => {
     const { dispatchJson } = useContext(PackageContext);
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

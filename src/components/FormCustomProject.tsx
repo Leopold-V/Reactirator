@@ -2,8 +2,9 @@ import React from 'react';
 
 import FormSection from './FormSection';
 import Checkbox from './Checkbox';
+import { formInputType } from '../helpers/types';
 
-export const FormCustomProject = ({input, setInput}: {input: any, setInput: any}) => {
+export const FormCustomProject = ({input, setInput}: {input: formInputType, setInput: (input: formInputType) => void}) => {
     return (
         <div className="bg-white text-gray-800 p-6 rounded shadow">
             <h2 className="font-extrabold text-xl pb-6 text-center">Customization</h2>

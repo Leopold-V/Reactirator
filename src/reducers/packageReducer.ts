@@ -78,15 +78,14 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
             delete state.scripts['flow'];
           }
           return {...state};
-        case 'bootstrap': {
+        case 'bootstrap':
           if (!state.dependencies['bootstrap']) {
             state.dependencies['bootstrap'] = "^4.6.0";
           } else {
             delete state.dependencies['bootstrap'];
           }
           return {...state};
-        }
-        case 'sourcemapexplorer': {
+        case 'sourcemapexplorer':
           if (!state.dependencies['source-map-explorer']) {
             state.dependencies['source-map-explorer'] = "^2.5.2";
             state.scripts['analyze'] = "source-map-explorer 'build/static/js/*.js'";
@@ -95,11 +94,9 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
             delete state.scripts['analyze'];
           }
           return {...state};
-        }
-        case 'normalize': {
+        case 'normalize':
           return {...state};
-        }
-        case 'typescript': {
+        case 'typescript':
           if (!state.dependencies['typescript']) {
             state.dependencies['typescript'] = "^4.2.4";
             state.dependencies['@types/jest'] ="^26.0.23";
@@ -114,7 +111,6 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
             delete state.dependencies['@types/react-dom']
           }
           return {...state};
-        }
         default:
           throw new Error();
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Navbar = () => {
+export const Bar = () => {
     return (
       <div id="titlebar">
         <div id="drag-region">

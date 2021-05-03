@@ -8,7 +8,7 @@ export const ListPackagesSelected = (
         
     const { dispatchJson } = useContext(PackageContext);
 
-    const removePackages = (e: React.MouseEvent<HTMLElement>) => {
+    const removePackages = (e: React.MouseEvent<HTMLElement>): void => {
         dispatchPackages({type : 'REMOVE', payload: e.currentTarget.dataset.name});
         dispatchJson({type : 'REMOVE', payload: {name: e.currentTarget.dataset.name}});
     }

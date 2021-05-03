@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef } from 'react';
+import { formInputType } from '../helpers/types';
 import { PackageContext } from './context/PackageContext';
 
-export const CardProjectName = ({input, setInput}: {input: any, setInput: any}) => {
+export const CardProjectName = ({input, setInput}: {input: formInputType, setInput: (input: formInputType) => void}) => {
 
     const { packageJson, dispatchJson } = useContext(PackageContext);
 

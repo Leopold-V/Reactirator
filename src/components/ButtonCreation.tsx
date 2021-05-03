@@ -4,10 +4,11 @@ import toast from 'react-hot-toast';
 
 import { toastValidationStyle } from '../helpers/toast';
 import validateInput from '../utils/validate_input';
+import { formInputType } from '../helpers/types';
 
-export const ButtonCreation = ({loading, input} : {loading: boolean, input: any}) => {
+export const ButtonCreation = ({input} : {input: formInputType}) => {
 
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
         e.preventDefault();
         if (!validateInput(input.appname)) {
             toast('The project name is invalid !', toastValidationStyle);
@@ -19,10 +20,10 @@ export const ButtonCreation = ({loading, input} : {loading: boolean, input: any}
     return (
         <button
             onClick={handleSubmit}
-            className="w-30 mx-auto shadow-red bg-red-500 px-4 py-3 outline-none font-bold text-xl
+            className=" mx-auto shadow-red bg-red-500 px-4 py-2 outline-none font-bold text-xl
             tracking-wider text-white rounded-lg hover:bg-red-700 focus:outline-none transition duration-250"
             >
-            Build
+            Create
         </button>
     )
 }

@@ -6,11 +6,13 @@ import { actionPackageType } from '../helpers/types';
 
 const API_URL = "https://api.npms.io/v2/search?q=";
 
-export const SearchPackages = ({listPackages, dispatchPackages}: {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
+export const SearchPackages = (
+    {listPackages, dispatchPackages}:
+    {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
 
     const [input, setInput] = useState<listPackageType>([]);
 
-    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
       if (e.target.value !== "") {
         const rep = await fetch(`${API_URL}${e.target.value}`);
         const res = await rep.json();

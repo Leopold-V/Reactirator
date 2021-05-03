@@ -4,8 +4,8 @@ export const useModal = () => {
 
     const [show, setShow] = useState(false);
 
-    const toggleModal = () => {
-        return setShow(show => !show);
+    const toggleModal = (): void => {
+        setShow(show => !show);
     }
 
     return [show, toggleModal] as const;

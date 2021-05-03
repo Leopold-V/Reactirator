@@ -1,7 +1,9 @@
 import React from 'react'
 import { ConsoleLogs } from './ConsoleLogs';
 
-export const Modal = ({loading, show, toggleModal}: {loading: boolean, show: boolean, toggleModal: any}) => {
+export const Modal = (
+    {loading, show, toggleModal}:
+    {loading: boolean, show: boolean, toggleModal: () => void}) => {
 
     if (!show) {
         return null;

@@ -15,6 +15,12 @@ import { SearchPackages } from './SearchPackages';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { ButtonCreation } from './ButtonCreation';
+import { formInputType } from '../helpers/types';
+
+type argType = [
+    filepath: string,
+    input: formInputType
+]
 
 export const MainContent = () => {
     const [show, toggleModal] = useModal();
@@ -24,7 +30,7 @@ export const MainContent = () => {
     const [input, setInput] = useState(initialState);
 
     useEffect(() => {
-        ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: any) => {
+        ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: argType) => {
             const [filepath, input] = arg;
             if (arg) {
                 setLoading(true);
@@ -53,7 +59,7 @@ export const MainContent = () => {
                         <div className="flex flex-col h-full">
                             <CardProjectName input={input} setInput={setInput} />
                             <div className="h-full pt-10 flex items-center">
-                                <ButtonCreation loading={loading} input={input} />
+                                <ButtonCreation input={input} />
                             </div>
                         </div>
                     </div>
