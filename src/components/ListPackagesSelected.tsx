@@ -1,21 +1,21 @@
 import React, { Dispatch, useContext } from 'react';
 import { PackageContext } from './context/PackageContext';
-import { actionPackageType } from '../helpers/types';
+import { actionPackageType, depStateType } from '../helpers/types';
 
 export const ListPackagesSelected = (
     {listPackages, dispatchPackages}: 
-    {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
+    {listPackages: depStateType, dispatchPackages: Dispatch<actionPackageType>}) => {
         
     const { dispatchJson } = useContext(PackageContext);
 
     const removePackages = (e: React.MouseEvent<HTMLElement>): void => {
-        dispatchPackages({type : 'REMOVE', payload: e.currentTarget.dataset.name});
+        dispatchPackages({type : 'REMOVE', payload: {category: 'dependencies', name: e.currentTarget.dataset.name}});
         dispatchJson({type : 'REMOVE', payload: {name: e.currentTarget.dataset.name}});
     }
 
     return (
         <ul>
-            {listPackages.map((ele) => (
+            {listPackages.dependencies.map((ele) => (
                 <li 
                     key={ele} 
                     className="text-red-700 border-1 bg-red-50 hover:bg-red-200 transition duration-200

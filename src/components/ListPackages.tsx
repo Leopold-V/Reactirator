@@ -1,13 +1,13 @@
 import React, { Dispatch } from 'react';
 
-import { actionPackageType } from '../helpers/types';
+import { actionPackageType, depStateType } from '../helpers/types';
 
 import { ListPackagesSelected } from './ListPackagesSelected';
 
 
 export const ListPackages = (
     {listPackages, dispatchPackages}:
-    {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
+    {listPackages: depStateType, dispatchPackages: Dispatch<actionPackageType>}) => {
     return (
         <div className="mx-10 w-full lg:w-3/5 flex flex-wrap justify-center lg:space-x-6">
             <div className="p-6 flex-grow bg-white text-gray-800 rounded shadow">
