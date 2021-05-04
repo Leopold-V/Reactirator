@@ -3,11 +3,21 @@ import { depStateType } from '../helpers/types';
 const dependenciesReducer = (state: depStateType, { type, payload }: {type: string, payload: {category: string, name: string}}) => {
     switch (type) {
         case 'ADD':
-          state[payload.category].push(payload.name);
-          return {...state};
+          if (payload.category === 'dependencies') {
+            state['dependencies'].push(payload.name);
+            return {...state};
+          } else {
+            state['devDependencies'].push(payload.name);
+            return {...state};
+          }
         case 'REMOVE':
-          const newState = state[payload.category].filter((ele) => ele !== payload.name);
-          return {...newState};
+          if (payload.category === 'dependencies') {
+            const newDeps = state['dependencies'].filter((ele) => ele !== payload.name);
+            return {...state, dependencies: newDeps};
+          } else {
+            const newDeps = state['devDependencies'].filter((ele) => ele !== payload.name);
+            return {...state, devDependencies: newDeps};
+          }
         default:
           throw new Error();
     }
