@@ -11,7 +11,7 @@ import { generateProject } from '../services/installation';
 
 import { FormCustomProject } from './FormCustomProject';
 import { Modal } from './Modal';
-import { SearchPackages } from './SearchPackages';
+import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { ButtonCreation } from './ButtonCreation';
@@ -52,7 +52,7 @@ export const MainContent = () => {
         <div className="z-10 flex flex-col w-11/12">
             <div className="flex justify-between">
                 <div className="flex flex-col items-center w-4/6">
-                    <div className="pt-6 pb-10 flex justify-around items-start w-full">
+                    <div className="pt-6 pb-10 flex flex-wrap justify-around items-start w-full">
                         <div className="w-1/2">
                             <FormCustomProject input={input} setInput={setInput} />
                         </div>
@@ -63,9 +63,9 @@ export const MainContent = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center w-full">
-                        <h2 className="font-extrabold text-2xl text-blue-900 pt-6 pb-10">Packages manager</h2>
-                        <SearchPackages listPackages={listPackages} dispatchPackages={dispatch} />
+                    <div className="flex flex-col items-start w-full">
+                        <h2 className="font-extrabold mx-auto text-center text-2xl text-blue-900 pt-6 pb-10">Packages manager</h2>
+                        <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
                     </div>
                 </div>
                 <div className="w-2/6 flex pt-6">
