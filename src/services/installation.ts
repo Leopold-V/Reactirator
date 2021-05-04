@@ -1,15 +1,15 @@
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
-import { formInputType } from '../helpers/types';
+import { depStateType, formInputType } from '../helpers/types';
 
-export const generateProject = async (filepath: string, input: formInputType, listPackages: string[]): Promise<void> => {
+export const generateProject = async (filepath: string, input: formInputType, listPackages: depStateType): Promise<void> => {
     const fullPath = `${filepath}\\${input.appname}`
 
     input.typescript ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
 
-    await installPackages(fullPath, listPackages);
+    await installPackages(fullPath, listPackages.dependencies);
 
     if (input.bootstrap) {
         await installBootstrap(fullPath, input.typescript);
@@ -41,6 +41,7 @@ export const generateProject = async (filepath: string, input: formInputType, li
 }
 
 const installPackages = async (fullPath: string, listPackages: string[]): Promise<void> => {
+    // Todo split dep and dev dep install command
     try {
         const listPromises = listPackages.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm install ${ele}`)});
         await Promise.all(listPromises);       
