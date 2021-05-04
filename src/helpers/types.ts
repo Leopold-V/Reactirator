@@ -17,7 +17,10 @@ export type formInputType = {
 
 export type actionPackageType = {
     type: string,
-    payload: string
+    payload: {
+        category: string,
+        name: string
+    }
 }
 
 export type actionJsonType = {
@@ -34,5 +37,12 @@ export type listPackageType = {
 }[]
 
 export type depStateType = {
-    [key: string]: string[]
-  }
+    //[key: string]: string[]
+    dependencies: string[],
+    devDependencies: string[]
+}
+
+export type argType = [
+    filepath: string,
+    input: formInputType
+]

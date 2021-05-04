@@ -9,7 +9,7 @@ export const generateProject = async (filepath: string, input: formInputType, li
     input.typescript ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
 
-    await installPackages(fullPath, listPackages.dependencies);
+    await installPackages(fullPath, listPackages);
 
     if (input.bootstrap) {
         await installBootstrap(fullPath, input.typescript);
@@ -40,11 +40,12 @@ export const generateProject = async (filepath: string, input: formInputType, li
     }
 }
 
-const installPackages = async (fullPath: string, listPackages: string[]): Promise<void> => {
+const installPackages = async (fullPath: string, listPackages: depStateType): Promise<void> => {
     // Todo split dep and dev dep install command
     try {
-        const listPromises = listPackages.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm install ${ele}`)});
-        await Promise.all(listPromises);       
+        const listPromises = listPackages.dependencies.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm install ${ele}`)});
+        const listPromisesDev = listPackages.devDependencies.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm -D install ${ele}`)});
+        await Promise.all([...listPromises, ...listPromisesDev]);       
     } catch (error) {
         throw error;
     }
