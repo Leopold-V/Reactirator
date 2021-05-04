@@ -32,3 +32,7 @@ export type listPackageType = {
     name: string,
     version: string
 }[]
+
+export type depStateType = {
+    [key: string]: string[]
+  }

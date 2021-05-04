@@ -15,17 +15,22 @@ import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { ButtonCreation } from './ButtonCreation';
-import { formInputType } from '../helpers/types';
+import { depStateType, formInputType } from '../helpers/types';
 
 type argType = [
     filepath: string,
     input: formInputType
 ]
 
+const initialDeps: depStateType = {
+    dependencies: [],
+    devDependencies: []
+}
+
 export const MainContent = () => {
     const [show, toggleModal] = useModal();
     const [loading, setLoading] = useState(false);
-    const [listPackages, dispatch] = useReducer(dependenciesReducer, []);
+    const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
 
     const [input, setInput] = useState(initialState);
 
