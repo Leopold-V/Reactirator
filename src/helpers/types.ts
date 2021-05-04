@@ -40,4 +40,9 @@ export type depStateType = {
     //[key: string]: string[]
     dependencies: string[],
     devDependencies: string[]
-  }
+}
+
+export type argType = [
+    filepath: string,
+    input: formInputType
+]

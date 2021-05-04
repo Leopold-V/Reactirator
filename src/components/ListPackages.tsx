@@ -13,13 +13,13 @@ export const ListPackages = (
             <div className="p-6 flex-grow bg-white text-gray-800 rounded shadow">
                 <div className="flex flex-col items-center">
                     <h2 className="font-bold">Dependencies</h2>
-                    <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages} />
+                    <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages.dependencies} />
                 </div>
             </div>
             <div className="p-6 flex-grow bg-white text-gray-800 rounded shadow">
                 <div className="flex flex-col items-center">
                     <h2 className="font-bold">Dev dependencies</h2>
-                    <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages} />
+                    <ListPackagesSelected dispatchPackages={dispatchPackages} listPackages={listPackages.devDependencies} />
                 </div>
             </div>
         </div>

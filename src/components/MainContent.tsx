@@ -15,12 +15,7 @@ import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { ButtonCreation } from './ButtonCreation';
-import { depStateType, formInputType } from '../helpers/types';
-
-type argType = [
-    filepath: string,
-    input: formInputType
-]
+import { argType, depStateType } from '../helpers/types';
 
 const initialDeps: depStateType = {
     dependencies: [],

@@ -4,7 +4,7 @@ import { actionPackageType, depStateType } from '../helpers/types';
 
 export const ListPackagesSelected = (
     {listPackages, dispatchPackages}: 
-    {listPackages: depStateType, dispatchPackages: Dispatch<actionPackageType>}) => {
+    {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
         
     const { dispatchJson } = useContext(PackageContext);
 
@@ -15,7 +15,7 @@ export const ListPackagesSelected = (
 
     return (
         <ul>
-            {listPackages.dependencies.map((ele) => (
+            {listPackages.map((ele) => (
                 <li 
                     key={ele} 
                     className="text-red-700 border-1 bg-red-50 hover:bg-red-200 transition duration-200
