@@ -18,14 +18,14 @@ export const ListPackagesSelected = (
     return (
         <Droppable droppableId="dependencies">
         {(provided) => (
-            <ul ref={provided.innerRef} {...provided.droppableProps}>
+            <ul className="min-h-big" ref={provided.innerRef} {...provided.droppableProps}>
             {listPackages.map((ele, i) => (
                 <Draggable draggableId={ele} index={i}>
-                {(provided2: any) => (    
+                {(provided: any) => (    
                     <li 
-                        ref={provided2.innerRef}
-                        {...provided2.draggableProps}
-                        {...provided2.dragHandleProps}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
                         key={ele} 
                         className="text-red-700 border-1 bg-red-50 hover:bg-red-200 transition duration-200
                         flex items-center justify-start rounded shadow-md h-9 my-2 w-full"

@@ -12,6 +12,8 @@ export const ListPackages = (
 
     const onDragEnd = (result: any) => {
         const { draggableId, source, destination } = result;
+        console.log(result);
+        
     /*
         if (!destination) return;
         if (source.index === destination.index && source.droppableId === destination.droppableId) return;
