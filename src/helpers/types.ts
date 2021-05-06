@@ -18,7 +18,8 @@ export type formInputType = {
 export type actionPackageType = {
     type: string,
     payload: {
-        category: string,
+        destination: string,
+        source ?: string,
         name: string
     }
 }
