@@ -16,7 +16,7 @@ export type formInputType = {
 }
 
 export type actionPackageType = {
-    type: string,
+    type: 'CHANGE_TYPE' | 'ADD' | 'REMOVE',
     payload: {
         destination: string,
         source ?: string,
@@ -25,11 +25,22 @@ export type actionPackageType = {
 }
 
 export type actionJsonType = {
-    type: string,
+    type: 'CHANGE_NAME',
+    payload: string
+} | {
+    type: 'ADD' | 'REMOVE',
     payload: {
+        category: string,
         name: string,
-        version: string
-    } | string
+        version?: string
+    }
+} | {
+    type: string,
+    payload?: {
+        category?: string,
+        name?: string,
+        version?: string
+    }
 }
 
 export type listPackageType = {
@@ -41,9 +52,4 @@ export type depStateType = {
     //[key: string]: string[]
     dependencies: string[],
     devDependencies: string[]
-}
-
-export type argType = [
-    filepath: string,
-    input: formInputType
-]
+};

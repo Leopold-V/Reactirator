@@ -1,12 +1,18 @@
 import React, { ReactNode, useReducer } from 'react';
 import initialPackageJson from '../../helpers/initialPackageJson';
-import packageReducer from '../../reducers/packageReducer';
+import jsonPackageReducer from '../../reducers/jsonPackageReducer';
+import { actionJsonType } from '../../helpers/types';
 
-export const PackageContext = React.createContext<any | null>(null);
+type PackageContextType = {
+    packageJson: any,
+    dispatchJson: (object: actionJsonType) => void
+} | null;
+
+export const PackageContext = React.createContext<PackageContextType>(null);
 
 const PackageProvider = ({children}: {children: ReactNode}) => {
 
-    const [packageJson, dispatchJson] = useReducer(packageReducer, initialPackageJson) // a changer
+    const [packageJson, dispatchJson] = useReducer(jsonPackageReducer, initialPackageJson) // a changer
 
     return (
         <PackageContext.Provider value={{packageJson, dispatchJson}}> 

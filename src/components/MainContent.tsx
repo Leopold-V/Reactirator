@@ -15,12 +15,17 @@ import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { ButtonCreation } from './ButtonCreation';
-import { argType, depStateType } from '../helpers/types';
+import { formInputType, depStateType } from '../helpers/types';
 
 const initialDeps: depStateType = {
     dependencies: [],
     devDependencies: []
 }
+
+type argType = [
+    filepath: string,
+    input: formInputType
+]
 
 export const MainContent = () => {
     const [show, toggleModal] = useModal();

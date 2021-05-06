@@ -1,6 +1,6 @@
-import { depStateType } from '../helpers/types';
+import { actionPackageType, depStateType } from '../helpers/types';
 
-const dependenciesReducer = (state: depStateType, { type, payload }: {type: string, payload: {destination: string, source?: string, name: string}}) => {
+const dependenciesReducer = (state: depStateType, { type, payload }: actionPackageType) => {
     switch (type) {
         case 'ADD':
           if (payload.destination === 'dependencies') {

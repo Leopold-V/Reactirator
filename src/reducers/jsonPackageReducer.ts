@@ -1,13 +1,15 @@
-const packageReducer = (state: any, { type, payload }: {type: string, payload: {category: string, name: string, version: string}}) => {
-    switch (type) {
+import { actionJsonType } from "../helpers/types";
+
+const jsonPackageReducer = (state: any, action: actionJsonType) => {
+    switch (action.type) {
         case 'CHANGE_NAME':
-          state.name = payload;
+          state.name = action.payload;
           return {...state};
         case 'ADD':
-          state[payload.category][payload.name] = payload.version
+          state[action.payload.category][action.payload.name] = action.payload.version
           return {...state};
         case 'REMOVE':
-          delete state[payload.category][payload.name];
+          delete state[action.payload.category][action.payload.name];
           return {...state};
         case 'tailwind':
           if (!state.dependencies['@craco/craco']) {
@@ -116,4 +118,4 @@ const packageReducer = (state: any, { type, payload }: {type: string, payload: {
     }
 }
 
-export default packageReducer;
+export default jsonPackageReducer;
