@@ -5,28 +5,27 @@ import { PackageContext } from './context/PackageContext';
 import { actionPackageType } from '../helpers/types';
 
 export const ListPackagesSelected = (
-    {listPackages, dispatchPackages}: 
-    {listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
+    {type, listPackages, dispatchPackages}: 
+    {type: string, listPackages: string[], dispatchPackages: Dispatch<actionPackageType>}) => {
         
     const { dispatchJson } = useContext(PackageContext);
 
     const removePackages = (e: React.MouseEvent<HTMLElement>): void => {
-        dispatchPackages({type : 'REMOVE', payload: {category: 'dependencies', name: e.currentTarget.dataset.name}});
-        dispatchJson({type : 'REMOVE', payload: {name: e.currentTarget.dataset.name}});
+        dispatchPackages({type : 'REMOVE', payload: {destination: type, name: e.currentTarget.dataset.name}});
+        dispatchJson({type : 'REMOVE', payload: {category: type, name: e.currentTarget.dataset.name}});
     }
 
     return (
-        <Droppable droppableId="dependencies">
+        <Droppable droppableId={type}>
         {(provided) => (
-            <ul className="min-h-big" ref={provided.innerRef} {...provided.droppableProps}>
+            <ul className="w-full min-h-small" ref={provided.innerRef} {...provided.droppableProps}>
             {listPackages.map((ele, i) => (
-                <Draggable draggableId={ele} index={i}>
-                {(provided: any) => (    
+                <Draggable draggableId={ele} index={i} key={ele}>
+                {(provided2) => (    
                     <li 
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        key={ele} 
+                        ref={provided2.innerRef}
+                        {...provided2.draggableProps}
+                        {...provided2.dragHandleProps}
                         className="text-red-700 border-1 bg-red-50 hover:bg-red-200 transition duration-200
                         flex items-center justify-start rounded shadow-md h-9 my-2 w-full"
                     >

@@ -34,7 +34,8 @@ const initialPackageJson = {
         "last 1 firefox version",
         "last 1 safari version"
       ]
-    }
+    },
+    "devDependencies": {}
 }
 
 export default initialPackageJson;

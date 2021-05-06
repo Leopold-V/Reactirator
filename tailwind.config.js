@@ -23,6 +23,7 @@ module.exports = {
         }
       },
       minHeight: {
+        small: '2rem',
         big: '33rem',
       },
       height: {

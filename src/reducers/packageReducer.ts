@@ -1,13 +1,13 @@
-const packageReducer = (state: any, { type, payload }: {type: string, payload: {name: string, version: string}}) => {
+const packageReducer = (state: any, { type, payload }: {type: string, payload: {category: string, name: string, version: string}}) => {
     switch (type) {
         case 'CHANGE_NAME':
           state.name = payload;
           return {...state};
         case 'ADD':
-          state.dependencies[payload.name] = payload.version
+          state[payload.category][payload.name] = payload.version
           return {...state};
         case 'REMOVE':
-          delete state.dependencies[payload.name];
+          delete state[payload.category][payload.name];
           return {...state};
         case 'tailwind':
           if (!state.dependencies['@craco/craco']) {

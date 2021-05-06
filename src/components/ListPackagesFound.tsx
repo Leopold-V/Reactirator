@@ -9,8 +9,8 @@ export const ListPackagesFound = (
     const { packageJson, dispatchJson } = useContext(PackageContext);
 
     const addPackages = (e: React.MouseEvent<HTMLElement>): void => {
-        dispatchPackages({type : 'ADD', payload: {category: 'dependencies', name: e.currentTarget.dataset.name}});
-        dispatchJson({type : 'ADD', payload: {name: e.currentTarget.dataset.name, version: e.currentTarget.dataset.version}});
+        dispatchPackages({type : 'ADD', payload: {destination: 'dependencies', name: e.currentTarget.dataset.name}});
+        dispatchJson({type : 'ADD', payload: {category: 'dependencies', name: e.currentTarget.dataset.name, version: e.currentTarget.dataset.version}});
     }
 
     return (
@@ -21,7 +21,9 @@ export const ListPackagesFound = (
                     className="text-blue-700 border-1 bg-blue-50 hover:bg-blue-200 transition duration-200
                     flex items-center justify-start w-full h-9" 
                 >
-                    {Object.keys(packageJson.dependencies).includes(ele.name) ? <div className="h-7 w-8"></div>
+                    {Object.keys(packageJson.dependencies).includes(ele.name) ||
+                    Object.keys(packageJson.devDependencies).includes(ele.name)
+                     ? <div className="h-7 w-8"></div>
                     : <button
                         data-name={ele.name}
                         data-version={ele.version}
