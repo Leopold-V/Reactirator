@@ -14,8 +14,8 @@ const Checkbox = (
 
     return (
         <div className="flex flex-row items-center">
-            <label className="font-semibold pr-2" htmlFor={name}>{children}</label>
-            <input className="" 
+            <label className=" pr-2 " htmlFor={name}>{children}</label>
+            <input className="text-pink-600" 
                 type="checkbox" 
                 onChange={handleChange}
                 name={name} 
