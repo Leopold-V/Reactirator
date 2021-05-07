@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { InputHTMLAttributes, useContext, useEffect, useRef } from 'react';
 import { formInputType } from '../helpers/types';
 import { PackageContext } from './context/PackageContext';
 
@@ -6,7 +6,7 @@ export const CardProjectName = ({input, setInput}: {input: formInputType, setInp
 
     const { packageJson, dispatchJson } = useContext(PackageContext);
 
-    const appname_ref = useRef(null);
+    const appname_ref = useRef<HTMLInputElement>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInput({...input, appname: e.target.value});
