@@ -15,11 +15,15 @@ export const SearchPackages = (
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (e.target.value !== "") {
-      const rep = await fetch(`${API_URL}${e.target.value}`);
-      const res = await rep.json();
-      const results: listPackageType = res.results.map((ele: any) => ({name: ele.package.name, version: ele.package.version}));
-      results.length = 10;
-      setInput(results);
+      try {
+        const rep = await fetch(`${API_URL}${e.target.value}`);
+        const res = await rep.json();
+        const results: listPackageType = res.results.map((ele: any) => ({name: ele.package.name, version: ele.package.version}));
+        results.length = 10;
+        setInput(results);
+      } catch (error) {
+        console.log('Error fetching the API');
+      }
     } else {
       setInput([]);
     }
