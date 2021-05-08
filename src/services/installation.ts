@@ -14,12 +14,6 @@ export const generateProject = async (filepath: string, input: formInputType, li
     if (input.bootstrap) {
         await installBootstrap(fullPath, input.typescript);
     }
-    if (input.reactbootstrap) {
-        await installReactBootstrap(fullPath);
-    }
-    if (input.materialui) {
-        await installMaterialUI(fullPath);
-    }
     if (input.normalize) {
         await installNormalize(fullPath);
     }
@@ -41,7 +35,6 @@ export const generateProject = async (filepath: string, input: formInputType, li
 }
 
 const installPackages = async (fullPath: string, listPackages: depStateType): Promise<void> => {
-    // Todo split dep and dev dep install command
     try {
         const listPromises = listPackages.dependencies.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm install ${ele}`)});
         const listPromisesDev = listPackages.devDependencies.map(async (ele) => {return await runCmd(`cd ${fullPath} && npm -D install ${ele}`)});
@@ -51,21 +44,6 @@ const installPackages = async (fullPath: string, listPackages: depStateType): Pr
     }
 }
 
-const installMaterialUI = async (fullPath: string): Promise<void> => {
-    try {
-        await runCmd(`cd ${fullPath} && npm install @material-ui/core`);
-    } catch (error) {
-        throw error;
-    }
-}
-
-const installReactBootstrap = async (fullPath: string): Promise<void> => {
-    try {
-        runCmd(`cd ${fullPath} && npm install react-bootstrap bootstrap`);
-    } catch (error) {
-        throw error;
-    }
-}
 
 const installStorybook = async (fullPath: string): Promise<void> => {
     try {
