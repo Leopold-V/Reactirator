@@ -6,37 +6,37 @@ import './App';
 
 const win = remote.getCurrentWindow();
 
-document.onreadystatechange = (event: Electron.IpcRendererEvent) => {
+document.onreadystatechange = () => {
     if (document.readyState == "complete") {
         handleWindowControls();
         addExternalLink();
     }
 };
 
-window.onbeforeunload = (event: Electron.IpcRendererEvent) => {
+window.onbeforeunload = () => {
     win.removeAllListeners();
 }
 
 function addExternalLink() {
-    document.getElementById('button_git').addEventListener("click", event => {
+    document.getElementById('button_git').addEventListener("click", () => {
         shell.openExternal('https://github.com/Leopold-V/cra-generator.git')
     })
 }
 
 function handleWindowControls() {
-    document.getElementById('min-button').addEventListener("click", event => {
+    document.getElementById('min-button').addEventListener("click", () => {
         win.minimize();
     });
 
-    document.getElementById('max-button').addEventListener("click", event => {
+    document.getElementById('max-button').addEventListener("click", () => {
         win.maximize();
     });
 
-    document.getElementById('restore-button').addEventListener("click", event => {
+    document.getElementById('restore-button').addEventListener("click", () => {
         win.unmaximize();
     });
 
-    document.getElementById('close-button').addEventListener("click", event => {
+    document.getElementById('close-button').addEventListener("click", () => {
         win.close();
     });
 
