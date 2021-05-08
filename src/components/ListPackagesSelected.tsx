@@ -26,7 +26,7 @@ export const ListPackagesSelected = (
                         ref={provided2.innerRef}
                         {...provided2.draggableProps}
                         {...provided2.dragHandleProps}
-                        className="text-white border-1 bg-navbar hover:bg-gray-600 transition duration-200
+                        className="text-white border-1 bg-gray-700 hover:bg-gray-500 transition duration-200
                         flex items-center justify-start rounded shadow-md h-9 my-2 w-full"
                     >
                         <button 

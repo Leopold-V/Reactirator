@@ -41,10 +41,11 @@ export const SearchPackages = (
     <div className="p-6 lg:flex-grow bg-white text-gray-800 rounded shadow">
         <div ref={input_ref} className="flex flex-col items-center relative">
             <h2 className="font-extrabold pb-4">✅ Add more packages</h2>
-            <input className="w-4/5 mb-1 text-center py-2 px-4
-            outline-none rounded bg-white ring-1 focus:ring-2 ring-blue-500 transition duration-200" 
+            <input className="w-full mb-1 text-center text-sm py-2 px-4
+            rounded bg-gray-200 text-black outline-none ring-0 ring-blue-500 focus:ring-1
+            focus:bg-gray-100 transition duration-200"
                 type="text" 
-                placeholder="react-router-dom, react-spinner etc."
+                placeholder="eg. react-router-dom, react-spinner"
                 onChange={handleChange}
             />
             {isOpen && <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />}
