@@ -3,13 +3,19 @@ import { formInputType } from '../helpers/types';
 import { PackageContext } from './context/PackageContext';
 
 const Checkbox = (
-    {children, name, setInput, input}:
-    {children: ReactNode, name: string, setInput: (input: formInputType) => void, input: any}) => {
+    {children, name, packageName, setInput, input}:
+    {children: ReactNode, name: string, packageName: string, setInput: (input: formInputType) => void, input: any}) => {
     const { dispatchJson } = useContext(PackageContext);
     
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
         setInput({...input, [e.target.name]: !input[e.target.name]});
-        dispatchJson({type: e.target.name})
+        try {
+            const rep = await fetch(`https://api.npms.io/v2/search?q=${packageName}`)
+            const result = await rep.json();
+            dispatchJson({type: e.target.name, payload: {version: result.results[0].package.version}})
+        } catch (error) {
+            console.log('Error fetching the API');
+        }
     };
 
     return (
