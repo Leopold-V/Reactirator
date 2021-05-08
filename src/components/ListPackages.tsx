@@ -1,5 +1,5 @@
 import React, { Dispatch, useContext } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import { actionPackageType, depStateType } from '../helpers/types';
 import { PackageContext } from './context/PackageContext';
@@ -12,9 +12,8 @@ export const ListPackages = (
 
     const { packageJson, dispatchJson } = useContext(PackageContext);
 
-    const onDragEnd = (result: any) => {
+    const onDragEnd = (result: DropResult) => {
         const { draggableId, source, destination } = result;
-        console.log(result);
         
         if (!destination) return;
         if (source.droppableId === destination.droppableId) return;
