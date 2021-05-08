@@ -36,10 +36,10 @@ export type actionJsonType = {
     }
 } | {
     type: string,
-    payload?: {
+    payload: {
         category?: string,
         name?: string,
-        version?: string
+        version: string
     }
 }
 
