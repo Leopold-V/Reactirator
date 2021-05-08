@@ -14,7 +14,6 @@ import { Modal } from './Modal';
 import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
-import { ButtonCreation } from './ButtonCreation';
 import { formInputType, depStateType } from '../helpers/types';
 
 const initialDeps: depStateType = {
