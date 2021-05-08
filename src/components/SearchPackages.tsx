@@ -25,15 +25,17 @@ export const SearchPackages = (
     }
   };
 
-  useEffect(() => {
-    document.addEventListener('click', (e: MouseEvent) => {
+  const handleClick = (e: any): void => {
       if (input_ref.current.contains(e.target)) {
         setIsOpen(true);
       } else {
         setIsOpen(false);
       }
-    });
-  }, [])
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+  }, []);
 
   return (
     <div className="p-6 lg:flex-grow bg-white text-gray-800 rounded shadow">
