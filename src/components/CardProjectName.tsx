@@ -1,5 +1,6 @@
 import React, { InputHTMLAttributes, useContext, useEffect, useRef } from 'react';
 import { formInputType } from '../helpers/types';
+import { ButtonCreation } from './ButtonCreation';
 import { PackageContext } from './context/PackageContext';
 
 export const CardProjectName = ({input, setInput}: {input: formInputType, setInput: (input: formInputType) => void}) => {
@@ -22,10 +23,12 @@ export const CardProjectName = ({input, setInput}: {input: formInputType, setInp
         <div className="bg-white text-gray-800 p-6 rounded-lg flex flex-col justify-center shadow">
             <h2 className="font-extrabold text-xl py-6 text-center">🚀 Create a project 🚀</h2>
             <div className="flex flex-row justify-around items-center w-full pb-6">
-                <label className="pr-4 font-semibold" htmlFor="appname">Name ?</label>
+                {/* <label className="pr-4 font-semibold" htmlFor="appname">Name ?</label> */}
                 <input 
                     onChange={handleChange} 
-                    className="py-2 px-4 outline-none rounded bg-white ring-1 focus:ring-2 ring-blue-500 transition duration-200" 
+                    className="text-center py-2 px-4
+                    rounded bg-gray-200 text-black outline-none ring-0 ring-blue-500 focus:ring-1
+                    focus:bg-gray-100 transition duration-200" 
                     type="text" 
                     name="appname" 
                     id="appname" 
@@ -33,6 +36,7 @@ export const CardProjectName = ({input, setInput}: {input: formInputType, setInp
                     ref={appname_ref}
                 />
             </div>
+            <ButtonCreation input={input} />
         </div>
     )
 }

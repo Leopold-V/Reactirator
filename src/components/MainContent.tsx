@@ -63,9 +63,6 @@ export const MainContent = () => {
                         </div>
                         <div className="flex flex-col h-full">
                             <CardProjectName input={input} setInput={setInput} />
-                            <div className="h-full pt-10 flex items-center">
-                                <ButtonCreation input={input} />
-                            </div>
                         </div>
                     </div>
                     <div className="flex flex-col items-start w-full">
