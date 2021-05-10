@@ -19,6 +19,7 @@ export const ListPackagesSelected = (
         <Droppable droppableId={type}>
         {(provided) => (
             <ul className="w-full min-h-small" ref={provided.innerRef} {...provided.droppableProps}>
+            {listPackages.length === 0 && <div className="pt-2 text-center text-sm text-gray-400">Empty list</div>}
             {listPackages.map((ele, i) => (
                 <Draggable draggableId={ele} index={i} key={ele}>
                 {(provided2) => (    
@@ -26,7 +27,7 @@ export const ListPackagesSelected = (
                         ref={provided2.innerRef}
                         {...provided2.draggableProps}
                         {...provided2.dragHandleProps}
-                        className="text-white border-1 bg-gray-700 hover:bg-gray-500 transition duration-200
+                        className="text-white border-1 text-sm bg-navbar hover:bg-gray-500 transition duration-200
                         flex items-center justify-start rounded shadow-md h-9 my-2 w-full"
                     >
                         <button 

@@ -10,7 +10,7 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
     show: false,
     frame: false,
-    backgroundColor: '#4e46e5',
+    backgroundColor: '#181b33',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,

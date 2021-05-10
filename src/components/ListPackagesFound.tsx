@@ -11,7 +11,12 @@ export const ListPackagesFound = (
     const addPackages = (e: React.MouseEvent<HTMLElement>): void => {
         e.preventDefault();
         dispatchPackages({type : 'ADD', payload: {destination: 'dependencies', name: e.currentTarget.dataset.name}});
-        dispatchJson({type : 'ADD', payload: {category: 'dependencies', name: e.currentTarget.dataset.name, version: e.currentTarget.dataset.version}});
+        dispatchJson({type : 'ADD', payload: {
+                category: 'dependencies', 
+                name: e.currentTarget.dataset.name, 
+                version: e.currentTarget.dataset.version
+            }
+        });
     };
 
     return (
