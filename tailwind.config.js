@@ -24,13 +24,19 @@ module.exports = {
       },
       minHeight: {
         small: '2rem',
+        medium: '14rem',
+        big: '33rem',
+      },
+      maxHeight: {
+        small: '2rem',
+        medium: '14rem',
         big: '33rem',
       },
       height: {
         big: '33rem',
       },
       colors: {
-        navbar: '#181b33',
+        primary: '#181b33',
       },
       zIndex: {
         '-10': '-10',
