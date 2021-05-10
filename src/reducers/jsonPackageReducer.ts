@@ -122,7 +122,7 @@ const addStorybook = (state: any, version: string): any => {
     state.devDependencies["@storybook/addon-essentials"] = `^${version}`;
     state.devDependencies["@storybook/addon-links"] = `^${version}`;
     state.devDependencies["@storybook/node-logger"] = `^${version}`;
-    state.devDependencies["@storybook/preset-create-react-app"] = "^^3.1.7";
+    state.devDependencies["@storybook/preset-create-react-app"] = "^3.1.7";
     state.devDependencies["@storybook/addon-actions"] = `^${version}`;
     state.devDependencies["@storybook/react"] = `^${version}`;
   } else {
