@@ -21,6 +21,7 @@ export const SearchPackages = (
         const results: listPackageType = res.results.map((ele: any) => ({name: ele.package.name, version: ele.package.version}));
         results.length = 10;
         setInput(results);
+        console.log(results);
       } catch (error) {
         console.log('Error fetching the API');
       }
@@ -46,8 +47,7 @@ export const SearchPackages = (
         <div ref={input_ref} className="flex flex-col items-center relative">
             <h2 className="font-extrabold pb-4">✅ Add more packages</h2>
             <input className="w-full mb-1 text-center text-sm py-2 px-4
-            rounded bg-gray-200 text-black outline-none ring-0 ring-blue-500 focus:ring-1
-            focus:bg-gray-100 transition duration-200"
+            rounded bg-gray-200 text-black outline-none"
                 type="text" 
                 placeholder="eg. react-router-dom, react-spinner"
                 onChange={handleChange}
