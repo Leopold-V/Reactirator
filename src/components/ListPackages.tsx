@@ -46,7 +46,7 @@ export const ListPackages = (
     
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className="mx-10 lg:w-3/5 flex flex-wrap justify-center lg:space-x-6">
+            <div className="flex flex-col lg:flex-row justify-between">
                 <CardDependencies title="Dependencies" listPackages={listPackages.dependencies}>
                     <ListPackagesSelected type="dependencies" dispatchPackages={dispatchPackages} listPackages={listPackages.dependencies} />
                 </CardDependencies>

@@ -53,29 +53,27 @@ export const MainContent = () => {
     }, [listPackages])
 
     return (
-        <div className="z-10 flex flex-col w-11/12">
-            <div className="flex pt-6">
+        <div className="z-10 flex flex-col pt-2 w-11/12">
+            <div className="mx-auto">
+                <CardProjectName input={input} setInput={setInput} />
+            </div>
+            
+            <div className="flex justify-between">
 
-                <div className="flex flex-col w-9/12">
-                    <div className="pb-10 flex flex-wrap justify-start w-full">
-                        <div className="w-2/5">
-                            <FormCustomProject input={input} setInput={setInput} />
-                        </div>
-                        <div className="">
-                            <CardProjectName input={input} setInput={setInput} />
-                        </div>
-                    </div>
-                    <div className="flex flex-col w-full">
-                        <h2 className="font-extrabold mx-auto text-center text-gray-800 text-xl pt-6 pb-10">Packages manager</h2>
-                        <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
-                    </div>
+                <div className="w-3/12 -mt-36">
+                    <FormCustomProject input={input} setInput={setInput} />
                 </div>
 
-                <div className="w-3/12 flex">
+                <div className="flex-grow flex flex-col pt-12">
+                    <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
+                </div>
+
+                <div className="w-3/12 -mt-36">
                     <ResultLog />
                 </div>
 
             </div>
+
             <Modal loading={loading} show={show} toggleModal={toggleModal} />
         </div>
     )

@@ -22,12 +22,12 @@ export const ListPackagesSelected = (
             {listPackages.length === 0 && <div className="pt-2 text-center text-sm text-gray-400">Empty list</div>}
             {listPackages.map((ele, i) => (
                 <Draggable draggableId={ele} index={i} key={ele}>
-                {(provided2) => (    
+                {(provided2) => (
                     <li 
                         ref={provided2.innerRef}
                         {...provided2.draggableProps}
                         {...provided2.dragHandleProps}
-                        className="text-white border-1 text-sm bg-navbar hover:bg-gray-500 transition duration-200
+                        className="text-green-500 border-1 text-sm font-bold bg-green-50 hover:opacity-90 transition duration-200
                         flex items-center justify-start rounded shadow-md h-9 my-2 w-full"
                     >
                         <button 
@@ -35,12 +35,12 @@ export const ListPackagesSelected = (
                             className="px-2 h-full border-none focus:bg-white focus:outline-none transition duration-200"
                             onClick={removePackages}
                         >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="#10b981">
                             <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg>
                         </button>
                         <div className="text-center w-full overflow-ellipsis px-2">
-                        {ele}
+                            {ele}
                         </div>
                     </li>)}
                 </Draggable>
