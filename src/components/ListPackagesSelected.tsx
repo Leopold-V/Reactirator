@@ -27,8 +27,8 @@ export const ListPackagesSelected = (
                         ref={provided2.innerRef}
                         {...provided2.draggableProps}
                         {...provided2.dragHandleProps}
-                        className="text-green-500 border-1 text-sm font-bold bg-green-50 hover:opacity-90 transition duration-200
-                        flex items-center justify-start rounded shadow-md h-9 my-2 w-full"
+                        className="text-green-500 border-1 text-sm font-semibold bg-green-50 hover:opacity-90 transition duration-200
+                        flex items-center justify-start rounded shadow h-9 my-2 w-full"
                     >
                         <button 
                             data-name={ele}

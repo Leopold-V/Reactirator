@@ -53,7 +53,7 @@ export const MainContent = () => {
     }, [listPackages])
 
     return (
-        <div className="z-10 flex flex-col pt-2 w-11/12">
+        <div className="z-10 flex flex-col pt-2 md:w-11/12">
             <div className="mx-auto">
                 <CardProjectName input={input} setInput={setInput} />
             </div>
