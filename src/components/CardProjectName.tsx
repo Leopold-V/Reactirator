@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useContext, useEffect, useRef } from 'react';
 import { formInputType } from '../helpers/types';
 import { ButtonCreation } from './ButtonCreation';
-import { PackageContext } from './context/PackageContext';
+import { PackageContext } from './context/PackageProvider';
 
 export const CardProjectName = ({input, setInput}: {input: formInputType, setInput: (input: formInputType) => void}) => {
 

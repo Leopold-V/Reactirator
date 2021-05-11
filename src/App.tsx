@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Toaster } from 'react-hot-toast';
 
-import PackageProvider from './components/context/PackageContext';
+import PackageProvider from './components/context/PackageProvider';
 
 import { Bar } from './components/Bar';
 import { Header } from './components/Header';

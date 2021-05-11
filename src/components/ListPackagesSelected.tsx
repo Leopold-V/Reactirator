@@ -1,7 +1,7 @@
 import React, { Dispatch, useContext } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { PackageContext } from './context/PackageContext';
+import { PackageContext } from './context/PackageProvider';
 import { actionPackageType } from '../helpers/types';
 
 export const ListPackagesSelected = (

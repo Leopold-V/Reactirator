@@ -1,6 +1,6 @@
 import React, { useContext, Dispatch } from 'react'
 import { actionPackageType, listPackageType } from '../helpers/types';
-import { PackageContext } from './context/PackageContext';
+import { PackageContext } from './context/PackageProvider';
 
 export const ListPackagesFound = (
     {results, dispatchPackages}:
