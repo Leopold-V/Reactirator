@@ -22,6 +22,9 @@ module.exports = {
           },
         }
       },
+      inset: {
+        '23': '5.5rem'
+      },
       minHeight: {
         small: '2rem',
         medium: '14rem',
