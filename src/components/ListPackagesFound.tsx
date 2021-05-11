@@ -20,7 +20,7 @@ export const ListPackagesFound = (
     };
 
     return (
-        <ul className="absolute w-11/12 top-24 max-h-medium overflow-y-auto shadow">
+        <ul className="absolute w-11/12 top-23 max-h-medium overflow-y-auto shadow">
             {results.map((ele) => (
                 <li 
                     key={ele.name} 

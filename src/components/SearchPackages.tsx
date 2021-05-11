@@ -4,6 +4,7 @@ import { ListPackagesFound } from './ListPackagesFound';
 import { actionPackageType } from '../helpers/types';
 
 const API_URL = "https://api.npms.io/v2/search?q=";
+// to get the size https://registry.npmjs.org/react
 
 export const SearchPackages = (
   { dispatchPackages }:
