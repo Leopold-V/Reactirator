@@ -18,7 +18,7 @@ export type formInputType = {
 export type actionPackageType = {
     type: 'CHANGE_TYPE' | 'ADD' | 'REMOVE',
     payload: {
-        destination: string,
+        destination: 'dependencies' | 'devDependencies',
         source ?: string,
         name: string
     }
