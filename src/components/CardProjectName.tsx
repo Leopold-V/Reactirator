@@ -20,14 +20,14 @@ export const CardProjectName = ({input, setInput}: {input: formInputType, setInp
     }, []);
 
     return (
-        <div className="bg-white text-gray-800 p-6 rounded flex flex-col justify-center shadow">
-            <h2 className="font-extrabold text-xl py-6 text-center">🚀 Create a project 🚀</h2>
+        <div className="bg-blueGray text-gray-200 p-6 rounded flex flex-col justify-center shadow">
+            <h2 className="font-extrabold text-xl pb-6 text-center">🚀 Create a project 🚀</h2>
             <div className="flex flex-row justify-around items-center w-full pb-6">
                 {/* <label className="pr-4 font-semibold" htmlFor="appname">Name ?</label> */}
                 <input 
                     onChange={handleChange} 
                     className="text-center text-sm py-2 px-4
-                    rounded bg-gray-200 text-black outline-none" 
+                    rounded bg-blueGray2 text-text outline-none" 
                     type="text" 
                     name="appname" 
                     id="appname" 

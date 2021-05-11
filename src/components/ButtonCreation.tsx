@@ -20,7 +20,7 @@ export const ButtonCreation = ({input} : {input: formInputType}) => {
     return (
         <button
             onClick={handleSubmit}
-            className=" mx-auto shadow-red bg-green-400 opacity-100 px-4 py-2 outline-none font-bold
+            className=" mx-auto shadow-red bg-indigo-500 opacity-100 px-4 py-2 outline-none font-bold
             tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
             >
             Create
