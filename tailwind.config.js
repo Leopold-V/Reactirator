@@ -40,10 +40,7 @@ module.exports = {
       },
       colors: {
         primary: '#181b33',
-        text: '#cdd5e1',
-        blueGrayLight: '#fafcff', 
         blueGray: '#2e3748',
-        blueGray2: '#4a5567',
       },
       zIndex: {
         '-10': '-10',
