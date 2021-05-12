@@ -14,7 +14,7 @@ export const ListPackagesSelected = (
                 <ul className="w-full min-h-small" ref={provided.innerRef} {...provided.droppableProps}>
                 {listPackages.length === 0 && <div className="pt-2 text-center text-sm text-gray-400">Empty list</div>}
                 {listPackages.map((ele, index) => (
-                    <ItemPackageSelected type={type} packageName={ele} index={index} dispatchPackages={dispatchPackages} />
+                    <ItemPackageSelected type={type} packageName={ele} key={ele} index={index} dispatchPackages={dispatchPackages} />
                 ))}
                 {provided.placeholder}
             </ul>)}
