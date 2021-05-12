@@ -22,6 +22,9 @@ module.exports = {
           },
         }
       },
+      inset: {
+        '23': '5.5rem'
+      },
       minHeight: {
         small: '2rem',
         medium: '14rem',
@@ -37,10 +40,7 @@ module.exports = {
       },
       colors: {
         primary: '#181b33',
-        text: '#cdd5e1',
-        blueGrayLight: '#fafcff', 
         blueGray: '#2e3748',
-        blueGray2: '#4a5567',
       },
       zIndex: {
         '-10': '-10',

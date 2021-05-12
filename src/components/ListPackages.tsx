@@ -21,7 +21,8 @@ export const ListPackages = (
         dispatchPackages({
             type: 'CHANGE_TYPE',
             payload: {
-                destination: destination.droppableId,
+                // @ts-ignores
+                destination: destination.droppableId, 
                 source: source.droppableId,
                 name: draggableId
             }

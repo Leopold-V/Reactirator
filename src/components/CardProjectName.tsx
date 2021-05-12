@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { formInputType } from '../helpers/types';
 import { ButtonCreation } from './ButtonCreation';
 import { PackageContext } from './context/PackageProvider';
@@ -20,14 +20,13 @@ export const CardProjectName = ({input, setInput}: {input: formInputType, setInp
     }, []);
 
     return (
-        <div className="bg-blueGray text-gray-200 p-6 rounded flex flex-col justify-center shadow">
+        <div className="bg-white text-gray-700 p-6 rounded flex flex-col justify-center shadow">
             <h2 className="font-extrabold text-xl pb-6 text-center">🚀 Create a project 🚀</h2>
             <div className="flex flex-row justify-around items-center w-full pb-6">
-                {/* <label className="pr-4 font-semibold" htmlFor="appname">Name ?</label> */}
                 <input 
                     onChange={handleChange} 
                     className="text-center text-sm py-2 px-4
-                    rounded bg-blueGray2 text-text outline-none" 
+                    rounded bg-gray-200 text-gray-700 outline-none" 
                     type="text" 
                     name="appname" 
                     id="appname" 

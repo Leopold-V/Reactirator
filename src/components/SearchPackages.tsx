@@ -4,6 +4,7 @@ import { ListPackagesFound } from './ListPackagesFound';
 import { actionPackageType } from '../helpers/types';
 
 const API_URL = "https://api.npms.io/v2/search?q=";
+// to get the size https://registry.npmjs.org/react
 
 export const SearchPackages = (
   { dispatchPackages }:
@@ -44,7 +45,7 @@ export const SearchPackages = (
   return (
     <div className="p-6 bg-white text-gray-800 rounded shadow">
         <div ref={input_ref} className="flex flex-col items-center relative">
-            <h2 className="font-extrabold pb-4">✅ Add packages</h2>
+            <h2 className="font-extrabold pb-4">Add packages</h2>
             <input className="w-full mb-1 text-center text-sm py-2 px-4
             rounded bg-gray-200 text-black outline-none"
                 type="text" 
