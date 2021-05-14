@@ -12,7 +12,7 @@ const App = () => {
   return (
     <PackageProvider>
       <Bar />
-      <div id="layout" className="relative py-8 bg-gray-200 h-screen overflow-y-auto">
+      <div id="layout" className="relative py-8 bg-gray-100 h-screen overflow-y-auto">
         <div className="flex justify-center flex-col items-center">
           <div className="absolute bg-primary top-0 left-0 h-72 w-full"></div>
           <Header />
