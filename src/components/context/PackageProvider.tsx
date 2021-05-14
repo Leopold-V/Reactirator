@@ -12,7 +12,7 @@ export const PackageContext = React.createContext<PackageContextType>(null);
 
 const PackageProvider = ({children}: {children: ReactNode}) => {
 
-    const [packageJson, dispatchJson] = useReducer(jsonPackageReducer, initialPackageJson) // a changer
+    const [packageJson, dispatchJson] = useReducer(jsonPackageReducer, initialPackageJson);
 
     return (
         <PackageContext.Provider value={{packageJson, dispatchJson}}> 

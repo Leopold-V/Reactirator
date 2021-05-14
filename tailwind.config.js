@@ -45,10 +45,6 @@ module.exports = {
       zIndex: {
         '-10': '-10',
        },
-      boxShadow: {
-        'red-lg': '0 10px 15px 0 rgba(239, 68, 68, 0.3)',
-        red: '0 1px 3px 0 rgba(239, 68, 68, 0.1), 0 1px 2px 0 rgba(239, 68, 68, 0.06)'
-      },
     },
   },
   variants: {

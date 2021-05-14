@@ -20,7 +20,8 @@ export type actionPackageType = {
     payload: {
         destination: 'dependencies' | 'devDependencies',
         source ?: string,
-        name: string
+        name: string,
+        size?: number
     }
 }
 
@@ -50,6 +51,6 @@ export type listPackageType = {
 
 export type depStateType = {
     //[key: string]: string[]
-    dependencies: string[],
-    devDependencies: string[]
+    dependencies: {name: string, size: number}[],
+    devDependencies: {name: string, size: number}[]
 };

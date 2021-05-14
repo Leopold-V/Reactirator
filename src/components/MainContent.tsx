@@ -15,6 +15,7 @@ import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { formInputType, depStateType } from '../helpers/types';
+import { PackagesSize } from './PackagesSize';
 
 const initialDeps: depStateType = {
     dependencies: [],
@@ -50,7 +51,7 @@ export const MainContent = () => {
           return () => {
             ipcRenderer.removeAllListeners('open-dialog-directory-selected');
           };
-    }, [listPackages])
+    }, [listPackages]);
 
     return (
         <div className="z-10 flex flex-col pt-2 md:w-11/12">
@@ -60,8 +61,9 @@ export const MainContent = () => {
             
             <div className="flex justify-between">
 
-                <div className="w-3/12 -mt-36">
+                <div className="w-3/12 -mt-36 space-y-10">
                     <FormCustomProject input={input} setInput={setInput} />
+                    <PackagesSize listPackages={listPackages} />
                 </div>
 
                 <div className="flex-grow flex flex-col pt-12">

@@ -17,9 +17,8 @@ export const SearchPackages = (
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (e.target.value !== "") {
       try {
-        const rep = await fetch(`${API_URL}${e.target.value}`);
+        const rep = await fetch(`${API_URL}${e.target.value}&size=30`);
         const res = await rep.json();
-        res.results.length = 30;
         const results: listPackageType = res.results.map((ele: any) => ({name: ele.package.name, version: ele.package.version}));
         setInput(results);
       } catch (error) {
