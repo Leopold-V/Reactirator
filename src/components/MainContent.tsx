@@ -15,6 +15,7 @@ import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { formInputType, depStateType } from '../helpers/types';
+import { PackagesSize } from './PackagesSize';
 
 const initialDeps: depStateType = {
     dependencies: [],
@@ -62,6 +63,7 @@ export const MainContent = () => {
 
                 <div className="w-3/12 -mt-36">
                     <FormCustomProject input={input} setInput={setInput} />
+                    <PackagesSize listPackages={listPackages} />
                 </div>
 
                 <div className="flex-grow flex flex-col pt-12">

@@ -20,9 +20,11 @@ const dependenciesReducer = (state: depStateType, { type, payload }: actionPacka
           }
         case 'CHANGE_TYPE':
             // @ts-ignore
+            const dep = state[payload.source].find((ele) => ele.name === payload.name);
+            // @ts-ignore
             const newDeps = state[payload.source].filter((ele) => ele.name !== payload.name);
             // @ts-ignore
-            state[payload.destination].push({name: payload.name, size: payload.size});
+            state[payload.destination].push(dep);
             return {...state, [payload.source]: newDeps};
         default:
           throw new Error();

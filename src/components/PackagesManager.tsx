@@ -8,6 +8,9 @@ export const PackagesManager = (
     {listPackages, dispatchPackages}:
     {listPackages: depStateType, dispatchPackages: Dispatch<actionPackageType>}) => {
 
+        console.log(listPackages);
+        
+
     return (
         <div className="flex flex-col justify-center">
             <div className="lg:w-4/12 pb-10 mx-auto">

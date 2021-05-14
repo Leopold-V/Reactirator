@@ -4,7 +4,8 @@ export const calculateAllPackagesSize = (list: {name:string, version:string}[]) 
     console.log(Object.keys(list));
 }
 
-export const calculatePackageSize = (name: string, version: string) => {
+export const calculatePackageSize = (name: string, version: string): Promise<number> => {
+  console.log(name, version);
   return new Promise((resolve, reject) => {
     request({ url: `https://registry.npmjs.org/${name}/${version}`, json: true }, (err: Error, res: any) => {
       if (!err) {
