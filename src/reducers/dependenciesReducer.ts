@@ -4,25 +4,25 @@ const dependenciesReducer = (state: depStateType, { type, payload }: actionPacka
     switch (type) {
         case 'ADD':
           if (payload.destination === 'dependencies') {
-            state['dependencies'].push(payload.name);
+            state['dependencies'].push({name: payload.name, size: payload.size});
             return {...state};
           } else {
-            state['devDependencies'].push(payload.name);
+            state['devDependencies'].push({name: payload.name, size: payload.size});
             return {...state};
           }
         case 'REMOVE':
           if (payload.destination === 'dependencies') {
-            const newDeps = state['dependencies'].filter((ele) => ele !== payload.name);
+            const newDeps = state['dependencies'].filter((ele) => ele.name !== payload.name);
             return {...state, dependencies: newDeps};
           } else {
-            const newDeps = state['devDependencies'].filter((ele) => ele !== payload.name);
+            const newDeps = state['devDependencies'].filter((ele) => ele.name !== payload.name);
             return {...state, devDependencies: newDeps};
           }
         case 'CHANGE_TYPE':
             // @ts-ignore
-            const newDeps = state[payload.source].filter((ele: any) => ele !== payload.name);
+            const newDeps = state[payload.source].filter((ele) => ele.name !== payload.name);
             // @ts-ignore
-            state[payload.destination].push(payload.name);
+            state[payload.destination].push({name: payload.name, size: payload.size});
             return {...state, [payload.source]: newDeps};
         default:
           throw new Error();

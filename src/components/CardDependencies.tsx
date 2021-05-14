@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CardDependencies = ({children, title, listPackages} : {children: React.ReactNode, title: string, listPackages: string[]}) => {
+export const CardDependencies = ({children, title, listPackages} : {children: React.ReactNode, title: string, listPackages: {name: string, size: number}[]}) => {
     return (
         <div className="p-6 w-64 bg-white text-gray-800 rounded shadow">
             <div className="flex flex-col items-center">
