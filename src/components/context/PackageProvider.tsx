@@ -4,21 +4,20 @@ import jsonPackageReducer from '../../reducers/jsonPackageReducer';
 import { actionJsonType } from '../../helpers/types';
 
 type PackageContextType = {
-    packageJson: any,
-    dispatchJson: (object: actionJsonType) => void
+  packageJson: any;
+  dispatchJson: (object: actionJsonType) => void;
 } | null;
 
 export const PackageContext = React.createContext<PackageContextType>(null);
 
-const PackageProvider = ({children}: {children: ReactNode}) => {
+const PackageProvider = ({ children }: { children: ReactNode }) => {
+  const [packageJson, dispatchJson] = useReducer(jsonPackageReducer, initialPackageJson);
 
-    const [packageJson, dispatchJson] = useReducer(jsonPackageReducer, initialPackageJson);
-
-    return (
-        <PackageContext.Provider value={{packageJson, dispatchJson}}> 
-            {children}
-        </PackageContext.Provider>
-    )
-}
+  return (
+    <PackageContext.Provider value={{ packageJson, dispatchJson }}>
+      {children}
+    </PackageContext.Provider>
+  );
+};
 
 export default PackageProvider;

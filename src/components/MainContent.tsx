@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react'
+import React, { useReducer, useState, useEffect } from 'react';
 const { ipcRenderer } = require('electron');
 
 import { toast } from 'react-hot-toast';
@@ -18,65 +18,67 @@ import { formInputType, depStateType } from '../helpers/types';
 import { PackagesSize } from './PackagesSize';
 
 const initialDeps: depStateType = {
-    dependencies: [],
-    devDependencies: []
-}
+  dependencies: [],
+  devDependencies: [],
+};
 
-type argType = [
-    filepath: string,
-    input: formInputType
-]
+type argType = [filepath: string, input: formInputType];
 
 export const MainContent = () => {
-    const [show, toggleModal] = useModal();
-    const [loading, setLoading] = useState(false);
-    const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
+  const [show, toggleModal] = useModal();
+  const [loading, setLoading] = useState(false);
+  const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
 
-    const [input, setInput] = useState(initialState);
+  const [input, setInput] = useState(initialState);
 
-    useEffect(() => {
-        ipcRenderer.on('open-dialog-directory-selected', async (event: Electron.IpcRendererEvent, arg: argType) => {
-            const [filepath, input] = arg;
-            if (arg) {
-                setLoading(true);
-                toggleModal();
-                try {
-                    await toast.promise(generateProject(filepath, input, listPackages), toastInstallMsg, toastInstallStyle);
-                } catch (error) {
-                    console.log(error);
-                }
-                setLoading(false);
-            }
-          });
-          return () => {
-            ipcRenderer.removeAllListeners('open-dialog-directory-selected');
-          };
-    }, [listPackages]);
+  useEffect(() => {
+    ipcRenderer.on(
+      'open-dialog-directory-selected',
+      async (event: Electron.IpcRendererEvent, arg: argType) => {
+        const [filepath, input] = arg;
+        if (arg) {
+          setLoading(true);
+          toggleModal();
+          try {
+            await toast.promise(
+              generateProject(filepath, input, listPackages),
+              toastInstallMsg,
+              toastInstallStyle
+            );
+          } catch (error) {
+            console.log(error);
+          }
+          setLoading(false);
+        }
+      }
+    );
+    return () => {
+      ipcRenderer.removeAllListeners('open-dialog-directory-selected');
+    };
+  }, [listPackages]);
 
-    return (
-        <div className="z-10 flex flex-col pt-2 md:w-11/12">
-            <div className="mx-auto">
-                <CardProjectName input={input} setInput={setInput} />
-            </div>
-            
-            <div className="flex justify-between">
+  return (
+    <div className="z-10 flex flex-col pt-2 md:w-11/12">
+      <div className="mx-auto">
+        <CardProjectName input={input} setInput={setInput} />
+      </div>
 
-                <div className="w-3/12 -mt-36 space-y-10">
-                    <FormCustomProject input={input} setInput={setInput} />
-                    <PackagesSize listPackages={listPackages} />
-                </div>
-
-                <div className="flex-grow flex flex-col pt-12">
-                    <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
-                </div>
-
-                <div className="w-3/12 -mt-36">
-                    <ResultLog />
-                </div>
-
-            </div>
-
-            <Modal loading={loading} show={show} toggleModal={toggleModal} />
+      <div className="flex justify-between">
+        <div className="w-3/12 -mt-36 space-y-10">
+          <FormCustomProject input={input} setInput={setInput} />
+          <PackagesSize listPackages={listPackages} />
         </div>
-    )
-}
+
+        <div className="flex-grow flex flex-col pt-12">
+          <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
+        </div>
+
+        <div className="w-3/12 -mt-36">
+          <ResultLog />
+        </div>
+      </div>
+
+      <Modal loading={loading} show={show} toggleModal={toggleModal} />
+    </div>
+  );
+};

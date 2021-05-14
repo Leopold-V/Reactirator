@@ -1,22 +1,15 @@
 // @ts-nocheck
 
-import React, { useState, useEffect } from 'react'
-import { Console, Hook, Unhook } from 'console-feed'
+import React, { useState, useEffect } from 'react';
+import { Console, Hook, Unhook } from 'console-feed';
 
 export const ConsoleLogs = () => {
-    const [logs, setLogs] = useState([])
+  const [logs, setLogs] = useState([]);
 
-    useEffect(() => {
-        Hook(
-          window.console,
-          (log) => setLogs((currLogs) => [...currLogs, log]),
-          false
-        )
-        return () => Unhook(window.console)
-      }, [])
-    
+  useEffect(() => {
+    Hook(window.console, (log) => setLogs((currLogs) => [...currLogs, log]), false);
+    return () => Unhook(window.console);
+  }, []);
 
-    return (
-      <Console logs={logs} variant="dark" />
-    )
-}
+  return <Console logs={logs} variant="dark" />;
+};

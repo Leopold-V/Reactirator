@@ -7,54 +7,64 @@ import { PackageContext } from './context/PackageProvider';
 
 import { ListPackagesSelected } from './ListPackagesSelected';
 
-export const ListPackages = (
-    {listPackages, dispatchPackages}:
-    {listPackages: depStateType, dispatchPackages: Dispatch<actionPackageType>}) => {
+export const ListPackages = ({
+  listPackages,
+  dispatchPackages,
+}: {
+  listPackages: depStateType;
+  dispatchPackages: Dispatch<actionPackageType>;
+}) => {
+  const { packageJson, dispatchJson } = useContext(PackageContext);
 
-    const { packageJson, dispatchJson } = useContext(PackageContext);
+  const onDragEnd = (result: DropResult) => {
+    const { draggableId, source, destination } = result;
 
-    const onDragEnd = (result: DropResult) => {
-        const { draggableId, source, destination } = result;
-        
-        if (!destination) return;
-        if (source.droppableId === destination.droppableId) return;
-        dispatchPackages({
-            type: 'CHANGE_TYPE',
-            payload: {
-                // @ts-ignores
-                destination: destination.droppableId, 
-                source: source.droppableId,
-                name: draggableId
-            }
-        });
-        dispatchJson({
-            type : 'ADD',
-            payload: {
-                category: destination.droppableId,
-                name: draggableId,
-                version: packageJson[source.droppableId][draggableId]
-            }
-        });
-        dispatchJson({
-            type : 'REMOVE',
-            payload: {
-                category: source.droppableId,
-                name: draggableId
-            }
-        });
-    };
-        
-    
-    return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <div className="flex flex-col lg:flex-row lg:justify-between items-center">
-                <CardDependencies title="Dependencies" listPackages={listPackages.dependencies}>
-                    <ListPackagesSelected type="dependencies" dispatchPackages={dispatchPackages} listPackages={listPackages.dependencies} />
-                </CardDependencies>
-                <CardDependencies title="Dev dependencies" listPackages={listPackages.devDependencies}>
-                    <ListPackagesSelected type="devDependencies" dispatchPackages={dispatchPackages} listPackages={listPackages.devDependencies} />
-                </CardDependencies>
-            </div>
-        </DragDropContext>
-    )
-}
+    if (!destination) return;
+    if (source.droppableId === destination.droppableId) return;
+    dispatchPackages({
+      type: 'CHANGE_TYPE',
+      payload: {
+        // @ts-ignores
+        destination: destination.droppableId,
+        source: source.droppableId,
+        name: draggableId,
+      },
+    });
+    dispatchJson({
+      type: 'ADD',
+      payload: {
+        category: destination.droppableId,
+        name: draggableId,
+        version: packageJson[source.droppableId][draggableId],
+      },
+    });
+    dispatchJson({
+      type: 'REMOVE',
+      payload: {
+        category: source.droppableId,
+        name: draggableId,
+      },
+    });
+  };
+
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="flex flex-col lg:flex-row lg:justify-between items-center">
+        <CardDependencies title="Dependencies" listPackages={listPackages.dependencies}>
+          <ListPackagesSelected
+            type="dependencies"
+            dispatchPackages={dispatchPackages}
+            listPackages={listPackages.dependencies}
+          />
+        </CardDependencies>
+        <CardDependencies title="Dev dependencies" listPackages={listPackages.devDependencies}>
+          <ListPackagesSelected
+            type="devDependencies"
+            dispatchPackages={dispatchPackages}
+            listPackages={listPackages.devDependencies}
+          />
+        </CardDependencies>
+      </div>
+    </DragDropContext>
+  );
+};

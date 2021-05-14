@@ -19,17 +19,17 @@ const App = () => {
           <MainContent />
         </div>
       </div>
-      <Toaster 
+      <Toaster
         position="top-center"
         toastOptions={{
-            style: {
-              margin: '300px',
-            },
+          style: {
+            margin: '300px',
+          },
         }}
       />
     </PackageProvider>
-  )
-}
+  );
+};
 
 function render() {
   ReactDOM.render(<App />, document.querySelector('#app'));

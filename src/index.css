@@ -1,21 +1,21 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 #layout::-webkit-scrollbar {
   width: 11px;
 }
- 
+
 #layout::-webkit-scrollbar-track {
   background: rgb(59, 59, 59);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   margin-top: 2rem;
 }
- 
+
 #layout::-webkit-scrollbar-thumb {
   background-color: whitesmoke;
   border-radius: 6px;
@@ -34,7 +34,6 @@ body {
   padding: 0;
 }
 
-
 #titlebar {
   padding: 0px;
 }
@@ -47,7 +46,7 @@ body {
 }
 
 #titlebar {
-  color: #FFF;
+  color: #fff;
 }
 
 #titlebar #drag-region {
@@ -96,9 +95,12 @@ body {
   height: 100%;
 }
 
-@media (-webkit-device-pixel-ratio: 1.5), (device-pixel-ratio: 1.5),
-(-webkit-device-pixel-ratio: 2), (device-pixel-ratio: 2),
-(-webkit-device-pixel-ratio: 3), (device-pixel-ratio: 3) {
+@media (-webkit-device-pixel-ratio: 1.5),
+  (device-pixel-ratio: 1.5),
+  (-webkit-device-pixel-ratio: 2),
+  (device-pixel-ratio: 2),
+  (-webkit-device-pixel-ratio: 3),
+  (device-pixel-ratio: 3) {
   #window-controls .icon {
     width: 10px;
     height: 10px;
@@ -116,19 +118,19 @@ body {
 }
 
 #window-controls .button:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 #window-controls .button:active {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 #close-button:hover {
-  background: #E81123 !important;
+  background: #e81123 !important;
 }
 
 #close-button:active {
-  background: #F1707A !important;
+  background: #f1707a !important;
 }
 #close-button:active .icon {
   filter: invert(1);
@@ -137,7 +139,8 @@ body {
 #min-button {
   grid-column: 1;
 }
-#max-button, #restore-button {
+#max-button,
+#restore-button {
   grid-column: 2;
 }
 #close-button {
