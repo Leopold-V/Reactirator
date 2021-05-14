@@ -50,7 +50,7 @@ export const MainContent = () => {
           return () => {
             ipcRenderer.removeAllListeners('open-dialog-directory-selected');
           };
-    }, [listPackages])
+    }, [listPackages]);
 
     return (
         <div className="z-10 flex flex-col pt-2 md:w-11/12">
