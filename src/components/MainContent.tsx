@@ -61,7 +61,7 @@ export const MainContent = () => {
             
             <div className="flex justify-between">
 
-                <div className="w-3/12 -mt-36">
+                <div className="w-3/12 -mt-36 space-y-10">
                     <FormCustomProject input={input} setInput={setInput} />
                     <PackagesSize listPackages={listPackages} />
                 </div>
