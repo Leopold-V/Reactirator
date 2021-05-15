@@ -11,6 +11,7 @@ export const FormCustomProject = ({
   input: formInputType;
   setInput: (input: formInputType) => void;
 }) => {
+
   return (
     <div className="bg-white px-2 pb-2 rounded shadow">
       <h2 className="font-extrabold text-gray-700 text-xl py-6 text-center">Customization</h2>

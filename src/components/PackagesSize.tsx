@@ -8,21 +8,20 @@ import { ChartSize } from './Chart';
 export const PackagesSize = ({ listPackages }: { listPackages: depStateType }) => {
   const { packageJson } = useContext(PackageContext);
 
-  const [totalSize, setTotalSize] = useState(0);
+  const [totalSize, setTotalSize] = useState(5000);
   const [newDepsSize, setNewDepsSize] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const getSize = async () => {
-    setLoading(true);
     const totalSize = await calculateAllPackagesSize(packageJson.dependencies);
     setTotalSize(totalSize);
-    // To modify for include the custom package added like bootstrap
     setNewDepsSize(listDepsSize(listPackages.dependencies));
-    setLoading(false);
   };
 
   useEffect(() => {
-    getSize();
+    //console.log(packageJson.dependencies);
+    setLoading(true);
+    getSize().then(() => setLoading(false));
   }, [packageJson]);
 
   return (
