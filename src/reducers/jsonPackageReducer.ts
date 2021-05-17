@@ -3,7 +3,8 @@ import { actionJsonType } from '../helpers/types';
 const jsonPackageReducer = (state: any, action: actionJsonType) => {
   switch (action.type) {
     case 'CHANGE_NAME':
-      state.name = action.payload;
+      state.name = action.payload.name;
+      state.description = action.payload.description;
       return { ...state };
     case 'ADD':
       state[action.payload.category][action.payload.name] = action.payload.version;

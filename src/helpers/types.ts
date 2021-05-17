@@ -1,5 +1,6 @@
 export type formInputType = {
   appname: string;
+  description: string;
   typescript: boolean;
   prettier: boolean;
   flow: boolean;
@@ -28,7 +29,10 @@ export type actionPackageType = {
 export type actionJsonType =
   | {
       type: 'CHANGE_NAME';
-      payload: string;
+      payload: {
+        name: string;
+        description: string;
+      };
     }
   | {
       type: 'ADD' | 'REMOVE';
@@ -36,6 +40,7 @@ export type actionJsonType =
         category: string;
         name: string;
         version?: string;
+        description ?: string;
       };
     }
   | {
@@ -44,6 +49,7 @@ export type actionJsonType =
         category?: string;
         name?: string;
         version: string;
+        description ?: string;
       };
     };
 

@@ -1,6 +1,7 @@
 const initialPackageJson = {
   name: '',
   version: '0.1.0',
+  description: '',
   private: true,
   dependencies: {
     '@testing-library/jest-dom': '^5.12.0',
