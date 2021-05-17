@@ -2,15 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Toaster } from 'react-hot-toast';
 
-import PackageProvider from './components/context/PackageProvider';
-
+import PackageJsonProvider from './components/context/PackageJsonProvider';
 import { Bar } from './components/Bar';
 import { Header } from './components/Header';
 import { MainContent } from './components/MainContent';
 
 const App = () => {
   return (
-    <PackageProvider>
+    <PackageJsonProvider>
       <Bar />
       <div id="layout" className="relative py-8 bg-gray-100 h-screen overflow-y-auto">
         <div className="flex justify-center flex-col items-center">
@@ -27,7 +26,7 @@ const App = () => {
           },
         }}
       />
-    </PackageProvider>
+    </PackageJsonProvider>
   );
 };
 

@@ -15,7 +15,8 @@ import { PackagesManager } from './PackagesManager';
 import { ResultLog } from './ResultLog';
 import { CardProjectName } from './CardProjectName';
 import { formInputType, depStateType } from '../helpers/types';
-import { PackagesSize } from './PackagesSize';
+import { PackagesSizeMemoized } from './PackagesSize';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 const initialDeps: depStateType = {
   dependencies: [],
@@ -25,6 +26,7 @@ const initialDeps: depStateType = {
 type argType = [filepath: string, input: formInputType];
 
 export const MainContent = () => {
+  const { totalSize } = usePackageJson();
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
   const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
@@ -55,30 +57,31 @@ export const MainContent = () => {
     return () => {
       ipcRenderer.removeAllListeners('open-dialog-directory-selected');
     };
-  }, [listPackages]);
+  }, [listPackages]);  
 
   return (
-    <div className="z-10 flex flex-col pt-2 md:w-11/12">
-      <div className="mx-auto">
-        <CardProjectName input={input} setInput={setInput} />
+    
+      <div className="z-10 flex flex-col md:w-11/12">
+        <div className="mx-auto">
+          <CardProjectName input={input} setInput={setInput} />
+        </div>
+
+        <div className="flex justify-between">
+          <div className="w-3/12 -mt-52 space-y-10">
+            <FormCustomProject input={input} setInput={setInput} />
+            <PackagesSizeMemoized totalSize={totalSize} listPackages={listPackages} />
+          </div>
+
+          <div className="flex-grow flex flex-col pt-12">
+            <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
+          </div>
+
+          <div className="w-3/12 -mt-52">
+            <ResultLog />
+          </div>
+        </div>
+
+        <Modal loading={loading} show={show} toggleModal={toggleModal} />
       </div>
-
-      <div className="flex justify-between">
-        <div className="w-3/12 -mt-36 space-y-10">
-          <FormCustomProject input={input} setInput={setInput} />
-          <PackagesSize listPackages={listPackages} />
-        </div>
-
-        <div className="flex-grow flex flex-col pt-12">
-          <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
-        </div>
-
-        <div className="w-3/12 -mt-36">
-          <ResultLog />
-        </div>
-      </div>
-
-      <Modal loading={loading} show={show} toggleModal={toggleModal} />
-    </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from 'react';
 import { formInputType } from '../helpers/types';
-import { PackageContext } from './context/PackageProvider';
+import { PackageContext } from './context/PackageJsonProvider';
 
 const Checkbox = ({
   children,

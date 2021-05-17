@@ -3,7 +3,7 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import { actionPackageType, depStateType } from '../helpers/types';
 import { CardDependencies } from './CardDependencies';
-import { PackageContext } from './context/PackageProvider';
+import { PackageContext } from './context/PackageJsonProvider';
 
 import { ListPackagesSelected } from './ListPackagesSelected';
 

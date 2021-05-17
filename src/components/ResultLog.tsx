@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { PackageContext } from './context/PackageProvider';
+import { PackageContext } from './context/PackageJsonProvider';
 
 export const ResultLog = () => {
   const { packageJson } = useContext(PackageContext);
