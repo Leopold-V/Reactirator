@@ -19,7 +19,7 @@ export const CardProjectName = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setInput({ ...input, [e.target.name]: e.target.value });
     packageJson.name = e.target.value;
-    dispatchJson({ type: 'CHANGE_NAME', payload: {name: appname_ref.current.value, description: description_ref.current.value} });
+    dispatchJson({ type: 'CHANGE_INFO', payload: {name: appname_ref.current.value, description: description_ref.current.value} });
   };
 
   useEffect(() => {
