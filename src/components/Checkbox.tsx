@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { getPackages } from '../services/packagesSearch';
 import { formInputType } from '../helpers/types';
 import { usePackageJson } from './context/PackageJsonProvider';
 
@@ -20,11 +21,10 @@ const Checkbox = ({
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     setInput({ ...input, [e.target.name]: !input[e.target.name] });
     try {
-      const rep = await fetch(`https://api.npms.io/v2/search?q=${packageName}`);
-      const result = await rep.json();
+      const packageFound = await getPackages(packageName);
       dispatchJson({
         type: e.target.name,
-        payload: { version: result.results[0].package.version },
+        payload: { version: packageFound.results[0].package.version },
       });
     } catch (error) {
       console.log('Error fetching the API');

@@ -17,7 +17,7 @@ export type formInputType = {
 };
 
 export type actionPackageType = {
-  type: 'CHANGE_INFO' | 'ADD' | 'REMOVE';
+  type: 'CHANGE_TYPE' | 'ADD' | 'REMOVE';
   payload: {
     destination: 'dependencies' | 'devDependencies';
     source?: string;

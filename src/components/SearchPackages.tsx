@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect, Dispatch } from 'react';
-import { listPackageType } from '../helpers/types';
-import { ListPackagesFound } from './ListPackagesFound';
-import { actionPackageType } from '../helpers/types';
 
-const API_URL = 'https://api.npms.io/v2/search?q=';
+import { ListPackagesFound } from './ListPackagesFound';
+
+import { listPackageType } from '../helpers/types';
+import { actionPackageType } from '../helpers/types';
+import { getPackages } from '../services/packagesSearch';
 
 export const SearchPackages = ({
   dispatchPackages,
@@ -18,9 +19,8 @@ export const SearchPackages = ({
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (e.target.value !== '') {
       try {
-        const rep = await fetch(`${API_URL}${e.target.value}&size=30`);
-        const res = await rep.json();
-        const results: listPackageType = res.results.map((ele: any) => ({
+        const packagesFound = await getPackages(e.target.value);
+        const results: listPackageType = packagesFound.results.map((ele: any) => ({
           name: ele.package.name,
           version: ele.package.version,
         }));
