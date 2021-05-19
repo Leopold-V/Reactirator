@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { PackageContext } from './context/PackageJsonProvider';
+import React from 'react';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 export const ResultLog = () => {
-  const { packageJson } = useContext(PackageContext);
+  const { packageJson } = usePackageJson();
 
   return (
     <div className="p-6 rounded text-xs bg-blueGray h-big overflow-y-auto overflow-x-auto text-yellow-300">

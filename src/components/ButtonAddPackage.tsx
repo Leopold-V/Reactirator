@@ -1,8 +1,8 @@
-import React, { Dispatch, useContext } from 'react';
+import React, { Dispatch } from 'react';
 
 import { actionPackageType } from '../helpers/types';
 import { calculatePackageSize } from '../utils/calculateSize';
-import { PackageContext } from './context/PackageJsonProvider';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 export const ButtonAddPackage = ({
   title,
@@ -13,7 +13,7 @@ export const ButtonAddPackage = ({
   version: string;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
-  const { dispatchJson } = useContext(PackageContext);
+  const { dispatchJson } = usePackageJson();
 
   const addPackages = async (e: React.MouseEvent<HTMLElement>): Promise<void> => {
     const target = e.target as HTMLElement;

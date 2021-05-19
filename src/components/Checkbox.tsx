@@ -1,6 +1,6 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode } from 'react';
 import { formInputType } from '../helpers/types';
-import { PackageContext } from './context/PackageJsonProvider';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 const Checkbox = ({
   children,
@@ -15,7 +15,7 @@ const Checkbox = ({
   setInput: (input: formInputType) => void;
   input: any;
 }) => {
-  const { dispatchJson } = useContext(PackageContext);
+  const { dispatchJson } = usePackageJson();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     setInput({ ...input, [e.target.name]: !input[e.target.name] });

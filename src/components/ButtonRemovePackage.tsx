@@ -1,6 +1,6 @@
-import React, { Dispatch, useContext } from 'react';
+import React, { Dispatch } from 'react';
 import { actionPackageType } from '../helpers/types';
-import { PackageContext } from './context/PackageJsonProvider';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 export const ButtonRemovePackage = ({
   type,
@@ -11,7 +11,7 @@ export const ButtonRemovePackage = ({
   packageName: string;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
-  const { dispatchJson } = useContext(PackageContext);
+  const { dispatchJson } = usePackageJson();
 
   const removePackages = (e: React.MouseEvent<HTMLElement>): void => {
     dispatchPackages({

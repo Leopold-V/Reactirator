@@ -1,9 +1,9 @@
-import React, { Dispatch, useContext } from 'react';
+import React, { Dispatch } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import { actionPackageType, depStateType } from '../helpers/types';
 import { CardDependencies } from './CardDependencies';
-import { PackageContext } from './context/PackageJsonProvider';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 import { ListPackagesSelected } from './ListPackagesSelected';
 
@@ -14,7 +14,7 @@ export const ListPackages = ({
   listPackages: depStateType;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
-  const { packageJson, dispatchJson } = useContext(PackageContext);
+  const { packageJson, dispatchJson } = usePackageJson();
 
   const onDragEnd = (result: DropResult) => {
     const { draggableId, source, destination } = result;

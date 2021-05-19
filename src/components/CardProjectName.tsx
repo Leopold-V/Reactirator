@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { formInputType } from '../helpers/types';
 import { ButtonCreation } from './ButtonCreation';
-import { PackageContext } from './context/PackageJsonProvider';
+import { usePackageJson } from './context/PackageJsonProvider';
 
 export const CardProjectName = ({
   input,
@@ -10,7 +10,8 @@ export const CardProjectName = ({
   input: formInputType;
   setInput: (input: formInputType) => void;
 }) => {
-  const { packageJson, dispatchJson } = useContext(PackageContext);
+  const { packageJson, dispatchJson } = usePackageJson();
+
 
   const appname_ref = useRef<HTMLInputElement>(null);
   const description_ref = useRef<HTMLTextAreaElement>(null);

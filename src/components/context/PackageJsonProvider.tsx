@@ -22,7 +22,7 @@ const PackageJsonProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const usePackageJson = () => {
-  const { packageJson } = useContext(PackageContext);
+  const { packageJson, dispatchJson } = useContext(PackageContext);
   const [totalSize, setTotalSize] = useState(0);
 
   const initializeTotalSize = async (): Promise<void> => {
@@ -36,7 +36,7 @@ export const usePackageJson = () => {
     initializeTotalSize();
   }, []);
 
-  return { packageJson, totalSize };
+  return { packageJson, dispatchJson, totalSize };
 
 }
 

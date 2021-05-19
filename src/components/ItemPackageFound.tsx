@@ -1,6 +1,6 @@
-import React, { Dispatch, useContext } from 'react';
+import React, { Dispatch } from 'react';
 import { actionPackageType } from '../helpers/types';
-import { PackageContext } from './context/PackageJsonProvider';
+import { usePackageJson } from './context/PackageJsonProvider';
 import { ButtonAddPackage } from './ButtonAddPackage';
 
 export const ItemPackageFound = ({
@@ -12,7 +12,7 @@ export const ItemPackageFound = ({
   version: string;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
-  const { packageJson } = useContext(PackageContext);
+  const { packageJson } = usePackageJson();
 
   return (
     <li key={title} className="flex items-center justify-center w-full h-9 overflow-hidden">
