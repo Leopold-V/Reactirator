@@ -1,38 +1,33 @@
-# React project generator. [ Under construction]
+<h1 align="center">Welcome to cra-generator 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/Leopold-V/cra-generator" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-Desktop application built with Electron + React.js.
+> Generate react application, automatically install packages, config, packages size etc.
 
-## What is this :
+### 🏠 [Homepage](https://github.com/Leopold-V/cra-generator)
 
-...
+## Usage
 
-## Supported tools :
+```sh
+npm run start
+```
 
-...
+## Author
 
-### For maintenance
+👤 **Leopold-V**
 
-To keep packages installation up-to-date (with the right version) verify :
-- ./src/helpers/initialPackageJson.ts : use for the UI only, check for initial package.json structure, including react and react-testing-library version.
-- ./src/services/installation.ts : use for custom tools installation, command and some package dependencies version like tailwind.
-- ./src/reducers/packageReducer.ts : use for the UI only, hardcoded custom tools version in package.json.
+* Github: [@Leopold-V](https://github.com/Leopold-V)
 
-## Progression :
+## Show your support
 
-UPDATE 18/05/2021
+Give a ⭐️ if this project helped you!
 
-![screen](https://i.gyazo.com/58a84c811dd3f62eaed2279c785a95fd.png)
-
-UPDATE 08/05/21
-
-![screen](https://i.gyazo.com/d5f1a11298b704ae71782e0b1e2b0c51.png)
-
-UPDATE 30/04/21 
-![screen](https://i.gyazo.com/3ef45e624c82280e751e441f5e902837.png)
-
-UPADTE 29/04/21
-![screen](https://i.gyazo.com/dbcb0bf3ed66fe3c99ec6ff3b5ecfce1.png)
-
---
-
-![screen](https://i.gyazo.com/09b6f7abde372801ef82df2db16641f4.png)
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
