@@ -68,7 +68,7 @@ export const MainContent = () => {
 
         <div className="flex justify-between">
           <div className="w-3/12 -mt-52 space-y-10">
-            <FormCustomProject input={input} setInput={setInput} />
+            <FormCustomProject input={input} setInput={setInput} dispatchPackages={dispatch} />
             <PackagesSizeMemoized totalSize={totalSize} listPackages={listPackages} />
           </div>
 

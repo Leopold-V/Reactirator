@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
+import React, { Dispatch, ReactNode } from 'react';
 import { getPackages } from '../services/packagesSearch';
-import { formInputType } from '../helpers/types';
+import { actionPackageType, formInputType } from '../helpers/types';
 import { usePackageJson } from './context/PackageJsonProvider';
+import { calculatePackageSize } from '../utils/calculateSize';
 
 const Checkbox = ({
   children,
@@ -9,12 +10,14 @@ const Checkbox = ({
   packageName,
   setInput,
   input,
+  dispatchPackages
 }: {
   children: ReactNode;
   name: string;
   packageName: string;
   setInput: (input: formInputType) => void;
   input: any;
+  dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   const { dispatchJson } = usePackageJson();
 
@@ -26,6 +29,14 @@ const Checkbox = ({
         type: e.target.name,
         payload: { version: packageFound.results[0].package.version },
       });
+      // dispatchPackages({
+      //   type: 'ADD',
+      //   payload: {
+      //     destination: 'dependencies',
+      //     name: packageName,
+      //     size: await calculatePackageSize(packageName, packageFound.results[0].package.version),
+      //   },
+      // });
     } catch (error) {
       console.log('Error fetching the API');
     }
