@@ -19,6 +19,10 @@ To keep packages installation up-to-date (with the right version) verify :
 
 ## Progression :
 
+UPDATE 18/05/2021
+
+![screen](https://i.gyazo.com/58a84c811dd3f62eaed2279c785a95fd.png)
+
 UPDATE 08/05/21
 
 ![screen](https://i.gyazo.com/d5f1a11298b704ae71782e0b1e2b0c51.png)
