@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useState } from 'react';
 
 import { actionPackageType } from '../helpers/types';
 import { calculatePackageSize } from '../utils/calculateSize';
@@ -8,16 +8,20 @@ export const ButtonAddPackage = ({
   title,
   version,
   dispatchPackages,
+  setLoading
 }: {
   title: string;
   version: string;
   dispatchPackages: Dispatch<actionPackageType>;
+  setLoading: (loading: boolean) => void;
 }) => {
   const { dispatchJson } = usePackageJson();
 
   const addPackages = async (e: React.MouseEvent<HTMLElement>): Promise<void> => {
     const target = e.target as HTMLElement;
+    setLoading(true);
     const size = await calculatePackageSize(target.dataset.name, target.dataset.version);
+    setLoading(false);
     dispatchPackages({
       type: 'ADD',
       payload: {
