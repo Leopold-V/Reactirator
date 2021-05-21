@@ -42,10 +42,10 @@ export const generateProject = async (
 const installPackages = async (fullPath: string, listPackages: depStateType): Promise<void> => {
   try {
     const listPromises = listPackages.dependencies.map(async (ele) => {
-      return await runCmd(`cd ${fullPath} && npm install ${ele}`);
+      return await runCmd(`cd ${fullPath} && npm install ${ele.name}`);
     });
     const listPromisesDev = listPackages.devDependencies.map(async (ele) => {
-      return await runCmd(`cd ${fullPath} && npm -D install ${ele}`);
+      return await runCmd(`cd ${fullPath} && npm -D install ${ele.name}`);
     });
     await Promise.all([...listPromises, ...listPromisesDev]);
   } catch (error) {
