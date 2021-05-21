@@ -20,24 +20,29 @@ export const ButtonAddPackage = ({
   const addPackages = async (e: React.MouseEvent<HTMLElement>): Promise<void> => {
     const target = e.target as HTMLElement;
     setLoading(true);
-    const size = await calculatePackageSize(target.dataset.name, target.dataset.version);
-    dispatchPackages({
-      type: 'ADD',
-      payload: {
-        destination: 'dependencies',
-        name: target.dataset.name,
-        size: size,
-      },
-    });
-    dispatchJson({
-      type: 'ADD',
-      payload: {
-        category: 'dependencies',
-        name: target.dataset.name,
-        version: target.dataset.version,
-      },
-    });
-    setLoading(false);
+    try {
+      const size = await calculatePackageSize(target.dataset.name, target.dataset.version);
+      dispatchPackages({
+        type: 'ADD',
+        payload: {
+          destination: 'dependencies',
+          name: target.dataset.name,
+          size: size,
+        },
+      });
+      dispatchJson({
+        type: 'ADD',
+        payload: {
+          category: 'dependencies',
+          name: target.dataset.name,
+          version: target.dataset.version,
+        },
+      })
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   return (
