@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from 'react';
+import React, { Dispatch } from 'react';
 import { actionPackageType } from '../helpers/types';
 import { usePackageJson } from './context/PackageJsonProvider';
 import { ButtonAddPackage } from './ButtonAddPackage';
@@ -13,7 +13,6 @@ export const ItemPackageFound = ({
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   const { packageJson } = usePackageJson();
-  const [loading, setLoading] = useState(false);
 
   return (
     <li key={title} className="flex items-center justify-center w-full h-9 overflow-hidden">
@@ -23,8 +22,7 @@ export const ItemPackageFound = ({
           {title}
         </div>
       ) : (
-        loading ? 'loading...'
-        : <ButtonAddPackage title={title} setLoading={setLoading} version={version} dispatchPackages={dispatchPackages} />
+        <ButtonAddPackage title={title} version={version} dispatchPackages={dispatchPackages} />
       )}
     </li>
   );

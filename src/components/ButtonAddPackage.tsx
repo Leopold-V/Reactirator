@@ -2,26 +2,25 @@ import React, { Dispatch, useState } from 'react';
 
 import { actionPackageType } from '../helpers/types';
 import { calculatePackageSize } from '../utils/calculateSize';
+import { useLoading } from './context/LoadingPackageProvider';
 import { usePackageJson } from './context/PackageJsonProvider';
 
 export const ButtonAddPackage = ({
   title,
   version,
-  dispatchPackages,
-  setLoading
+  dispatchPackages
 }: {
   title: string;
   version: string;
   dispatchPackages: Dispatch<actionPackageType>;
-  setLoading: (loading: boolean) => void;
 }) => {
+  const { loading, setLoading } = useLoading();
   const { dispatchJson } = usePackageJson();
 
   const addPackages = async (e: React.MouseEvent<HTMLElement>): Promise<void> => {
     const target = e.target as HTMLElement;
     setLoading(true);
     const size = await calculatePackageSize(target.dataset.name, target.dataset.version);
-    setLoading(false);
     dispatchPackages({
       type: 'ADD',
       payload: {
@@ -38,6 +37,7 @@ export const ButtonAddPackage = ({
         version: target.dataset.version,
       },
     });
+    setLoading(false);
   };
 
   return (
@@ -47,6 +47,7 @@ export const ButtonAddPackage = ({
       data-name={title}
       data-version={version}
       onClick={addPackages}
+      disabled={loading}
     >
       {title}
     </button>
