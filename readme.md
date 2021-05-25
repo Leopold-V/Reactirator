@@ -13,12 +13,12 @@
 ## What is it ?
 
 Desktop application built with Electron using TypeScript, React and Node. 
-The objective is to provide a simple UI to help you automatized everything related to the installation of a react application when starting a project so you can start in no time 
+The objective is to provide a simple UI to help you automatized everything related to the installation of a react application when starting a project so you can start in no time.
 
 It avoid you to repeat boring task such as installing/config tailwind, bootstrap etc. and every npm packages. Under the hood the application automatized all of this by running cli command at your place.
-More cool stuffs are there such as npm packages informations, a real time package.json to know what's your are actually generated, a drag and drop to switch yours packages beteween dep and dev dependencies etc.
+More cool stuffs are there such as npm packages informations, a real time package.json to know what's your are actually generated, a drag and drop to switch your packages between dep and dev dependencies etc.
 
-In the long run the project goal is to extend the possible customizations such as editing the npm scripts section, have complete npm packages informations and more.
+In the long run the project goal is to extend the possible customizations providing you more control over the generation and more interest to use this project.
 
 Everything is generated on top of [create-react-app](https://github.com/facebook/create-react-app) so you don't have to worry about the base project requirements such as bundlers, tests etc.
 
