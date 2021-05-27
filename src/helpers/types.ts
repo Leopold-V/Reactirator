@@ -53,10 +53,12 @@ export type actionJsonType =
       };
     };
 
-export type listPackageType = {
+export type listPackageType = packageFoundType[];
+
+export type packageFoundType = {
   name: string;
   version: string;
-}[];
+};
 
 export type depStateType = {
   //[key: string]: string[]

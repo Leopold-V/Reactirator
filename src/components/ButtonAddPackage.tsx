@@ -1,17 +1,15 @@
 import React, { Dispatch, useState } from 'react';
 
-import { actionPackageType } from '../helpers/types';
+import { actionPackageType, packageFoundType } from '../helpers/types';
 import { calculatePackageSize } from '../utils/calculateSize';
 import { useLoading } from './context/LoadingPackageProvider';
 import { usePackageJson } from './context/PackageJsonProvider';
 
 export const ButtonAddPackage = ({
-  title,
-  version,
+  packageData,
   dispatchPackages
 }: {
-  title: string;
-  version: string;
+  packageData: packageFoundType;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   const { loading, setLoading } = useLoading();
@@ -49,12 +47,12 @@ export const ButtonAddPackage = ({
     <button
       className="flex items-center justify-center text-sm font-semibold bg-white hover:bg-blue-100 transition duration-200
             w-full h-full px-2 cursor-pointer"
-      data-name={title}
-      data-version={version}
+      data-name={packageData.name}
+      data-version={packageData.version}
       onClick={addPackages}
       disabled={loading}
     >
-      {title}
+      {packageData.name}
     </button>
   );
 };
