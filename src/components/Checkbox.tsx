@@ -27,7 +27,7 @@ const Checkbox = ({
       const packageFound = await getPackages(packageName);
       dispatchJson({
         type: e.target.name,
-        payload: { version: packageFound.results[0].package.version },
+        payload: { version: packageFound[0].package.version },
       });
       // dispatchPackages({
       //   type: 'ADD',

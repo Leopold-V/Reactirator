@@ -7,10 +7,12 @@ export const ItemPackageTooltip = ({data, mouse, isShown}: {data: packageFoundTy
     if (!isShown) return null;
     return (
         <div 
-            style={{top: mouse.y + 30, left: mouse.x + 30}} 
-            className={`absolute z-50 text-white text-sm bg-gray-700 w-40 p-2 rounded flex flex-col justify-start items-center shadow`}
+            style={{bottom: - mouse.y + 10, left: mouse.x + 30}} 
+            className={`absolute z-50 text-white text-sm bg-gray-700 w-56 opacity-95 p-2 rounded flex flex-col justify-start items-center shadow`}
         >
-            <h2 className="text-center">{data.name}@{data.version}</h2>
+            <h2 className="text-center font-bold">{data.name}@{data.version}</h2>
+            <p className="text-center">{data.description}</p>
+            <p className="font-bold text-blue-300">Npm score: {data.score.toPrecision(3)}</p>
         </div>
     )
 }

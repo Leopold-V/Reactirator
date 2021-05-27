@@ -58,6 +58,8 @@ export type listPackageType = packageFoundType[];
 export type packageFoundType = {
   name: string;
   version: string;
+  description: string;
+  score: number;
 };
 
 export type depStateType = {

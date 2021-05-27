@@ -15,7 +15,7 @@ export const ListPackagesFound = ({
   const ref = useRef(null);
 
   const [isShown, setIsShown] = useState(false);
-  const [data, setData] = useState<packageFoundType>({name: '', version:''});
+  const [data, setData] = useState<packageFoundType | null>(null);
 
   const mouse = useMouse(ref, {
     enterDelay: 100,

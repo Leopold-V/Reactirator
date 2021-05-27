@@ -4,7 +4,7 @@ export const getPackages = async (packageName: string, size = 30): Promise<any> 
     try {
         const rep = await fetch(`${API_URL}${packageName}&size=${size}`);
         const res = await rep.json();
-        return res;
+        return res.results;
     } catch (error) {
         throw error;
     }

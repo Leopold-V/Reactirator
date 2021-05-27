@@ -20,9 +20,11 @@ export const SearchPackages = ({
     if (e.target.value !== '') {
       try {
         const packagesFound = await getPackages(e.target.value);
-        const results: listPackageType = packagesFound.results.map((ele: any) => ({
+        const results: listPackageType = packagesFound.map((ele: any) => ({
           name: ele.package.name,
           version: ele.package.version,
+          description: ele.package.description,
+          score: ele.score.final
         }));
         setInput(results);
       } catch (error) {
