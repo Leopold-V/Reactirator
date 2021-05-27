@@ -1,7 +1,5 @@
 import { depStateType } from '../helpers/types';
 import * as d3 from 'd3';
-import innerRadius from 'd3';
-
 
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
@@ -18,6 +16,8 @@ export const generateTreeMapWithD3 = (listPackages: depStateType) => {
     const margin = 40
 
     const radius = Math.min(width, height) / 2 - margin
+
+    const listColor = [...listPackages.dependencies.map((ele) => getRandomColor())];
 
     // append the svg object
     const svg = d3.select("svg_pie")
@@ -43,6 +43,8 @@ export const generateTreeMapWithD3 = (listPackages: depStateType) => {
 
     //Draw arc paths
     arcs.append("path")
-        .attr("fill", () => getRandomColor())
+        .attr("fill", function(d, i) {
+            return color(listColor[i]);
+        })
         .attr("d", arc);
 }

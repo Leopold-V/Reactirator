@@ -3,19 +3,17 @@ import { actionPackageType, packageFoundType } from '../helpers/types';
 import { usePackageJson } from './context/PackageJsonProvider';
 import { ButtonAddPackage } from './ButtonAddPackage';
 
-export const ItemPackageFound = ({
-  packageData,
-  dispatchPackages,
-  setIsShown,
-  setData,
-}: {
+type propsType = {
   packageData: packageFoundType;
   dispatchPackages: Dispatch<actionPackageType>;
   setIsShown: (isShown: boolean) => void;
   setData:  (data: packageFoundType) => void;
-  ref: Ref<any>
-}) => {
+}
+
+export const ItemPackageFound = React.forwardRef((props: propsType, ref: Ref<any>) => {
   const { packageJson } = usePackageJson();
+
+  const { packageData, dispatchPackages, setIsShown, setData } = { ...props };
 
   const handleMouseEnter = () => {
     setData(packageData);
@@ -27,7 +25,7 @@ export const ItemPackageFound = ({
   };
 
   return (
-    <li key={packageData.name} className="flex items-center justify-center w-full h-9 relative"
+    <li key={packageData.name} ref={ref} className="flex items-center justify-center w-full h-9 relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -41,4 +39,4 @@ export const ItemPackageFound = ({
       )}
     </li>
   );
-};
+});
