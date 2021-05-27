@@ -14,10 +14,10 @@ export const Treemap = ({ listPackages, totalSize }: { listPackages: depStateTyp
     }, [listPackages]);
 
     return (
-        <div className="w-10/12 mx-auto">
+        <div className="w-8/12 mx-auto">
             <div className="p-6 bg-white text-gray-800 rounded shadow">
                 <div id="treemap">
-                    <svg id="svg_pie" width="534" height="400" />
+                    <svg id="svg_pie" width="300" height="200" />
                 </div>
             </div>
         </div>
