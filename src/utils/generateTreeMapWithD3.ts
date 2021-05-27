@@ -1,39 +1,26 @@
-import { depStateType } from '../helpers/types';
 import * as d3 from 'd3';
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+import { depStateType } from '../helpers/types';
+import { getRandomColor } from './color';
 
 export const generateTreeMapWithD3 = (listPackages: depStateType) => {
-    const width = 534
-    const height = 450
-    const margin = 40
-
-    const radius = Math.min(width, height) / 2 - margin
-
-    const listColor = [...listPackages.dependencies.map((ele) => getRandomColor())];
+    const width = 300
+    const height = 220
+    const listColor = [...listPackages.dependencies.map((ele) => (getRandomColor()))];
 
     // append the svg object
-    const svg = d3.select("svg_pie")
+    const svg = d3.select("#svg_pie")
 
     const g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
     
-    const color = d3.scaleOrdinal();
+    const color = d3.scaleOrdinal(listColor);
 
     // Generate the pie
     const pie = d3.pie();
 
-    // Generate the arcs
     const arc = d3.arc()
-                .innerRadius(0)
-                .outerRadius(radius);
-
+    .innerRadius(0)
+    .outerRadius(100)
+    
     //Generate groups
     const arcs = g.selectAll("arc")
                 .data(pie(listPackages.dependencies.map((ele) => ele.size)))
@@ -43,8 +30,6 @@ export const generateTreeMapWithD3 = (listPackages: depStateType) => {
 
     //Draw arc paths
     arcs.append("path")
-        .attr("fill", function(d, i) {
-            return color(listColor[i]);
-        })
+        .attr("fill", (d, i) => (color(listColor[i])))
         .attr("d", arc);
 }
