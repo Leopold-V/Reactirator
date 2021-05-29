@@ -3,9 +3,9 @@ import { depStateType } from '../helpers/types';
 import { getRandomColor } from './color';
 
 export const generateTreeMapWithD3 = (listPackages: depStateType) => {
-    const width = 300
-    const height = 220
-    const listColor = [...listPackages.dependencies.map((ele) => (getRandomColor()))];
+    const width = 100
+    const height = 100
+    const listColor = [...listPackages.dependencies.map(() => (getRandomColor()))];
 
     // append the svg object
     const svg = d3.select("#svg_pie")
