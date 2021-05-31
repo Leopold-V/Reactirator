@@ -17,8 +17,8 @@ export const Treemap = ({ listPackages, totalSize }: { listPackages: depStateTyp
         <div className="w-8/12 mx-auto">
             <div className="p-6 bg-white text-gray-800 rounded shadow flex justify-center">
                 <div id="treemap">
-                    <svg id="svg_pie" width="300" height="200" />
-                </div>
+                    <svg id="svg_pie" width="400" height="240" />
+                </div> 
             </div>
         </div>
     )

@@ -3,8 +3,8 @@ import { depStateType } from '../helpers/types';
 import { getRandomColor } from './color';
 
 export const generateTreeMapWithD3 = (listPackages: depStateType) => {
-    const width = 100
-    const height = 100
+    const width = 400
+    const height = 240
     const listColor = [...listPackages.dependencies.map(() => (getRandomColor()))];
 
     // append the svg object
@@ -18,18 +18,28 @@ export const generateTreeMapWithD3 = (listPackages: depStateType) => {
     const pie = d3.pie();
 
     const arc = d3.arc()
-    .innerRadius(0)
-    .outerRadius(100)
+    .innerRadius(50)
+    .outerRadius(70)
     
     //Generate groups
     const arcs = g.selectAll("arc")
-                .data(pie(listPackages.dependencies.map((ele) => ele.size)))
+                .data(pie(listPackages.dependencies.length > 0 ? listPackages.dependencies.map((ele) => ele.size) : [100] ))
                 .enter()
                 .append("g")
                 .attr("class", "arc")
 
     //Draw arc paths
     arcs.append("path")
+        .attr("d", arc)
         .attr("fill", (d, i) => (color(listColor[i])))
-        .attr("d", arc);
+
+    svg
+        .selectAll('mySlices')
+        .data(pie(listPackages.dependencies.length > 0 ? listPackages.dependencies.map((ele) => ele.size) : [100] ))
+        .enter()
+        .append('text')
+        .text(function(d){ return "grp "})
+        .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")";  })
+        .style("text-anchor", "middle")
+        .style("font-size", 17)
 }
