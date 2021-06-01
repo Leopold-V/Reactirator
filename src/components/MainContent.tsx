@@ -17,7 +17,7 @@ import { CardProjectName } from './CardProjectName';
 import { formInputType, depStateType } from '../helpers/types';
 import { PackagesSizeMemoized } from './PackagesSize';
 import { usePackageJson } from './context/PackageJsonProvider';
-import { Treemap } from './Treemap';
+import { TreemapMemoized } from './Treemap';
 
 const initialDeps: depStateType = {
   dependencies: [],
@@ -75,7 +75,7 @@ export const MainContent = () => {
 
           <div className="flex-grow flex flex-col pt-12 space-y-10">
             <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
-            <Treemap totalSize={totalSize} listPackages={listPackages} />
+            <TreemapMemoized listPackages={listPackages} />
           </div>
 
           <div className="w-3/12 -mt-52">
