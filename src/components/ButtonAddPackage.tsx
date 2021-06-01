@@ -1,7 +1,7 @@
-import React, { Dispatch, useState } from 'react';
+import React, { Dispatch } from 'react';
 
+import { getPackageRegistryInfo } from '../services/packagesSearch';
 import { actionPackageType, packageFoundType } from '../helpers/types';
-import { calculatePackageSize } from '../utils/calculateSize';
 import { useLoading } from './context/LoadingPackageProvider';
 import { usePackageJson } from './context/PackageJsonProvider';
 
@@ -19,13 +19,15 @@ export const ButtonAddPackage = ({
     const target = e.target as HTMLElement;
     setLoading(true);
     try {
-      const size = await calculatePackageSize(target.dataset.name, target.dataset.version);
+      const packageRegistryInfo = await getPackageRegistryInfo(target.dataset.name, target.dataset.version);
       dispatchPackages({
         type: 'ADD',
         payload: {
           destination: 'dependencies',
           name: target.dataset.name,
-          size: size,
+          size: packageRegistryInfo.dist.unpackedSize,
+          version: target.dataset.version,
+          dependencies: packageRegistryInfo.dependencies
         },
       });
       dispatchJson({

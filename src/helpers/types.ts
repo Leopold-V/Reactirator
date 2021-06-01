@@ -23,6 +23,8 @@ export type actionPackageType = {
     source?: string;
     name: string;
     size?: number;
+    version?: string;
+    dependencies?: string[];
   };
 };
 
@@ -64,6 +66,6 @@ export type packageFoundType = {
 
 export type depStateType = {
   //[key: string]: string[]
-  dependencies: { name: string; size: number }[];
-  devDependencies: { name: string; size: number }[];
+  dependencies: { name: string; size: number, version: string, dependencies: string[] }[];
+  devDependencies: { name: string; size: number, version: string, dependencies: string[] }[];
 };
