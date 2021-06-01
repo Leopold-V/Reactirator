@@ -33,10 +33,10 @@ Everything is generated on top of [create-react-app](https://github.com/facebook
 
 TODO :
 
-- [ ] Hover a package must show complete package information.
+- [*] Hover a package must show complete package information.
 - [ ] Add the possibility to custom the scripts section of the package.json .
 - [ ] The custom packages like bootstrap in the form aren't includes in the extra dependencies package for now.
-- [ ] Add loader for the packages search.
+- [*] Add loader for the packages search.
 
 ## Usage
 
