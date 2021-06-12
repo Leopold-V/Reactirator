@@ -7,6 +7,7 @@ export const calculateAllPackagesSize = async (list: { [key: string]: string }) 
     listPromise.push(calculatePackageSize(name, version));
   }
   const result = await Promise.all(listPromise);
+  console.log(result);
   const totalSize = result.reduce((a, b) => a + b, 0);
   return totalSize;
 };

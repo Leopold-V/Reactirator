@@ -23,20 +23,21 @@ const PackageJsonProvider = ({ children }: { children: ReactNode }) => {
 
 export const usePackageJson = () => {
   const { packageJson, dispatchJson } = useContext(PackageContext);
-  const [totalSize, setTotalSize] = useState(0);
+  const [baseSize, setBaseSize] = useState(0);
 
   const initializeTotalSize = async (): Promise<void> => {
     // initial size with only CRA dependencies
     const totalSize = await calculateAllPackagesSize(packageJson.dependencies);
     const totalSizeInKb = Math.floor(totalSize / 1000);
-    setTotalSize(totalSizeInKb);
+    setBaseSize(totalSizeInKb);
+
   }
 
   useEffect(() => {
     initializeTotalSize();
   }, []);
 
-  return { packageJson, dispatchJson, totalSize };
+  return { packageJson, dispatchJson, baseSize };
 
 }
 

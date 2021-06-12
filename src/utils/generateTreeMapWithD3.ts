@@ -9,8 +9,6 @@ export const generateTreeMapWithD3 = async (listPackages: depStateType) => {
     const height = 240 - margin.top - margin.bottom;
     const listColor = [...listPackages.dependencies.map(() => (getRandomColor()))];
     
-    console.log(listPackages);
-    
     const svgElement = d3.select("#treemap")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
