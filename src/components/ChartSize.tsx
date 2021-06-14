@@ -11,7 +11,7 @@ export const ChartSize = ({
   baseSize: number
 }) => {
   const data = {
-    labels: ['Base size','Dependencies', 'Dev dependencies'],
+    labels: ['Base','Dependencies', 'Dev dependencies'],
     datasets: [
       {
         label: 'Install size',

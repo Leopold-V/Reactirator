@@ -52,8 +52,7 @@ export const SearchPackages = ({
       <div ref={input_ref} className="flex flex-col items-center relative">
         <h2 className="font-extrabold pb-4">Add packages</h2>
         <input
-          className="w-full mb-1 text-center text-sm py-2 px-4
-            rounded bg-gray-200 text-black outline-none"
+          className="mb-1 input"
           type="text"
           placeholder="e.g react-router-dom, react-spinner"
           onChange={handleChange}

@@ -17,7 +17,7 @@ import { CardProjectName } from './CardProjectName';
 import { formInputType, depStateType } from '../helpers/types';
 import { PackagesSizeMemoized } from './PackagesSize';
 import { usePackageJson } from './context/PackageJsonProvider';
-import { TreemapMemoized } from './Treemap';
+//import { TreemapMemoized } from './Treemap';
 
 const initialDeps: depStateType = {
   dependencies: [],

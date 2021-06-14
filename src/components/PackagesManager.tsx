@@ -15,7 +15,7 @@ export const PackagesManager = ({
   return (
     <LoadingPackageProvider>
       <div className="flex flex-col justify-center">
-        <div className="lg:w-4/12 pb-10 mx-auto">
+        <div className="lg:w-5/12 pb-10 mx-auto">
           <SearchPackages dispatchPackages={dispatchPackages} />
         </div>
         <div className="w-10/12 mx-auto">

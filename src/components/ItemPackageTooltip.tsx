@@ -12,7 +12,7 @@ export const ItemPackageTooltip = ({data, mouse, isShown}: {data: packageFoundTy
         >
             <h2 className="text-center font-bold">{data.name}@{data.version}</h2>
             <p className="text-center">{data.description}</p>
-            <p className="font-bold text-blue-300">Npm score: {data.score.toPrecision(3)}</p>
+            <p className="font-bold text-indigo-500">Npm score: {data.score.toPrecision(3)}</p>
         </div>
     )
 }
