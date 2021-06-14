@@ -55,7 +55,7 @@ export const SearchPackages = ({
           className="w-full mb-1 text-center text-sm py-2 px-4
             rounded bg-gray-200 text-black outline-none"
           type="text"
-          placeholder="eg. react-router-dom, react-spinner"
+          placeholder="e.g react-router-dom, react-spinner"
           onChange={handleChange}
         />
         {isOpen && <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />}

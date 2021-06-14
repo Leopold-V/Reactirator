@@ -32,7 +32,7 @@ export const CardProjectName = ({
       <div className="flex flex-col justify-center items-center w-full pb-6 space-y-4">
         <input
           onChange={handleChange}
-          className="text-center w-full text-sm py-2 px-4
+          className="text-center w-full text-sm py-2 px-4 focus:ring-indigo-500 transition duration
                     rounded bg-gray-200 text-gray-700 outline-none"
           type="text"
           name="appname"
@@ -42,7 +42,7 @@ export const CardProjectName = ({
         />
         <textarea
           onChange={handleChange}
-          className="text-center w-full text-sm py-2 px-4
+          className="text-center w-full text-sm py-2 px-4 resize-none
                     rounded bg-gray-200 text-gray-700 outline-none"
           name="description"
           id="description"

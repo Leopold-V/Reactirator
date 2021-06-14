@@ -4,8 +4,7 @@ import { depStateType } from '../helpers/types';
 import { ChartSize } from './ChartSize';
 import { usePackageJson } from './context/PackageJsonProvider';
 
-export const PackagesSize = ({ listPackages }: { listPackages: depStateType }) => {
-  const { baseSize } = usePackageJson();
+export const PackagesSize = ({ listPackages, baseSize }: { listPackages: depStateType, baseSize: number }) => {
   const [depsSize, setDepsSize] = useState(0);
   const [devDepsSize, setDevDepsSize] = useState(0);
 

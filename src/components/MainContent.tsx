@@ -27,6 +27,7 @@ const initialDeps: depStateType = {
 type argType = [filepath: string, input: formInputType];
 
 export const MainContent = () => {
+  const { baseSize } = usePackageJson();
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
   const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
@@ -69,7 +70,7 @@ export const MainContent = () => {
         <div className="flex justify-between">
           <div className="w-3/12 -mt-52 space-y-10">
             <FormCustomProject input={input} setInput={setInput} dispatchPackages={dispatch} />
-            <PackagesSizeMemoized listPackages={listPackages} />
+            <PackagesSizeMemoized listPackages={listPackages} baseSize={baseSize} />
           </div>
 
           <div className="flex-grow flex flex-col pt-12 space-y-10">
