@@ -32,7 +32,6 @@ export const ListPackagesFound = ({
             dispatchPackages={dispatchPackages}
             setIsShown={setIsShown}
             setData={setData}
-            ref={ref}
           />
         ))}
       </ul>

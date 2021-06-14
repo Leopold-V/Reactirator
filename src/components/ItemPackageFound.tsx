@@ -10,7 +10,7 @@ type propsType = {
   setData:  (data: packageFoundType) => void;
 }
 
-export const ItemPackageFound = React.forwardRef((props: propsType, ref: Ref<any>) => {
+export const ItemPackageFound = (props: propsType, ref: Ref<any>) => {
   const { packageJson } = usePackageJson();
 
   const { packageData, dispatchPackages, setIsShown, setData } = { ...props };
@@ -25,7 +25,7 @@ export const ItemPackageFound = React.forwardRef((props: propsType, ref: Ref<any
   };
 
   return (
-    <li key={packageData.name} ref={ref} className="flex items-center justify-center w-full h-9 relative"
+    <li key={packageData.name} className="flex items-center justify-center w-full h-9 relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -39,4 +39,4 @@ export const ItemPackageFound = React.forwardRef((props: propsType, ref: Ref<any
       )}
     </li>
   );
-});
+};
