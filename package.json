@@ -92,6 +92,7 @@
   },
   "dependencies": {
     "@react-hook/mouse-position": "^4.1.0",
+    "axios": "^0.21.1",
     "chart.js": "^3.2.1",
     "console-feed": "^3.2.2",
     "d3": "^6.7.0",

@@ -2,7 +2,6 @@ import React, { Dispatch, ReactNode } from 'react';
 import { getPackages } from '../services/packagesSearch';
 import { actionPackageType, formInputType } from '../helpers/types';
 import { usePackageJson } from './context/PackageJsonProvider';
-import { calculatePackageSize } from '../utils/calculateSize';
 
 const Checkbox = ({
   children,

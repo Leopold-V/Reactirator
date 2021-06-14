@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import listDepsSize from '../utils/listDepsSize';
 import { depStateType } from '../helpers/types';
 import { ChartSize } from './ChartSize';
-import { usePackageJson } from './context/PackageJsonProvider';
 
 export const PackagesSize = ({ listPackages, baseSize }: { listPackages: depStateType, baseSize: number }) => {
   const [depsSize, setDepsSize] = useState(0);
   const [devDepsSize, setDevDepsSize] = useState(0);
 
   useEffect(() => {
-    //console.log();
     setDepsSize(listDepsSize(listPackages.dependencies));
     setDevDepsSize(listDepsSize(listPackages.devDependencies));
   }, [listPackages]);

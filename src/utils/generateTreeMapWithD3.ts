@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import { depStateType } from '../helpers/types';
-import { calculatePackageSize } from './calculateSize';
 import { getRandomColor } from './color';
 
 export const generateTreeMapWithD3 = async (listPackages: depStateType) => {
