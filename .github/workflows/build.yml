@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
+    - uses: actions/setup-node@main
       with:
-        node-version: 15
+        node-version: 14
     - name: install dependencies
       run: npm install
     - name: build
@@ -18,9 +18,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
+    - uses: actions/setup-node@main
       with:
-        node-version: 15
+        node-version: 14
     - name: install dependencies
       run: npm install
     - name: build
@@ -30,9 +30,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
+    - uses: actions/setup-node@main
       with:
-        node-version: 15
+        node-version: 14
     - name: install dependencies
       run: npm install
     - name: build

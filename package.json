@@ -59,6 +59,18 @@
             }
           }
         ]
+      ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "Leopold-V",
+              "name": "cra-generator"
+            },
+            "draft": true
+          }
+        }
       ]
     }
   },
@@ -69,6 +81,7 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.54",
+    "@electron-forge/publisher-github": "^6.0.0-beta.57",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@types/d3": "^6.7.0",
     "@types/react": "^17.0.3",
