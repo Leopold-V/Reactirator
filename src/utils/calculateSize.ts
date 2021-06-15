@@ -1,6 +1,4 @@
 const request = require('request');
-//const util = require('util');
-//const request = util.promisify(require('request'))
 
 export const calculateAllPackagesSize = async (list: { [key: string]: string }) => {
   const listPromise = [];
