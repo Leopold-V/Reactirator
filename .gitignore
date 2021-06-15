@@ -85,7 +85,7 @@ typings/
 .dynamodb/
 
 # Webpack
-.webpack/
+
 
 # Electron-Forge
 out/
