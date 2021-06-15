@@ -11,6 +11,7 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
     show: false,
     frame: false,
+    icon: './public/icons/win/icon.ico',
     backgroundColor: '#181b33',
     webPreferences: {
       nodeIntegration: true,
