@@ -1206,22 +1206,18 @@ module.exports = require("util");;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
-var exports = __webpack_exports__;
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var electron_1 = __webpack_require__(/*! electron */ "electron");
+var _a = __webpack_require__(/*! electron */ "electron"), app = _a.app, BrowserWindow = _a.BrowserWindow, dialog = _a.dialog, ipcMain = _a.ipcMain;
 if (__webpack_require__(/*! electron-squirrel-startup */ "./node_modules/electron-squirrel-startup/index.js")) {
     // eslint-disable-line global-require
-    electron_1.app.quit();
+    app.quit();
 }
 var createWindow = function () {
-    var mainWindow = new electron_1.BrowserWindow({
+    var mainWindow = new BrowserWindow({
         titleBarStyle: 'hidden',
         show: false,
         frame: false,
@@ -1239,20 +1235,20 @@ var createWindow = function () {
     });
     mainWindow.loadURL('http://localhost:3000/main_window');
 };
-electron_1.app.on('ready', createWindow);
-electron_1.app.on('window-all-closed', function () {
+app.on('ready', createWindow);
+app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
-        electron_1.app.quit();
+        app.quit();
     }
 });
-electron_1.app.on('activate', function () {
-    if (electron_1.BrowserWindow.getAllWindows().length === 0) {
+app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
     }
 });
-electron_1.ipcMain.on('open-directory', function (event, arg) {
-    var window = electron_1.BrowserWindow.fromWebContents(event.sender);
-    var filePath = electron_1.dialog.showOpenDialogSync(window, {
+ipcMain.on('open-directory', function (event, arg) {
+    var window = BrowserWindow.fromWebContents(event.sender);
+    var filePath = dialog.showOpenDialogSync(window, {
         properties: ['openFile', 'openDirectory'],
     });
     if (filePath) {

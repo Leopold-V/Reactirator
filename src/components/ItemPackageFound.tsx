@@ -31,7 +31,7 @@ export const ItemPackageFound = (props: propsType, ref: Ref<any>) => {
     >
       {Object.keys(packageJson.dependencies).includes(packageData.name) ||
       Object.keys(packageJson.devDependencies).includes(packageData.name) ? (
-        <div className="flex items-center justify-center text-sm font-semibold bg-gray-100 w-full h-full px-2">
+        <div className="flex items-center justify-center text-sm font-semibold bg-gray-200 w-full h-full px-2">
           {packageData.name}
         </div>
       ) : (

@@ -18,12 +18,9 @@ export const FormCustomProject = ({
     <div className="bg-white px-2 pb-2 rounded shadow">
       <h2 className="font-extrabold text-gray-700 text-xl py-6 text-center">Customization</h2>
       <div className="flex flex-col items-center space-y-2">
-        <FormSection title="Development">
+        <FormSection title="Type checker">
           <Checkbox name="typescript" packageName="typescript" setInput={setInput} input={input} dispatchPackages={dispatchPackages}>
             Typescript
-          </Checkbox>
-          <Checkbox name="prettier" packageName="prettier" setInput={setInput} input={input} dispatchPackages={dispatchPackages}>
-            Prettier
           </Checkbox>
           <Checkbox name="flow" packageName="flow-bin" setInput={setInput} input={input} dispatchPackages={dispatchPackages}>
             Flow
@@ -47,13 +44,16 @@ export const FormCustomProject = ({
           </Checkbox>
         </FormSection>
         <FormSection title="Tools">
+          <Checkbox name="prettier" packageName="prettier" setInput={setInput} input={input} dispatchPackages={dispatchPackages}>
+            Prettier
+          </Checkbox>
           <Checkbox
             name="sourcemapexplorer"
             packageName="source-map-explorer"
             setInput={setInput}
             input={input} dispatchPackages={dispatchPackages}
           >
-            source-map-explorer
+            Bundle analyze
           </Checkbox>
           <Checkbox name="storybook" packageName="storybook" setInput={setInput} input={input} dispatchPackages={dispatchPackages}>
             Storybook

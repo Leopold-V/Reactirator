@@ -23,14 +23,14 @@ export const ItemPackage = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className="text-white border-1 text-sm font-semibold bg-indigo-500 opacity-90 hover:opacity-80 transition duration-200
-                flex items-center justify-start rounded shadow h-9 my-2 w-full"
+                 rounded flex items-center justify-start shadow h-9 my-2 w-full"
         >
           <ButtonRemovePackage
             type={type}
             packageName={packageName}
             dispatchPackages={dispatchPackages}
           />
-          <div className="text-center w-full overflow-ellipsis px-2">{packageName}</div>
+          <div className="text-center w-full px-2 overflow-ellipsis">{packageName}</div>
         </li>
       )}
     </Draggable>

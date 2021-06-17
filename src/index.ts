@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
 if (require('electron-squirrel-startup')) {
