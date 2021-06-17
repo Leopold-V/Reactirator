@@ -9,7 +9,9 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
 </p>
-<div align="center">![screen](https://i.gyazo.com/90f141585ef0282572d0ebc7ee647ea0.png)</div>
+<div align="center">
+  <img alt="screen" src="https://i.gyazo.com/90f141585ef0282572d0ebc7ee647ea0.png" />
+</div>
 
 ## What is it ?
 
@@ -60,7 +62,7 @@ npm run start
 
 The project is open to any contributions, even if you are a beginner it doesn't matter.
 
-As long as you respect the contributor [code of conduct](https://github.com/leopold-v/cra-generator/blob/main/CODE_OF_CONDUCT.md)
+As long as you respect the contributor [Code Of Conduct](https://github.com/leopold-v/cra-generator/blob/main/CODE_OF_CONDUCT.md)
 
 Please, if you notice a bug, have a feature or enhancement to propose, don't hesitate and open a pull request.
 
