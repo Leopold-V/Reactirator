@@ -1,4 +1,5 @@
-<h1 align="center">Welcome to Reactirator <span><img alt="icon" src="https://github.com/Leopold-V/Reactirator/blob/main/public/icons/png/32x32.png" /></span></h1>
+<div align="center"><img alt="icon" src="https://github.com/Leopold-V/Reactirator/blob/main/public/icons/png/256x256.png" /></div>
+<h1 align="center">Welcome to Reactirator </h1>
 <h3 align="center">An open source application to generate a react application, with packages installation and configuration automatized</h3>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
