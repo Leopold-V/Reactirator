@@ -8,6 +8,9 @@
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
+  <a href="https://github.com/leopold-v/Reactirator/blob/main/CODE_OF_CONDUCT.md" target="_blank">
+    <img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg" />
+  </a>
 </p>
 <div align="center">
   <img alt="screen" src="https://i.gyazo.com/8e3320905a53b17be5d342f353da0f30.png" />
