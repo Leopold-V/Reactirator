@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to cra-generator 👋</h1>
+<h1 align="center">Welcome to cra-generator <span><img alt="icon" src="https://github.com/Leopold-V/cra-generator/blob/main/public/icons/png/32x32.png" /></span></h1>
 <h3 align="center">An open source application to generate a react application, with packages installation and configuration automatized</h3>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
@@ -10,7 +10,7 @@
   </a>
 </p>
 <div align="center">
-  <img alt="screen" src="https://i.gyazo.com/90f141585ef0282572d0ebc7ee647ea0.png" />
+  <img alt="screen" src="https://i.gyazo.com/8e3320905a53b17be5d342f353da0f30.png" />
 </div>
 
 ## What is it ?
@@ -19,8 +19,10 @@ Desktop application built with Electron using TypeScript, React and Node.
 The objective is to provide a simple UI to create a react application with any configs and packages you want without ever touching a cmd.
 So you can start a project in no time.
 
-It avoid you to repeat boring task such as installing/config tailwind, bootstrap etc. and every npm packages. Under the hood the application automatized all of this by running cli command at your place.
-More cool stuffs are there such as npm packages informations, a real time package.json to know what your are actually generated, a drag and drop system to switch your packages between dependencies and dev dependencies etc.
+The project aims to be very beginner friendly but also to be a real time saver for more confirmed developper : get ride of the configs steps and focus on your code.
+
+For example you won't have to repeat boring task such as installing/config tailwind, bootstrap etc. and every npm packages. Under the hood the application automatized all of this by running cli commands.
+More cool stuffs are there such as npm packages informations, a real time package.json to know what your are actually generating, a drag and drop system to switch your packages between dependencies and dev dependencies etc.
 
 In the long run the project goal is to extend the possible customizations providing you more control over the generation and more advantages to use this project.
 
