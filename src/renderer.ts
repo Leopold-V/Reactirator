@@ -19,7 +19,7 @@ window.onbeforeunload = () => {
 
 function addExternalLink() {
   document.getElementById('button_git').addEventListener('click', () => {
-    shell.openExternal('https://github.com/Leopold-V/cra-generator.git');
+    shell.openExternal('https://github.com/Leopold-V/Reactirator.git');
   });
 }
 

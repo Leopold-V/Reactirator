@@ -1,8 +1,8 @@
-<h1 align="center">Welcome to cra-generator <span><img alt="icon" src="https://github.com/Leopold-V/cra-generator/blob/main/public/icons/png/32x32.png" /></span></h1>
+<h1 align="center">Welcome to Reactirator <span><img alt="icon" src="https://github.com/Leopold-V/Reactirator/blob/main/public/icons/png/32x32.png" /></span></h1>
 <h3 align="center">An open source application to generate a react application, with packages installation and configuration automatized</h3>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/Leopold-V/cra-generator" target="_blank">
+  <a href="https://github.com/Leopold-V/Reactirator" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="#" target="_blank">
@@ -15,11 +15,11 @@
 
 ## What is it ?
 
-Desktop application built with Electron using TypeScript, React and Node. 
+Reactirator is a desktop application built with Electron using TypeScript, React and Node.
 The objective is to provide a simple UI to create a react application with any configs and packages you want without ever touching a cmd.
 So you can start a project in no time.
 
-The project aims to be very beginner friendly but also to be a real time saver for more confirmed developper : get ride of the configs steps and focus on your code.
+Reactirator aims to be very beginner friendly but also to be a real time saver for more confirmed developper : get ride of the configs steps and focus on your code.
 
 For example you won't have to repeat boring task such as installing/config tailwind, bootstrap etc. and every npm packages. Under the hood the application automatized all of this by running cli commands.
 More cool stuffs are there such as npm packages informations, a real time package.json to know what your are actually generating, a drag and drop system to switch your packages between dependencies and dev dependencies etc.
@@ -39,11 +39,11 @@ Everything is generated on top of [create-react-app](https://github.com/facebook
 
 ## Usage
 
-To use this app you can either download binaries files in the [release section](https://github.com/Leopold-V/cra-generator/releases)
+To use Reactirator you can either download binaries files in the [release section](https://github.com/Leopold-V/Reactirator/releases)
 or clone the project and test it in your dev environment :
 
 ```sh
-git clone https://github.com/Leopold-V/cra-generator.git
+git clone https://github.com/Leopold-V/Reactirator.git
 ```
 ```sh
 npm install
@@ -62,11 +62,10 @@ npm run start
 
 ## Want to Contribute ?
 
-The project is open to any contributions, even if you are a beginner it doesn't matter.
+Reactirator is open to any contributions, even if you are a beginner and you are looking for you first contribution you are welcome !
+If you notice a bug, have a feature or enhancement to propose, don't hesitate to open a pull request and if you need help as well.
 
-As long as you respect the contributor [Code Of Conduct](https://github.com/leopold-v/cra-generator/blob/main/CODE_OF_CONDUCT.md)
-
-Please, if you notice a bug, have a feature or enhancement to propose, don't hesitate and open a pull request.
+Please respect the contributor [Code Of Conduct](https://github.com/leopold-v/Reactirator/blob/main/CODE_OF_CONDUCT.md)
 
 ## Author
 

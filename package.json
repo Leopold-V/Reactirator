@@ -1,6 +1,6 @@
 {
-  "name": "cra-generator",
-  "productName": "cra-generator",
+  "name": "reactirator",
+  "productName": "Reactirator",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "cra_generator"
+            "name": "Reactirator"
           }
         },
         {

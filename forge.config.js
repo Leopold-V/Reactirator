@@ -5,7 +5,7 @@ module.exports = {
             config: {
             repository: {
                 owner: "Leopold-V",
-                name: "cra-generator"
+                name: "Reactirator"
             },
             draft: true
             }
