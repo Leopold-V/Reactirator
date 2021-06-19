@@ -25,6 +25,8 @@ jobs:
         node-version: 14
     - name: install dependencies
       run: npm install
+    - name: Running Prettier Code Formatter
+      run: npm run format:check --if-present
     - name: build
       run: npm run make
 
@@ -37,5 +39,7 @@ jobs:
         node-version: 14
     - name: install dependencies
       run: npm install
+    - name: Running Prettier Code Formatter
+      run: npm run format:check --if-present
     - name: build
       run: npm run make
