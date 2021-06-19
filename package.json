@@ -1,6 +1,6 @@
 {
   "name": "reactirator",
-  "productName": "Reactirator",
+  "productName": "reactirator",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -9,7 +9,9 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts ."
+    "lint": "eslint --ext .ts .",
+    "format": "prettier --write \"src/**/*.(js|jsx|ts|tsx|css|scss)\"",
+    "format:check": "prettier -c \"src/**/*.(js|jsx|ts|tsx|css|scss)\""
   },
   "keywords": [],
   "author": {
@@ -19,7 +21,9 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "executableName": "reactirator"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -68,8 +72,8 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.57",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
     "@electron-forge/maker-zip": "^6.0.0-beta.57",
-    "@electron-forge/plugin-webpack": "^6.0.0-beta.54",
-    "@electron-forge/publisher-github": "^6.0.0-beta.54",
+    "@electron-forge/plugin-webpack": "^6.0.0-beta.57",
+    "@electron-forge/publisher-github": "^6.0.0-beta.57",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@types/d3": "^6.7.0",
     "@types/react": "^17.0.3",
@@ -84,6 +88,7 @@
     "electron-icon-maker": "^0.0.5",
     "eslint": "^7.24.0",
     "eslint-plugin-import": "^2.22.1",
+    "prettier": "^2.3.1",
     "fork-ts-checker-webpack-plugin": "^5.2.1",
     "node-loader": "^1.0.3",
     "postcss": "^8.2.10",

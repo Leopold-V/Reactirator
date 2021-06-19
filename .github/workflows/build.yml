@@ -8,9 +8,11 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@main
       with:
-        node-version: 15.13
+        node-version: 14
     - name: install dependencies
       run: npm install
+    - name: Running Prettier Code Formatter
+      run: npm run format:check --if-present
     - name: build
       run: npm run make
 
@@ -20,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@main
       with:
-        node-version: 15.13
+        node-version: 14
     - name: install dependencies
       run: npm install
     - name: build
@@ -32,7 +34,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@main
       with:
-        node-version: 15.13
+        node-version: 14
     - name: install dependencies
       run: npm install
     - name: build
