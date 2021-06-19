@@ -42,7 +42,7 @@ export type actionJsonType =
         category: string;
         name: string;
         version?: string;
-        description ?: string;
+        description?: string;
       };
     }
   | {
@@ -51,7 +51,7 @@ export type actionJsonType =
         category?: string;
         name?: string;
         version: string;
-        description ?: string;
+        description?: string;
       };
     };
 
@@ -66,6 +66,6 @@ export type packageFoundType = {
 
 export type depStateType = {
   //[key: string]: string[]
-  dependencies: { name: string; size: number, version: string, dependencies: string[] }[];
-  devDependencies: { name: string; size: number, version: string, dependencies: string[] }[];
+  dependencies: { name: string; size: number; version: string; dependencies: string[] }[];
+  devDependencies: { name: string; size: number; version: string; dependencies: string[] }[];
 };

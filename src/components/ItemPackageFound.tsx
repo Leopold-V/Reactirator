@@ -7,8 +7,8 @@ type propsType = {
   packageData: packageFoundType;
   dispatchPackages: Dispatch<actionPackageType>;
   setIsShown: (isShown: boolean) => void;
-  setData:  (data: packageFoundType) => void;
-}
+  setData: (data: packageFoundType) => void;
+};
 
 export const ItemPackageFound = (props: propsType, ref: Ref<any>) => {
   const { packageJson } = usePackageJson();
@@ -25,7 +25,9 @@ export const ItemPackageFound = (props: propsType, ref: Ref<any>) => {
   };
 
   return (
-    <li key={packageData.name} className="flex items-center justify-center w-full h-9 relative"
+    <li
+      key={packageData.name}
+      className="flex items-center justify-center w-full h-9 relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

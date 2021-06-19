@@ -4,7 +4,7 @@
 
 .input {
   @apply w-full text-center text-sm py-2 px-4 transition duration-200
-  rounded bg-gray-200 outline-none border-2 border-transparent focus:border-gray-300
+  rounded bg-gray-200 outline-none border-2 border-transparent focus:border-gray-300;
 }
 
 body {

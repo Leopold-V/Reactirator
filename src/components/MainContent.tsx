@@ -58,32 +58,31 @@ export const MainContent = () => {
     return () => {
       ipcRenderer.removeAllListeners('open-dialog-directory-selected');
     };
-  }, [listPackages]);  
+  }, [listPackages]);
 
   return (
-    
-      <div className="z-10 flex flex-col md:w-11/12">
-        <div className="mx-auto">
-          <CardProjectName input={input} setInput={setInput} />
-        </div>
-
-        <div className="flex justify-between">
-          <div className="w-3/12 -mt-52 space-y-10">
-            <FormCustomProject input={input} setInput={setInput} dispatchPackages={dispatch} />
-            <PackagesSizeMemoized listPackages={listPackages} baseSize={baseSize} />
-          </div>
-
-          <div className="flex-grow flex flex-col pt-12 space-y-10">
-            <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
-            {/* <TreemapMemoized listPackages={listPackages} /> */}
-          </div>
-
-          <div className="w-3/12 -mt-52">
-            <ResultLog />
-          </div>
-        </div>
-
-        <Modal loading={loading} show={show} toggleModal={toggleModal} />
+    <div className="z-10 flex flex-col md:w-11/12">
+      <div className="mx-auto">
+        <CardProjectName input={input} setInput={setInput} />
       </div>
+
+      <div className="flex justify-between">
+        <div className="w-3/12 -mt-52 space-y-10">
+          <FormCustomProject input={input} setInput={setInput} dispatchPackages={dispatch} />
+          <PackagesSizeMemoized listPackages={listPackages} baseSize={baseSize} />
+        </div>
+
+        <div className="flex-grow flex flex-col pt-12 space-y-10">
+          <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
+          {/* <TreemapMemoized listPackages={listPackages} /> */}
+        </div>
+
+        <div className="w-3/12 -mt-52">
+          <ResultLog />
+        </div>
+      </div>
+
+      <Modal loading={loading} show={show} toggleModal={toggleModal} />
+    </div>
   );
 };

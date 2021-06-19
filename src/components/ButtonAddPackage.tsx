@@ -7,7 +7,7 @@ import { usePackageJson } from './context/PackageJsonProvider';
 
 export const ButtonAddPackage = ({
   packageData,
-  dispatchPackages
+  dispatchPackages,
 }: {
   packageData: packageFoundType;
   dispatchPackages: Dispatch<actionPackageType>;
@@ -19,7 +19,10 @@ export const ButtonAddPackage = ({
     const target = e.target as HTMLElement;
     setLoading(true);
     try {
-      const packageRegistryInfo = await getPackageRegistryInfo(target.dataset.name, target.dataset.version);
+      const packageRegistryInfo = await getPackageRegistryInfo(
+        target.dataset.name,
+        target.dataset.version
+      );
       dispatchPackages({
         type: 'ADD',
         payload: {
@@ -27,7 +30,7 @@ export const ButtonAddPackage = ({
           name: target.dataset.name,
           size: packageRegistryInfo.dist.unpackedSize,
           version: target.dataset.version,
-          dependencies: packageRegistryInfo.dependencies
+          dependencies: packageRegistryInfo.dependencies,
         },
       });
       dispatchJson({
@@ -37,7 +40,7 @@ export const ButtonAddPackage = ({
           name: target.dataset.name,
           version: target.dataset.version,
         },
-      })
+      });
       setLoading(false);
     } catch (error) {
       console.log(error);

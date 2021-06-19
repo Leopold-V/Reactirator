@@ -3,7 +3,13 @@ import listDepsSize from '../utils/listDepsSize';
 import { depStateType } from '../helpers/types';
 import { ChartSize } from './ChartSize';
 
-export const PackagesSize = ({ listPackages, baseSize }: { listPackages: depStateType, baseSize: number }) => {
+export const PackagesSize = ({
+  listPackages,
+  baseSize,
+}: {
+  listPackages: depStateType;
+  baseSize: number;
+}) => {
   const [depsSize, setDepsSize] = useState(0);
   const [devDepsSize, setDevDepsSize] = useState(0);
 

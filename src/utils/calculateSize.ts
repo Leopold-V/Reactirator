@@ -37,13 +37,13 @@ export const calculatePackageSize = (name: string, version: string): Promise<num
     );
   });
 };
-
-// export const calculatePackageSize = async (name: string, version: string): Promise<number> => {
-//   try {
-//     const rep = await request(`https://registry.npmjs.org/${name}/${version}`);
-//     const res = await rep.json();
-//     return res.body.dist.unpackedSize;
-//   } catch (error) {
-//     console.error(`error: ${error}`)
-//   }
-// };
+/*
+export const calculatePackageSize = async (name: string, version: string): Promise<number> => {
+   try {
+     const rep = await request(`https:registry.npmjs.org/${name}/${version}`);
+     const res = await rep.json();
+     return res.body.dist.unpackedSize;
+   } catch (error) {
+     console.error(`error: ${error}`)
+   }
+ };*/

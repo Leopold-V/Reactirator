@@ -30,15 +30,13 @@ export const usePackageJson = () => {
     const totalSize = await calculateAllPackagesSize(packageJson.dependencies);
     const totalSizeInKb = Math.floor(totalSize / 1000);
     setBaseSize(totalSizeInKb);
-
-  }
+  };
 
   useEffect(() => {
     initializeTotalSize();
   }, []);
 
   return { packageJson, dispatchJson, baseSize };
-
-}
+};
 
 export default PackageJsonProvider;

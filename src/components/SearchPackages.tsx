@@ -24,7 +24,7 @@ export const SearchPackages = ({
           name: ele.package.name,
           version: ele.package.version,
           description: ele.package.description,
-          score: ele.score.final
+          score: ele.score.final,
         }));
         setInput(results);
       } catch (error) {

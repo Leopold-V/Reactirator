@@ -3,19 +3,19 @@ import { depStateType } from '../helpers/types';
 import { getRandomColor } from './color';
 
 export const generateTreeMapWithD3 = async (listPackages: depStateType) => {
-    const margin = {top: 10, right: 10, bottom: 10, left: 10};
-    const width = 400 - margin.left - margin.right;
-    const height = 240 - margin.top - margin.bottom;
-    const listColor = [...listPackages.dependencies.map(() => (getRandomColor()))];
-    
-    const svgElement = d3.select("#treemap")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
-}
+  const margin = { top: 10, right: 10, bottom: 10, left: 10 };
+  const width = 400 - margin.left - margin.right;
+  const height = 240 - margin.top - margin.bottom;
+  const listColor = [...listPackages.dependencies.map(() => getRandomColor())];
+
+  const svgElement = d3
+    .select('#treemap')
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+};
 
 // const extendPackagesList = (listPackages: depStateType) => {
 

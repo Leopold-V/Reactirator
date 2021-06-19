@@ -4,10 +4,20 @@ const dependenciesReducer = (state: depStateType, { type, payload }: actionPacka
   switch (type) {
     case 'ADD':
       if (payload.destination === 'dependencies') {
-        state['dependencies'].push({ name: payload.name, size: payload.size, version: payload.version, dependencies: payload.dependencies });
+        state['dependencies'].push({
+          name: payload.name,
+          size: payload.size,
+          version: payload.version,
+          dependencies: payload.dependencies,
+        });
         return { ...state };
       } else {
-        state['devDependencies'].push({ name: payload.name, size: payload.size, version: payload.version, dependencies: payload.dependencies});
+        state['devDependencies'].push({
+          name: payload.name,
+          size: payload.size,
+          version: payload.version,
+          dependencies: payload.dependencies,
+        });
         return { ...state };
       }
     case 'REMOVE':

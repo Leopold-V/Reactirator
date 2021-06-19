@@ -11,7 +11,6 @@ export const ListPackagesFound = ({
   results: listPackageType;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
-
   const ref = useRef(null);
 
   const [isShown, setIsShown] = useState(false);
@@ -20,7 +19,7 @@ export const ListPackagesFound = ({
   const mouse = useMouse(ref, {
     enterDelay: 100,
     leaveDelay: 100,
-})
+  });
 
   return (
     <>
