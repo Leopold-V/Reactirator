@@ -1,6 +1,7 @@
 import React, { Dispatch } from 'react';
-import { actionPackageType } from '../helpers/types';
-import { usePackageJson } from './context/PackageJsonProvider';
+
+import { actionPackageType } from '../../helpers/types';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
 export const ButtonRemovePackage = ({
   type,

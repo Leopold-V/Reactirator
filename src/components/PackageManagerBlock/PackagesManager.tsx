@@ -1,9 +1,10 @@
 import React, { Dispatch } from 'react';
 
-import { actionPackageType, depStateType } from '../helpers/types';
+import { actionPackageType, depStateType } from '../../helpers/types';
+import { LoadingPackageProvider } from '../Contexts/LoadingPackageProvider';
+
 import { SearchPackages } from './SearchPackages';
 import { ListPackages } from './ListPackages';
-import { LoadingPackageProvider } from './context/LoadingPackageProvider';
 
 export const PackagesManager = ({
   listPackages,

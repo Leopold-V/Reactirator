@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { ConsoleLogs } from './ConsoleLogs';
 
-export const Modal = ({
+export const ModalInstallation = ({
   loading,
   show,
   toggleModal,

@@ -1,8 +1,9 @@
 import React, { Dispatch } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
-import { actionPackageType } from '../helpers/types';
-import { ButtonRemovePackage } from './ButtonRemovePackage';
+import { actionPackageType } from '../../helpers/types';
+
+import { ButtonRemovePackage } from '../Buttons';
 
 export const ItemPackage = ({
   type,

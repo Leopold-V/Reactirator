@@ -1,8 +1,8 @@
 import React, { Dispatch } from 'react';
 
-import FormSection from './FormSection';
-import Checkbox from './Checkbox';
-import { formInputType, actionPackageType } from '../helpers/types';
+import { FormSection } from './FormSection';
+import { Checkbox } from './Checkbox';
+import { formInputType, actionPackageType } from '../../helpers/types';
 
 export const FormCustomProject = ({
   input,

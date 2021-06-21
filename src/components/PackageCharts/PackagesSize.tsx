@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import listDepsSize from '../utils/listDepsSize';
-import { depStateType } from '../helpers/types';
-import { ChartSize } from './ChartSize';
+import listDepsSize from '../../utils/listDepsSize';
+import { depStateType } from '../../helpers/types';
+import { ChartSize } from '.';
 
 export const PackagesSize = ({
   listPackages,

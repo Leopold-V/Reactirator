@@ -1,8 +1,8 @@
 import React, { Dispatch } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
-import { actionPackageType } from '../helpers/types';
-import { ItemPackage } from './ItemPackage';
+import { actionPackageType } from '../../helpers/types';
+import { ItemPackage } from '.';
 
 export const ListPackagesSelected = ({
   type,

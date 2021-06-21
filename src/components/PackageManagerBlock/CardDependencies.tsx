@@ -1,6 +1,6 @@
 import React from 'react';
-import { useLoading } from './context/LoadingPackageProvider';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useLoading } from '../Contexts/LoadingPackageProvider';
 
 export const CardDependencies = ({
   children,

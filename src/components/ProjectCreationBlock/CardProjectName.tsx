@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { formInputType } from '../helpers/types';
-import { ButtonCreation } from './ButtonCreation';
-import { usePackageJson } from './context/PackageJsonProvider';
+import { formInputType } from '../../helpers/types';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { ButtonCreation } from '../Buttons';
 
 export const CardProjectName = ({
   input,

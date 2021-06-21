@@ -1,7 +1,7 @@
 import React from 'react';
-import { usePackageJson } from './context/PackageJsonProvider';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
-export const ResultLog = () => {
+export const CardPackageJson = () => {
   const { packageJson } = usePackageJson();
 
   return (

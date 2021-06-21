@@ -1,7 +1,7 @@
 import React, { Dispatch, Ref } from 'react';
-import { actionPackageType, packageFoundType } from '../helpers/types';
-import { usePackageJson } from './context/PackageJsonProvider';
-import { ButtonAddPackage } from './ButtonAddPackage';
+import { actionPackageType, packageFoundType } from '../../helpers/types';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { ButtonAddPackage } from '../Buttons';
 
 type propsType = {
   packageData: packageFoundType;

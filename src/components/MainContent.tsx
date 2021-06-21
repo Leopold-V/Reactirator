@@ -3,20 +3,20 @@ const { ipcRenderer } = require('electron');
 
 import { toast } from 'react-hot-toast';
 
-import dependenciesReducer from '../reducers/dependenciesReducer';
-import { useModal } from '../hooks/useModal';
 import { toastInstallMsg, toastInstallStyle } from '../helpers/toast';
 import initialState from '../helpers/initialState';
-import { generateProject } from '../services/installation.service';
-
-import { FormCustomProject } from './FormCustomProject';
-import { Modal } from './Modal';
-import { PackagesManager } from './PackagesManager';
-import { ResultLog } from './ResultLog';
-import { CardProjectName } from './CardProjectName';
 import { formInputType, depStateType } from '../helpers/types';
-import { PackagesSizeMemoized } from './PackagesSize';
-import { usePackageJson } from './context/PackageJsonProvider';
+import { generateProject } from '../services/installation.service';
+import dependenciesReducer from '../reducers/dependenciesReducer';
+import { usePackageJson } from './Contexts/PackageJsonProvider';
+import { useModal } from '../hooks/useModal';
+
+import { FormCustomProject } from './CustomPackageBlock';
+import { ModalInstallation } from './InstallationBlock';
+import { PackagesManager } from './PackageManagerBlock';
+import { CardPackageJson } from './PackageJsonBlock';
+import { CardProjectName } from './ProjectCreationBlock/CardProjectName';
+import { PackagesSizeMemoized } from './PackageCharts';
 //import { TreemapMemoized } from './Treemap';
 
 const initialDeps: depStateType = {
@@ -78,11 +78,11 @@ export const MainContent = () => {
         </div>
 
         <div className="w-3/12 -mt-52">
-          <ResultLog />
+          <CardPackageJson />
         </div>
       </div>
 
-      <Modal loading={loading} show={show} toggleModal={toggleModal} />
+      <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />
     </div>
   );
 };

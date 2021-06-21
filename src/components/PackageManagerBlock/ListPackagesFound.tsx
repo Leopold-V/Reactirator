@@ -1,6 +1,6 @@
 import useMouse from '@react-hook/mouse-position';
 import React, { Dispatch, useEffect, useRef, useState } from 'react';
-import { actionPackageType, listPackageType, packageFoundType } from '../helpers/types';
+import { actionPackageType, listPackageType, packageFoundType } from '../../helpers/types';
 import { ItemPackageFound } from './ItemPackageFound';
 import { ItemPackageTooltip } from './ItemPackageTooltip';
 

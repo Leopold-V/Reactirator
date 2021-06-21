@@ -1,9 +1,9 @@
 import React, { Dispatch } from 'react';
 
-import { getOnePackage } from '../services/package.service';
-import { actionPackageType, packageFoundType } from '../helpers/types';
-import { useLoading } from './context/LoadingPackageProvider';
-import { usePackageJson } from './context/PackageJsonProvider';
+import { getOnePackage } from '../../services/package.service';
+import { actionPackageType, packageFoundType } from '../../helpers/types';
+import { useLoading } from '../Contexts/LoadingPackageProvider';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
 export const ButtonAddPackage = ({
   packageData,

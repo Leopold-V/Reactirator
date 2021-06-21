@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Toaster } from 'react-hot-toast';
 
-import PackageJsonProvider from './components/context/PackageJsonProvider';
+import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
 import { Bar } from './components/Bar';
 import { Header } from './components/Header';
 import { MainContent } from './components/MainContent';

@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect, Dispatch } from 'react';
 
 import { ListPackagesFound } from './ListPackagesFound';
 
-import { listPackageType } from '../helpers/types';
-import { actionPackageType } from '../helpers/types';
-import { searchPackages } from '../services/package.service';
+import { listPackageType } from '../../helpers/types';
+import { actionPackageType } from '../../helpers/types';
+import { searchPackages } from '../../services/package.service';
 
 export const SearchPackages = ({
   dispatchPackages,

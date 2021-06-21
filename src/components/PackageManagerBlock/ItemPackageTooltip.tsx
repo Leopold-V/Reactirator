@@ -1,6 +1,6 @@
 import { MousePosition } from '@react-hook/mouse-position';
 import React from 'react';
-import { packageFoundType } from '../helpers/types';
+import { packageFoundType } from '../../helpers/types';
 
 export const ItemPackageTooltip = ({
   data,

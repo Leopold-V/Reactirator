@@ -1,9 +1,9 @@
 import React, { Dispatch, ReactNode } from 'react';
-import { searchPackages } from '../services/package.service';
-import { actionPackageType, formInputType } from '../helpers/types';
-import { usePackageJson } from './context/PackageJsonProvider';
+import { searchPackages } from '../../services/package.service';
+import { actionPackageType, formInputType } from '../../helpers/types';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
-const Checkbox = ({
+export const Checkbox = ({
   children,
   name,
   packageName,
@@ -58,5 +58,3 @@ const Checkbox = ({
     </div>
   );
 };
-
-export default Checkbox;
