@@ -77,11 +77,11 @@ const addFlow = (state: any, version: string) => {
 
 const addTypescript = (state: any): any => {
   if (!state.devDependencies['typescript']) {
-    state.devDependencies['typescript'] = '^4.2.4';
-    state.devDependencies['@types/jest'] = '^26.0.23';
-    state.devDependencies['@types/node'] = '^12.20.11';
-    state.devDependencies['@types/react'] = '^17.0.4';
-    state.devDependencies['@types/react-dom'] = '^17.0.3';
+    state.dependencies['typescript'] = '...';
+    state.devDependencies['@types/jest'] = '...';
+    state.devDependencies['@types/node'] = '...';
+    state.devDependencies['@types/react'] = '...';
+    state.devDependencies['@types/react-dom'] = '...';
   } else {
     delete state.devDependencies['typescript'];
     delete state.devDependencies['@types/jest'];
@@ -94,13 +94,13 @@ const addTypescript = (state: any): any => {
 
 const addTailwind = (state: any, version: string): any => {
   if (!state.dependencies['@craco/craco']) {
-    state.dependencies['@craco/craco'] = '^6.1.2';
+    state.dependencies['@craco/craco'] = '...';
     state.scripts.start = 'craco start';
     state.scripts.build = 'craco build';
     state.scripts.test = 'craco test';
     state.devDependencies['@tailwindcss/postcss7-compat'] = `^${version}`;
-    state.devDependencies['autoprefixer'] = '^9.8.6';
-    state.devDependencies['postcss'] = '^7.0.35';
+    state.devDependencies['autoprefixer'] = '...';
+    state.devDependencies['postcss'] = '...';
     state.devDependencies['tailwindcss'] = `npm:@tailwindcss/postcss7-compat@^${version}`;
   } else {
     delete state.dependencies['@craco/craco'];
@@ -123,7 +123,7 @@ const addStorybook = (state: any, version: string): any => {
     state.devDependencies['@storybook/addon-essentials'] = `^${version}`;
     state.devDependencies['@storybook/addon-links'] = `^${version}`;
     state.devDependencies['@storybook/node-logger'] = `^${version}`;
-    state.devDependencies['@storybook/preset-create-react-app'] = '^3.1.7';
+    state.devDependencies['@storybook/preset-create-react-app'] = '...';
     state.devDependencies['@storybook/addon-actions'] = `^${version}`;
     state.devDependencies['@storybook/react'] = `^${version}`;
   } else {
