@@ -17,6 +17,7 @@ import { PackagesManager } from './PackageManagerBlock';
 import { CardPackageJson } from './PackageJsonBlock';
 import { CardProjectName } from './ProjectCreationBlock/CardProjectName';
 import { PackagesSizeMemoized } from './PackageCharts';
+import { ScriptSection } from './ScriptSection';
 //import { TreemapMemoized } from './Treemap';
 
 const initialDeps: depStateType = {
@@ -75,6 +76,9 @@ export const MainContent = () => {
         <div className="flex-grow flex flex-col pt-12 space-y-10">
           <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
           {/* <TreemapMemoized listPackages={listPackages} /> */}
+          <div className="sm:w-3/4 mx-auto">
+            <ScriptSection />
+          </div>
         </div>
 
         <div className="w-3/12 -mt-52">
