@@ -7,7 +7,7 @@ import dependenciesReducer from '../reducers/dependenciesReducer';
 import { useModal } from '../hooks/useModal';
 import { toastInstallMsg, toastInstallStyle } from '../helpers/toast';
 import initialState from '../helpers/initialState';
-import { generateProject } from '../services/installation';
+import { generateProject } from '../services/installation.service';
 
 import { FormCustomProject } from './FormCustomProject';
 import { Modal } from './Modal';

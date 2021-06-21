@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactNode } from 'react';
-import { getPackages } from '../services/packagesSearch';
+import { searchPackages } from '../services/package.service';
 import { actionPackageType, formInputType } from '../helpers/types';
 import { usePackageJson } from './context/PackageJsonProvider';
 
@@ -23,21 +23,22 @@ const Checkbox = ({
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     setInput({ ...input, [e.target.name]: !input[e.target.name] });
     try {
-      const packageFound = await getPackages(packageName);
+      const packageFound = await searchPackages(packageName);
+      console.log(packageFound);
       dispatchJson({
         type: e.target.name,
         payload: { version: packageFound[0].package.version },
       });
-      // dispatchPackages({
-      //   type: 'ADD',
-      //   payload: {
-      //     destination: 'dependencies',
-      //     name: packageName,
-      //     size: await calculatePackageSize(packageName, packageFound.results[0].package.version),
-      //   },
-      // });
+      //  dispatchPackages({
+      //    type: 'ADD',
+      //    payload: {
+      //      destination: 'dependencies',
+      //      name: packageName,
+      //      size: await calculatePackageSize(packageName, packageFound[0].package.version),
+      //    },
+      //  });
     } catch (error) {
-      console.log('Error fetching the API');
+      console.log(error);
     }
   };
 

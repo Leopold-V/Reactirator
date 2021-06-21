@@ -2,7 +2,7 @@ import React, { ReactNode, useContext, useEffect, useReducer, useState } from 'r
 import initialPackageJson from '../../helpers/initialPackageJson';
 import jsonPackageReducer from '../../reducers/jsonPackageReducer';
 import { actionJsonType } from '../../helpers/types';
-import { calculateAllPackagesSize } from '../../utils/calculateSize';
+import { getSizeOfPackagesList } from '../../services/package.service';
 
 type PackageContextType = {
   packageJson: any;
@@ -27,7 +27,7 @@ export const usePackageJson = () => {
 
   const initializeTotalSize = async (): Promise<void> => {
     // initial size with only CRA dependencies
-    const totalSize = await calculateAllPackagesSize(packageJson.dependencies);
+    const totalSize = await getSizeOfPackagesList(packageJson.dependencies);
     const totalSizeInKb = Math.floor(totalSize / 1000);
     setBaseSize(totalSizeInKb);
   };

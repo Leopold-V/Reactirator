@@ -4,7 +4,7 @@ import { ListPackagesFound } from './ListPackagesFound';
 
 import { listPackageType } from '../helpers/types';
 import { actionPackageType } from '../helpers/types';
-import { getPackages } from '../services/packagesSearch';
+import { searchPackages } from '../services/package.service';
 
 export const SearchPackages = ({
   dispatchPackages,
@@ -19,7 +19,7 @@ export const SearchPackages = ({
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (e.target.value !== '') {
       try {
-        const packagesFound = await getPackages(e.target.value);
+        const packagesFound = await searchPackages(e.target.value);
         const results: listPackageType = packagesFound.map((ele: any) => ({
           name: ele.package.name,
           version: ele.package.version,
