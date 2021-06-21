@@ -2,7 +2,7 @@ import React, { ReactNode, useContext, useEffect, useReducer, useState } from 'r
 import initialPackageJson from '../../helpers/initialPackageJson';
 import jsonPackageReducer from '../../reducers/jsonPackageReducer';
 import { actionJsonType } from '../../helpers/types';
-import { getSizeOfPackagesList } from '../../services/package.service';
+import { getSizeOfPackagesList, searchPackages } from '../../services/package.service';
 
 type PackageContextType = {
   packageJson: any;
@@ -13,6 +13,29 @@ export const PackageContext = React.createContext<PackageContextType>(null);
 
 const PackageJsonProvider = ({ children }: { children: ReactNode }) => {
   const [packageJson, dispatchJson] = useReducer(jsonPackageReducer, initialPackageJson);
+
+  const getVersionsOfBaseDeps = async () => {
+    Object.keys(initialPackageJson.dependencies).forEach((pkg) => {
+      searchPackages(pkg, 1)
+        .then((result) => {
+          dispatchJson({
+            type: 'ADD',
+            payload: {
+              category: 'dependencies',
+              name: result[0].package.name,
+              version: result[0].package.version,
+            },
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  };
+
+  useEffect(() => {
+    getVersionsOfBaseDeps();
+  }, []);
 
   return (
     <PackageContext.Provider value={{ packageJson, dispatchJson }}>

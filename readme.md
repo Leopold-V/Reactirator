@@ -56,9 +56,9 @@ npm run start
 
 - [ ] Improve global styles
 - [ ] Add the possibility to custom the scripts section of the package.json.
-- [ ] The request module to get npm registry data is slow.
 - [ ] The custom packages like bootstrap in the form aren't includes in the extra dependencies package for now.
 - [ ] Add tests
+- [ ] Some customs package like typescript have hardcoded dev deps version : should get latest instead.
 
 ## Want to contribute?
 
