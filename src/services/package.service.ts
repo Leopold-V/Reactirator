@@ -22,11 +22,12 @@ export const getOnePackage = async (name: string, version: string): Promise<any>
   }
 };
 
-export const getSizeOfPackagesList = async (list: { [key: string]: string }) => {
+export const getSizeOfPackagesList = async (listPkg: any[]) => {
   const listSize: number[] = [];
-  for (const ele in list) {
-    const [name, version] = [ele, list[ele].replace('^', '')];
-    await getOnePackage(name, version).then((result) => listSize.push(result.dist.unpackedSize));
+  for (const ele of listPkg) {
+    await getOnePackage(ele.package.name, ele.package.version).then((result) => {
+      listSize.push(result.dist.unpackedSize);
+    });
   }
   const totalSize = listSize.reduce((a, b) => a + b, 0);
   return totalSize;
