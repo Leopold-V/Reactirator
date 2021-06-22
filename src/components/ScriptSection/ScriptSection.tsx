@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
-import { usePackageJson } from './Contexts/PackageJsonProvider';
-import { ButtonAddScript, ButtonRemoveScript } from './Buttons';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { ButtonAddScript } from '../Buttons';
+import { ListScripts } from './ListScripts';
 
 export const ScriptSection = () => {
   const { packageJson, dispatchJson } = usePackageJson();
@@ -46,20 +47,7 @@ export const ScriptSection = () => {
         </div>
         <ButtonAddScript />
       </form>
-      {
-        <ul className="text-sm flex flex-wrap justify-center items-center">
-          {Object.entries(packageJson.scripts).map((script: any) => {
-            return (
-              <li className="m-1 text-green-700 rounded shadow flex items-center">
-                <ButtonRemoveScript name={script[0]} />
-                <div className="px-3 py-1 bg-green-50">
-                  <span className="font-bold">{script[0]}:</span> {script[1]}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      }
+      <ListScripts scripts={packageJson.scripts} />
     </div>
   );
 };
