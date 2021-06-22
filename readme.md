@@ -54,11 +54,10 @@ npm run start
 
 ## Todo
 
-- [ ] Improve global styles
-- [ ] Add the possibility to custom the scripts section of the package.json.
-- [ ] The custom packages like bootstrap in the form aren't includes in the extra dependencies package for now.
+- [ ] Improve global design (UI/UX)
+- [ ] Customs packages like bootstrap aren't includes in the extra dependencies package for now, make install size inacurate
 - [ ] Add tests
-- [ ] Some customs package like typescript have hardcoded dev deps version : should get latest instead.
+- [ ] Some customs package like typescript have hardcoded dev deps version : should get latest instead
 
 ## Want to contribute?
 

@@ -37,12 +37,19 @@ export type actionJsonType =
       };
     }
   | {
+      type: 'CHANGE_SCRIPTS';
+      payload: {
+        scripts: string;
+      };
+    }
+  | {
       type: 'ADD' | 'REMOVE';
       payload: {
         category: string;
         name: string;
         version?: string;
         description?: string;
+        scripts?: string;
       };
     }
   | {
@@ -52,6 +59,7 @@ export type actionJsonType =
         name?: string;
         version: string;
         description?: string;
+        scripts?: string;
       };
     };
 

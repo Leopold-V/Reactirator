@@ -6,6 +6,9 @@ const jsonPackageReducer = (state: any, action: actionJsonType) => {
       state.name = action.payload.name;
       state.description = action.payload.description;
       return { ...state };
+    case 'CHANGE_SCRIPTS':
+      state.scripts = action.payload.scripts;
+      return { ...state };
     case 'ADD':
       state[action.payload.category][action.payload.name] = action.payload.version;
       return { ...state };

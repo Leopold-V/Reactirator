@@ -32,6 +32,7 @@ export const MainContent = () => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
   const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
+  const { packageJson } = usePackageJson();
 
   const [input, setInput] = useState(initialState);
 
@@ -45,7 +46,7 @@ export const MainContent = () => {
           toggleModal();
           try {
             await toast.promise(
-              generateProject(filepath, input, listPackages),
+              generateProject(filepath, input, listPackages, packageJson.scripts),
               toastInstallMsg,
               toastInstallStyle
             );
@@ -76,7 +77,7 @@ export const MainContent = () => {
         <div className="flex-grow flex flex-col pt-12 space-y-10">
           <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
           {/* <TreemapMemoized listPackages={listPackages} /> */}
-          <div className="sm:w-3/4 mx-auto">
+          <div className="sm:max-w-big mx-auto">
             <ScriptSection />
           </div>
         </div>

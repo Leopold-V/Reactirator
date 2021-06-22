@@ -6,7 +6,8 @@ import { depStateType, formInputType } from '../helpers/types';
 export const generateProject = async (
   filepath: string,
   input: formInputType,
-  listPackages: depStateType
+  listPackages: depStateType,
+  scripts: {}
 ): Promise<void> => {
   const fullPath = `${filepath}\\${input.appname}`;
 
@@ -15,6 +16,8 @@ export const generateProject = async (
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
 
   await installPackages(fullPath, listPackages);
+
+  await installScripts(fullPath, scripts);
 
   if (input.bootstrap) {
     await installBootstrap(fullPath, input.typescript);
@@ -52,6 +55,17 @@ const installPackages = async (fullPath: string, listPackages: depStateType): Pr
   }
 };
 
+const installScripts = async (fullPath: string, scripts: {}): Promise<void> => {
+  try {
+    const data = await promisifyReadFs(`${fullPath}\\package.json`);
+    const packagejson = JSON.parse(data);
+    packagejson.scripts = scripts;
+    await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
+  } catch (error) {
+    throw error;
+  }
+};
+
 const installStorybook = async (fullPath: string): Promise<void> => {
   try {
     await runCmd(`cd ${fullPath} && npx -p @storybook/cli sb init`);
@@ -63,10 +77,6 @@ const installStorybook = async (fullPath: string): Promise<void> => {
 const installFlow = async (fullPath: string): Promise<void> => {
   try {
     await runCmd(`cd ${fullPath} && npm install flow-bin`);
-    const data = await promisifyReadFs(`${fullPath}\\package.json`);
-    const packagejson = JSON.parse(data);
-    packagejson.scripts['flow'] = 'flow';
-    await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
     await runCmd(`cd ${fullPath} && npm run flow init`);
   } catch (error) {
     throw error;
@@ -76,10 +86,6 @@ const installFlow = async (fullPath: string): Promise<void> => {
 const installSourceMapExplorer = async (fullPath: string): Promise<void> => {
   try {
     await runCmd(`cd ${fullPath} && npm install source-map-explorer`);
-    const data = await promisifyReadFs(`${fullPath}\\package.json`);
-    const packagejson = JSON.parse(data);
-    packagejson.scripts['analyze'] = "source-map-explorer 'build/static/js/*.js'";
-    await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
   } catch (error) {
     throw error;
   }
@@ -129,22 +135,11 @@ const installTailwind = async (fullPath: string): Promise<void> => {
     await runCmd(
       `cd ${fullPath} && npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 && npm install @craco/craco && npx tailwindcss init`
     );
-    const data = await promisifyReadFs(`${fullPath}\\package.json`);
-    const packagejson = JSON.parse(data);
-    packagejson.scripts = cracoPackagejson;
     await promisifyWriteFs(`${fullPath}\\craco.config.js`, cracoConfig);
-    await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
     await writeFileAtTop(`${fullPath}\\src\\index.css`, tailwindimport);
   } catch (error) {
     throw error;
   }
-};
-
-const cracoPackagejson = {
-  start: 'craco start',
-  build: 'craco build',
-  test: 'craco test',
-  eject: 'react-scripts eject',
 };
 
 const cracoConfig = `module.exports = {

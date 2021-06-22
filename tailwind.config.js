@@ -38,6 +38,11 @@ module.exports = {
       height: {
         big: '33rem',
       },
+      maxWidth: {
+        small: '2rem',
+        medium: '14rem',
+        big: '33rem',
+      },
       colors: {
         primary: '#181b33',
         blueGray: '#2e3748',
