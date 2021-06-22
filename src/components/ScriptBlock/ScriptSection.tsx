@@ -23,7 +23,7 @@ export const ScriptSection = () => {
   };
 
   return (
-    <div className="bg-white rounded shadow p-6 flex flex-col justify-start items-center space-y-4">
+    <div className="bg-white rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4">
       <h2 className="font-extrabold text-gray-700 text-xl text-center py-2">Scripts edit</h2>
 
       <form className="flex flex-col items-center" onSubmit={handleAdd}>

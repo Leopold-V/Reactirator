@@ -15,9 +15,10 @@ import { FormCustomProject } from './CustomPackageBlock';
 import { ModalInstallation } from './InstallationBlock';
 import { PackagesManager } from './PackageManagerBlock';
 import { CardPackageJson } from './PackageJsonBlock';
+import { ScriptSection } from './ScriptBlock';
 import { CardProjectName } from './ProjectCreationBlock/CardProjectName';
 import { PackagesSizeMemoized } from './PackageCharts';
-import { ScriptSection } from './ScriptSection';
+import { ReadmeSection } from './ReadmeBlock';
 //import { TreemapMemoized } from './Treemap';
 
 const initialDeps: depStateType = {
@@ -33,6 +34,7 @@ export const MainContent = () => {
   const [loading, setLoading] = useState(false);
   const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
   const { packageJson } = usePackageJson();
+  const [readme, setReadme] = useState('');
 
   const [input, setInput] = useState(initialState);
 
@@ -46,7 +48,7 @@ export const MainContent = () => {
           toggleModal();
           try {
             await toast.promise(
-              generateProject(filepath, input, listPackages, packageJson.scripts),
+              generateProject(filepath, input, listPackages, packageJson.scripts, readme),
               toastInstallMsg,
               toastInstallStyle
             );
@@ -77,13 +79,14 @@ export const MainContent = () => {
         <div className="flex-grow flex flex-col pt-12 space-y-10">
           <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
           {/* <TreemapMemoized listPackages={listPackages} /> */}
-          <div className="sm:max-w-big mx-auto">
-            <ScriptSection />
+          <div className="mx-10">
+            <ReadmeSection readme={readme} setReadme={setReadme} />
           </div>
         </div>
 
-        <div className="w-3/12 -mt-52">
+        <div className="w-3/12 -mt-52 space-y-10">
           <CardPackageJson />
+          <ScriptSection />
         </div>
       </div>
 

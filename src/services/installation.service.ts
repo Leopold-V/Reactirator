@@ -7,7 +7,8 @@ export const generateProject = async (
   filepath: string,
   input: formInputType,
   listPackages: depStateType,
-  scripts: {}
+  scripts: {},
+  readme: string
 ): Promise<void> => {
   const fullPath = `${filepath}\\${input.appname}`;
 
@@ -18,6 +19,10 @@ export const generateProject = async (
   await installPackages(fullPath, listPackages);
 
   await installScripts(fullPath, scripts);
+
+  if (readme) {
+    await writeReadme(fullPath, readme);
+  }
 
   if (input.bootstrap) {
     await installBootstrap(fullPath, input.typescript);
@@ -61,6 +66,14 @@ const installScripts = async (fullPath: string, scripts: {}): Promise<void> => {
     const packagejson = JSON.parse(data);
     packagejson.scripts = scripts;
     await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
+  } catch (error) {
+    throw error;
+  }
+};
+
+const writeReadme = async (fullPath: string, markdownContent: string): Promise<void> => {
+  try {
+    await promisifyWriteFs(`${fullPath}\\readme.md`, markdownContent);
   } catch (error) {
     throw error;
   }
