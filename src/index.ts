@@ -27,6 +27,7 @@ const createWindow = (): void => {
     height: 550,
     transparent: true,
     frame: false,
+    icon: './public/icons/win/icon.ico',
     alwaysOnTop: true,
     webPreferences: {
       nodeIntegration: true,
