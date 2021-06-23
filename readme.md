@@ -14,7 +14,8 @@
   </a>
 </p>
 <div align="center">
-  <img alt="screen" src="https://i.gyazo.com/8e3320905a53b17be5d342f353da0f30.png" />
+  <img alt="screen" src="https://i.gyazo.com/038ebd411059f72683598674c73a56b3.png" />
+  <img alt="screen" src="https://i.gyazo.com/71e64e75dcc4f402cc126fa90e9a7c47.png" />
 </div>
 
 ## What is it?
@@ -40,6 +41,8 @@ Everything is generated on top of [``create-react-app``](https://github.com/face
 - Drag and drop your packages between dependencies and dev dependencies.
 - Have information about packages such as the installation size, a short description and npm score.
 - Vizualize your ``package.json`` informations in real time.
+- Edit your ``package.json`` script section.
+- Edit your ``readme.md`` file with markdown and preview.
 
 ## Usage
 
