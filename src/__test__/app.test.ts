@@ -1,7 +1,9 @@
 import { Application } from 'spectron';
 import path from 'path';
 import assert from 'assert';
+import { screen } from '@testing-library/dom';
 
+// Should detect the OS env for the output path.
 const packageName = 'Reactirator';
 const app = new Application({
   path: path.join(
@@ -20,10 +22,13 @@ describe('App is running 10 sec', function () {
     if (app && app.isRunning()) await app.stop();
   });
 
-  it('shows an initial window', () => {
-    return app.client.getWindowCount().then((count: any) => {
-      console.log(count);
-      assert.strictEqual(count, 1);
-    });
+  it('shows an initial window', async () => {
+    const count = await app.client.getWindowCount();
+    expect(count).toBe(1);
+  });
+
+  it('show a title', async () => {
+    const title = await app.client.getTitle();
+    expect(title).toBe('Reactirator');
   });
 });
