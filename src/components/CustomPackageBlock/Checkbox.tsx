@@ -24,7 +24,6 @@ export const Checkbox = ({
     setInput({ ...input, [e.target.name]: !input[e.target.name] });
     try {
       const packageFound = await searchPackages(packageName);
-      console.log(packageFound);
       dispatchJson({
         type: e.target.name,
         payload: { version: packageFound[0].package.version },

@@ -79,14 +79,14 @@ const addFlow = (state: any, version: string) => {
 };
 
 const addTypescript = (state: any): any => {
-  if (!state.devDependencies['typescript']) {
+  if (!state.dependencies['typescript']) {
     state.dependencies['typescript'] = '...';
     state.devDependencies['@types/jest'] = '...';
     state.devDependencies['@types/node'] = '...';
     state.devDependencies['@types/react'] = '...';
     state.devDependencies['@types/react-dom'] = '...';
   } else {
-    delete state.devDependencies['typescript'];
+    delete state.dependencies['typescript'];
     delete state.devDependencies['@types/jest'];
     delete state.devDependencies['@types/node'];
     delete state.devDependencies['@types/react'];
