@@ -58,6 +58,11 @@
                   "html": "./src/index.html",
                   "js": "./src/renderer.ts",
                   "name": "main_window"
+                },
+                {
+                  "html": "./src/splash.html",
+                  "js": "./src/splash.ts",
+                  "name": "splash_window"
                 }
               ]
             }

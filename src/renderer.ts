@@ -1,5 +1,4 @@
-const { shell } = require('electron');
-const remote = require('electron').remote;
+import { remote, shell } from 'electron';
 
 import './index.css';
 import './App';

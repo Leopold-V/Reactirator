@@ -1,5 +1,6 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
+declare const SPLASH_WINDOW_WEBPACK_ENTRY: any;
 
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
@@ -20,11 +21,26 @@ const createWindow = (): void => {
     },
   });
 
+  const splash = new BrowserWindow({
+    show: true,
+    width: 500,
+    height: 550,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
   mainWindow.once('ready-to-show', () => {
+    splash.destroy();
     mainWindow.show();
     mainWindow.maximize();
   });
 
+  splash.loadURL(SPLASH_WINDOW_WEBPACK_ENTRY);
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 };
 
