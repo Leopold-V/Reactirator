@@ -12,12 +12,12 @@ export const ReadmeEdit = ({
   };
 
   return (
-    <div className="py-6 space-y-4 flex flex-col items-center">
+    <div className="py-6 space-y-4 h-big flex flex-col items-center">
       <textarea
         onChange={handleChange}
         className="shadow rounded py-2 px-2 bg-gray-100
                       focus:outline-none focus:border-transparent
-                      w-full h-big placeholder-gray-500 resize-none transition duration-200"
+                      w-full h-full placeholder-gray-500 resize-none transition duration-200"
         placeholder="Write something about your project ?"
         name="content"
         value={readme}
