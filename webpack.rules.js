@@ -24,4 +24,12 @@ module.exports = [
       }
     }
   },
+  {
+    test: /\.(png|jpe?g|gif|ico|icns)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+      },
+    ],
+  },
 ];

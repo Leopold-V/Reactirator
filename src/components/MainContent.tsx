@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useEffect } from 'react';
-const { ipcRenderer } = require('electron');
+import { ipcRenderer } from 'electron';
 
 import { toast } from 'react-hot-toast';
 

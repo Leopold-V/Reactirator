@@ -5,7 +5,7 @@ const Splash = () => {
   return (
     <>
       <h1 id="splash_title">Reactirator</h1>
-      <img src="https://raw.githubusercontent.com/Leopold-V/Reactirator/main/public/icons/png/64x64.png" />
+      <img src="/icons/png/64x64.png" />
     </>
   );
 };
