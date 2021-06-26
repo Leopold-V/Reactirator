@@ -6,14 +6,23 @@ import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
 import { Bar } from './components/Bar';
 import { Header } from './components/Header';
 import { MainContent } from './components/MainContent';
+import { useEffect } from 'react';
 
 const App = () => {
+  useEffect(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, []);
+
   return (
     <PackageJsonProvider>
       <Bar />
-      <div id="layout" className="relative py-8 bg-gray-100 h-screen overflow-y-auto">
+      <div id="layout" className="relative py-8 bg-gray-100 dark:bg-gray-800 h-screen overflow-y-auto">
         <div className="flex justify-center flex-col items-center">
-          <div className="absolute bg-primary top-0 left-0 h-72 w-full"></div>
+          <div className="absolute bg-primary dark:bg-white top-0 left-0 h-72 w-full"></div>
           <Header />
           <MainContent />
         </div>
