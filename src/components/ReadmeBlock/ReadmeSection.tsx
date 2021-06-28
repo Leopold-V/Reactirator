@@ -13,7 +13,7 @@ export const ReadmeSection = ({
   const [tab, setTab] = useState<string>('Edit');
 
   return (
-    <div className="bg-white rounded shadow p-6">
+    <div className="bg-white dark:bg-blueGray rounded shadow p-6">
       <ReadmeHeader tab={tab} setTab={setTab} />
       <div className="w-full">
         {tab === 'Edit' ? (

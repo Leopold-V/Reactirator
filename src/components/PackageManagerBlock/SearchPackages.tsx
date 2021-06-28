@@ -48,7 +48,7 @@ export const SearchPackages = ({
   }, []);
 
   return (
-    <div className="p-6 bg-white text-gray-800 rounded shadow">
+    <div className="p-6 bg-white text-gray-800 dark:bg-blueGray dark:text-white rounded shadow">
       <div ref={input_ref} className="flex flex-col items-center relative">
         <h2 className="font-extrabold pb-4">Add packages</h2>
         <input

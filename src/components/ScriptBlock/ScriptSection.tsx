@@ -23,13 +23,15 @@ export const ScriptSection = () => {
   };
 
   return (
-    <div className="bg-white rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4">
-      <h2 className="font-extrabold text-gray-700 text-xl text-center py-2">Scripts edit</h2>
+    <div className="bg-white dark:bg-blueGray dark:text-white rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4">
+      <h2 className="font-extrabold text-gray-700 dark:text-white text-xl text-center py-2">
+        Scripts edit
+      </h2>
 
       <form className="flex flex-col items-center" onSubmit={handleAdd}>
         <div className="flex flex-col sm:flex-row justify-center flex-wrap">
           <input
-            className="m-1 text-center rounded bg-gray-100 text-sm px-3 py-2 focus:outline-none"
+            className="m-1 input w-3/4"
             onChange={handleChange}
             type="text"
             name="name"
@@ -38,7 +40,7 @@ export const ScriptSection = () => {
           />
           <input
             onChange={handleChange}
-            className="m-1 text-center rounded bg-gray-100 text-sm px-3 py-2 focus:outline-none"
+            className="m-1 input w-3/4"
             type="text"
             name="cmd"
             placeholder="Command..."

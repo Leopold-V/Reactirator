@@ -3,8 +3,10 @@
 @import 'tailwindcss/utilities';
 
 .input {
-  @apply w-full text-center text-sm py-2 px-4 transition duration-200
-  rounded bg-gray-200 outline-none border-2 border-transparent focus:border-gray-300;
+  @apply text-center text-sm py-2 px-4 transition duration-200
+  rounded bg-gray-200 outline-none border-2 border-transparent focus:border-gray-300 
+  dark:placeholder-gray-400 dark:border-gray-600 dark:bg-gray-600 dark:focus:ring-1
+  dark:focus:ring-indigo-500 dark:focus:bg-gray-900 dark:focus:border-transparent;
 }
 
 #splash_screen {
@@ -193,4 +195,8 @@ body {
 
 .maximized #max-button {
   display: none;
+}
+
+#switch button {
+  -webkit-app-region: no-drag;
 }

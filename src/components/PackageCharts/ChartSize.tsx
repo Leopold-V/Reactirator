@@ -17,9 +17,9 @@ export const ChartSize = ({
         label: 'Install size',
         data: [baseSize, depsSize, devDepsSize],
         backgroundColor: [
-          'rgba(54, 162, 235, 0.4)',
-          'rgba(75, 192, 192, 0.4)',
-          'rgba(255, 206, 86, 0.4)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 206, 86, 1)',
         ],
         borderColor: [
           'rgba(54, 162, 235, 0.2)',
