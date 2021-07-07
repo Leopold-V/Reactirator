@@ -51,5 +51,3 @@ jobs:
       run: npm run format:check --if-present
     - name: build
       run: npm run make
-    - name: Running Tests
-      run: npm run test
