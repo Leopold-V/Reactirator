@@ -38,7 +38,7 @@ export const ChartSize = ({
         width={200}
         height={200}
         data={data}
-        options={{ maintainAspectRatio: false }}
+        options={{ maintainAspectRatio: false, color: 'gray' }}
       />
     </div>
   );
