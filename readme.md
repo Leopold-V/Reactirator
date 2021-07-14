@@ -14,10 +14,11 @@
   </a>
 </p>
 <div align="center">
-  <img alt="screen" src="https://i.gyazo.com/038ebd411059f72683598674c73a56b3.png" />
-  <img alt="screen" src="https://i.gyazo.com/71e64e75dcc4f402cc126fa90e9a7c47.png" />
+  <img alt="screen" src="https://i.gyazo.com/fd9afaa4710702f32d22c5e6e203edf0.png" />
+  <img alt="screen" src="https://i.gyazo.com/eab12f9b1e77deff51fd7fdb4af8a225.png" />
 </div>
-Dark mode : https://i.gyazo.com/be8774e0ed4d411f0d8733e4812252ac.png
+Dark mode : https://i.gyazo.com/711951e0c1e47a57ee33ee5cd83240f3.png
+
 ## What is it?
 
 Reactirator is a desktop application built with Electron using TypeScript, React and Node.
