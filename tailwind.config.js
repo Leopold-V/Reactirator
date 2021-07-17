@@ -45,6 +45,7 @@ module.exports = {
       },
       colors: {
         primary: '#181b33',
+        'wave-light': '#272a44',
         blueGray: '#2e3748',
       },
       zIndex: {
