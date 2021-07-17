@@ -14,7 +14,7 @@ export const FormCustomProject = ({
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   return (
-    <div className="bg-white text-gray-700 dark:bg-blueGray dark:text-white px-2 pb-2 rounded shadow">
+    <div className="bg-white text-gray-700 dark:bg-blueGray dark:text-white px-2 pb-2 rounded shadow hover:shadow-lg transition duration-200">
       <h2 className="font-extrabold text-xl py-6 text-center">Customization</h2>
       <div className="flex flex-col items-center space-y-2">
         <FormSection title="Type checker">

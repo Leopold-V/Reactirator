@@ -1,4 +1,4 @@
-<div align="center"><img alt="icon" src="https://github.com/Leopold-V/Reactirator/blob/main/src/icons/png/64x64.png" /></div>
+<div align="center"><img alt="icon" src="https://github.com/Leopold-V/Reactirator/blob/main/src/assets/icons/png/64x64.png" /></div>
 <h1 align="center">Welcome to Reactirator </h1>
 <h3 align="center">An open source application to generate a react application, with packages installation and configuration automatized</h3>
 <p align="center">

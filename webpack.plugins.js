@@ -1,7 +1,7 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const assets = [ 'icons' ]; // asset directories
+const assets = [ 'assets' ]; // asset directories
 
 module.exports = [
   new ForkTsCheckerWebpackPlugin(),
