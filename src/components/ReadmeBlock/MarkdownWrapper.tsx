@@ -20,7 +20,7 @@ const components = {
     children: ReactNode;
   }) {
     const match = /language-(\w+)/.exec(className || '');
-    
+
     return !inline && match ? (
       <SyntaxHighlighter
         style={atomDark}
@@ -30,7 +30,9 @@ const components = {
         {...props}
       />
     ) : (
-      <code className={className} {...props} >{children}</code>
+      <code className={className} {...props}>
+        {children}
+      </code>
     );
   },
 };
