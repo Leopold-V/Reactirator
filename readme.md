@@ -56,13 +56,6 @@ npm install
 npm run start
 ```
 
-## Todo
-
-- [ ] Improve global design (UI/UX)
-- [ ] Customs packages like bootstrap aren't includes in the extra dependencies package for now, make install size inacurate
-- [ ] Add tests
-- [ ] Some customs package like typescript have hardcoded dev deps version : should get latest instead
-
 ## Want to contribute?
 
 Reactirator is open to any contributions, even if you are a beginner and you are looking for you first contribution you are welcome!
