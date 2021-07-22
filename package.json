@@ -23,7 +23,8 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "executableName": "reactirator"
+        "executableName": "reactirator",
+        "icon": "src/assets/icons/win/icon.ico"
       },
       "makers": [
         {
