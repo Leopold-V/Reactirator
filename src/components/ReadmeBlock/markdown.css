@@ -61,7 +61,7 @@
 }
 
 .markdown code {
-  @apply font-mono text-sm inline rounded px-1 py-05;
+  @apply font-mono text-sm inline rounded px-1 py-5;
 }
 
 .markdown pre {

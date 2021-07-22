@@ -20,6 +20,7 @@ const components = {
     children: ReactNode;
   }) {
     const match = /language-(\w+)/.exec(className || '');
+    
     return !inline && match ? (
       <SyntaxHighlighter
         style={atomDark}
@@ -29,7 +30,7 @@ const components = {
         {...props}
       />
     ) : (
-      <code className={className} {...props} />
+      <code className={className} {...props} >{children}</code>
     );
   },
 };
@@ -38,8 +39,8 @@ export const MarkdownWrapper = ({ content }: { content: string }) => {
   return (
     <ReactMarkdown
       className="markdown"
-      remarkPlugins={[gfm]}
       children={content}
+      remarkPlugins={[gfm]}
       //@ts-ignore
       components={components}
     />
