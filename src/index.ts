@@ -7,6 +7,8 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+require('update-electron-app')();
+
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     titleBarStyle: 'hidden',
