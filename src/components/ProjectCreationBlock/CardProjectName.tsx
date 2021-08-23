@@ -29,7 +29,7 @@ export const CardProjectName = ({
   }, []);
 
   return (
-    <div className="bg-white text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded flex flex-col justify-center shadow hover:shadow-lg transition duration-200">
+    <div className="w-72 bg-white text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded flex flex-col justify-center shadow hover:shadow-lg transition duration-200">
       <h2 className="font-extrabold text-xl pb-6 text-center">🚀 Create a project 🚀</h2>
       <div className="flex flex-col justify-center items-center w-full pb-6 space-y-4">
         <input

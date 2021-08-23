@@ -1,0 +1,62 @@
+svg {
+    transition: all .3s;
+}
+
+.nav {
+    padding: 1.5rem;
+}
+
+.nav__logo {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f7f8fa;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    font-weight: normal;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.nav__list {
+    padding: 0;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: #cccccc;
+    transition: all .3s;
+    padding: .6rem .7rem .6rem .3rem;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    font-weight: lighter;
+    align-items: center;
+}
+
+.nav__link:hover {
+    color: white;
+}
+
+.nav__link:hover svg {
+    stroke: white;
+}
+
+.nav__link.active {
+    background-color:#434553;
+    color: white;
+}
+
+.nav__link.active svg {
+    stroke: white;
+}
+
+.nav__item {
+    margin: .3rem 0;
+    width: 100%;
+}
+
+.nav__item-name {
+    margin-left: .7rem;
+}

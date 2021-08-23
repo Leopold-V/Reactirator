@@ -4,7 +4,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
     return (
         <div
             id="layout"
-            className="relative py-8 bg-gray-100 dark:bg-wave-light overflow-y-auto flex flex-row"
+            className="relative bg-gray-100 dark:bg-wave-light overflow-y-auto pt-8 flex flex-row h-screen"
         >
             { children }
         </div>
