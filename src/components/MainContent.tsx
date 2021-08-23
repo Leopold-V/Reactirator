@@ -65,7 +65,7 @@ export const MainContent = () => {
   }, [listPackages]);
 
   return (
-    <div className="z-10 flex flex-col md:w-11/12">
+    <div className="flex flex-col py-16 items-center flex-grow">
       <div className="mx-auto">
         <CardProjectName input={input} setInput={setInput} />
       </div>
@@ -84,10 +84,10 @@ export const MainContent = () => {
           </div>
         </div>
 
-        <div className="w-3/12 -mt-52 space-y-10">
-          <CardPackageJson />
-          <ScriptSection />
-        </div>
+      </div>
+      <div className="w-full flex justify-center items-center mt-10 space-x-4">
+        <CardPackageJson />
+        <ScriptSection />
       </div>
 
       <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />

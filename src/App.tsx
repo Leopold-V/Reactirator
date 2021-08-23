@@ -2,11 +2,14 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import { Toaster } from 'react-hot-toast';
+import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
 
 import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
-import { Bar } from './components/Bar';
-import { Header } from './components/Header';
+import { PackagesPage } from './components/pages/PackagesPage';
 import { MainContent } from './components/MainContent';
+import { Bar } from './components/Bar';
+import { Layout } from './components/Layout';
+import { SideNav } from './components/SideNav';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -25,16 +28,15 @@ const App = () => {
   return (
     <PackageJsonProvider>
       <Bar theme={theme} setTheme={setTheme} />
-      <div
-        id="layout"
-        className="relative py-8 bg-gray-100 dark:bg-wave-light h-screen overflow-y-auto"
-      >
-        <div className="flex justify-center flex-col items-center">
-          <img className="absolute top-0 left-0 w-full" src="./assets/waves.svg" />
-          <Header />
-          <MainContent />
-        </div>
-      </div>
+      <Layout>
+        <HashRouter>
+          <SideNav />
+          <Switch>
+            <Route exact path="/" component={MainContent} />
+            <Route exact path="/packages" component={PackagesPage} />
+          </Switch>
+        </HashRouter>
+      </Layout>
       <Toaster
         position="top-center"
         toastOptions={{
