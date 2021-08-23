@@ -19,7 +19,7 @@ export const PackagesManager = ({
         <div className="lg:w-5/12 pb-10 mx-auto">
           <SearchPackages dispatchPackages={dispatchPackages} />
         </div>
-        <div className="w-10/12 mx-auto">
+        <div className="">
           <ListPackages dispatchPackages={dispatchPackages} listPackages={listPackages} />
         </div>
       </div>

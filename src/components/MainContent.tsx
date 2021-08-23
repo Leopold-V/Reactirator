@@ -77,7 +77,6 @@ export const MainContent = () => {
         </div>
 
         <div className="flex-grow flex flex-col pt-12 space-y-10">
-          <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
           {/* <TreemapMemoized listPackages={listPackages} /> */}
           <div className="mx-10">
             <ReadmeSection readme={readme} setReadme={setReadme} />
