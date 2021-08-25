@@ -96,12 +96,8 @@ body {
   grid-column: 1;
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin-left: 1.5rem;
   overflow: hidden;
-}
-
-.maximized #window-title {
-  margin-left: 12px;
 }
 
 #window-title span {
