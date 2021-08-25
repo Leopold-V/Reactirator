@@ -29,24 +29,26 @@ const App = () => {
     }
   }, [theme]);
 
-
   return (
     <PackageJsonProvider>
       <Bar theme={theme} setTheme={setTheme} />
-      <Layout>
-        <HashRouter>
-          <SideNav />
+      <HashRouter>
+        <Layout>
           <Switch>
             <div className="flex flex-col flex-grow items-center pt-8">
               <Route exact path="/" render={() => <OverviewPage readme={readme} />} />
               <Route exact path="/packages" component={PackagesPage} />
-              <Route exact path="/documentation" render={() => <DocumentationPage readme={readme} setReadme={setReadme} />} />
+              <Route
+                exact
+                path="/documentation"
+                render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
+              />
               <Route exact path="/command" component={CommandPage} />
               <Route exact path="/github" component={GithubPage} />
             </div>
           </Switch>
-        </HashRouter>
-      </Layout>
+        </Layout>
+      </HashRouter>
       <Toaster
         position="top-center"
         toastOptions={{
