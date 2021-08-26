@@ -14,7 +14,7 @@ export const ReadmeSection = ({
 
   return (
     <div
-      className="bg-white dark:bg-blueGray rounded shadow hover:shadow-lg transition duration-200 p-6 w-full mx-auto"
+      className="bg-white dark:bg-blueGray rounded shadow hover:shadow-lg transition duration-200 p-6 w-full"
       style={{ width: '600px' }}
     >
       <ReadmeHeader tab={tab} setTab={setTab} />

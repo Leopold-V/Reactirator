@@ -3,8 +3,7 @@ import { ReadmeSection } from '../ReadmeBlock'
 
 export const DocumentationPage = ({readme, setReadme}: {readme: string, setReadme: (readme: string) => void}) => {
     return (
-        <div>
-            Documentation page
+        <div className="flex justify-center w-full">
             <ReadmeSection readme={readme} setReadme={setReadme} />
         </div>
     )

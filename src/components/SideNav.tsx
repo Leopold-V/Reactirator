@@ -6,7 +6,7 @@ export const SideNav = () => {
   const location = useLocation();
 
   return (
-    <div className="nav bg-primary">
+    <div className="nav">
       <Link className="nav__logo" to="/">
         <img src="../assets/icons/png/32x32.png" alt="icon" />
         <span>Reactirator</span>
@@ -17,11 +17,11 @@ export const SideNav = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-gauge"
-              width="20"
-              height="20"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#cccccc"
+              stroke="#181b33"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -43,11 +43,11 @@ export const SideNav = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-package"
-              width="20"
-              height="20"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#cccccc"
+              stroke="#181b33"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -70,11 +70,11 @@ export const SideNav = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-book"
-              width="20"
-              height="20"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#cccccc"
+              stroke="#181b33"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -97,11 +97,11 @@ export const SideNav = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-prompt"
-              width="20"
-              height="20"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#cccccc"
+              stroke="#181b33"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -122,11 +122,11 @@ export const SideNav = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-brand-github"
-              width="20"
-              height="20"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#cccccc"
+              stroke="#181b33"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"

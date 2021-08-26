@@ -3,9 +3,10 @@ import { ScriptSection } from '../ScriptBlock'
 
 export const CommandPage = () => {
     return (
-        <div>
-            Command page
-            <ScriptSection />
+        <div className="flex justify-center w-full">
+            <div className="align-baseline">
+                <ScriptSection />
+            </div>
         </div>
     )
 }

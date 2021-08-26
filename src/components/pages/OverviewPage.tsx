@@ -1,24 +1,19 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
 
-import { toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
-import initialState from '../../helpers/initialState';
 import { formInputType, depStateType } from '../../helpers/types';
 import { generateProject } from '../../services/installation.service';
 import dependenciesReducer from '../../reducers/dependenciesReducer';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { useModal } from '../../hooks/useModal';
 
-import { FormCustomProject } from '../CustomPackageBlock';
 import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
-import { ScriptSection } from '../ScriptBlock';
-import { CardProjectName } from '../ProjectCreationBlock/CardProjectName';
-import { PackagesSizeMemoized } from '../PackageCharts';
-import { ReadmeSection } from '../ReadmeBlock';
-//import { TreemapMemoized } from './Treemap';
+import { CardProjectName } from '../ProjectCreationBlock';
+import { CardHelp } from '../ProjectCreationBlock';
 
 const initialDeps: depStateType = {
   dependencies: [],
@@ -27,13 +22,11 @@ const initialDeps: depStateType = {
 
 type argType = [filepath: string, input: formInputType];
 
-export const OverviewPage = ({readme}: {readme: string}) => {
+export const OverviewPage = ({input, setInput, readme}: {input: formInputType, setInput: (input: formInputType) => void, readme: string}) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
   const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
   const { packageJson } = usePackageJson();
-
-  const [input, setInput] = useState(initialState);
 
   useEffect(() => {
     ipcRenderer.on(
@@ -62,11 +55,21 @@ export const OverviewPage = ({readme}: {readme: string}) => {
   }, [listPackages]);
 
   return (
-    <div className="flex">
-      <CardProjectName input={input} setInput={setInput} />
-      <FormCustomProject input={input} setInput={setInput} dispatchPackages={dispatch} />
+    <div className="flex items-start justify-between w-full">
+      <div className="flex flex-col space-y-8">
+        <CardProjectName input={input} setInput={setInput} />
+        <CardHelp />
+      </div>
       <CardPackageJson />
       <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            margin: '300px',
+          },
+        }}
+      />
     </div>
   );
 };

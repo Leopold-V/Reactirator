@@ -1,19 +1,22 @@
-svg {
+.nav__link svg {
     transition: all .3s;
+    padding: .2rem;
+    border-radius: 50%;
 }
 
 .nav {
     padding: 1.5rem;
+    background-color: white;
 }
 
 .nav__logo {
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #f7f8fa;
+    border-bottom: 1px solid #e7e7e7;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    color: white;
-    font-weight: normal;
+    color: rgb(63, 64, 70);
+    font-weight: 900;
     font-size: 1.3rem;
     text-decoration: none;
 }
@@ -24,32 +27,31 @@ svg {
 
 .nav__link {
     text-decoration: none;
-    color: #cccccc;
+    color: rgb(63, 64, 70);
     transition: all .3s;
     padding: .6rem .7rem .6rem .3rem;
     border-radius: 5px;
     width: 100%;
     display: flex;
     font-size: 1rem;
-    font-weight: lighter;
     align-items: center;
 }
 
 .nav__link:hover {
-    color: white;
+    color: #3e4dc7;
 }
 
 .nav__link:hover svg {
-    stroke: white;
+    stroke: #3e4dc7;
 }
 
 .nav__link.active {
-    background-color:#434553;
-    color: white;
+    color: #3e4dc7;
 }
 
 .nav__link.active svg {
-    stroke: white;
+    stroke: #3e4dc7;
+    background-color: #3e4ec72d;
 }
 
 .nav__item {

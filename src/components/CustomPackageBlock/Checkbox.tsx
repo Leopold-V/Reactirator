@@ -28,21 +28,13 @@ export const Checkbox = ({
         type: e.target.name,
         payload: { version: packageFound[0].package.version },
       });
-      //  dispatchPackages({
-      //    type: 'ADD',
-      //    payload: {
-      //      destination: 'dependencies',
-      //      name: packageName,
-      //      size: await calculatePackageSize(packageName, packageFound[0].package.version),
-      //    },
-      //  });
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center py-1">
       <label className="pr-2 text-sm" htmlFor={name}>
         {children}
       </label>

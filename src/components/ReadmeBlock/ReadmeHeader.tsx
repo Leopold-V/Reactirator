@@ -8,7 +8,7 @@ export const ReadmeHeader = ({ tab, setTab }: { tab: string; setTab: (tab: strin
 
   return (
     <div className="flex justify-between items-center">
-      <h1 className="font-extrabold text-gray-700 dark:text-white text-xl text-center py-4 pl-2 md:pl-0">
+      <h1 className="font-extrabold text-gray-700 dark:text-white text-xl text-center">
         Readme.md
       </h1>
       <div className="space-x-1">
