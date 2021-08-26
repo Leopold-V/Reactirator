@@ -1,4 +1,5 @@
 import React from 'react';
+import './bar.css'
 
 export const Bar = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
   const handleClick = async () => {

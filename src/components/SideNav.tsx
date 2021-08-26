@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './menu.css';
+import './sidebar.css';
 
 export const SideNav = () => {
   const location = useLocation();

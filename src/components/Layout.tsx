@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { SideNav } from './SideNav';
+import './layout.css';
 
 export const Layout = ({ children }: { children: ReactNode }) => {
     return (

@@ -15,9 +15,9 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
     show: false,
     frame: false,
-    width: 1200,
-    height: 800,
-    minWidth: 800,
+    width: 1000,
+    height: 700,
+    minWidth: 700,
     icon: 'src/assets/icons/win/icon.ico',
     backgroundColor: '#181b33',
     webPreferences: {
