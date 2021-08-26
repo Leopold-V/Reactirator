@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useReducer } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import { actionPackageType, depStateType } from '../../helpers/types';
@@ -6,6 +6,7 @@ import { CardDependencies } from './CardDependencies';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
 import { ListPackagesSelected } from './ListPackagesSelected';
+import { PackagesSizeMemoized } from '../PackageCharts';
 
 export const ListPackages = ({
   listPackages,
@@ -64,6 +65,7 @@ export const ListPackages = ({
             listPackages={listPackages.devDependencies}
           />
         </CardDependencies>
+
       </div>
     </DragDropContext>
   );

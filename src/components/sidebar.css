@@ -6,11 +6,12 @@
 
 .nav {
     padding: 1.5rem;
-    background-color: white;
+    border-right: 2px solid rgb(243, 243, 243);
 }
 
 .nav__logo {
     padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid #e7e7e7;
     display: flex;
     align-items: center;
@@ -47,6 +48,8 @@
 
 .nav__link.active {
     color: #3e4dc7;
+    background-color: white;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
 }
 
 .nav__link.active svg {

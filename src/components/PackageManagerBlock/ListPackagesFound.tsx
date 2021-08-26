@@ -24,7 +24,7 @@ export const ListPackagesFound = ({
   return (
     <>
       <ul
-        className="absolute w-11/12 z-10 text-gray-800 top-23 max-h-medium overflow-y-scroll shadow"
+        className="absolute w-5/12 z-10 text-gray-800 top-23 max-h-medium overflow-y-scroll shadow"
         ref={ref}
       >
         {results.map((ele) => (

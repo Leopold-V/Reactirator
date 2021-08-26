@@ -19,7 +19,7 @@ export const PackagesSize = ({
   }, [listPackages]);
 
   return (
-    <div className="bg-white dark:bg-blueGray dark:text-white rounded shadow p-6 flex flex-col justify-start items-center h-72 hover:shadow-lg transition duration-200">
+    <div className="bg-white dark:bg-blueGray dark:text-white rounded shadow p-6 flex flex-col justify-start items-center hover:shadow-lg transition duration-200">
       <h3 className="font-bold pb-4">Install size (kb) :</h3>
       <ChartSize baseSize={baseSize} depsSize={depsSize} devDepsSize={devDepsSize} />
     </div>

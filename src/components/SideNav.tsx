@@ -6,7 +6,7 @@ export const SideNav = () => {
   const location = useLocation();
 
   return (
-    <div className="nav">
+    <div className="nav bg-white">
       <Link className="nav__logo" to="/">
         <img src="../assets/icons/png/32x32.png" alt="icon" />
         <span>Reactirator</span>
