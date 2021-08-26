@@ -1,17 +1,12 @@
 import React, { useReducer } from 'react'
-import { depStateType, formInputType } from '../../helpers/types';
-import dependenciesReducer from '../../reducers/dependenciesReducer';
+import { formInputType } from '../../helpers/types';
+import { useDependencies } from '../Contexts/dependenciesProvider';
 import { FormCustomProject } from '../CustomPackageBlock';
 import { PackagesManager } from '../PackageManagerBlock';
 
-const initialDeps: depStateType = {
-    dependencies: [],
-    devDependencies: [],
-  };
-
-export const PackagesPage = ({ input, setInput }: { input: formInputType, setInput: (input: formInputType) => void}) => {
-    const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
-
+export const PackagesPage = ({ input, setInput }: { input: formInputType, setInput: (input: formInputType) => void }) => {
+    const { listPackages, dispatch } = useDependencies();
+    
     return (
         <div className="flex flex-col w-full space-x-8">
             <div className="flex flex-col space-y-8">

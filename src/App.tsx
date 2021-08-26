@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
+import initialState from './helpers/initialState';
 import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
+import { DependenciesProvider } from './components/Contexts/dependenciesProvider';
 import { PackagesPage } from './components/pages/PackagesPage';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { Bar } from './components/Bar';
@@ -11,7 +13,6 @@ import { Layout } from './components/Layout';
 import { GithubPage } from './components/pages/GithubPage';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
-import initialState from './helpers/initialState';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -31,6 +32,7 @@ const App = () => {
 
   return (
     <PackageJsonProvider>
+      <DependenciesProvider>
       <Bar theme={theme} setTheme={setTheme} />
       <HashRouter>
         <Layout>
@@ -47,6 +49,7 @@ const App = () => {
           </Switch>
         </Layout>
       </HashRouter>
+      </DependenciesProvider>
     </PackageJsonProvider>
   );
 };
