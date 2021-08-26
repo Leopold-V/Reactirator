@@ -27,27 +27,7 @@ function handleWindowControls() {
     win.minimize();
   });
 
-  document.getElementById('max-button').addEventListener('click', () => {
-    win.maximize();
-  });
-
-  document.getElementById('restore-button').addEventListener('click', () => {
-    win.unmaximize();
-  });
-
   document.getElementById('close-button').addEventListener('click', () => {
     win.close();
   });
-
-  toggleMaxRestoreButtons();
-  win.on('maximize', toggleMaxRestoreButtons);
-  win.on('unmaximize', toggleMaxRestoreButtons);
-
-  function toggleMaxRestoreButtons() {
-    if (win.isMaximized()) {
-      document.body.classList.add('maximized');
-    } else {
-      document.body.classList.remove('maximized');
-    }
-  }
 }
