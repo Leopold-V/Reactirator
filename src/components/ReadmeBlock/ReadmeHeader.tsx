@@ -8,12 +8,12 @@ export const ReadmeHeader = ({ tab, setTab }: { tab: string; setTab: (tab: strin
 
   return (
     <div className="flex justify-between items-center">
-      <h1 className="font-extrabold text-gray-700 dark:text-white text-xl text-center">
+      <h1 className="font-extrabold text-white text-xl text-center">
         Readme.md
       </h1>
       <div className="space-x-1">
         <button
-          className={`hover:bg-gray-50 dark:text-white dark:hover:bg-gray-600 focus:outline-none hover:text-indigo-600 border-b-4 border-transparent focus:border-indigo-600
+          className={` text-white hover:bg-gray-600 focus:outline-none hover:text-indigo-600 border-b-4 border-transparent focus:border-indigo-600
                 ${
                   tab === 'Edit' ? 'border-indigo-600' : ''
                 } rounded transition duration-200 px-2 py-1`}
@@ -22,7 +22,7 @@ export const ReadmeHeader = ({ tab, setTab }: { tab: string; setTab: (tab: strin
           Edit
         </button>
         <button
-          className={`hover:bg-gray-50 dark:text-white dark:hover:bg-gray-600 focus:outline-none hover:text-indigo-600 border-b-4 border-transparent focus:border-indigo-600
+          className={` text-white hover:bg-gray-600 focus:outline-none hover:text-indigo-600 border-b-4 border-transparent focus:border-indigo-600
                 ${
                   tab === 'Preview' ? 'border-indigo-600' : ''
                 } rounded transition duration-200 px-2 py-1`}

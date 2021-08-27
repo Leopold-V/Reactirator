@@ -5,7 +5,7 @@
 }
 
 .markdown {
-  @apply leading-normal break-words dark:text-white;
+  @apply leading-normal break-words text-white;
 }
 
 .markdown > * + * {
