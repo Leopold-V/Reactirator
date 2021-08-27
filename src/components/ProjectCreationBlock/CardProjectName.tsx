@@ -34,6 +34,7 @@ export const CardProjectName = ({
       <div className="flex flex-col justify-center items-center w-full pb-6 space-y-4">
         <input
           onChange={handleChange}
+          value={input.appname}
           className="input w-full bg-white"
           type="text"
           name="appname"
@@ -43,6 +44,7 @@ export const CardProjectName = ({
         />
         <textarea
           onChange={handleChange}
+          value={input.description}
           className="resize-none input w-full"
           name="description"
           id="description"
