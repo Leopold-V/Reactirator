@@ -33,9 +33,9 @@ const App = () => {
   return (
     <PackageJsonProvider>
       <DependenciesProvider>
-      <Bar theme={theme} setTheme={setTheme} />
+      <Bar />
       <HashRouter>
-        <Layout>
+        <Layout theme={theme} setTheme={setTheme}>
           <Switch>
               <Route exact path="/" render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />} />
               <Route exact path="/packages" render={() => <PackagesPage input={input} setInput={setInput} />} />

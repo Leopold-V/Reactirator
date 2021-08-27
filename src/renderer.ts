@@ -20,6 +20,9 @@ function addExternalLink() {
   document.getElementById('button_git').addEventListener('click', () => {
     shell.openExternal('https://github.com/Leopold-V/Reactirator.git');
   });
+  document.getElementById('button_bug').addEventListener('click', () => {
+    shell.openExternal('https://github.com/Leopold-V/Reactirator/issues/new/choose');
+  });
 }
 
 function handleWindowControls() {

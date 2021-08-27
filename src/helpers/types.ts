@@ -1,6 +1,7 @@
 export type formInputType = {
   appname: string;
   description: string;
+  version: string;
   typescript: boolean;
   prettier: boolean;
   flow: boolean;
@@ -33,6 +34,7 @@ export type actionJsonType =
       type: 'CHANGE_INFO';
       payload: {
         name: string;
+        version: string;
         description: string;
       };
     }

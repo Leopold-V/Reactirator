@@ -57,12 +57,14 @@ export const OverviewPage = ({input, setInput, readme}: {input: formInputType, s
   }, [listPackages]);
 
   return (
-    <div className="flex items-start justify-between w-full">
-      <div className="flex flex-col space-y-8">
+    <div className="flex items-start justify-between w-full space-x-8">
+      <div className="flex flex-col w-6/12 space-y-8 h-full">
         <CardProjectName input={input} setInput={setInput} />
         <CardHelp />
       </div>
-      <CardPackageJson />
+      <div className="w-6/12 h-full">
+        <CardPackageJson />
+      </div>
       <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />
       <Toaster
         position="top-center"

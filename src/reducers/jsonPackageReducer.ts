@@ -4,6 +4,7 @@ const jsonPackageReducer = (state: any, action: actionJsonType) => {
   switch (action.type) {
     case 'CHANGE_INFO':
       state.name = action.payload.name;
+      state.version = action.payload.version;
       state.description = action.payload.description;
       return { ...state };
     case 'CHANGE_SCRIPTS':

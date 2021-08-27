@@ -14,13 +14,14 @@ export const CardProjectName = ({
 
   const appname_ref = useRef<HTMLInputElement>(null);
   const description_ref = useRef<HTMLTextAreaElement>(null);
+  const version_ref = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setInput({ ...input, [e.target.name]: e.target.value });
     packageJson.name = e.target.value;
     dispatchJson({
       type: 'CHANGE_INFO',
-      payload: { name: appname_ref.current.value, description: description_ref.current.value },
+      payload: { name: appname_ref.current.value, version: version_ref.current.value , description: description_ref.current.value },
     });
   };
 
@@ -29,23 +30,33 @@ export const CardProjectName = ({
   }, []);
 
   return (
-    <div className="w-72 bg-gradient-to-br from-indigo-50 to-indigo-300 text-gray-700 p-6 rounded-lg flex flex-col justify-center shadow hover:shadow-lg transition duration-200">
+    <div className="bg-gradient-to-br from-indigo-50 to-indigo-300 text-gray-700 p-6 rounded-lg flex flex-col justify-center shadow hover:shadow-lg transition duration-200">
       <h2 className="font-extrabold text-xl pb-6 text-center">🚀 Create a project 🚀</h2>
       <div className="flex flex-col justify-center items-center w-full pb-6 space-y-4">
         <input
           onChange={handleChange}
           value={input.appname}
-          className="input w-full bg-white"
+          className="input w-10/12 bg-white"
           type="text"
           name="appname"
           id="appname"
           placeholder="Application name"
           ref={appname_ref}
         />
+        <input
+          onChange={handleChange}
+          value={input.version}
+          className="input w-10/12 bg-white"
+          type="text"
+          name="version"
+          id="version"
+          placeholder="Version"
+          ref={version_ref}
+        />
         <textarea
           onChange={handleChange}
           value={input.description}
-          className="resize-none input w-full"
+          className="resize-none input w-10/12"
           name="description"
           id="description"
           placeholder="Description"

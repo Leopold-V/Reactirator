@@ -7,6 +7,10 @@
 .nav {
     padding: 1.5rem;
     border-right: 2px solid rgb(243, 243, 243);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .nav__logo {
@@ -65,4 +69,52 @@
 
 .nav__item-name {
     margin-left: .7rem;
+}
+
+.nav__footer {
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-top: 1px solid #e7e7e7;
+}
+
+.btn-bug {
+    color: #e0e0e0;
+    transition: all .3s;
+    padding: .6rem .7rem .6rem .3rem;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    margin-bottom: .3rem;
+}
+
+.btn-bug:focus {
+    outline: none;
+}
+
+.btn-bug:hover {
+    color: white;
+    background: rgb(82, 83, 109);
+}
+
+.btn-theme {
+    color: #e0e0e0;
+    transition: all .3s;
+    padding: .6rem .7rem .6rem .3rem;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    margin-bottom: .3rem;
+}
+
+.btn-theme:hover {
+    color: white;
+    background: rgb(82, 83, 109);
 }
