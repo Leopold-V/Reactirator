@@ -1,6 +1,7 @@
 const initialState = {
   appname: '',
   description: '',
+  version: '0.1.0',
   typescript: false,
   prettier: false,
   flow: false,

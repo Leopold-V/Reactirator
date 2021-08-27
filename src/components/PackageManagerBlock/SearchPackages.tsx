@@ -45,12 +45,13 @@ export const SearchPackages = ({
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, []);
 
   return (
     <div className="p-6 bg-white text-gray-800 dark:bg-blueGray dark:text-white rounded shadow hover:shadow-lg transition duration-200">
       <div ref={input_ref} className="flex flex-col items-center relative">
-        <h2 className="font-extrabold pb-4">Add packages</h2>
+        <h2 className="font-extrabold pb-4">📦 Add packages 📦</h2>
         <input
           className="mb-1 input"
           type="text"

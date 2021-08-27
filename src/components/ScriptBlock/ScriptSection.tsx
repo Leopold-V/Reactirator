@@ -23,8 +23,8 @@ export const ScriptSection = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-blueGray dark:text-white rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4 hover:shadow-lg transition duration-200">
-      <h2 className="font-extrabold text-gray-700 dark:text-white text-xl text-center py-2">
+    <div className="bg-gradient-to-br from-green-100 to-green-500 rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4 hover:shadow-lg transition duration-200">
+      <h2 className="font-extrabold text-gray-700 text-xl text-center py-2">
         Scripts edit
       </h2>
 

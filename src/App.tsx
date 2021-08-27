@@ -1,15 +1,23 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import * as ReactDOM from 'react-dom';
-import { Toaster } from 'react-hot-toast';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
+import initialState from './helpers/initialState';
 import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
+import { DependenciesProvider } from './components/Contexts/dependenciesProvider';
+import { PackagesPage } from './components/pages/PackagesPage';
+import { OverviewPage } from './components/pages/OverviewPage';
 import { Bar } from './components/Bar';
-import { Header } from './components/Header';
-import { MainContent } from './components/MainContent';
+import { Layout } from './components/Layout';
+import { GithubPage } from './components/pages/GithubPage';
+import { CommandPage } from './components/pages/CommandPage';
+import { DocumentationPage } from './components/pages/DocumentationPage';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
+  const [input, setInput] = useState(initialState);
+  const [readme, setReadme] = useState('');
 
   useEffect(() => {
     if (
@@ -24,25 +32,24 @@ const App = () => {
 
   return (
     <PackageJsonProvider>
-      <Bar theme={theme} setTheme={setTheme} />
-      <div
-        id="layout"
-        className="relative py-8 bg-gray-100 dark:bg-wave-light h-screen overflow-y-auto"
-      >
-        <div className="flex justify-center flex-col items-center">
-          <img className="absolute top-0 left-0 w-full" src="./assets/waves.svg" />
-          <Header />
-          <MainContent />
-        </div>
-      </div>
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          style: {
-            margin: '300px',
-          },
-        }}
-      />
+      <DependenciesProvider>
+      <Bar />
+      <HashRouter>
+        <Layout theme={theme} setTheme={setTheme}>
+          <Switch>
+              <Route exact path="/" render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />} />
+              <Route exact path="/packages" render={() => <PackagesPage input={input} setInput={setInput} />} />
+              <Route
+                exact
+                path="/documentation"
+                render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
+              />
+              <Route exact path="/command" component={CommandPage} />
+              <Route exact path="/github" component={GithubPage} />
+          </Switch>
+        </Layout>
+      </HashRouter>
+      </DependenciesProvider>
     </PackageJsonProvider>
   );
 };

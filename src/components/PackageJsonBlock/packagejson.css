@@ -1,0 +1,13 @@
+#packagejson::-webkit-scrollbar {
+    width: 11px;
+  }
+  
+  #packagejson::-webkit-scrollbar-track {
+    background: rgb(45, 55, 72);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  #packagejson::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 240, 193);
+    border-radius: 6px;
+  }

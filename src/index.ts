@@ -1,4 +1,5 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const path = require('path');
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: any;
 
@@ -14,6 +15,12 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
     show: false,
     frame: false,
+    width: 1050,
+    height: 750,
+    minHeight: 750,
+    minWidth: 1050,
+    maxHeight: 750,
+    maxWidth: 1050,
     icon: 'src/assets/icons/win/icon.ico',
     backgroundColor: '#181b33',
     webPreferences: {
@@ -40,7 +47,6 @@ const createWindow = (): void => {
   mainWindow.once('ready-to-show', () => {
     splash.destroy();
     mainWindow.show();
-    mainWindow.maximize();
   });
 
   splash.loadURL(SPLASH_WINDOW_WEBPACK_ENTRY);

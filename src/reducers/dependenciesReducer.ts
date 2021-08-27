@@ -1,6 +1,6 @@
 import { actionPackageType, depStateType } from '../helpers/types';
 
-const dependenciesReducer = (state: depStateType, { type, payload }: actionPackageType) => {
+const dependenciesReducer = (state: any, { type, payload }: actionPackageType) => {
   switch (type) {
     case 'ADD':
       if (payload.destination === 'dependencies') {
@@ -22,10 +22,10 @@ const dependenciesReducer = (state: depStateType, { type, payload }: actionPacka
       }
     case 'REMOVE':
       if (payload.destination === 'dependencies') {
-        const newDeps = state['dependencies'].filter((ele) => ele.name !== payload.name);
+        const newDeps = state['dependencies'].filter((ele: any) => ele.name !== payload.name);
         return { ...state, dependencies: newDeps };
       } else {
-        const newDeps = state['devDependencies'].filter((ele) => ele.name !== payload.name);
+        const newDeps = state['devDependencies'].filter((ele: any) => ele.name !== payload.name);
         return { ...state, devDependencies: newDeps };
       }
     case 'CHANGE_TYPE':
