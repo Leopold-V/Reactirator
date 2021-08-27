@@ -1,5 +1,5 @@
 import React from 'react';
-import './bar.css'
+import './bar.css';
 
 export const Bar = () => {
   return (

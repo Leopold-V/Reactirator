@@ -24,9 +24,7 @@ export const ScriptSection = () => {
 
   return (
     <div className="bg-gradient-to-br from-green-100 to-green-500 rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4 hover:shadow-lg transition duration-200">
-      <h2 className="font-extrabold text-gray-700 text-xl text-center py-2">
-        Scripts edit
-      </h2>
+      <h2 className="font-extrabold text-gray-700 text-xl text-center py-2">Scripts edit</h2>
 
       <form className="flex flex-col items-center" onSubmit={handleAdd}>
         <div className="flex flex-col sm:flex-row justify-center flex-wrap">

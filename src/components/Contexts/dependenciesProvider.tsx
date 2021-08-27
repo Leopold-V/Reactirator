@@ -5,15 +5,17 @@ import dependenciesReducer from '../../reducers/dependenciesReducer';
 const dependenciesContext = createContext(null);
 
 const initialDeps: depStateType = {
-    dependencies: [],
-    devDependencies: [],
-  };
+  dependencies: [],
+  devDependencies: [],
+};
 
 export const DependenciesProvider = ({ children }: { children: ReactNode }) => {
   const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
-  
+
   return (
-    <dependenciesContext.Provider value={{ listPackages, dispatch }}>{children}</dependenciesContext.Provider>
+    <dependenciesContext.Provider value={{ listPackages, dispatch }}>
+      {children}
+    </dependenciesContext.Provider>
   );
 };
 

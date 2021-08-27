@@ -23,10 +23,18 @@ const initialDeps: depStateType = {
 
 type argType = [filepath: string, input: formInputType];
 
-export const OverviewPage = ({input, setInput, readme}: {input: formInputType, setInput: (input: formInputType) => void, readme: string}) => {
+export const OverviewPage = ({
+  input,
+  setInput,
+  readme,
+}: {
+  input: formInputType;
+  setInput: (input: formInputType) => void;
+  readme: string;
+}) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
-  
+
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
 

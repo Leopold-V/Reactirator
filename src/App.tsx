@@ -33,12 +33,20 @@ const App = () => {
   return (
     <PackageJsonProvider>
       <DependenciesProvider>
-      <Bar />
-      <HashRouter>
-        <Layout theme={theme} setTheme={setTheme}>
-          <Switch>
-              <Route exact path="/" render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />} />
-              <Route exact path="/packages" render={() => <PackagesPage input={input} setInput={setInput} />} />
+        <Bar />
+        <HashRouter>
+          <Layout theme={theme} setTheme={setTheme}>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />}
+              />
+              <Route
+                exact
+                path="/packages"
+                render={() => <PackagesPage input={input} setInput={setInput} />}
+              />
               <Route
                 exact
                 path="/documentation"
@@ -46,9 +54,9 @@ const App = () => {
               />
               <Route exact path="/command" component={CommandPage} />
               <Route exact path="/github" component={GithubPage} />
-          </Switch>
-        </Layout>
-      </HashRouter>
+            </Switch>
+          </Layout>
+        </HashRouter>
       </DependenciesProvider>
     </PackageJsonProvider>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
-import './packagejson.css'
+import './packagejson.css';
 
 export const CardPackageJson = () => {
   const { packageJson } = usePackageJson();
