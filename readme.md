@@ -14,10 +14,8 @@
   </a>
 </p>
 <div align="center">
-  <img alt="screen" src="https://i.gyazo.com/f89d7d3d26c6fd45f37472602e599293.png" />
-  <img alt="screen" src="https://i.gyazo.com/ad1b1a3329da94f6e35bea8c24d595aa.png" />
+  <img alt="screen" src="https://i.gyazo.com/d1d41a6548d683aa44a588215c1fc885.png" />
 </div>
-Dark mode : https://i.gyazo.com/a9e10d971f129178ed39c40b37c3918a.png
 
 ## What is it?
 
