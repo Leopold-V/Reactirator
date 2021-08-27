@@ -14,6 +14,7 @@ import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
 import { CardHelp } from '../ProjectCreationBlock';
+import { useDependencies } from '../Contexts/dependenciesProvider';
 
 const initialDeps: depStateType = {
   dependencies: [],
@@ -25,7 +26,8 @@ type argType = [filepath: string, input: formInputType];
 export const OverviewPage = ({input, setInput, readme}: {input: formInputType, setInput: (input: formInputType) => void, readme: string}) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
-  const [listPackages, dispatch] = useReducer(dependenciesReducer, initialDeps);
+  
+  const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
 
   useEffect(() => {

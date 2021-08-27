@@ -19,8 +19,6 @@ export const ListPackages = ({
   const onDragEnd = (result: DropResult) => {
     const { draggableId, source, destination } = result;
 
-    console.log(result);
-
     if (!destination) return;
     if (source.droppableId === destination.droppableId) return;
     dispatchPackages({
