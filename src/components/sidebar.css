@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    color: rgb(63, 64, 70);
+    color: white;
     font-weight: 900;
     font-size: 1.3rem;
     text-decoration: none;
@@ -28,7 +28,7 @@
 
 .nav__link {
     text-decoration: none;
-    color: rgb(63, 64, 70);
+    color: #e0e0e0;
     transition: all .3s;
     padding: .6rem .7rem .6rem .3rem;
     border-radius: 5px;
@@ -39,21 +39,22 @@
 }
 
 .nav__link:hover {
-    color: #3e4dc7;
+    color: white;
 }
 
 .nav__link:hover svg {
-    stroke: #3e4dc7;
+    stroke: white;
 }
 
 .nav__link.active {
-    color: #3e4dc7;
-    background-color: white;
+    color: white;
+    background: rgb(66,158,255);
+    background: linear-gradient(135deg, rgba(66,158,255,0.6951914554884453) 0%, rgba(81,0,255,1) 100%);
     box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
 }
 
 .nav__link.active svg {
-    stroke: #3e4dc7;
+    stroke: white;
     background-color: #3e4ec72d;
 }
 

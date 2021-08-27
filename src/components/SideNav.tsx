@@ -6,7 +6,7 @@ export const SideNav = () => {
   const location = useLocation();
 
   return (
-    <div className="nav bg-white">
+    <div className="nav bg-primary">
       <Link className="nav__logo" to="/">
         <img src="../assets/icons/png/32x32.png" alt="icon" />
         <span>Reactirator</span>
@@ -21,7 +21,7 @@ export const SideNav = () => {
               height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#181b33"
+              stroke="#e0e0e0"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -47,7 +47,7 @@ export const SideNav = () => {
               height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#181b33"
+              stroke="#e0e0e0"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -74,7 +74,7 @@ export const SideNav = () => {
               height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#181b33"
+              stroke="#e0e0e0"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -101,7 +101,7 @@ export const SideNav = () => {
               height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#181b33"
+              stroke="#e0e0e0"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -126,7 +126,7 @@ export const SideNav = () => {
               height="24"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#181b33"
+              stroke="#e0e0e0"
               fill="none"
               stroke-linecap="round"
               stroke-linejoin="round"
