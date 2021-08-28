@@ -1,5 +1,4 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
-const path = require('path');
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: any;
 

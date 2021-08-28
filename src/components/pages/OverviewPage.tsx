@@ -1,12 +1,11 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
 
 import { toast, Toaster } from 'react-hot-toast';
 
 import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
-import { formInputType, depStateType } from '../../helpers/types';
+import { formInputType } from '../../helpers/types';
 import { generateProject } from '../../services/installation.service';
-import dependenciesReducer from '../../reducers/dependenciesReducer';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { useModal } from '../../hooks/useModal';
 
@@ -15,11 +14,6 @@ import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
 import { CardHelp } from '../ProjectCreationBlock';
 import { useDependencies } from '../Contexts/dependenciesProvider';
-
-const initialDeps: depStateType = {
-  dependencies: [],
-  devDependencies: [],
-};
 
 type argType = [filepath: string, input: formInputType];
 
