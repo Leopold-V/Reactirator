@@ -41,6 +41,7 @@ export const authGitHub = (
     };
 
     authWindow.on('close', () => {
+      reject('Cancel authentication window.');
       authWindow.destroy();
     });
 

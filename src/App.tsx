@@ -18,6 +18,7 @@ const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
   const [input, setInput] = useState(initialState);
   const [readme, setReadme] = useState('');
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     if (
@@ -53,7 +54,10 @@ const App = () => {
                 render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
               />
               <Route exact path="/command" component={CommandPage} />
-              <Route exact path="/github" component={GithubPage} />
+              <Route 
+                exact
+                path="/github"
+                render={() => <GithubPage token={token} setToken={setToken} />} />
             </Switch>
           </Layout>
         </HashRouter>

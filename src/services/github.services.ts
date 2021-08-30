@@ -41,7 +41,7 @@ export const getToken = async (
       const json = await response.json();
       return {
         hostname: authOptions.hostname,
-        token: json.access_token,
+        newToken: json.access_token,
       };
     } catch (error) {
         console.log(error.message);
