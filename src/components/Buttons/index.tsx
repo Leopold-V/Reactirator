@@ -4,3 +4,4 @@ export { ButtonRemovePackage } from './ButtonRemovePackage';
 export { ButtonAddScript } from './ButtonAddScript';
 export { ButtonRemoveScript } from './ButtonRemoveScript';
 export { ButtonSaveReadme } from './ButtonSaveReadme';
+export { ButtonGithubLogin } from './ButtonGithubLogin';

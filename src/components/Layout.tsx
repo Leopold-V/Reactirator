@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { SideNav } from './SideNav';
 import './layout.css';
+import { Toaster } from 'react-hot-toast';
 
 export const Layout = ({
   theme,
@@ -18,6 +19,14 @@ export const Layout = ({
     >
       <SideNav theme={theme} setTheme={setTheme} />
       <div className="flex flex-grow px-8 py-7">{children}</div>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            margin: '300px',
+          },
+        }}
+      />
     </div>
   );
 };

@@ -3,19 +3,20 @@ import { Constants } from "../helpers/gitServicesOptions";
 
 const PROXY_URL = 'https://cors.bridged.cc'; // use to prevent cors blockage when fetching github access_token endpoint from client side.
 
-export const createRepo = (token: string, repo_name: string) => {
-    fetch("https://api.github.com/user/repos", {
-        method: 'POST',
-        headers: {
-            "Authorization": token,
-            "Accept": "application/vnd.github.v3+json",
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: JSON.stringify({name: repo_name})
+export const createRepo = async (token: string, repo_name: string) => {
+  try {
+    await fetch("https://api.github.com/user/repos", {
+      method: 'POST',
+      headers: {
+          'Authorization': 'Token ' + token,
+          "Accept": "application/vnd.github.v3+json",
+          "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: JSON.stringify({name: repo_name})
     })
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getToken = async (

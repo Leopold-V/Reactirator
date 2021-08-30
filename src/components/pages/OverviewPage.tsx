@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
 
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
 import { formInputType } from '../../helpers/types';
@@ -68,14 +68,6 @@ export const OverviewPage = ({
         <CardPackageJson />
       </div>
       <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          style: {
-            margin: '300px',
-          },
-        }}
-      />
     </div>
   );
 };
