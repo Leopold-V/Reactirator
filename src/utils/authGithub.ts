@@ -1,13 +1,7 @@
+import { AuthOptions } from "../helpers/types";
+import { Constants } from "../helpers/gitServicesOptions";
 const { remote } = require('electron');
 const BrowserWindow = remote.BrowserWindow;
-
-const PROXY_URL = 'https://cors.bridged.cc'; // use to prevent cors blockage when fetching github access_token endpoint from client side.
-
-interface AuthOptions {
-  hostname: string;
-  clientId: string;
-  clientSecret: string;
-}
 
 export const authGitHub = (
   authOptions = Constants.DEFAULT_AUTH_OPTIONS
@@ -67,43 +61,3 @@ export const authGitHub = (
   });
 };
 
-export const getToken = async (
-  authCode: string,
-  authOptions = Constants.DEFAULT_AUTH_OPTIONS
-): Promise<any> => {
-  
-  const url = `${PROXY_URL}/https://${authOptions.hostname}/login/oauth/access_token`;
-  const data = {
-    client_id: authOptions.clientId,
-    client_secret: authOptions.clientSecret,
-    code: authCode,
-  };
-  try {
-    const response = await fetch(url, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
-    const json = await response.json();
-    console.log(json);
-    return {
-      hostname: authOptions.hostname,
-      token: json.access_token,
-    };
-  } catch (error) {
-      console.log(error.message);
-  }
-};
-
-const Constants = {
-  AUTH_SCOPE: ['user:email', 'notifications'],
-
-  DEFAULT_AUTH_OPTIONS: {
-    hostname: 'github.com',
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET
-  },
-};

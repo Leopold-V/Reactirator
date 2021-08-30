@@ -79,3 +79,9 @@ export type depStateType = {
   dependencies: { name: string; size: number; version: string; dependencies: string[] }[];
   devDependencies: { name: string; size: number; version: string; dependencies: string[] }[];
 };
+
+export type AuthOptions = {
+  hostname: string;
+  clientId: string;
+  clientSecret: string;
+}
