@@ -103,7 +103,7 @@ const Constants = {
 
   DEFAULT_AUTH_OPTIONS: {
     hostname: 'github.com',
-    clientId: '2ae086f2b6f4fe83061a',
-    clientSecret: '6291d7eb54f301a0184c6a0d27102759ab8c7a1b',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
   },
 };
