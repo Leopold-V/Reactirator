@@ -7,13 +7,14 @@ import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
 import { formInputType } from '../../helpers/types';
 import { generateProject } from '../../services/installation.service';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { useDependencies } from '../Contexts/dependenciesProvider';
+import { useGithub } from '../Contexts/GithubProvider';
 import { useModal } from '../../hooks/useModal';
 
 import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
 import { CardHelp } from '../ProjectCreationBlock';
-import { useDependencies } from '../Contexts/dependenciesProvider';
 
 type argType = [filepath: string, input: formInputType];
 
@@ -31,6 +32,7 @@ export const OverviewPage = ({
 
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
+  const { github } = useGithub();
 
   useEffect(() => {
     ipcRenderer.on(
@@ -42,7 +44,7 @@ export const OverviewPage = ({
           toggleModal();
           try {
             await toast.promise(
-              generateProject(filepath, input, listPackages, packageJson.scripts, readme),
+              generateProject(filepath, input, listPackages, packageJson.scripts, readme, github),
               toastInstallMsg,
               toastInstallStyle
             );

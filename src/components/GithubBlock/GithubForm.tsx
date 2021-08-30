@@ -1,28 +1,13 @@
 import React, { FormEvent, useEffect, useRef } from 'react';
-import toast from 'react-hot-toast';
-import { toastInstallStyle, toastValidationStyle } from '../../helpers/toast';
-import { createRepo } from '../../services/github.services';
+import { useGithub } from '../Contexts/GithubProvider';
 
-export const GithubForm = ({ token }: { token: string }) => {
+export const GithubForm = () => {
   const ref_reponame = useRef(null);
 
-  const handleCreateRepo = (e: FormEvent) => {
-    e.preventDefault();
-    console.log(ref_reponame.current.value);
-    if (!ref_reponame.current.value) {
-      toast('The repo name is invalid !', toastValidationStyle);
-    } else {
-      toast.promise(
-        createRepo(token, ref_reponame.current.value),
-        {
-          loading: 'Loading...',
-          success: 'Repo created in your github !',
-          error: 'Error, please retry later or report if the problem persists',
-        },
-        toastInstallStyle
-      );
-      ref_reponame.current.value = '';
-    }
+  const { github, setGithub } = useGithub();
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    setGithub({ ...github, reponame: e.currentTarget.value })
   };
 
   useEffect(() => {
@@ -30,13 +15,15 @@ export const GithubForm = ({ token }: { token: string }) => {
   }, []);
 
   return (
-    <form onSubmit={handleCreateRepo} className="text-center space-y-4">
+    <div className="text-center space-y-4">
       <input
         className="input"
         type="text"
         ref={ref_reponame}
+        value={github.reponame}
         name="reponame"
         placeholder="repo name"
+        onChange={handleChange}
       />
       <div className="my-2 space-y-3">
         <h3>Automatically push the project files to github once it is generated ?</h3>
@@ -51,12 +38,6 @@ export const GithubForm = ({ token }: { token: string }) => {
           </div>
         </div>
       </div>
-      <button
-        className="flex items-center mx-auto shadow-red bg-gray-900 opacity-100 px-4 py-2 outline-none font-bold
-        tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
-      >
-        Create
-      </button>
-    </form>
+    </div>
   );
 };

@@ -1,14 +1,17 @@
 import React from 'react'
 import { getToken } from '../../services/github.services';
 import { authGitHub } from '../../utils/authGithub';
+import { useGithub } from '../Contexts/GithubProvider';
 
-export const ButtonGithubLogin = ({ setToken, setLoading }: { setToken: (token: string) => void, setLoading: (loading: boolean) => void }) => {
+export const ButtonGithubLogin = ({ setLoading }: { setLoading: (loading: boolean) => void }) => {
+  const { github, setGithub } = useGithub();
+
     const handleAuthentication = async () => {
         setLoading(true);
         try {
           const { authCode } = await authGitHub();
           const { newToken } = await getToken(authCode);
-          setToken(newToken);
+          setGithub({...github, token: newToken});
         } catch (error) {
           console.log(error);
         } finally {
