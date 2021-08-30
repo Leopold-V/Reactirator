@@ -6,7 +6,7 @@ export const GithubPage = () => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(false)
 
-  const handleClick = async () => {
+  const handleAuthentication = async () => {
     setLoading(true);
     const { authCode } = await authGitHub();
     const { token } = await getToken(authCode);
@@ -24,7 +24,7 @@ export const GithubPage = () => {
       <div className="bg-white flex-grow border-gray-200 shadow text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded-lg flex flex-col justify-center hover:shadow-lg transition duration-200">
         <h2 className="text-center mb-4">Github control [Incoming feature]</h2>
         {!token ? <button
-          onClick={handleClick}
+          onClick={handleAuthentication}
               className="flex items-center mx-auto shadow-red bg-gray-900 opacity-100 px-4 py-2 outline-none font-bold
               tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
         >
