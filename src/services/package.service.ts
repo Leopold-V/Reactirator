@@ -14,7 +14,11 @@ export const searchPackages = async (packageName: string, size = 30): Promise<an
 
 export const getOnePackage = async (name: string, version: string): Promise<any> => {
   try {
-    const rep = await fetch(`${PROXY_URL}/${REGISTRY_URL}/${name}/${version}`);
+    const rep = await fetch(`${PROXY_URL}/${REGISTRY_URL}/${name}/${version}`, {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    });
     const res = await rep.json();
     return res;
   } catch (error) {
