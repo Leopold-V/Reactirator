@@ -1,5 +1,5 @@
-import { AuthOptions } from "../helpers/types";
-import { Constants } from "../helpers/gitServicesOptions";
+import { AuthOptions } from '../helpers/types';
+import { Constants } from '../helpers/gitServicesOptions';
 const { remote } = require('electron');
 const BrowserWindow = remote.BrowserWindow;
 
@@ -61,4 +61,3 @@ export const authGitHub = (
     });
   });
 };
-

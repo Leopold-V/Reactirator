@@ -34,7 +34,7 @@ export const OverviewPage = ({
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
   const { github } = useGithub();
-  
+
   useEffect(() => {
     ipcRenderer.on(
       'open-dialog-directory-selected',

@@ -84,4 +84,4 @@ export type AuthOptions = {
   hostname: string;
   clientId: string;
   clientSecret: string;
-}
+};
