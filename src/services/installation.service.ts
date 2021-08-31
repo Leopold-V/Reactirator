@@ -49,7 +49,7 @@ export const generateProject = async (
     await installStorybook(fullPath);
   }
   if (github.token && github.reponame) {
-    createGithubRepo(github.token, github.reponame);
+    createGithubRepo(github);
   }
 };
 

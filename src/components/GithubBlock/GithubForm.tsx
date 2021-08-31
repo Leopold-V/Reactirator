@@ -38,6 +38,19 @@ export const GithubForm = () => {
           </div>
         </div>
       </div>
+      <div className="my-2 space-y-3">
+        <h3>Repo visibility ?</h3>
+        <div className="flex justify-center space-x-4">
+          <div className="space-x-2">
+            <input type="radio" id="public" name="visibility" value="public" checked />
+            <label htmlFor="public">Public</label>
+          </div>
+          <div className="space-x-2">
+            <input type="radio" id="private" name="visibility" value="private" />
+            <label htmlFor="private">Private</label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
