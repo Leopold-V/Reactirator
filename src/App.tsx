@@ -10,7 +10,6 @@ import { PackagesPage } from './components/pages/PackagesPage';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { Bar } from './components/Bar';
 import { Layout } from './components/Layout';
-import { GithubPage } from './components/pages/GithubPage';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { GithubProvider } from './components/Contexts/GithubProvider';
@@ -55,10 +54,6 @@ const App = () => {
                   render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
                 />
                 <Route exact path="/command" component={CommandPage} />
-                <Route 
-                  exact
-                  path="/github"
-                  component={GithubPage} />
               </Switch>
             </Layout>
           </HashRouter>

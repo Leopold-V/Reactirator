@@ -1,9 +1,9 @@
+import { createGithubRepo } from './github.services';
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
 import { depStateType, formInputType } from '../helpers/types';
 import { GithubStateType } from '../components/Contexts/GithubProvider';
-import { createGithubRepo } from './github.services';
 
 export const generateProject = async (
   filepath: string,
@@ -49,7 +49,7 @@ export const generateProject = async (
     await installStorybook(fullPath);
   }
   if (github.token && github.reponame) {
-    createGithubRepo(github);
+    await createGithubRepo(github);
   }
 };
 

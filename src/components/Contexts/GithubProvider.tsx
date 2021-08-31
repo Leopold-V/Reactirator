@@ -7,7 +7,6 @@ import { ReactNode } from 'react-markdown';
 export type GithubStateType = {
     token: string,
     reponame: string,
-    push: boolean,
     visibility: 'public' | 'private';
 }
 
@@ -19,7 +18,6 @@ type GithubContextType = {
 const initialState: GithubStateType = {
     token: '',
     reponame: '',
-    push: false,
     visibility: 'public'
 }
 

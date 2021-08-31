@@ -8,13 +8,14 @@ import { formInputType } from '../../helpers/types';
 import { generateProject } from '../../services/installation.service';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { useDependencies } from '../Contexts/dependenciesProvider';
-import { useGithub } from '../Contexts/GithubProvider';
+import { GithubProvider, useGithub } from '../Contexts/GithubProvider';
 import { useModal } from '../../hooks/useModal';
 
 import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
 import { CardHelp } from '../ProjectCreationBlock';
+import { GithubSection } from '../GithubBlock';
 
 type argType = [filepath: string, input: formInputType];
 
@@ -33,7 +34,7 @@ export const OverviewPage = ({
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
   const { github } = useGithub();
-
+  
   useEffect(() => {
     ipcRenderer.on(
       'open-dialog-directory-selected',
@@ -64,7 +65,7 @@ export const OverviewPage = ({
     <div className="flex items-start justify-between w-full space-x-8">
       <div className="flex flex-col w-6/12 space-y-8 h-full">
         <CardProjectName input={input} setInput={setInput} />
-        <CardHelp />
+        <GithubSection />
       </div>
       <div className="w-6/12 h-full">
         <CardPackageJson />
