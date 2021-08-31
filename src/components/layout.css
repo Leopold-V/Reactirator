@@ -1,14 +1,14 @@
 #layout::-webkit-scrollbar {
-    width: 11px;
-  }
-  
-  #layout::-webkit-scrollbar-track {
-    background: rgb(59, 59, 59);
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    margin-top: 2rem;
-  }
-  
-  #layout::-webkit-scrollbar-thumb {
-    background-color: whitesmoke;
-    border-radius: 6px;
-  }
+  width: 11px;
+}
+
+#layout::-webkit-scrollbar-track {
+  background: rgb(59, 59, 59);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  margin-top: 2rem;
+}
+
+#layout::-webkit-scrollbar-thumb {
+  background-color: whitesmoke;
+  border-radius: 6px;
+}

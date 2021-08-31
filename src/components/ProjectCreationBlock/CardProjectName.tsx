@@ -21,7 +21,11 @@ export const CardProjectName = ({
     packageJson.name = e.target.value;
     dispatchJson({
       type: 'CHANGE_INFO',
-      payload: { name: appname_ref.current.value, version: version_ref.current.value , description: description_ref.current.value },
+      payload: {
+        name: appname_ref.current.value,
+        version: version_ref.current.value,
+        description: description_ref.current.value,
+      },
     });
   };
 

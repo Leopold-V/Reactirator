@@ -10,9 +10,9 @@ import { PackagesPage } from './components/pages/PackagesPage';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { Bar } from './components/Bar';
 import { Layout } from './components/Layout';
-import { GithubPage } from './components/pages/GithubPage';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
+import { GithubProvider } from './components/Contexts/GithubProvider';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -33,22 +33,31 @@ const App = () => {
   return (
     <PackageJsonProvider>
       <DependenciesProvider>
-      <Bar />
-      <HashRouter>
-        <Layout theme={theme} setTheme={setTheme}>
-          <Switch>
-              <Route exact path="/" render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />} />
-              <Route exact path="/packages" render={() => <PackagesPage input={input} setInput={setInput} />} />
-              <Route
-                exact
-                path="/documentation"
-                render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
-              />
-              <Route exact path="/command" component={CommandPage} />
-              <Route exact path="/github" component={GithubPage} />
-          </Switch>
-        </Layout>
-      </HashRouter>
+        <GithubProvider>
+          <Bar />
+          <HashRouter>
+            <Layout theme={theme} setTheme={setTheme}>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />}
+                />
+                <Route
+                  exact
+                  path="/packages"
+                  render={() => <PackagesPage input={input} setInput={setInput} />}
+                />
+                <Route
+                  exact
+                  path="/documentation"
+                  render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
+                />
+                <Route exact path="/command" component={CommandPage} />
+              </Switch>
+            </Layout>
+          </HashRouter>
+        </GithubProvider>
       </DependenciesProvider>
     </PackageJsonProvider>
   );

@@ -1,34 +1,39 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
 
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
-import { formInputType, depStateType } from '../../helpers/types';
+import { formInputType } from '../../helpers/types';
 import { generateProject } from '../../services/installation.service';
-import dependenciesReducer from '../../reducers/dependenciesReducer';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { useDependencies } from '../Contexts/dependenciesProvider';
+import { GithubProvider, useGithub } from '../Contexts/GithubProvider';
 import { useModal } from '../../hooks/useModal';
 
 import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
 import { CardHelp } from '../ProjectCreationBlock';
-import { useDependencies } from '../Contexts/dependenciesProvider';
-
-const initialDeps: depStateType = {
-  dependencies: [],
-  devDependencies: [],
-};
+import { GithubSection } from '../GithubBlock';
 
 type argType = [filepath: string, input: formInputType];
 
-export const OverviewPage = ({input, setInput, readme}: {input: formInputType, setInput: (input: formInputType) => void, readme: string}) => {
+export const OverviewPage = ({
+  input,
+  setInput,
+  readme,
+}: {
+  input: formInputType;
+  setInput: (input: formInputType) => void;
+  readme: string;
+}) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
-  
+
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
+  const { github } = useGithub();
 
   useEffect(() => {
     ipcRenderer.on(
@@ -40,7 +45,7 @@ export const OverviewPage = ({input, setInput, readme}: {input: formInputType, s
           toggleModal();
           try {
             await toast.promise(
-              generateProject(filepath, input, listPackages, packageJson.scripts, readme),
+              generateProject(filepath, input, listPackages, packageJson.scripts, readme, github),
               toastInstallMsg,
               toastInstallStyle
             );
@@ -60,20 +65,12 @@ export const OverviewPage = ({input, setInput, readme}: {input: formInputType, s
     <div className="flex items-start justify-between w-full space-x-8">
       <div className="flex flex-col w-6/12 space-y-8 h-full">
         <CardProjectName input={input} setInput={setInput} />
-        <CardHelp />
+        <GithubSection />
       </div>
       <div className="w-6/12 h-full">
         <CardPackageJson />
       </div>
       <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          style: {
-            margin: '300px',
-          },
-        }}
-      />
     </div>
   );
 };

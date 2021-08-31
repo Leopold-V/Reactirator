@@ -1,14 +1,17 @@
+import { createGithubRepo } from './github.services';
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
 import { depStateType, formInputType } from '../helpers/types';
+import { GithubStateType } from '../components/Contexts/GithubProvider';
 
 export const generateProject = async (
   filepath: string,
   input: formInputType,
   listPackages: depStateType,
   scripts: {},
-  readme: string
+  readme: string,
+  github: GithubStateType
 ): Promise<void> => {
   const fullPath = `${filepath}\\${input.appname}`;
 
@@ -44,6 +47,9 @@ export const generateProject = async (
   }
   if (input.storybook) {
     await installStorybook(fullPath);
+  }
+  if (github.token && github.reponame) {
+    await createGithubRepo(github);
   }
 };
 
