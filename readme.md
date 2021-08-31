@@ -14,7 +14,7 @@
   </a>
 </p>
 <div align="center">
-  <img alt="screen" src="https://i.gyazo.com/d1d41a6548d683aa44a588215c1fc885.png" />
+  <img alt="screen" src="https://i.gyazo.com/6dee856e5fa4951922759eaab40e5fc5.png" />
 </div>
 
 ## What is it?
