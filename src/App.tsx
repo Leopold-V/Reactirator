@@ -13,6 +13,7 @@ import { Layout } from './components/Layout';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { GithubProvider } from './components/Contexts/GithubProvider';
+import { ArchitecturePage } from './components/pages/ArchitecturePage';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -52,6 +53,11 @@ const App = () => {
                   exact
                   path="/documentation"
                   render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
+                />
+                <Route
+                  exact
+                  path="/architecture"
+                  render={() => <ArchitecturePage />}
                 />
                 <Route exact path="/command" component={CommandPage} />
               </Switch>

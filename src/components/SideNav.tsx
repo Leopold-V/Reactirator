@@ -132,6 +132,30 @@ export const SideNav = ({
               <span className="nav__item-name">Command</span>
             </Link>
           </li>
+          <li className="nav__item">
+            <Link
+              className={`nav__link ${location.pathname === '/architecture' ? 'active' : ''}`}
+              to="/architecture"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-prompt"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#e0e0e0"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <polyline points="5 7 10 12 5 17" />
+                <line x1="13" y1="17" x2="19" y2="17" />
+              </svg>
+              <span className="nav__item-name">Architecture</span>
+            </Link>
+          </li>
         </ul>
       </div>
 
