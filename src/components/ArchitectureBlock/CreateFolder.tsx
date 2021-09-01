@@ -3,7 +3,7 @@ import { validateFileName } from '../../utils/validateInput';
 import { structureStateType } from '../../helpers/types';
 
 export const CreateFolder = ({ structure, dispatchStructure }: { structure: structureStateType, dispatchStructure: Dispatch<any>; }) => {
-  const [select, setSelect] = useState('');
+  const [select, setSelect] = useState('src');
   const [foldername, setFoldername] = useState('');
   const [error, setError] = useState('');
 
@@ -50,7 +50,7 @@ export const CreateFolder = ({ structure, dispatchStructure }: { structure: stru
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
-                <option>{ele.name}</option>
+                <option key={ele.name}>{ele.name}</option>
               ))}
           </select>
         </div>

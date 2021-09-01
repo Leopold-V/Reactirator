@@ -3,7 +3,7 @@ import { validateFileName } from '../../utils/validateInput';
 import { structureStateType } from '../../helpers/types';
 
 export const CreateComponent = ({ structure, dispatchStructure }: { structure: structureStateType, dispatchStructure: Dispatch<any>; }) => {
-  const [select, setSelect] = useState('');
+  const [select, setSelect] = useState('src');
   const [filename, setFilename] = useState('');
   const [mode, setMode] = useState('rfc');
   const [error, setError] = useState('');
@@ -55,7 +55,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
-                <option>{ele.name}</option>
+                <option key={ele.name}>{ele.name}</option>
               ))}
           </select>
         </div>

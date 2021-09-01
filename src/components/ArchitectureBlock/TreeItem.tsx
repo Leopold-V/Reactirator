@@ -16,11 +16,11 @@ export const TreeItem = ({
   const childrenItems = structure.filter((ele) => ele.ancestor === name);
 
   const displayButtons = () => {
-    setVisible(true);
+    if (name !== ('src' || 'App')) setVisible(true);
   }
 
   const hideButtons = () => {
-    setVisible(false);
+    if (name !== 'src' || 'App') setVisible(false);
   }
 
   const removeItem = () => {
@@ -34,7 +34,7 @@ export const TreeItem = ({
   return (
     <li>
       <div className={`flex items-center justify-between hover:bg-gray-100 cursor-pointer`} onMouseEnter={displayButtons} onMouseLeave={hideButtons}>
-        <div className= {`${isFolder ? 'space-x-1' : ''} flex items-center`}>
+        <div className= {`${isFolder ? 'space-x-1' : ''} flex items-center px-1`}>
             {isFolder ? (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export const TreeItem = ({
             )}
             <h4 className={`${isFolder ? 'font-bold' : ''}`}>{name}</h4>
         </div>
-        <div className={`${visible ? 'visible' : 'hidden'} flex items-center space-x-1`}>
+        <div className={`${visible ? 'visible' : 'hidden'} flex items-center space-x-1 px-1`}>
             <button onClick={editNameItem}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-pencil transform hover:rotate-45 transition duration-200" width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#3d3d3d" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
