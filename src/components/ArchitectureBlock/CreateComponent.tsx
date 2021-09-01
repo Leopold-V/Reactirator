@@ -61,7 +61,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
         </div>
         <div className="font-semibold">Mode: </div>
         <div className="flex justify-center space-x-4" onChange={handleChangeMode}>
-          <div className="space-x-2">
+          <div>
             <input
               type="radio"
               id="rfc"
@@ -69,9 +69,9 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
               value="rfc"
               checked={mode === 'rfc'}
             />
-            <label htmlFor="rfc">rfc</label>
+            <label className="px-2" htmlFor="rfc">rfc</label>
           </div>
-          <div className="space-x-2">
+          <div>
             <input
               type="radio"
               id="rcc"
@@ -79,7 +79,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
               value="rcc"
               checked={mode === 'rcc'}
             />
-            <label htmlFor="rcc">rcc</label>
+            <label className="px-2" htmlFor="rcc">rcc</label>
           </div>
         </div>
         <div className="text-red-600 h-4">{error && error}</div>
