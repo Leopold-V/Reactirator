@@ -10,6 +10,7 @@ export const TreeItem = ({
   name,
   isFolder,
   ancestor,
+  path
 }: {
   structure: structureStateType;
   dispatchStructure: Dispatch<any>;
@@ -17,6 +18,7 @@ export const TreeItem = ({
   name: string;
   isFolder: boolean;
   ancestor: string;
+  path: string
 }) => {
   const [visible, setVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -200,6 +202,7 @@ export const TreeItem = ({
             name={ele.name}
             isFolder={ele.isFolder}
             ancestor={ele.ancestor}
+            path={ele.path}
             dispatchStructure={dispatchStructure}
           />
         ))}

@@ -2,13 +2,14 @@ import { createGithubRepo } from './github.services';
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
-import { depStateType, formInputType } from '../helpers/types';
+import { depStateType, formInputType, structureStateType } from '../helpers/types';
 import { GithubStateType } from '../components/Contexts/GithubProvider';
 
 export const generateProject = async (
   filepath: string,
   input: formInputType,
   listPackages: depStateType,
+  structure: structureStateType,
   scripts: {},
   readme: string,
   github: GithubStateType
@@ -51,7 +52,18 @@ export const generateProject = async (
   if (github.token && github.reponame) {
     await createGithubRepo(github);
   }
+  if (structure.length > 2) {
+    await generateStructure(structure, fullPath);
+  }
 };
+
+const generateStructure = async (structure: structureStateType, fullPath: string) => {
+  /*for (let i = 2; i < structure.length; i ++) {
+    if (structure[i].isFolder) {
+      runCmd(`cd ${fullPath}\\src && mkdir ${structure[i].name}`)
+    }
+  }*/
+}
 
 const installPackages = async (fullPath: string, listPackages: depStateType): Promise<void> => {
   try {

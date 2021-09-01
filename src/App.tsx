@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import * as ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-
 import initialState from './helpers/initialState';
+import initialStructure from './helpers/initialStructure';
+import structureReducer from './reducers/structureReducer';
 import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './components/Contexts/dependenciesProvider';
 import { PackagesPage } from './components/pages/PackagesPage';
@@ -14,9 +15,6 @@ import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { GithubProvider } from './components/Contexts/GithubProvider';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
-import { useReducer } from 'react';
-import structureReducer from './reducers/structureReducer';
-import initialStructure from './helpers/initialStructure';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -46,7 +44,7 @@ const App = () => {
                 <Route
                   exact
                   path="/"
-                  render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />}
+                  render={() => <OverviewPage structure={structure} input={input} setInput={setInput} readme={readme} />}
                 />
                 <Route
                   exact

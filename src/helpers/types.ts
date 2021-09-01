@@ -86,6 +86,7 @@ export type FileStructureType = {
   ancestor: string,
   isFolder: boolean
   mode?: string
+  path: string
 }
 
 export type structureStateType = FileStructureType[];

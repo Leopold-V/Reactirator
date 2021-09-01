@@ -24,7 +24,8 @@ export const CreateFolder = ({ structure, dispatchStructure }: { structure: stru
     else if (!isValid) setError('Invalid file name');
     else {
       setError('');
-      dispatchStructure({ type: 'ADD', payload: { id: nanoid(), name: foldername, ancestor: select, isFolder: true}})
+      const ancestorPath = structure.find((ele) => ele.id === select).path;
+      dispatchStructure({ type: 'ADD', payload: { id: nanoid(), name: foldername, ancestor: select, isFolder: true, path: ancestorPath + '\\' + foldername}})
     }
   }
 
