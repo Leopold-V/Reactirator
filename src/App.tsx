@@ -44,7 +44,14 @@ const App = () => {
                 <Route
                   exact
                   path="/"
-                  render={() => <OverviewPage structure={structure} input={input} setInput={setInput} readme={readme} />}
+                  render={() => (
+                    <OverviewPage
+                      structure={structure}
+                      input={input}
+                      setInput={setInput}
+                      readme={readme}
+                    />
+                  )}
                 />
                 <Route
                   exact

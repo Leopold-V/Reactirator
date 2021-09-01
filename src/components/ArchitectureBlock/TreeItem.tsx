@@ -10,7 +10,7 @@ export const TreeItem = ({
   name,
   isFolder,
   ancestor,
-  path
+  path,
 }: {
   structure: structureStateType;
   dispatchStructure: Dispatch<any>;
@@ -18,7 +18,7 @@ export const TreeItem = ({
   name: string;
   isFolder: boolean;
   ancestor: string;
-  path: string
+  path: string;
 }) => {
   const [visible, setVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -29,8 +29,8 @@ export const TreeItem = ({
   const childrenItems = structure.filter((ele) => ele.ancestor === id);
 
   const toggleDisplay = () => {
-    setDisplay((display) => !display)
-  }
+    setDisplay((display) => !display);
+  };
 
   const displayButtons = () => {
     if (name !== 'src' && name !== 'App') setVisible(true);
@@ -49,25 +49,27 @@ export const TreeItem = ({
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      if (!hasChanged) {
-          setHasChanged(true);
-      }
+    if (!hasChanged) {
+      setHasChanged(true);
+    }
     setNameEdit(e.target.value);
   };
 
   const handleSubmit = () => {
     if (hasChanged) {
-        const isNameExist = structure.filter((ele) => ele.name.toLowerCase() === nameEdit.toLowerCase() && ele.ancestor === ancestor);
-        const isValid = validateFileName(nameEdit);
-        if (isNameExist.length > 0) {
-          setNameEdit(name);
-          toast.error('This filename already exists in the same folder.');
-        } else if (!isValid) {
-          setNameEdit(name);
-          toast.error('Invalid name.');
-        } else {
-          dispatchStructure({ type: 'EDIT', payload: { id: id, newName: nameEdit } });
-        }
+      const isNameExist = structure.filter(
+        (ele) => ele.name.toLowerCase() === nameEdit.toLowerCase() && ele.ancestor === ancestor
+      );
+      const isValid = validateFileName(nameEdit);
+      if (isNameExist.length > 0) {
+        setNameEdit(name);
+        toast.error('This filename already exists in the same folder.');
+      } else if (!isValid) {
+        setNameEdit(name);
+        toast.error('Invalid name.');
+      } else {
+        dispatchStructure({ type: 'EDIT', payload: { id: id, newName: nameEdit } });
+      }
     }
     setIsEdit(false);
   };
@@ -83,10 +85,21 @@ export const TreeItem = ({
         <div className={`${isFolder ? 'space-x-1' : ''} flex items-center px-1`}>
           {isFolder ? (
             <div className="flex items-center space-x-1">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-                className={`${display ? '' : 'transform -rotate-90'} icon icon-tabler icon-tabler-chevron-down transition duration-200`}
-                width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`${
+                  display ? '' : 'transform -rotate-90'
+                } icon icon-tabler icon-tabler-chevron-down transition duration-200`}
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#000000"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <polyline points="6 9 12 15 18 9" />
               </svg>
               <svg

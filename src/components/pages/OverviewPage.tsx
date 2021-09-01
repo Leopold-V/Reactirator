@@ -46,7 +46,15 @@ export const OverviewPage = ({
           toggleModal();
           try {
             await toast.promise(
-              generateProject(filepath, input, listPackages, structure, packageJson.scripts, readme, github),
+              generateProject(
+                filepath,
+                input,
+                listPackages,
+                structure,
+                packageJson.scripts,
+                readme,
+                github
+              ),
               toastInstallMsg,
               toastInstallStyle
             );

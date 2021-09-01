@@ -51,7 +51,7 @@ export const getToken = async (
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest',
       },
       method: 'POST',
       body: JSON.stringify(data),

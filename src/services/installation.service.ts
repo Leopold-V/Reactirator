@@ -4,6 +4,7 @@ import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
 import { depStateType, formInputType, structureStateType } from '../helpers/types';
 import { GithubStateType } from '../components/Contexts/GithubProvider';
+import createTemplateComponent from '../utils/createTemplateComponent';
 
 export const generateProject = async (
   filepath: string,
@@ -58,12 +59,15 @@ export const generateProject = async (
 };
 
 const generateStructure = async (structure: structureStateType, fullPath: string) => {
-  /*for (let i = 2; i < structure.length; i ++) {
+  for (let i = 2; i < structure.length; i++) {
     if (structure[i].isFolder) {
-      runCmd(`cd ${fullPath}\\src && mkdir ${structure[i].name}`)
+      runCmd(`cd ${fullPath} && mkdir ${structure[i].path}`);
+    } else {
+      const templateComponent = createTemplateComponent(structure[i].mode, structure[i].name);
+      await promisifyWriteFs(`${fullPath}${structure[i].path}`, templateComponent);
     }
-  }*/
-}
+  }
+};
 
 const installPackages = async (fullPath: string, listPackages: depStateType): Promise<void> => {
   try {

@@ -14,7 +14,7 @@ export const validateProjectName = (input: string): boolean => {
     return false;
   }
   return true;
-}
+};
 
 export const validateFileName = (input: string): boolean => {
   const filenameReserved = /[<>:"/\\|?*\u0000-\u001F]/g;
@@ -29,9 +29,9 @@ export const validateFileName = (input: string): boolean => {
     console.log('filename reserved');
     return false;
   }
-  if ((rg1.test(input) && rg2.test(input))) {
+  if (rg1.test(input) && rg2.test(input)) {
     console.log('rg1 rg2');
     return false;
   }
   return true;
-}
+};

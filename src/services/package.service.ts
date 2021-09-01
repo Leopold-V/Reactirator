@@ -16,8 +16,8 @@ export const getOnePackage = async (name: string, version: string): Promise<any>
   try {
     const rep = await fetch(`${PROXY_URL}/${REGISTRY_URL}/${name}/${version}`, {
       headers: {
-        'X-Requested-With': 'XMLHttpRequest'
-      }
+        'X-Requested-With': 'XMLHttpRequest',
+      },
     });
     const res = await rep.json();
     return res;

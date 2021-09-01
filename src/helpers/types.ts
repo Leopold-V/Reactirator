@@ -81,13 +81,13 @@ export type depStateType = {
 };
 
 export type FileStructureType = {
-  id: string,
-  name: string,
-  ancestor: string,
-  isFolder: boolean
-  mode?: string
-  path: string
-}
+  id: string;
+  name: string;
+  ancestor: string;
+  isFolder: boolean;
+  mode?: string;
+  path: string;
+};
 
 export type structureStateType = FileStructureType[];
 
