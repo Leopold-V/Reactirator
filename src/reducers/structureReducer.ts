@@ -10,7 +10,7 @@ const structureReducer = (state: any, action: any) => {
             const newState = state.filter((ele: FileStructureType) => ele.id !== action.payload.id && ele.ancestor !== action.payload.id);
             return [...newState];
         case 'EDIT':
-            const index = state.findIndex((ele: FileStructureType) => ele.name === action.payload.name);
+            const index = state.findIndex((ele: FileStructureType) => ele.id === action.payload.id);
             state[index].name = action.payload.newName;
             return [...state];
     }

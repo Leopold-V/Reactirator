@@ -1,6 +1,7 @@
 import React, { useState, Dispatch, ChangeEvent } from 'react';
 import { validateFileName } from '../../utils/validateInput';
 import { structureStateType } from '../../helpers/types';
+import toast from 'react-hot-toast';
 
 export const TreeItem = ({
   structure,
@@ -21,8 +22,13 @@ export const TreeItem = ({
   const [isEdit, setIsEdit] = useState(false);
   const [nameEdit, setNameEdit] = useState(name);
   const [hasChanged, setHasChanged] = useState(false);
+  const [display, setDisplay] = useState(true);
 
   const childrenItems = structure.filter((ele) => ele.ancestor === id);
+
+  const toggleDisplay = () => {
+    setDisplay((display) => !display)
+  }
 
   const displayButtons = () => {
     if (name !== 'src' && name !== 'App') setVisible(true);
@@ -49,16 +55,19 @@ export const TreeItem = ({
 
   const handleSubmit = () => {
     if (hasChanged) {
-        const isNameExist = structure.filter((ele) => ele.name === nameEdit && ele.ancestor === ancestor);
+        const isNameExist = structure.filter((ele) => ele.name.toLowerCase() === nameEdit.toLowerCase() && ele.ancestor === ancestor);
         const isValid = validateFileName(nameEdit);
-        if (isNameExist.length > 0) alert('Folder or File name already exists');
-        else if (!isValid) alert('Invalid file name');
-        else {
+        if (isNameExist.length > 0) {
+          setNameEdit(name);
+          toast.error('This filename already exists in the same folder.');
+        } else if (!isValid) {
+          setNameEdit(name);
+          toast.error('Invalid name.');
+        } else {
           dispatchStructure({ type: 'EDIT', payload: { id: id, newName: nameEdit } });
         }
     }
     setIsEdit(false);
-    setNameEdit(name);
   };
 
   return (
@@ -67,24 +76,33 @@ export const TreeItem = ({
         className={`flex items-center justify-between hover:bg-gray-100 cursor-pointer`}
         onMouseEnter={displayButtons}
         onMouseLeave={hideButtons}
+        onClick={toggleDisplay}
       >
         <div className={`${isFolder ? 'space-x-1' : ''} flex items-center px-1`}>
           {isFolder ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-folder"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#7c5f01"
-              fill="#ffe368"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
-            </svg>
+            <div className="flex items-center space-x-1">
+              <svg xmlns="http://www.w3.org/2000/svg" 
+                className={`${display ? '' : 'transform -rotate-90'} icon icon-tabler icon-tabler-chevron-down transition duration-200`}
+                width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-folder"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#7c5f01"
+                fill="#ffe368"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
+              </svg>
+            </div>
           ) : (
             <svg
               version="1.1"
@@ -173,7 +191,7 @@ export const TreeItem = ({
           </button>
         </div>
       </div>
-      <ul className="ml-4">
+      <ul className={`${display ? 'visible' : 'hidden'} ml-4 border-l-2 border-gray-200`}>
         {childrenItems.map((ele) => (
           <TreeItem
             key={ele.id}

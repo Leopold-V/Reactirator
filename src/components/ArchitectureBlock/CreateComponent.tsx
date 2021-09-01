@@ -55,7 +55,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
-                <option key={ele.name} data-id={ele.id}>{ele.name}</option>
+                <option key={ele.id} data-id={ele.id}>{ele.name}</option>
               ))}
           </select>
         </div>
