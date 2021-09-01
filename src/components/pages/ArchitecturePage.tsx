@@ -1,11 +1,12 @@
 import React, { Dispatch } from 'react';
+import { structureStateType } from '../../helpers/types';
 import { CreateComponent, CreateFolder, TreeFolder } from '../ArchitectureBlock';
 
 export const ArchitecturePage = ({
   structure,
   dispatch,
 }: {
-  structure: any;
+  structure: structureStateType;
   dispatch: Dispatch<any>;
 }) => {
   return (

@@ -87,6 +87,8 @@ export type FileStructureType = {
   mode?: string
 }
 
+export type structureStateType = FileStructureType[];
+
 export type AuthOptions = {
   hostname: string;
   clientId: string;
