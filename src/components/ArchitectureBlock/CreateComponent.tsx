@@ -22,7 +22,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const isNameExist = structure.filter((ele) => ele.name === filename);
+    const isNameExist = structure.filter((ele) => ele.name.toLocaleLowerCase() === filename.toLocaleLowerCase());
     const isValid = validateFileName(filename);
     if (isNameExist.length > 0) setError('File name already exist');
     else if (!isValid) setError('Invalid file name');
@@ -51,7 +51,6 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
         <div className="space-x-3">
           <label className="font-semibold" htmlFor="folderlocation">Location: </label>
           <select className="shadow rounded px-2" id="folderlocation" onChange={handleSelect}>
-            <option>src</option>
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (

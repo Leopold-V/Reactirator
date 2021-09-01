@@ -17,7 +17,7 @@ export const CreateFolder = ({ structure, dispatchStructure }: { structure: stru
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const isNameExist = structure.filter((ele) => ele.name === foldername);
+    const isNameExist = structure.filter((ele) => ele.name.toLocaleLowerCase() === foldername.toLocaleLowerCase());
     const isValid = validateFileName(foldername);
     if (isNameExist.length > 0) setError('Folder name already exist');
     else if (!isValid) setError('Invalid file name');
@@ -46,7 +46,6 @@ export const CreateFolder = ({ structure, dispatchStructure }: { structure: stru
         <div className="space-x-3">
           <label className="font-semibold" htmlFor="folderlocation">Location: </label>
           <select className="shadow rounded px-2" id="folderlocation" onChange={handleSelect}>
-            <option>src</option>
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
