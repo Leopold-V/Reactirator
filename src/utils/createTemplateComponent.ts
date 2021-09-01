@@ -1,7 +1,7 @@
 const createTemplateComponent = (mode: string, name: string) => {
-    switch (mode) {
-        case 'rfc':
-            return `import React from 'react';
+  switch (mode) {
+    case 'rfc':
+      return `import React from 'react';
 
 export default function ${name}() {
     return (
@@ -10,8 +10,8 @@ export default function ${name}() {
         </div>
     )
 };`;
-        case 'rcc':
-            return `import React, { Component } from 'react';
+    case 'rcc':
+      return `import React, { Component } from 'react';
 
 export default class ${name} extends Component {
     render() {
@@ -22,7 +22,7 @@ export default class ${name} extends Component {
         )
     }
 };`;
-    }
+  }
 };
 
 export default createTemplateComponent;

@@ -56,13 +56,24 @@ export const generateProject = async (
   }
 };
 
-const generateStructure = async (structure: structureStateType, fullPath: string, hasTypescript: boolean) => {
+const generateStructure = async (
+  structure: structureStateType,
+  fullPath: string,
+  hasTypescript: boolean
+) => {
   for (let i = 2; i < structure.length; i++) {
     if (structure[i].isFolder) {
-      await runCmd(`cd ${fullPath}${structure[i].path.split('\\').slice(0, -1).join('\\')} && mkdir ${structure[i].name}`);
+      await runCmd(
+        `cd ${fullPath}${structure[i].path.split('\\').slice(0, -1).join('\\')} && mkdir ${
+          structure[i].name
+        }`
+      );
     } else {
       const templateComponent = createTemplateComponent(structure[i].mode, structure[i].name);
-      await promisifyWriteFs(`${fullPath}${structure[i].path}${hasTypescript ? '.tsx' : '.jsx'}`, templateComponent);
+      await promisifyWriteFs(
+        `${fullPath}${structure[i].path}${hasTypescript ? '.tsx' : '.jsx'}`,
+        templateComponent
+      );
     }
   }
 };
