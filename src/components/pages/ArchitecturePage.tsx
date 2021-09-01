@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { Dispatch } from 'react';
+import { CreateComponent, CreateFolder, TreeFolder } from '../ArchitectureBlock';
 
-export const ArchitecturePage = () => {
-    return (
-        <div className="flex flex-col w-full">
-        <div className="bg-white flex-grow border-gray-200 shadow text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded-lg flex flex-col justify-center hover:shadow-lg transition duration-200">
-          <h2 className="text-center">Architecture [Incoming feature]</h2>
+export const ArchitecturePage = ({
+  structure,
+  dispatch,
+}: {
+  structure: any;
+  dispatch: Dispatch<any>;
+}) => {
+  return (
+    <div className="flex flex-col w-full">
+      <div className="flex space-x-8">
+        <TreeFolder structure={structure} dispatch={dispatch} />
+        <div className="flex flex-col space-y-8">
+          <CreateFolder />
+          <CreateComponent />
         </div>
       </div>
-    )
-}
+    </div>
+  );
+};

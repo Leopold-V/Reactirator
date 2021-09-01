@@ -14,11 +14,15 @@ import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { GithubProvider } from './components/Contexts/GithubProvider';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
+import { useReducer } from 'react';
+import structureReducer from './reducers/structureReducer';
+import initialStructure from './helpers/initialStructure';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
   const [input, setInput] = useState(initialState);
   const [readme, setReadme] = useState('');
+  const [structure, dispatch] = useReducer(structureReducer, initialStructure);
 
   useEffect(() => {
     if (
@@ -57,7 +61,7 @@ const App = () => {
                 <Route
                   exact
                   path="/architecture"
-                  render={() => <ArchitecturePage />}
+                  render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
                 />
                 <Route exact path="/command" component={CommandPage} />
               </Switch>

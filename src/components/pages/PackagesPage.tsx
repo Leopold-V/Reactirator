@@ -14,7 +14,7 @@ export const PackagesPage = ({
   const { listPackages, dispatch } = useDependencies();
 
   return (
-    <div className="flex flex-col w-full space-x-8">
+    <div className="flex flex-col w-full">
       <div className="flex flex-col space-y-8">
         <FormCustomProject input={input} setInput={setInput} dispatchPackages={dispatch} />
         <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
