@@ -4,21 +4,15 @@ const structureReducer = (state: any, action: any) => {
     switch (action.type) {
         case 'ADD':
             state.push(action.payload);
+            console.log(state);
             return [...state];
         case 'REMOVE':
-            const newState = state.filter((ele: FileStructureType) => ele.name !== action.payload.name && ele.ancestor !== action.payload.name);
+            const newState = state.filter((ele: FileStructureType) => ele.id !== action.payload.id && ele.ancestor !== action.payload.id);
             return [...newState];
         case 'EDIT':
             const index = state.findIndex((ele: FileStructureType) => ele.name === action.payload.name);
             state[index].name = action.payload.newName;
-            const updatedState = state.map((ele: FileStructureType) => {
-                if (ele.ancestor === action.payload.name) {
-                    ele.ancestor = action.payload.newName
-                }
-                return {...ele}
-            })
-            console.log(updatedState);
-            return [...updatedState];
+            return [...state];
     }
 }
 

@@ -1,9 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState, Dispatch } from 'react';
+import { nanoid } from 'nanoid';
 import { validateFileName } from '../../utils/validateInput';
 import { structureStateType } from '../../helpers/types';
 
 export const CreateComponent = ({ structure, dispatchStructure }: { structure: structureStateType, dispatchStructure: Dispatch<any>; }) => {
-  const [select, setSelect] = useState('src');
+  const [select, setSelect] = useState('1');
   const [filename, setFilename] = useState('');
   const [mode, setMode] = useState('rfc');
   const [error, setError] = useState('');
@@ -13,7 +14,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
   }
 
   const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelect(e.target.value);
+    setSelect(e.target.options[(e.target.selectedIndex)].dataset.id);
   };
 
   const handleChangeMode = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +23,13 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const isNameExist = structure.filter((ele) => ele.name.toLocaleLowerCase() === filename.toLocaleLowerCase());
+    const isNameExist = structure.filter((ele) => ele.name.toLocaleLowerCase() === filename.toLocaleLowerCase() && ele.ancestor === select);
     const isValid = validateFileName(filename);
     if (isNameExist.length > 0) setError('File name already exist');
     else if (!isValid) setError('Invalid file name');
     else {
       setError('');
-      dispatchStructure({ type: 'ADD', payload: { name: filename, ancestor: select, isFolder: false, mode: mode}})
+      dispatchStructure({ type: 'ADD', payload: { id: nanoid(), name: filename, ancestor: select, isFolder: false, mode: mode}})
     }
   }
 
@@ -54,7 +55,7 @@ export const CreateComponent = ({ structure, dispatchStructure }: { structure: s
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
-                <option key={ele.name}>{ele.name}</option>
+                <option key={ele.name} data-id={ele.id}>{ele.name}</option>
               ))}
           </select>
         </div>

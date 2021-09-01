@@ -5,20 +5,24 @@ import { structureStateType } from '../../helpers/types';
 export const TreeItem = ({
   structure,
   dispatchStructure,
+  id,
   name,
   isFolder,
+  ancestor,
 }: {
   structure: structureStateType;
   dispatchStructure: Dispatch<any>;
+  id: string;
   name: string;
   isFolder: boolean;
+  ancestor: string;
 }) => {
   const [visible, setVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [nameEdit, setNameEdit] = useState(name);
   const [hasChanged, setHasChanged] = useState(false);
 
-  const childrenItems = structure.filter((ele) => ele.ancestor === name);
+  const childrenItems = structure.filter((ele) => ele.ancestor === id);
 
   const displayButtons = () => {
     if (name !== 'src' && name !== 'App') setVisible(true);
@@ -29,7 +33,7 @@ export const TreeItem = ({
   };
 
   const removeItem = () => {
-    dispatchStructure({ type: 'REMOVE', payload: { name: name } });
+    dispatchStructure({ type: 'REMOVE', payload: { id: id } });
   };
 
   const editNameItem = () => {
@@ -37,18 +41,20 @@ export const TreeItem = ({
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setHasChanged(true);
+      if (!hasChanged) {
+          setHasChanged(true);
+      }
     setNameEdit(e.target.value);
   };
 
   const handleSubmit = () => {
     if (hasChanged) {
-        const isNameExist = structure.filter((ele) => ele.name === nameEdit);
+        const isNameExist = structure.filter((ele) => ele.name === nameEdit && ele.ancestor === ancestor);
         const isValid = validateFileName(nameEdit);
         if (isNameExist.length > 0) alert('Folder or File name already exists');
         else if (!isValid) alert('Invalid file name');
         else {
-          dispatchStructure({ type: 'EDIT', payload: { name: name, newName: nameEdit } });
+          dispatchStructure({ type: 'EDIT', payload: { id: id, newName: nameEdit } });
         }
     }
     setIsEdit(false);
@@ -170,10 +176,12 @@ export const TreeItem = ({
       <ul className="ml-4">
         {childrenItems.map((ele) => (
           <TreeItem
-            key={ele.name}
+            key={ele.id}
             structure={structure}
+            id={ele.id}
             name={ele.name}
             isFolder={ele.isFolder}
+            ancestor={ele.ancestor}
             dispatchStructure={dispatchStructure}
           />
         ))}

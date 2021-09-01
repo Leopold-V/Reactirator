@@ -1,9 +1,10 @@
+import { nanoid } from 'nanoid';
 import React, { ChangeEvent, Dispatch, FormEvent, useState } from 'react';
 import { validateFileName } from '../../utils/validateInput';
 import { structureStateType } from '../../helpers/types';
 
 export const CreateFolder = ({ structure, dispatchStructure }: { structure: structureStateType, dispatchStructure: Dispatch<any>; }) => {
-  const [select, setSelect] = useState('src');
+  const [select, setSelect] = useState('1');
   const [foldername, setFoldername] = useState('');
   const [error, setError] = useState('');
 
@@ -12,18 +13,18 @@ export const CreateFolder = ({ structure, dispatchStructure }: { structure: stru
   }
 
   const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelect(e.target.value);
+    setSelect(e.target.options[(e.target.selectedIndex)].dataset.id);
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const isNameExist = structure.filter((ele) => ele.name.toLocaleLowerCase() === foldername.toLocaleLowerCase());
+    const isNameExist = structure.filter((ele) => ele.name.toLocaleLowerCase() === foldername.toLocaleLowerCase() && ele.ancestor === select);
     const isValid = validateFileName(foldername);
     if (isNameExist.length > 0) setError('Folder name already exist');
     else if (!isValid) setError('Invalid file name');
     else {
       setError('');
-      dispatchStructure({ type: 'ADD', payload: { name: foldername, ancestor: select, isFolder: true}})
+      dispatchStructure({ type: 'ADD', payload: { id: nanoid(), name: foldername, ancestor: select, isFolder: true}})
     }
   }
 
@@ -49,7 +50,7 @@ export const CreateFolder = ({ structure, dispatchStructure }: { structure: stru
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
-                <option key={ele.name}>{ele.name}</option>
+                <option key={ele.id} data-id={ele.id}>{ele.name}</option>
               ))}
           </select>
         </div>

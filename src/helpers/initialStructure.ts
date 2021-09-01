@@ -1,12 +1,14 @@
 const initialStructure = [
     {
+        id: '1',
         name: 'src',
         ancestor: '',
         isFolder: true,
     },
     {
+        id: '2',
         name: 'App',
-        ancestor: 'src',
+        ancestor: '1',
         isFolder: false,
     }
 ]
