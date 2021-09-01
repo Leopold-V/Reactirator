@@ -12,10 +12,10 @@ export const ArchitecturePage = ({
   return (
     <div className="flex flex-col w-full">
       <div className="flex space-x-8">
-        <TreeFolder structure={structure} dispatch={dispatch} />
-        <div className="flex flex-col space-y-8">
-          <CreateFolder />
-          <CreateComponent />
+        <TreeFolder structure={structure} dispatchStructure={dispatch} />
+        <div className="flex flex-col flex-grow space-y-8">
+          <CreateFolder structure={structure} dispatchStructure={dispatch} />
+          <CreateComponent structure={structure} dispatchStructure={dispatch} />
         </div>
       </div>
     </div>

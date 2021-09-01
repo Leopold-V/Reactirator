@@ -4,19 +4,17 @@ import { TreeItem } from './TreeItem';
 
 export const TreeFolder = ({
   structure,
-  dispatch,
+  dispatchStructure,
 }: {
   structure: structureStateType;
-  dispatch: Dispatch<any>;
+  dispatchStructure: Dispatch<any>;
 }) => {
 
-  const rootItem = structure.filter((ele) => !ele.ancestor);
-
   return (
-    <div className="bg-white justify-center border-gray-200 shadow text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded-lg flex flex-col hover:shadow-lg transition duration-200">
+    <div className="bg-white flex flex-col border-gray-200 shadow text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded-lg hover:shadow-lg transition duration-200">
       <h2 className="font-extrabold text-xl text-center pb-6">Project Structure</h2>
         <ul className="py-2">
-            {rootItem.map((ele) => <TreeItem key={ele.name} structure={structure} name={ele.name} isFolder={ele.isFolder} />)}
+            <TreeItem key="src" structure={structure} name="src" isFolder={true} dispatchStructure={dispatchStructure} />
         </ul>
     </div>
   );
