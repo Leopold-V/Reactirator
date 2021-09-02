@@ -30,7 +30,7 @@ export const CreateFolder = ({
     );
     const isValid = validateFileName(foldername);
     if (isNameExist.length > 0) setError('Folder name already exist');
-    else if (!isValid) setError('Invalid file name');
+    else if (!isValid) setError('Invalid folder name');
     else {
       setError('');
       const ancestorPath = structure.find((ele) => ele.id === select).path;

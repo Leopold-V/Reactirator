@@ -66,7 +66,7 @@ export const TreeItem = ({
   return (
     <li>
       <div
-        className={`flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-400 transition duration-200 cursor-pointer`}
+        className={`flex items-center justify-between py-1 hover:bg-gray-100 dark:hover:bg-gray-400 transition duration-200 cursor-pointer`}
         onMouseEnter={displayButtons}
         onMouseLeave={hideButtons}
         onClick={toggleDisplay}
@@ -130,13 +130,16 @@ export const TreeItem = ({
           {isEdit ? (
             <input
               type="text"
-              className="input"
+              className="text-center w-28 text-sm py-1 px-2 transition duration-200 shadow
+              rounded bg-white outline-none border-2 border-transparent focus:ring-2 focus:ring-blue-300
+              dark:placeholder-gray-400 dark:text-gray-50 dark:border-gray-600 dark:bg-gray-600 dark:focus:ring-1
+              dark:focus:ring-indigo-500 dark:focus:bg-gray-900 dark:focus:border-transparent;"
               value={nameEdit}
               onClick={(e) => e.stopPropagation()}
               onChange={handleChange}
             />
           ) : (
-            <h4 className={`${isFolder ? 'font-bold' : ''}`}>{name}</h4>
+            <h4 className={`${isFolder ? 'font-bold' : ''} w-32 overflow-hidden overflow-ellipsis`}>{name}</h4>
           )}
         </div>
         <div className={`${visible ? 'visible' : 'hidden'} flex items-center space-x-1 px-1`}>
