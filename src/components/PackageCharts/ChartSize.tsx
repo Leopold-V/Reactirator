@@ -33,13 +33,14 @@ export const ChartSize = ({
 
   return (
     <div>
+      {
+      // @ts-ignore
       <Pie
-        type="pie"
         width={200}
         height={190}
         data={data}
         options={{ maintainAspectRatio: false, color: 'gray' }}
-      />
+      /> }
     </div>
   );
 };
