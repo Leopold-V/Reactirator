@@ -21,16 +21,14 @@ export const validateFileName = (input: string): boolean => {
   const filenameReservedWindowsNames = /^(con|prn|aux|nul|com\d|lpt\d)$/i;
   const rg1 = /^[^\\/:\*\?"<>\|]+$/; // forbidden characters \ / : * ? " < > |
   const rg2 = /[.]/; // cannot have dot (.)
+  const rg3 = /\s/g; // cannot have space
   if (!input || input.length > 255) {
-    console.log('no input or >25');
     return false;
   }
   if (filenameReserved.test(input) || filenameReservedWindowsNames.test(input)) {
-    console.log('filename reserved');
     return false;
   }
-  if (rg1.test(input) && rg2.test(input)) {
-    console.log('rg1 rg2');
+  if (rg1.test(input) && rg2.test(input) || rg3.test(input)) {
     return false;
   }
   return true;
