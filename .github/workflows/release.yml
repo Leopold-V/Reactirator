@@ -1,9 +1,8 @@
 name: Release
 on:
-  push:
-    tags:
-      - 'v*'
-
+  release:
+    types:
+      - created
 jobs:
   publish_on_linux:
     runs-on: ubuntu-latest
@@ -20,7 +19,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        GITHUB_TOKEN: ${{ secrets.CLIENT_SECRET }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       run: npm run publish
 
   publish_on_mac:
@@ -38,7 +37,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        GITHUB_TOKEN: ${{ secrets.CLIENT_SECRET }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       run: npm run publish
 
   publish_on_win:
@@ -60,5 +59,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        GITHUB_TOKEN: ${{ secrets.CLIENT_SECRET }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       run: npm run publish
