@@ -53,7 +53,7 @@ export const OverviewPage = ({
                 structure,
                 packageJson.scripts,
                 readme,
-                github
+                github,
               ),
               toastInstallMsg,
               toastInstallStyle
@@ -68,7 +68,7 @@ export const OverviewPage = ({
     return () => {
       ipcRenderer.removeAllListeners('open-dialog-directory-selected');
     };
-  }, [listPackages]);
+  }, [listPackages, github]);
 
   return (
     <div className="flex items-start justify-between w-full space-x-8">

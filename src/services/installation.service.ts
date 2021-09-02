@@ -2,9 +2,9 @@ import { createGithubRepo } from './github.services';
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
+import createTemplateComponent from '../utils/createTemplateComponent';
 import { depStateType, formInputType, structureStateType } from '../helpers/types';
 import { GithubStateType } from '../components/Contexts/GithubProvider';
-import createTemplateComponent from '../utils/createTemplateComponent';
 
 export const generateProject = async (
   filepath: string,
@@ -13,7 +13,7 @@ export const generateProject = async (
   structure: structureStateType,
   scripts: {},
   readme: string,
-  github: GithubStateType
+  github: GithubStateType,
 ): Promise<void> => {
   const fullPath = `${filepath}\\${input.appname}`;
 
