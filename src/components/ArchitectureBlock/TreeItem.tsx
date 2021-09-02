@@ -139,7 +139,9 @@ export const TreeItem = ({
               onChange={handleChange}
             />
           ) : (
-            <h4 className={`${isFolder ? 'font-bold' : ''} w-32 overflow-hidden overflow-ellipsis`}>{name}</h4>
+            <h4 className={`${isFolder ? 'font-bold' : ''} w-32 overflow-hidden overflow-ellipsis`}>
+              {name}
+            </h4>
           )}
         </div>
         <div className={`${visible ? 'visible' : 'hidden'} flex items-center space-x-1 px-1`}>

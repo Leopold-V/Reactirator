@@ -5,7 +5,6 @@ on:
       - 'v*'
 
 jobs:
-
   publish_on_linux:
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +18,8 @@ jobs:
       run: npm run format:check --if-present
     - name: publish
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        GITHUB_TOKEN: ${{ secrets.CLIENT_SECRET }}
       run: npm run publish
 
   publish_on_mac:
@@ -35,7 +35,8 @@ jobs:
       run: npm run format:check --if-present
     - name: publish
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        GITHUB_TOKEN: ${{ secrets.CLIENT_SECRET }}
       run: npm run publish
 
   publish_on_win:
@@ -55,5 +56,6 @@ jobs:
       run: npm run format:check --if-present
     - name: publish
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        GITHUB_TOKEN: ${{ secrets.CLIENT_SECRET }}
       run: npm run publish
