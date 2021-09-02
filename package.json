@@ -30,6 +30,23 @@
         "executableName": "reactirator",
         "icon": "src/assets/icons/win/icon.ico"
       },
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "platforms": [
+            "darwin",
+            "linux",
+            "win32"
+          ],
+          "config": {
+            "repository": {
+              "owner": "Leopold-V",
+              "name": "Reactirator"
+            },
+            "draft": true
+          }
+        }
+      ],
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
