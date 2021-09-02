@@ -1,7 +1,7 @@
 {
   "name": "reactirator",
   "productName": "reactirator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
@@ -41,7 +41,7 @@
           "config": {
             "repository": {
               "owner": "Leopold-V",
-              "name": "Reactirator"
+              "name": "Test_reactirator"
             },
             "draft": true
           }
