@@ -71,8 +71,8 @@ export const OverviewPage = ({
   }, [listPackages, github]);
 
   return (
-    <div className="flex items-start justify-between w-full space-x-8">
-      <div className="flex flex-col w-6/12 space-y-8 h-full">
+    <div className="flex items-start justify-between w-full">
+      <div className="flex flex-col w-6/12 space-y-8 h-full mr-8">
         <CardProjectName input={input} setInput={setInput} />
         <GithubSection />
       </div>
