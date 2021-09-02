@@ -1,7 +1,7 @@
-import React, { useState, Dispatch, ChangeEvent } from 'react';
+import React, { useState, Dispatch, ChangeEvent, MouseEvent } from 'react';
+import toast from 'react-hot-toast';
 import { validateFileName } from '../../utils/validateInput';
 import { structureStateType } from '../../helpers/types';
-import toast from 'react-hot-toast';
 
 export const TreeItem = ({
   structure,
@@ -23,7 +23,6 @@ export const TreeItem = ({
   const [visible, setVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [nameEdit, setNameEdit] = useState(name);
-  const [hasChanged, setHasChanged] = useState(false);
   const [display, setDisplay] = useState(true);
 
   const childrenItems = structure.filter((ele) => ele.ancestor === id);
@@ -40,23 +39,24 @@ export const TreeItem = ({
     if (name !== 'src' && name !== 'App') setVisible(false);
   };
 
-  const removeItem = () => {
+  const removeItem = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     dispatchStructure({ type: 'REMOVE', payload: { id: id } });
   };
 
-  const editNameItem = () => {
+  const editNameItem = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setIsEdit(true);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!hasChanged) {
-      setHasChanged(true);
-    }
+    e.stopPropagation();
     setNameEdit(e.target.value);
   };
 
-  const handleSubmit = () => {
-    if (hasChanged) {
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (nameEdit !== name) {
       const isNameExist = structure.filter(
         (ele) => ele.name.toLowerCase() === nameEdit.toLowerCase() && ele.ancestor === ancestor
       );
@@ -77,7 +77,7 @@ export const TreeItem = ({
   return (
     <li>
       <div
-        className={`flex items-center justify-between hover:bg-gray-100 cursor-pointer`}
+        className={`flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-400 transition duration-200 cursor-pointer`}
         onMouseEnter={displayButtons}
         onMouseLeave={hideButtons}
         onClick={toggleDisplay}
@@ -139,7 +139,7 @@ export const TreeItem = ({
             </svg>
           )}
           {isEdit ? (
-            <input type="text" className="input" value={nameEdit} onChange={handleChange} />
+            <input type="text" className="input" value={nameEdit} onClick={(e) => e.stopPropagation()} onChange={handleChange} />
           ) : (
             <h4 className={`${isFolder ? 'font-bold' : ''}`}>{name}</h4>
           )}
