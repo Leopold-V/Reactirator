@@ -75,7 +75,7 @@ export const CreateComponent = ({
           <label className="font-semibold" htmlFor="folderlocation">
             Location:{' '}
           </label>
-          <select className="shadow rounded px-2" id="folderlocation" onChange={handleSelect}>
+          <select className="shadow rounded px-2 dark:text-gray-700" id="folderlocation" onChange={handleSelect}>
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (
@@ -97,6 +97,24 @@ export const CreateComponent = ({
             <input type="radio" id="rcc" name="mode" value="rcc" checked={mode === 'rcc'} />
             <label className="px-2" htmlFor="rcc">
               rcc
+            </label>
+          </div>
+          <div>
+            <input type="radio" id="rfce" name="mode" value="rfce" checked={mode === 'rfce'} />
+            <label className="px-2" htmlFor="rfce">
+              rfce
+            </label>
+          </div>
+          <div>
+            <input type="radio" id="rafc" name="mode" value="rafc" checked={mode === 'rafc'} />
+            <label className="px-2" htmlFor="rafc">
+              rafc
+            </label>
+          </div>
+          <div>
+            <input type="radio" id="rafce" name="mode" value="rafce" checked={mode === 'rafce'} />
+            <label className="px-2" htmlFor="rafce">
+              rafce
             </label>
           </div>
         </div>

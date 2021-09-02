@@ -10,6 +10,7 @@ export default function ${name}() {
         </div>
     )
 };`;
+
     case 'rcc':
       return `import React, { Component } from 'react';
 
@@ -22,6 +23,35 @@ export default class ${name} extends Component {
         )
     }
 };`;
+
+    case 'rfce':
+      return `import React from 'react';
+
+function ${name}() {
+  return <div></div>
+};
+
+export default ${name};`;
+
+    case 'rafc':
+      return `import React from 'react';
+
+export const ${name} = () => {
+  return (
+    <div>
+      
+    </div>
+  )
+};`;
+
+    case 'rafce':
+      return `import React from 'react';
+
+const ${name} = () => {
+  return <div></div>
+};
+
+export default ${name};`;
   }
 };
 
