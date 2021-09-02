@@ -128,7 +128,13 @@ export const TreeItem = ({
             </svg>
           )}
           {isEdit ? (
-            <input type="text" className="input" value={nameEdit} onClick={(e) => e.stopPropagation()} onChange={handleChange} />
+            <input
+              type="text"
+              className="input"
+              value={nameEdit}
+              onClick={(e) => e.stopPropagation()}
+              onChange={handleChange}
+            />
           ) : (
             <h4 className={`${isFolder ? 'font-bold' : ''}`}>{name}</h4>
           )}

@@ -75,7 +75,11 @@ export const CreateComponent = ({
           <label className="font-semibold" htmlFor="folderlocation">
             Location:{' '}
           </label>
-          <select className="shadow rounded px-2 dark:text-gray-900" id="folderlocation" onChange={handleSelect}>
+          <select
+            className="shadow rounded px-2 dark:text-gray-900"
+            id="folderlocation"
+            onChange={handleSelect}
+          >
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (

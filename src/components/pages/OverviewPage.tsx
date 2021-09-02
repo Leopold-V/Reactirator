@@ -53,7 +53,7 @@ export const OverviewPage = ({
                 structure,
                 packageJson.scripts,
                 readme,
-                github,
+                github
               ),
               toastInstallMsg,
               toastInstallStyle

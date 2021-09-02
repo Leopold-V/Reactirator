@@ -69,7 +69,11 @@ export const CreateFolder = ({
           <label className="font-semibold" htmlFor="folderlocation">
             Location:{' '}
           </label>
-          <select className="shadow rounded px-2 dark:text-gray-700" id="folderlocation" onChange={handleSelect}>
+          <select
+            className="shadow rounded px-2 dark:text-gray-700"
+            id="folderlocation"
+            onChange={handleSelect}
+          >
             {structure
               .filter((ele) => ele.isFolder)
               .map((ele) => (

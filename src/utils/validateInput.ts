@@ -28,7 +28,7 @@ export const validateFileName = (input: string): boolean => {
   if (filenameReserved.test(input) || filenameReservedWindowsNames.test(input)) {
     return false;
   }
-  if (rg1.test(input) && rg2.test(input) || rg3.test(input)) {
+  if ((rg1.test(input) && rg2.test(input)) || rg3.test(input)) {
     return false;
   }
   return true;

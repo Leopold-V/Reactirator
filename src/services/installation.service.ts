@@ -13,7 +13,7 @@ export const generateProject = async (
   structure: structureStateType,
   scripts: {},
   readme: string,
-  github: GithubStateType,
+  github: GithubStateType
 ): Promise<void> => {
   const fullPath = `${filepath}\\${input.appname}`;
 
