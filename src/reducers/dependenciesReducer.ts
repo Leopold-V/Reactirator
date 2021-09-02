@@ -1,4 +1,4 @@
-import { actionPackageType, depStateType } from '../helpers/types';
+import { actionPackageType } from '../helpers/types';
 
 const dependenciesReducer = (state: any, { type, payload }: actionPackageType) => {
   switch (type) {

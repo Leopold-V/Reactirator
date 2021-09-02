@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import * as ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-
 import initialState from './helpers/initialState';
+import initialStructure from './helpers/initialStructure';
+import structureReducer from './reducers/structureReducer';
 import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './components/Contexts/dependenciesProvider';
 import { PackagesPage } from './components/pages/PackagesPage';
@@ -13,11 +14,13 @@ import { Layout } from './components/Layout';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { GithubProvider } from './components/Contexts/GithubProvider';
+import { ArchitecturePage } from './components/pages/ArchitecturePage';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
   const [input, setInput] = useState(initialState);
   const [readme, setReadme] = useState('');
+  const [structure, dispatch] = useReducer(structureReducer, initialStructure);
 
   useEffect(() => {
     if (
@@ -41,7 +44,14 @@ const App = () => {
                 <Route
                   exact
                   path="/"
-                  render={() => <OverviewPage input={input} setInput={setInput} readme={readme} />}
+                  render={() => (
+                    <OverviewPage
+                      structure={structure}
+                      input={input}
+                      setInput={setInput}
+                      readme={readme}
+                    />
+                  )}
                 />
                 <Route
                   exact
@@ -52,6 +62,11 @@ const App = () => {
                   exact
                   path="/documentation"
                   render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
+                />
+                <Route
+                  exact
+                  path="/architecture"
+                  render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
                 />
                 <Route exact path="/command" component={CommandPage} />
               </Switch>

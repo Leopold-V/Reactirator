@@ -4,26 +4,27 @@ import { ipcRenderer } from 'electron';
 import { toast } from 'react-hot-toast';
 
 import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
-import { formInputType } from '../../helpers/types';
+import { formInputType, structureStateType } from '../../helpers/types';
 import { generateProject } from '../../services/installation.service';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { useDependencies } from '../Contexts/dependenciesProvider';
-import { GithubProvider, useGithub } from '../Contexts/GithubProvider';
+import { useGithub } from '../Contexts/GithubProvider';
 import { useModal } from '../../hooks/useModal';
 
 import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
-import { CardHelp } from '../ProjectCreationBlock';
 import { GithubSection } from '../GithubBlock';
 
 type argType = [filepath: string, input: formInputType];
 
 export const OverviewPage = ({
+  structure,
   input,
   setInput,
   readme,
 }: {
+  structure: structureStateType;
   input: formInputType;
   setInput: (input: formInputType) => void;
   readme: string;
@@ -45,7 +46,15 @@ export const OverviewPage = ({
           toggleModal();
           try {
             await toast.promise(
-              generateProject(filepath, input, listPackages, packageJson.scripts, readme, github),
+              generateProject(
+                filepath,
+                input,
+                listPackages,
+                structure,
+                packageJson.scripts,
+                readme,
+                github
+              ),
               toastInstallMsg,
               toastInstallStyle
             );
@@ -59,7 +68,7 @@ export const OverviewPage = ({
     return () => {
       ipcRenderer.removeAllListeners('open-dialog-directory-selected');
     };
-  }, [listPackages]);
+  }, [listPackages, github]);
 
   return (
     <div className="flex items-start justify-between w-full space-x-8">

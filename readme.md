@@ -14,7 +14,7 @@
   </a>
 </p>
 <div align="center">
-  <img alt="screen" src="https://i.gyazo.com/6dee856e5fa4951922759eaab40e5fc5.png" />
+  <img alt="screen" src="https://i.gyazo.com/33b5cf83cdb9da0dd94de38cc750631b.png" />
 </div>
 
 ## What is it?
@@ -42,6 +42,7 @@ Everything is generated on top of [``create-react-app``](https://github.com/face
 - Vizualize your ``package.json`` informations in real time.
 - Edit your ``package.json`` script section.
 - Edit your ``readme.md`` file with markdown and preview.
+- **NEW - Generate your project files and folders structure including boilerplate code in your pre-generated components!**
 
 ## Usage
 

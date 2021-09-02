@@ -33,19 +33,19 @@
 }
 
 .markdown h1 {
-  @apply leading-tight border-b text-4xl font-semibold text-gray-700 dark:text-white mb-4 mt-6 pb-2;
+  @apply leading-tight border-b text-4xl font-semibold text-white mb-4 mt-6 pb-2;
 }
 
 .markdown h2 {
-  @apply leading-tight border-b text-2xl font-semibold text-gray-700 dark:text-white mb-4 mt-6 pb-2;
+  @apply leading-tight border-b text-2xl font-semibold text-white mb-4 mt-6 pb-2;
 }
 
 .markdown h3 {
-  @apply leading-snug text-lg font-semibold mb-4 text-gray-700 dark:text-white mt-6;
+  @apply leading-snug text-lg font-semibold mb-4 text-white mt-6;
 }
 
 .markdown h4 {
-  @apply leading-none text-base font-semibold mb-4 text-gray-700 dark:text-white mt-6;
+  @apply leading-none text-base font-semibold mb-4 text-white mt-6;
 }
 
 .markdown h5 {
@@ -53,11 +53,11 @@
 }
 
 .markdown h6 {
-  @apply leading-tight text-sm font-semibold text-gray-700 dark:text-white mb-4 mt-6;
+  @apply leading-tight text-sm font-semibold text-white mb-4 mt-6;
 }
 
 .markdown blockquote {
-  @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-gray-700;
+  @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-white;
 }
 
 .markdown code {
@@ -85,7 +85,7 @@
 }
 
 .markdown table {
-  @apply text-base border-gray-600 dark:border-gray-200;
+  @apply text-base border-gray-200;
 }
 
 .markdown th {
@@ -98,5 +98,5 @@
 
 /* Override pygments style background color. */
 .markdown .highlight pre {
-  @apply bg-gray-200 dark:border-gray-500 !important;
+  @apply bg-gray-200 border-gray-500 !important;
 }

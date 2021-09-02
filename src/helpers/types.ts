@@ -80,6 +80,17 @@ export type depStateType = {
   devDependencies: { name: string; size: number; version: string; dependencies: string[] }[];
 };
 
+export type FileStructureType = {
+  id: string;
+  name: string;
+  ancestor: string;
+  isFolder: boolean;
+  mode?: string;
+  path: string;
+};
+
+export type structureStateType = FileStructureType[];
+
 export type AuthOptions = {
   hostname: string;
   clientId: string;

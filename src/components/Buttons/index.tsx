@@ -5,3 +5,5 @@ export { ButtonAddScript } from './ButtonAddScript';
 export { ButtonRemoveScript } from './ButtonRemoveScript';
 export { ButtonSaveReadme } from './ButtonSaveReadme';
 export { ButtonGithubLogin } from './ButtonGithubLogin';
+export { ButtonRemoveFile } from './ButtonRemoveFile';
+export { ButtonEditFilename } from './ButtonEditFilename';

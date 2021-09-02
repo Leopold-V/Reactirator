@@ -2,13 +2,15 @@ import { createGithubRepo } from './github.services';
 import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import runCmd from '../utils/runCmd';
-import { depStateType, formInputType } from '../helpers/types';
+import createTemplateComponent from '../utils/createTemplateComponent';
+import { depStateType, formInputType, structureStateType } from '../helpers/types';
 import { GithubStateType } from '../components/Contexts/GithubProvider';
 
 export const generateProject = async (
   filepath: string,
   input: formInputType,
   listPackages: depStateType,
+  structure: structureStateType,
   scripts: {},
   readme: string,
   github: GithubStateType
@@ -20,13 +22,11 @@ export const generateProject = async (
     : await runCmd(`cd ${filepath} && npx create-react-app ${input.appname}`);
 
   await installPackages(fullPath, listPackages);
-
   await installScripts(fullPath, scripts);
 
   if (readme) {
     await writeReadme(fullPath, readme);
   }
-
   if (input.bootstrap) {
     await installBootstrap(fullPath, input.typescript);
   }
@@ -50,6 +50,31 @@ export const generateProject = async (
   }
   if (github.token && github.reponame) {
     await createGithubRepo(github);
+  }
+  if (structure.length > 2) {
+    await generateStructure(structure, fullPath, input.typescript);
+  }
+};
+
+const generateStructure = async (
+  structure: structureStateType,
+  fullPath: string,
+  hasTypescript: boolean
+) => {
+  for (let i = 2; i < structure.length; i++) {
+    if (structure[i].isFolder) {
+      await runCmd(
+        `cd ${fullPath}${structure[i].path.split('\\').slice(0, -1).join('\\')} && mkdir ${
+          structure[i].name
+        }`
+      );
+    } else {
+      const templateComponent = createTemplateComponent(structure[i].mode, structure[i].name);
+      await promisifyWriteFs(
+        `${fullPath}${structure[i].path}${hasTypescript ? '.tsx' : '.jsx'}`,
+        templateComponent
+      );
+    }
   }
 };
 

@@ -55,6 +55,7 @@ module.exports = {
   variants: {
     extend: {
       ringWidth: ['dark'],
+      display: ['hover', 'focus'],
     }
   },
   plugins: [],
