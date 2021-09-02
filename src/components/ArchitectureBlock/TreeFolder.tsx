@@ -24,7 +24,6 @@ export const TreeFolder = ({
             isFolder={ele.isFolder}
             dispatchStructure={dispatchStructure}
             ancestor={ele.ancestor}
-            path={ele.path}
           />
         ))}
       </ul>

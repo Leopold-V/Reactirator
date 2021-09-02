@@ -4,7 +4,6 @@ const structureReducer = (state: any, action: any) => {
   switch (action.type) {
     case 'ADD':
       state.push(action.payload);
-      console.log(state);
       return [...state];
     case 'REMOVE':
       const newState = state.filter(
