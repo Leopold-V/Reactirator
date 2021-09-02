@@ -54,7 +54,7 @@ export const CreateComponent = ({
   };
 
   return (
-    <div className="bg-white flex-grow border-gray-200 shadow text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded-lg flex flex-col justify-center hover:shadow-lg transition duration-200">
+    <div className="bg-gradient-to-br from-blue-200 to-blue-200 flex-grow border-gray-200 shadow text-gray-700 p-6 rounded-lg flex flex-col justify-center hover:shadow-lg transition duration-200">
       <form className="space-y-4 text-center" onSubmit={handleSubmit}>
         <h2 className="text-center font-extrabold">Create Component</h2>
         <div className="space-x-3">
@@ -72,12 +72,12 @@ export const CreateComponent = ({
           />
         </div>
         <div className="space-x-3">
-          <label className="font-semibold" htmlFor="folderlocation">
+          <label className="font-semibold" htmlFor="filelocation">
             Location:{' '}
           </label>
           <select
             className="shadow rounded px-2 dark:text-gray-900"
-            id="folderlocation"
+            id="filelocation"
             onChange={handleSelect}
           >
             {structure
