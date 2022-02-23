@@ -1,10 +1,13 @@
 const API_URL = 'https://api.npms.io/v2/search?q=';
 const REGISTRY_URL = 'https://registry.npmjs.org';
-const PROXY_URL = 'https://cors.bridged.cc';
 
 export const searchPackages = async (packageName: string, size = 30): Promise<any> => {
   try {
-    const rep = await fetch(`${API_URL}${packageName}&size=${size}`);
+    const rep = await fetch(`${API_URL}${packageName}&size=${size}`, {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    });
     const res = await rep.json();
     return res.results;
   } catch (error) {
@@ -14,15 +17,11 @@ export const searchPackages = async (packageName: string, size = 30): Promise<an
 
 export const getOnePackage = async (name: string, version: string): Promise<any> => {
   try {
-    const rep = await fetch(`${PROXY_URL}/${REGISTRY_URL}/${name}/${version}`, {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    });
-    const res = await rep.json();
+    //@ts-ignore
+    const res = await fetchWithNode(`${REGISTRY_URL}/${name}/${version}`);
     return res;
   } catch (error) {
-    throw error;
+    return error;
   }
 };
 

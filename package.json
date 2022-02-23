@@ -80,7 +80,10 @@
                 {
                   "html": "./src/index.html",
                   "js": "./src/renderer.ts",
-                  "name": "main_window"
+                  "name": "main_window",
+                  "preload": {
+                    "js": "./src/preload.ts"
+                  }
                 },
                 {
                   "html": "./src/splash.html",
@@ -144,7 +147,9 @@
     "d3": "^6.7.0",
     "electron-main-fetch": "^1.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "make-fetch-happen": "^10.0.3",
     "nanoid": "^3.1.25",
+    "node-fetch": "^2.0.0",
     "postcss-loader": "4.0",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",

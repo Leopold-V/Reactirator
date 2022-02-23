@@ -1,6 +1,7 @@
 const { app, BrowserWindow, dialog, ipcMain, session } = require('electron');
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: any;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: any;
 
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
@@ -23,6 +24,7 @@ const createWindow = (): void => {
     icon: 'src/assets/icons/win/icon.ico',
     backgroundColor: '#181b33',
     webPreferences: {
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
@@ -85,3 +87,5 @@ ipcMain.on('open-directory', (event, arg) => {
     event.sender.send('open-dialog-directory-selected', [filePath, arg]);
   }
 });
+
+
