@@ -18,7 +18,7 @@ export const Layout = ({
       className="relative bg-gray-50 dark:bg-primary overflow-y-auto pt-8 flex flex-row h-screen"
     >
       <SideNav theme={theme} setTheme={setTheme} />
-      <div className="flex flex-grow px-8 py-7">{children}</div>
+      <div className="flex w-full px-8 py-7">{children}</div>
       <Toaster
         position="top-center"
         toastOptions={{
