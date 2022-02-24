@@ -11,7 +11,7 @@ export const generateProject = async (
   input: formInputType,
   listPackages: depStateType,
   structure: structureStateType,
-  scripts: {},
+  scripts: Record<string, unknown>,
   readme: string,
   github: GithubStateType
 ): Promise<void> => {
@@ -79,122 +79,84 @@ const generateStructure = async (
 };
 
 const installPackages = async (fullPath: string, listPackages: depStateType): Promise<void> => {
-  try {
-    for (let packages of listPackages.dependencies) {
-      await runCmd(`cd ${fullPath} && npm install ${packages.name}`);
-    }
-    for (let packages of listPackages.devDependencies) {
-      await runCmd(`cd ${fullPath} && npm install -D ${packages.name}`);
-    }
-  } catch (error) {
-    throw error;
+  for (const packages of listPackages.dependencies) {
+    await runCmd(`cd ${fullPath} && npm install ${packages.name}`);
+  }
+  for (const packages of listPackages.devDependencies) {
+    await runCmd(`cd ${fullPath} && npm install -D ${packages.name}`);
   }
 };
 
-const installScripts = async (fullPath: string, scripts: {}): Promise<void> => {
-  try {
-    const data = await promisifyReadFs(`${fullPath}\\package.json`);
-    const packagejson = JSON.parse(data);
-    packagejson.scripts = scripts;
-    await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
-  } catch (error) {
-    throw error;
-  }
+const installScripts = async (
+  fullPath: string,
+  scripts: Record<string, unknown>
+): Promise<void> => {
+  const data = await promisifyReadFs(`${fullPath}\\package.json`);
+  const packagejson = JSON.parse(data);
+  packagejson.scripts = scripts;
+  await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
 };
 
 const writeReadme = async (fullPath: string, markdownContent: string): Promise<void> => {
-  try {
-    await promisifyWriteFs(`${fullPath}\\readme.md`, markdownContent);
-  } catch (error) {
-    throw error;
-  }
+  await promisifyWriteFs(`${fullPath}\\readme.md`, markdownContent);
 };
 
 const installStorybook = async (fullPath: string): Promise<void> => {
-  try {
-    await runCmd(`cd ${fullPath} && npx -p @storybook/cli sb init`);
-  } catch (error) {
-    throw error;
-  }
+  await runCmd(`cd ${fullPath} && npx -p @storybook/cli sb init`);
 };
 
 const installFlow = async (fullPath: string): Promise<void> => {
-  try {
-    await runCmd(`cd ${fullPath} && npm install flow-bin`);
-    await runCmd(`cd ${fullPath} && npm run flow init`);
-  } catch (error) {
-    throw error;
-  }
+  await runCmd(`cd ${fullPath} && npm install flow-bin`);
+  await runCmd(`cd ${fullPath} && npm run flow init`);
 };
 
 const installSourceMapExplorer = async (fullPath: string): Promise<void> => {
-  try {
-    await runCmd(`cd ${fullPath} && npm install source-map-explorer`);
-  } catch (error) {
-    throw error;
-  }
+  await runCmd(`cd ${fullPath} && npm install source-map-explorer`);
 };
 
 const installBootstrap = async (fullPath: string, withTypescript: boolean): Promise<void> => {
-  try {
-    await runCmd(`cd ${fullPath} && npm install bootstrap`);
-    withTypescript
-      ? await writeFileAtTop(
-          `${fullPath}\\src\\index.tsx`,
-          "import 'bootstrap/dist/css/bootstrap.css';\n"
-        )
-      : await writeFileAtTop(
-          `${fullPath}\\src\\index.js`,
-          "import 'bootstrap/dist/css/bootstrap.css';\n"
-        );
-  } catch (error) {
-    throw error;
-  }
+  await runCmd(`cd ${fullPath} && npm install bootstrap`);
+  withTypescript
+    ? await writeFileAtTop(
+        `${fullPath}\\src\\index.tsx`,
+        "import 'bootstrap/dist/css/bootstrap.css';\n"
+      )
+    : await writeFileAtTop(
+        `${fullPath}\\src\\index.js`,
+        "import 'bootstrap/dist/css/bootstrap.css';\n"
+      );
 };
 
 const installNormalize = async (fullPath: string): Promise<void> => {
-  try {
-    await writeFileAtTop(`${fullPath}\\src\\index.css`, '@import-normalize;\n');
-  } catch (error) {
-    throw error;
-  }
+  await writeFileAtTop(`${fullPath}\\src\\index.css`, '@import-normalize;\n');
 };
 
 const installPrettier = async (fullPath: string): Promise<void> => {
-  try {
-    await runCmd(
-      `cd ${fullPath} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json`
-    );
-    await promisifyWriteFs(
-      `${fullPath}\\src\\.prettierignore`,
-      `# Ignore artifacts:\nbuild\ncoverage\n`
-    );
-  } catch (error) {
-    throw error;
-  }
+  await runCmd(
+    `cd ${fullPath} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json`
+  );
+  await promisifyWriteFs(
+    `${fullPath}\\src\\.prettierignore`,
+    `# Ignore artifacts:\nbuild\ncoverage\n`
+  );
 };
 
 const installTailwind = async (fullPath: string): Promise<void> => {
-  try {
-    await runCmd(
-      `cd ${fullPath} && npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 && npm install @craco/craco && npx tailwindcss init`
-    );
-    await promisifyWriteFs(`${fullPath}\\craco.config.js`, cracoConfig);
-    await writeFileAtTop(`${fullPath}\\src\\index.css`, tailwindimport);
-  } catch (error) {
-    throw error;
-  }
+  await runCmd(
+    `cd ${fullPath} && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init`
+  );
+  await promisifyWriteFs(`${fullPath}\\tailwind.config.js`, tailwindConfig);
+  await writeFileAtTop(`${fullPath}\\src\\index.css`, tailwindimport);
 };
 
-const cracoConfig = `module.exports = {
-  style: {
-    postcss: {
-      plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-      ],
-    },
-  },
-}`;
+const tailwindimport = `@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n`;
 
-const tailwindimport = `@tailwind base;\n@tailwind components;\n@tailwind utilities;\n`;
+const tailwindConfig = `module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}`;

@@ -1,4 +1,4 @@
-const exec = require('child_process').exec;
+import { exec } from 'child_process';
 
 const runCmd = (cmd: string): Promise<string> => {
   return new Promise((resolve, reject) => {

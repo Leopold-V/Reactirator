@@ -40,7 +40,7 @@ export const FormCustomProject = ({
         <FormSection title="Styles">
           <Checkbox
             name="tailwind"
-            packageName="@tailwindcss/postcss7-compat"
+            packageName="tailwind"
             setInput={setInput}
             input={input}
             dispatchPackages={dispatchPackages}

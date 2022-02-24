@@ -1,7 +1,9 @@
+/* eslint-disable no-control-regex */
+
 export const validateProjectName = (input: string): boolean => {
   const filenameReserved = /[<>:"/\\|?*\u0000-\u001F]/g;
   const filenameReservedWindowsNames = /^(con|prn|aux|nul|com\d|lpt\d)$/i;
-  const rg1 = /^[^\\/:\*\?"<>\|]+$/; // forbidden characters \ / : * ? " < > |
+  const rg1 = /^[^\\/:*?"<>|]+$/; // forbidden characters \ / : * ? " < > |
   const rg2 = /^\./; // cannot start with dot (.)
   const rg3 = /[A-Z]/; // cannot have uppercase letter
   if (!input || input.length > 255) {
@@ -19,7 +21,7 @@ export const validateProjectName = (input: string): boolean => {
 export const validateFileName = (input: string): boolean => {
   const filenameReserved = /[<>:"/\\|?*\u0000-\u001F]/g;
   const filenameReservedWindowsNames = /^(con|prn|aux|nul|com\d|lpt\d)$/i;
-  const rg1 = /^[^\\/:\*\?"<>\|]+$/; // forbidden characters \ / : * ? " < > |
+  const rg1 = /^[^\\/:*?"<>|]+$/; // forbidden characters \ / : * ? " < > |
   const rg2 = /[.]/; // cannot have dot (.)
   const rg3 = /\s/g; // cannot have space
   if (!input || input.length > 255) {

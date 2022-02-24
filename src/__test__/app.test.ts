@@ -1,7 +1,5 @@
 import { Application } from 'spectron';
 import path from 'path';
-import assert from 'assert';
-import { screen } from '@testing-library/dom';
 
 // Should detect the OS env for the output path.
 const packageName = 'Reactirator';

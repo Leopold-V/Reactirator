@@ -1,4 +1,5 @@
-const fs = require('fs');
+//@ts-nocheck
+import fs from 'fs';
 
 export const promisifyReadFs = (fullpath: string): Promise<string> => {
   return new Promise((resolve, reject) => {

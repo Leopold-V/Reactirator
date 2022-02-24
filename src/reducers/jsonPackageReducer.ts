@@ -97,24 +97,14 @@ const addTypescript = (state: any): any => {
 };
 
 const addTailwind = (state: any, version: string): any => {
-  if (!state.dependencies['@craco/craco']) {
-    state.dependencies['@craco/craco'] = '...';
-    state.scripts.start = 'craco start';
-    state.scripts.build = 'craco build';
-    state.scripts.test = 'craco test';
-    state.devDependencies['@tailwindcss/postcss7-compat'] = `^${version}`;
+  if (!state.devDependencies['tailwindcss']) {
+    state.devDependencies['tailwindcss'] = `^${version}`;
     state.devDependencies['autoprefixer'] = '...';
     state.devDependencies['postcss'] = '...';
-    state.devDependencies['tailwindcss'] = `npm:@tailwindcss/postcss7-compat@^${version}`;
   } else {
-    delete state.dependencies['@craco/craco'];
-    state.scripts.start = 'npm start';
-    state.scripts.build = 'npm build';
-    state.scripts.test = 'npm test';
-    delete state.devDependencies['@tailwindcss/postcss7-compat'];
+    delete state.devDependencies['tailwindcss'];
     delete state.devDependencies['autoprefixer'];
     delete state.devDependencies['postcss'];
-    delete state.devDependencies['tailwindcss'];
   }
   return { ...state };
 };

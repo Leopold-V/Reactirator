@@ -75,7 +75,6 @@ export type packageFoundType = {
 };
 
 export type depStateType = {
-  //[key: string]: string[]
   dependencies: { name: string; size: number; version: string; dependencies: string[] }[];
   devDependencies: { name: string; size: number; version: string; dependencies: string[] }[];
 };

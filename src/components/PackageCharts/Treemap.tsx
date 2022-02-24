@@ -1,3 +1,4 @@
+/*
 import React, { useEffect } from 'react';
 import { generateTreeMapWithD3 } from '../../utils/generateTreeMapWithD3';
 import { depStateType } from '../../helpers/types';
@@ -18,3 +19,4 @@ export const Treemap = ({ listPackages }: { listPackages: depStateType }) => {
 };
 
 export const TreemapMemoized = React.memo(Treemap);
+*/

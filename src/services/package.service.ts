@@ -2,27 +2,19 @@ const API_URL = 'https://api.npms.io/v2/search?q=';
 const REGISTRY_URL = 'https://registry.npmjs.org';
 
 export const searchPackages = async (packageName: string, size = 30): Promise<any> => {
-  try {
-    const rep = await fetch(`${API_URL}${packageName}&size=${size}`, {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    });
-    const res = await rep.json();
-    return res.results;
-  } catch (error) {
-    throw error;
-  }
+  const rep = await fetch(`${API_URL}${packageName}&size=${size}`, {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  });
+  const res = await rep.json();
+  return res.results;
 };
 
 export const getOnePackage = async (name: string, version: string): Promise<any> => {
-  try {
-    //@ts-ignore
-    const res = await fetchWithNode(`${REGISTRY_URL}/${name}/${version}`);
-    return res;
-  } catch (error) {
-    return error;
-  }
+  //@ts-ignore
+  const res = await fetchWithNode(`${REGISTRY_URL}/${name}/${version}`);
+  return res;
 };
 
 export const getSizeOfPackagesList = async (listPkg: any[]) => {

@@ -1,13 +1,14 @@
-const { app, BrowserWindow, dialog, ipcMain, session } = require('electron');
-declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
-declare const SPLASH_WINDOW_WEBPACK_ENTRY: any;
-declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: any;
+import { app, BrowserWindow, dialog, ipcMain, session } from 'electron';
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   app.quit();
 }
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('update-electron-app')();
 
 const createWindow = (): void => {
@@ -59,10 +60,10 @@ app.on('ready', () => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
-        'Content-Security-Policy': ['connect-src *']
-      }
-    })
-  })
+        'Content-Security-Policy': ['connect-src *'],
+      },
+    });
+  });
   createWindow();
 });
 
@@ -87,5 +88,3 @@ ipcMain.on('open-directory', (event, arg) => {
     event.sender.send('open-dialog-directory-selected', [filePath, arg]);
   }
 });
-
-

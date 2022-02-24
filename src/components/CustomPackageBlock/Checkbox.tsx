@@ -9,7 +9,6 @@ export const Checkbox = ({
   packageName,
   setInput,
   input,
-  dispatchPackages,
 }: {
   children: ReactNode;
   name: string;

@@ -21,7 +21,7 @@ export const toastInstallStyle = {
 export const toastInstallMsg = {
   loading: 'Installation start !',
   success: () => `Successfully installed !`,
-  error: (err: Error) => `An error happened`,
+  error: () => `An error happened`,
 };
 
 export const toastValidationStyle = {

@@ -1,6 +1,6 @@
 import { AuthOptions } from '../helpers/types';
 import { Constants } from '../helpers/gitServicesOptions';
-const { remote } = require('electron');
+import { remote } from 'electron';
 const BrowserWindow = remote.BrowserWindow;
 
 export const authGitHub = (
