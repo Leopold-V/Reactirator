@@ -160,7 +160,7 @@ export const SideNav = ({
       </div>
 
       <div className="nav__footer">
-        <button className="btn-bug flex items-center" id="button_bug">
+        <button className="btn-bug" id="button_bug">
           <span className="mr-2">Report a bug</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -187,8 +187,7 @@ export const SideNav = ({
           </svg>
         </button>
         <button
-          className="btn-theme opacity-100 px-4 py-2 outline-none font-bold select-none
-          tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
+          className="btn-theme"
           onClick={changeTheme}
         >
           <span className="mr-2">Theme</span>

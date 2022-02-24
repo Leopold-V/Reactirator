@@ -77,10 +77,9 @@
 
 .nav__footer {
   width: 100%;
-
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1rem;
   border-top: 1px solid #e7e7e7;
 }
 
@@ -90,8 +89,9 @@
   padding: 0.6rem 0.7rem 0.6rem 0.3rem;
   border-radius: 5px;
   width: 100%;
+  font-size: .9rem;
   display: flex;
-  font-size: 1rem;
+  justify-content: center;
   align-items: center;
   margin-bottom: 0.3rem;
 }
@@ -111,8 +111,9 @@
   padding: 0.6rem 0.7rem 0.6rem 0.3rem;
   border-radius: 5px;
   width: 100%;
+  font-size: .9rem;
   display: flex;
-  font-size: 1rem;
+  justify-content: center;
   align-items: center;
   margin-bottom: 0.3rem;
 }
