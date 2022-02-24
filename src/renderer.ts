@@ -1,5 +1,6 @@
-import { remote, shell } from 'electron';
-
+import { shell } from 'electron';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const remote = require('@electron/remote');
 import './index.css';
 import './App';
 

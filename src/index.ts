@@ -2,6 +2,8 @@ import { app, BrowserWindow, dialog, ipcMain, session } from 'electron';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('@electron/remote/main').initialize()
 
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require

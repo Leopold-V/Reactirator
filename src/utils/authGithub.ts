@@ -1,7 +1,7 @@
 import { AuthOptions } from '../helpers/types';
 import { Constants } from '../helpers/gitServicesOptions';
-import { remote } from 'electron';
-const BrowserWindow = remote.BrowserWindow;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { BrowserWindow } = require('@electron/remote');
 
 export const authGitHub = (
   authOptions = Constants.DEFAULT_AUTH_OPTIONS
@@ -47,7 +47,7 @@ export const authGitHub = (
 
     authWindow.webContents.on(
       'did-fail-load',
-      (event, errorCode, errorDescription, validatedURL) => {
+      (event: any, errorCode: any, errorDescription: any, validatedURL: any) => {
         if (validatedURL.includes(authOptions.hostname)) {
           authWindow.destroy();
           reject(`Invalid Hostname. Could not load https://${authOptions.hostname}/.`);
@@ -55,7 +55,7 @@ export const authGitHub = (
       }
     );
 
-    authWindow.webContents.on('will-navigate', async (event, url) => {
+    authWindow.webContents.on('will-navigate', async (event: any, url: string) => {
       event.preventDefault();
       await handleCallback(url);
     });
