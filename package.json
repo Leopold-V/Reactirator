@@ -5,7 +5,7 @@
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "cross-env NODE_ENV=development electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
@@ -122,6 +122,7 @@
     "autoprefixer": "^10.2.5",
     "babel-jest": "^27.0.5",
     "copy-webpack-plugin": "^9.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^4.3.0",
     "dotenv-webpack": "^7.0.3",
     "electron": "13.1.2",
