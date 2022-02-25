@@ -1,17 +1,19 @@
 import React from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
-import { OverviewPage } from './components/pages/OverviewPage';
+import { Layout } from '../common/Layout';
+import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerPage';
+import { DependenciesPage } from './components/pages/DependenciesPage';
+import { TasksPage } from './components/pages/TasksPage';
 
 const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
   const { path } = useRouteMatch();
 
   return (
-    <div
-      id="layout"
-      className="relative bg-gray-50 dark:bg-primary overflow-y-auto flex items-center justify-center h-screen"
-    >
-      <Route exact path={path} component={OverviewPage} />
-    </div>
+    <Layout theme={theme} setTheme={setTheme}>
+      <Route exact path={`${path}`} component={TasksPage} />
+      <Route exact path={`${path}/dependencies`} component={DependenciesPage} />
+      <Route exact path={`${path}/architecture`} component={ArchitectureManagerPage} />
+    </Layout>
   );
 };
 

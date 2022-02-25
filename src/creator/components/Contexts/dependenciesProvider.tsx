@@ -15,10 +15,6 @@ export const DependenciesProvider = ({ children }: { children: ReactNode }) => {
     JSON.parse(JSON.stringify(initialDeps))
   );
 
-  console.log(listPackages);
-  console.log('split');
-  console.log(initialDeps);
-
   return (
     <dependenciesContext.Provider value={{ listPackages, dispatch }}>
       {children}

@@ -12,7 +12,7 @@ import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { GithubProvider } from './components/Contexts/GithubProvider';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
-import { Layout } from './components/Layout';
+import { Layout } from '../common/Layout';
 
 const Creator = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
   const [input, setInput] = useState(initialState);
