@@ -3,7 +3,7 @@ declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('@electron/remote/main').initialize()
+require('@electron/remote/main').initialize();
 
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
@@ -25,13 +25,12 @@ const createWindow = (): void => {
     maxHeight: 750,
     maxWidth: 1050,
     icon: 'src/assets/icons/win/icon.ico',
-    backgroundColor: '#181b33',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
-      devTools: process.env.NODE_ENV === 'development' ? true : false
+      devTools: process.env.NODE_ENV === 'development' ? true : false,
     },
   });
 

@@ -1,0 +1,124 @@
+.nav__link svg {
+  transition: all 0.3s;
+  padding: 0.2rem;
+  border-radius: 50%;
+}
+
+.nav {
+  padding: 1.5rem;
+  border-right: 2px solid rgb(243, 243, 243);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e7e7e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  font-weight: 900;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.nav__list {
+  padding: 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #e0e0e0;
+  transition: all 0.3s;
+  padding: 0.6rem 0.7rem 0.6rem 0.3rem;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.nav__link:hover {
+  color: white;
+}
+
+.nav__link:hover svg {
+  stroke: white;
+}
+
+.nav__link.active {
+  color: white;
+  background: rgb(66, 158, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(66, 158, 255, 0.6951914554884453) 0%,
+    rgba(81, 0, 255, 1) 100%
+  );
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav__link.active svg {
+  stroke: white;
+  background-color: #3e4ec72d;
+}
+
+.nav__item {
+  margin: 0.3rem 0;
+  width: 100%;
+}
+
+.nav__item-name {
+  margin-left: 0.7rem;
+}
+
+.nav__footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-top: 1px solid #e7e7e7;
+}
+
+.btn-bug {
+  color: #e0e0e0;
+  transition: all 0.3s;
+  padding: 0.6rem 0.7rem 0.6rem 0.3rem;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.btn-bug:focus {
+  outline: none;
+}
+
+.btn-bug:hover {
+  color: white;
+  background: rgb(82, 83, 109);
+}
+
+.btn-theme {
+  color: #e0e0e0;
+  transition: all 0.3s;
+  padding: 0.6rem 0.7rem 0.6rem 0.3rem;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.btn-theme:hover {
+  color: white;
+  background: rgb(82, 83, 109);
+}

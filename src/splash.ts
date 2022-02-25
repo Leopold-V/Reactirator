@@ -1,2 +1,2 @@
 import './index.css';
-import './components/SplashScreen/Splash';
+import './common/SplashScreen/Splash';
