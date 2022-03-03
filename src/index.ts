@@ -88,5 +88,7 @@ ipcMain.on('open-directory', (event, arg) => {
   });
   if (filePath) {
     event.sender.send('open-dialog-directory-selected', [filePath, arg]);
+  } else {
+    event.sender.send('open-dialog-directory-not-selected');
   }
 });

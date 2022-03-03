@@ -91,7 +91,8 @@
                   "name": "splash_window"
                 }
               ]
-            }
+            },
+            "port": 3030
           }
         ]
       ]
@@ -162,6 +163,8 @@
     "react-syntax-highlighter": "^15.4.3",
     "remark-gfm": "^1.0.0",
     "ts-jest": "^27.0.3",
-    "update-electron-app": "^2.0.1"
+    "update-electron-app": "^2.0.1",
+    "xterm-addon-fit": "^0.5.0",
+    "xterm-for-react": "^1.0.4"
   }
 }

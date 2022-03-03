@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import './card.css';
 
-export const Card = ({ children }: { children: ReactNode }) => {
-  return <div className="card">{children}</div>;
+export const Card = ({ children, large }: { children: ReactNode; large?: boolean }) => {
+  return <div className={`card ${large ? 'lg' : ''}`}>{children}</div>;
 };

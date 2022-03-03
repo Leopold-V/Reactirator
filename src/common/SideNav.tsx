@@ -29,7 +29,11 @@ export const SideNav = ({
           <span>Reactirator</span>
         </Link>
 
-        {location.pathname.match('creator') ? <NavListCreator pathname={location.pathname} /> : <NavListManager pathname={location.pathname} />}
+        {location.pathname.match('creator') ? (
+          <NavListCreator pathname={location.pathname} />
+        ) : (
+          <NavListManager pathname={location.pathname} />
+        )}
       </div>
 
       <div className="nav__footer">
@@ -98,16 +102,11 @@ export const SideNav = ({
   );
 };
 
-const NavListCreator = ({ pathname } : {pathname: string}) => {
-  
-  
+const NavListCreator = ({ pathname }: { pathname: string }) => {
   return (
     <ul className="nav__list">
       <li className="nav__item">
-        <Link
-          className={`nav__link ${pathname === '/creator' ? 'active' : ''}`}
-          to="/creator"
-        >
+        <Link className={`nav__link ${pathname === '/creator' ? 'active' : ''}`} to="/creator">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-gauge"
@@ -236,14 +235,11 @@ const NavListCreator = ({ pathname } : {pathname: string}) => {
   );
 };
 
-const NavListManager = ({ pathname } : {pathname: string}) => {
+const NavListManager = ({ pathname }: { pathname: string }) => {
   return (
     <ul>
       <li className="nav__item">
-        <Link
-          className={`nav__link ${pathname === '/manager' ? 'active' : ''}`}
-          to="/manager"
-        >
+        <Link className={`nav__link ${pathname === '/manager' ? 'active' : ''}`} to="/manager">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-prompt"

@@ -1,16 +1,12 @@
-import * as React from 'react';
-import { useState, useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 import initialState from './helpers/initialState';
 import initialStructure from './helpers/initialStructure';
 import structureReducer from './reducers/structureReducer';
-import PackageJsonProvider from './components/Contexts/PackageJsonProvider';
-import { DependenciesProvider } from './components/Contexts/dependenciesProvider';
 import { PackagesPage } from './components/pages/PackagesPage';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
-import { GithubProvider } from './components/Contexts/GithubProvider';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
 import { Layout } from '../common/Layout';
 
@@ -25,42 +21,31 @@ const Creator = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
   const { path } = useRouteMatch();
 
   return (
-    <PackageJsonProvider>
-      <DependenciesProvider>
-        <GithubProvider>
-          <Layout theme={theme} setTheme={setTheme}>
-            <Route
-              exact
-              path={path}
-              render={() => (
-                <OverviewPage
-                  structure={structure}
-                  input={input}
-                  setInput={setInput}
-                  readme={readme}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={`${path}/packages`}
-              render={() => <PackagesPage input={input} setInput={setInput} />}
-            />
-            <Route
-              exact
-              path={`${path}/documentation`}
-              render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
-            />
-            <Route
-              exact
-              path={`${path}/architecture`}
-              render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
-            />
-            <Route exact path={`${path}/command`} component={CommandPage} />
-          </Layout>
-        </GithubProvider>
-      </DependenciesProvider>
-    </PackageJsonProvider>
+    <Layout theme={theme} setTheme={setTheme}>
+      <Route
+        exact
+        path={path}
+        render={() => (
+          <OverviewPage structure={structure} input={input} setInput={setInput} readme={readme} />
+        )}
+      />
+      <Route
+        exact
+        path={`${path}/packages`}
+        render={() => <PackagesPage input={input} setInput={setInput} />}
+      />
+      <Route
+        exact
+        path={`${path}/documentation`}
+        render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
+      />
+      <Route
+        exact
+        path={`${path}/architecture`}
+        render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
+      />
+      <Route exact path={`${path}/command`} component={CommandPage} />
+    </Layout>
   );
 };
 
