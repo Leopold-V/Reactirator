@@ -1,4 +1,5 @@
 import { app, BrowserWindow, dialog, ipcMain, session } from 'electron';
+import { spawn } from 'child_process';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -92,3 +93,25 @@ ipcMain.on('open-directory', (event, arg) => {
     event.sender.send('open-dialog-directory-not-selected');
   }
 });
+
+ipcMain.on('run-cmd', (event, arg) => {
+  const taskProcess = spawn(
+    /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
+    ['run', arg.cmd],
+    {
+      cwd: arg.path,
+      shell: false,
+    });
+    taskProcess.stdout.on('data', (data: string) => {
+      console.log(data.toString());
+      event.sender.send(`child-process-${arg.cmd}`, data.toString())
+    });
+    taskProcess.stderr.on('data', (data: string) => {
+      console.log(data.toString());
+      event.sender.send(`child-process-${arg.cmd}`, data.toString())
+    });
+    taskProcess.on('error', (error: Error) => {
+      console.log(error.message);
+      event.sender.send(`child-process-${arg.cmd}`, error.message);
+    });
+})

@@ -150,14 +150,12 @@ const managerLoader = (manager: JSX.Element) => {
       ipcRenderer.on(
         'open-dialog-directory-selected',
         async (event: Electron.IpcRendererEvent, arg: any) => {
-          console.log(arg);
           const [filepath] = arg;
           if (arg) {
             try {
               const content = await promisifyReadFs(`${filepath}/package.json`);
               const contentObj = JSON.parse(content);
               if (contentObj.dependencies?.react) {
-                setTimeout(() => console.log('hello'), 2000);
                 setData({ projectPath: filepath[0], ...contentObj });
               } else {
                 history.push('/');

@@ -1,41 +1,44 @@
 import React, { useEffect, useRef } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { FitAddon } from 'xterm-addon-fit';
-import { useProjectData } from '../Contexts/ProjectDataProvider';
-import { useLoadingTasks } from '../Contexts/LoadingTasksProvider';
-import { runCmdToTerminal } from '../../../utils/runCmd';
+import { ipcRenderer } from 'electron';
 
-export const TerminalOutput = ({ cmd }: { cmd: string }) => {
-  const { projectData } = useProjectData();
-  const { setLoading } = useLoadingTasks();
+export const TerminalOutput = React.memo<{ task: string, log: string, inModal?: boolean, setSaveLog?: (saveLog: string) => void }>(({
+    task,
+    log,
+    inModal = false,
+    setSaveLog = ''
+}) => {
   const xtermRef = useRef(null);
 
   const fitAddon = new FitAddon();
-
+  
   useEffect(() => {
-    console.log(projectData.projectPath);
     xtermRef.current.terminal.setOption('fontSize', 14);
     xtermRef.current.terminal.setOption('convertEol', true);
     xtermRef.current.terminal.setOption('theme', { background: '#2e3748' });
-    xtermRef.current.terminal.write(`${projectData.projectPath} > `);
     fitAddon.fit();
+    xtermRef.current.terminal.writeln(log);
+    ipcRenderer.on(`child-process-${task}`, (event, arg) => {
+      console.log('before stream');
+      console.log(xtermRef);
+      //@ts-ignore
+      setSaveLog((log: any) => log + arg.toString());
+      xtermRef.current.terminal.writeln(arg);
+      console.log('after stream');
+      
+    });
   }, []);
-
+/*
   useEffect(() => {
-    if (cmd) {
-      setLoading(true);
-      runCmdToTerminal(cmd, projectData.projectPath, xtermRef.current.terminal).then(() => {
-        console.log('false loading');
-        setLoading(false);
-      });
-    }
-  }, [cmd]);
+    xtermRef.current.terminal.writeln(log);
+  }, [log])*/
 
   return (
     <XTerm
-      className="w-full h-60 bg-blueGray absolute bottom-0 text-sm"
+      className={`${inModal ? 'w-96' : 'w-7/12'} bg-blueGray`}
       addons={[fitAddon]}
       ref={xtermRef}
     />
   );
-};
+});

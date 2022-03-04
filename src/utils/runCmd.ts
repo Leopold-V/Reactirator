@@ -20,36 +20,26 @@ export const runCmd = (cmd: string): Promise<string> => {
   });
 };
 
-export const runCmdToTerminal = (cmd: string, path: string, terminal: any) => {
+export const runCmdToTerminal = (cmd: string, path: string, terminal: any): Promise<void> => {
   return new Promise((resolve, reject) => {
-    const installProcess = execFile(
+    const installProcess = spawn(
       /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
       ['run', cmd],
       {
         cwd: path,
         shell: false,
-      },
-      (error: Error, data: string) => {
-        if (error) {
-          reject(error);
-        }
-        console.log('hello resolve');
-        resolve(data);
-      }
-    );
+      });
     installProcess.stdout.on('data', (data: string) => {
-      console.log(process.pid);
       terminal.writeln(data);
     });
     installProcess.stderr.on('data', (data: string) => {
-      console.log(process.pid);
-
       terminal.writeln(data);
     });
     installProcess.on('error', (error: Error) => {
-      console.log(process.pid);
       terminal.writeln(error.message);
     });
-    console.log(`PID: ${installProcess.pid}`);
+    installProcess.on('close', () => {
+      resolve();
+    });
   });
 };

@@ -9,7 +9,7 @@ import { generateProject } from '../../services/installation.service';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { useDependencies } from '../Contexts/dependenciesProvider';
 import { useGithub } from '../Contexts/GithubProvider';
-import { useModal } from '../../hooks/useModal';
+import { useModal } from '../../../hooks/useModal';
 
 import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
