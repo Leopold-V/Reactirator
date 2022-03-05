@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { FitAddon } from 'xterm-addon-fit';
 import { ipcRenderer } from 'electron';
@@ -9,6 +9,7 @@ export const TerminalOutput = React.memo<{ task: string, log: string, inModal?: 
     inModal = false,
     setSaveLog = ''
 }) => {
+  const [newLog, setNewLog] = useState('');
   const xtermRef = useRef(null);
 
   const fitAddon = new FitAddon();
@@ -20,19 +21,15 @@ export const TerminalOutput = React.memo<{ task: string, log: string, inModal?: 
     fitAddon.fit();
     xtermRef.current.terminal.writeln(log);
     ipcRenderer.on(`child-process-${task}`, (event, arg) => {
-      console.log('before stream');
-      console.log(xtermRef);
       //@ts-ignore
-      setSaveLog((log: any) => log + arg.toString());
-      xtermRef.current.terminal.writeln(arg);
-      console.log('after stream');
-      
+      setSaveLog((saveLog: any) => saveLog + arg.toString());
+      setNewLog(arg.toString());
     });
   }, []);
-/*
+
   useEffect(() => {
-    xtermRef.current.terminal.writeln(log);
-  }, [log])*/
+    xtermRef.current.terminal.writeln();
+  }, [newLog])
 
   return (
     <XTerm

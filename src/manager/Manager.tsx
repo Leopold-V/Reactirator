@@ -7,6 +7,8 @@ import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerP
 import { DependenciesPage } from './components/pages/DependenciesPage';
 import { TasksPage } from './components/pages/TasksPage';
 
+// TODO: Should kill all running process and ask for confirmation if we leave the manager application
+
 const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
   const { projectData } = useProjectData();
   const { path } = useRouteMatch();

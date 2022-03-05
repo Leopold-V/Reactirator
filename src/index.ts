@@ -94,7 +94,9 @@ ipcMain.on('open-directory', (event, arg) => {
   }
 });
 
+// TODO: Should maintain a list of running process.
 ipcMain.on('run-cmd', (event, arg) => {
+  // TODO: manage exit/close event to know when stop loading state on the UI
   const taskProcess = spawn(
     /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
     ['run', arg.cmd],

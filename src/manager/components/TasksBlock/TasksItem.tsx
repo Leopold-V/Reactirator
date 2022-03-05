@@ -16,6 +16,7 @@ export const TasksItem = ({
   const [saveLog, setSaveLog] = useState('');
 
   useEffect(() => {
+    // TODO manage loading state with close/exit event from server
     ipcRenderer.on(`child-process-${task}`, (event, arg) => {
       if (!open) {
         setLog((log) => log + arg.toString());

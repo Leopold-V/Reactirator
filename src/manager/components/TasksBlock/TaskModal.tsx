@@ -23,6 +23,7 @@ export const TaskModal = ({
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
+        unmount={false}
         initialFocus={cancelButtonRef}
         onClose={toggleModal}
       >
