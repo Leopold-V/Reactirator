@@ -15,7 +15,6 @@ export const killProcess = (id: number) => {
 // TODO: to test
 export const killProcess = (doomedProcessId: any): Promise<any> => {
     return new Promise(resolve => {
-      console.log('hello ' + doomedProcessId);
       if (isWin) {
         // For Windows Support
         // On Windows there is only one process so no need for psTree (see below)

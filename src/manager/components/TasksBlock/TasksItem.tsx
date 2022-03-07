@@ -8,12 +8,7 @@ import { TaskSwitch } from './TaskSwitch';
 import { TaskModal } from './TaskModal';
 import { TaskStatut } from './TaskStatut';
 
-export const TasksItem = ({
-  task,
-}: {
-  task: string;
-}) => {
-
+export const TasksItem = ({ task }: { task: string }) => {
   // TODO: Its quite a lot of UI states, maybe simpler to have a reducer to manager all.
   const [open, toggleModal] = useModal();
   const [log, setLog] = useState('');
@@ -43,10 +38,10 @@ export const TasksItem = ({
       console.log(arg);
       try {
         await killProcess(arg);
-          setTaskState('Error');
+        setTaskState('Error');
       } catch (error) {
-          console.log(error.message);
-          setTaskState('Error');
+        console.log(error.message);
+        setTaskState('Error');
       }
     });
     return () => {
@@ -63,7 +58,6 @@ export const TasksItem = ({
     }
   }, [taskState]);
 
-
   useEffect(() => {
     if (!enabled && taskState === 'Pending') {
       ipcRenderer.send('kill-process', { task: task });
@@ -71,8 +65,7 @@ export const TasksItem = ({
     if (enabled) {
       setTaskState('Pending');
     }
-  }, [enabled])
-
+  }, [enabled]);
 
   return (
     <Card>
@@ -81,16 +74,25 @@ export const TasksItem = ({
           {task}
         </div>
         <div className="w-1/4 text-gray-500">
-          <TaskStatut taskState={taskState} />  
+          <TaskStatut taskState={taskState} />
         </div>
         <div className="w-1/4">
-          <button onClick={toggleModal} className="px-3 py-1 rounded-full text-gray-600 text-sm bg-transparent border-2 border-indigo-400 hover:opacity-80 transition duration-200">
+          <button
+            onClick={toggleModal}
+            className="px-3 py-1 rounded-full text-gray-600 text-sm bg-transparent border-2 border-indigo-400 hover:opacity-80 transition duration-200"
+          >
             Open logs
           </button>
-          </div>
+        </div>
         <TaskSwitch task={task} enabled={enabled} setEnabled={setEnabled} />
       </div>
-      <TaskModal task={task} log={log} open={open} toggleModal={toggleModal} setSaveLog={setSaveLog} />
+      <TaskModal
+        task={task}
+        log={log}
+        open={open}
+        toggleModal={toggleModal}
+        setSaveLog={setSaveLog}
+      />
     </Card>
   );
 };

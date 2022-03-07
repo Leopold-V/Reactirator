@@ -111,6 +111,8 @@ ipcMain.on('run-cmd', (event, arg) => {
     
     taskProcess.stdout.on('data', (data: string) => {
       console.log(data.toString());
+      console.log(taskProcess.pid);
+      
       event.sender.send(`child-process-${arg.cmd}`, data.toString())
     });
     taskProcess.stderr.on('data', (data: string) => {
@@ -121,11 +123,12 @@ ipcMain.on('run-cmd', (event, arg) => {
       console.log(error.message);
       event.sender.send(`child-process-error-${arg.cmd}`, error.message);
     });
-    taskProcess.on('close', (error: Error) => {
-      console.log(error.message);
+    taskProcess.on('close', () => {
+      console.log('close');
       event.sender.send(`child-process-close-${arg.cmd}`);
     });
     taskProcess.on('exit', () => {
+      console.log('exit');
       console.log(`Exit task process: ${arg.cmd}`);
       event.sender.send(`child-process-end-${arg.cmd}`);
     });
