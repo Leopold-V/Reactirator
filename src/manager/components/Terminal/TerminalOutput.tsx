@@ -21,14 +21,18 @@ export const TerminalOutput = React.memo<{ task: string, log: string, inModal?: 
     fitAddon.fit();
     xtermRef.current.terminal.writeln(log);
     ipcRenderer.on(`child-process-${task}`, (event, arg) => {
+      if (inModal) {
       //@ts-ignore
-      setSaveLog((saveLog: any) => saveLog + arg.toString());
+      setSaveLog((saveLog: string) => saveLog + arg.toString());
+      }
       setNewLog(arg.toString());
     });
+    // TODO: clean up ipcRenderer listeners, it might interfer with the task switch listener, 
+    // so maybe have a different event name between the task item component and this component.
   }, []);
 
   useEffect(() => {
-    xtermRef.current.terminal.writeln();
+    xtermRef.current.terminal.writeln(newLog);
   }, [newLog])
 
   return (

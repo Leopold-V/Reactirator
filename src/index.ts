@@ -7,7 +7,6 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 require('@electron/remote/main').initialize();
 
 if (require('electron-squirrel-startup')) {
-  // eslint-disable-line global-require
   app.quit();
 }
 
@@ -94,9 +93,11 @@ ipcMain.on('open-directory', (event, arg) => {
   }
 });
 
-// TODO: Should maintain a list of running process.
+let listTaskPid: {pid: number, taskName: string}[] = [];
+
+// TODO: pop old process id
 ipcMain.on('run-cmd', (event, arg) => {
-  // TODO: manage exit/close event to know when stop loading state on the UI
+  // TODO: Maybe change event name for the task run.
   const taskProcess = spawn(
     /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
     ['run', arg.cmd],
@@ -104,6 +105,10 @@ ipcMain.on('run-cmd', (event, arg) => {
       cwd: arg.path,
       shell: false,
     });
+
+    listTaskPid.push({pid: taskProcess.pid, taskName: arg.cmd});
+    console.log(listTaskPid);
+    
     taskProcess.stdout.on('data', (data: string) => {
       console.log(data.toString());
       event.sender.send(`child-process-${arg.cmd}`, data.toString())
@@ -114,6 +119,21 @@ ipcMain.on('run-cmd', (event, arg) => {
     });
     taskProcess.on('error', (error: Error) => {
       console.log(error.message);
-      event.sender.send(`child-process-${arg.cmd}`, error.message);
+      event.sender.send(`child-process-error-${arg.cmd}`, error.message);
     });
+    taskProcess.on('close', (error: Error) => {
+      console.log(error.message);
+      event.sender.send(`child-process-close-${arg.cmd}`);
+    });
+    taskProcess.on('exit', () => {
+      console.log(`Exit task process: ${arg.cmd}`);
+      event.sender.send(`child-process-end-${arg.cmd}`);
+    });
+})
+
+ipcMain.on('kill-process', (event, arg) => {
+  const pid = listTaskPid.find((task) => task.taskName === arg.task).pid;
+  listTaskPid = listTaskPid.filter((task) => task.taskName === arg.task);
+  console.log(pid);
+  event.sender.send(`child-process-kill-${arg.task}`, pid);
 })

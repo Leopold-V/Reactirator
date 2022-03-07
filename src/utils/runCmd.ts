@@ -1,4 +1,4 @@
-import child_process, { spawn, execFile } from 'child_process';
+import child_process, { spawn } from 'child_process';
 
 export const runCmd = (cmd: string): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -21,7 +21,7 @@ export const runCmd = (cmd: string): Promise<string> => {
 };
 
 export const runCmdToTerminal = (cmd: string, path: string, terminal: any): Promise<void> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const installProcess = spawn(
       /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
       ['run', cmd],

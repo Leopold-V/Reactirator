@@ -4,12 +4,12 @@ import './switch.css';
 import { Switch } from '@headlessui/react';
 import { useProjectData } from '../Contexts/ProjectDataProvider';
 
-export const TaskSwitch = React.memo<{ task: string; setLog: (log: string) => void }>(({
+export const TaskSwitch = React.memo<{ task: string, enabled: boolean, setEnabled: (enabled: boolean) => void }>(({
     task,
-    setLog
+    enabled,
+    setEnabled
 } ) => {
   const { projectData } = useProjectData();
-  const [enabled, setEnabled] = useState(false)
 
   const handleChange = () => {
     setEnabled(!enabled);
@@ -18,8 +18,6 @@ export const TaskSwitch = React.memo<{ task: string; setLog: (log: string) => vo
   useEffect(() => {
     if (enabled) {
       ipcRenderer.send('run-cmd', {path: projectData.projectPath, cmd: task});
-    } else {
-      setLog('');
     }
   }, [enabled]);
 
@@ -56,7 +54,6 @@ export const TaskMainSwitch = ({
   useEffect(() => {
     if (checked) {
       ipcRenderer.send('run-cmd', {path: projectData.projectPath, cmd: task});
-      //setCmd(task);
     }
   }, [checked]);
 
