@@ -1,23 +1,33 @@
 import { ipcRenderer } from 'electron';
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
+import detect from 'detect-port';
 import './switch.css';
 import { Switch } from '@headlessui/react';
+import { killProcess } from '../../../utils/killProcess';
+import { actionTaskType } from '../../helpers/types';
 import { useProjectData } from '../Contexts/ProjectDataProvider';
 
-export const TaskSwitch = React.memo<{ task: string, enabled: boolean, setEnabled: (enabled: boolean) => void }>(({
-    task,
-    enabled,
-    setEnabled
-} ) => {
+export const TaskSwitch = ({
+  taskName,
+  enabled,
+  dispatchTask,
+}: {
+  taskName: string;
+  enabled: boolean;
+  dispatchTask: Dispatch<actionTaskType>;
+}) => {
   const { projectData } = useProjectData();
 
+  // TODO:
+  // Since toggle switch change a lot of state and interaction with the server we should maybe add a debounce hook.
   const handleChange = () => {
-    setEnabled(!enabled);
+    dispatchTask({ type: 'SWITCH' });
   };
-  
+
   useEffect(() => {
     if (enabled) {
-      ipcRenderer.send('run-cmd', {path: projectData.projectPath, cmd: task});
+      ipcRenderer.send('run-cmd', { path: projectData.projectPath, cmd: taskName });
+      dispatchTask({ type: 'PENDING' });
     }
   }, [enabled]);
 
@@ -36,13 +46,21 @@ export const TaskSwitch = React.memo<{ task: string, enabled: boolean, setEnable
         } inline-block w-4 h-4 transform bg-white rounded-full transition ease-in-out duration-200`}
       />
     </Switch>
-  )
-})
+  );
+};
+
+const port = 3000;
 
 export const TaskMainSwitch = ({
-  task
+  taskName,
+  setLog,
+  isRunning,
+  setisRunning,
 }: {
-  task: string;
+  taskName: string;
+  setLog: (log: string) => void;
+  isRunning: boolean;
+  setisRunning: (running: boolean) => void;
 }) => {
   const { projectData } = useProjectData();
   const [checked, setChecked] = useState(false);
@@ -52,28 +70,64 @@ export const TaskMainSwitch = ({
   };
 
   useEffect(() => {
+    ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
+      try {
+        await killProcess(arg);
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLog('Task aborted');
+        setisRunning(false);
+      }
+    });
+    return () => {
+      ipcRenderer.removeAllListeners(`child-process-kill-${taskName}`);
+    };
+  }, []);
+
+  useEffect(() => {
     if (checked) {
-      ipcRenderer.send('run-cmd', {path: projectData.projectPath, cmd: task});
+      detect(port)
+        .then((_port) => {
+          if (port == _port) {
+            ipcRenderer.send('run-cmd', { path: projectData.projectPath, cmd: taskName });
+            setLog('');
+            setisRunning(true);
+          } else {
+            setLog('The port 3000 is busy');
+            setisRunning(false);
+            setChecked(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [checked]);
+
+  useEffect(() => {
+    if (!checked && isRunning === true) {
+      ipcRenderer.send('kill-process', { task: taskName });
+    }
+  }, [checked, isRunning]);
 
   return (
     <div>
       <div className="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
         <input
           type="checkbox"
-          name={`toggle-${task}`}
-          id={`toggle-${task}`}
+          name={`toggle-${taskName}`}
+          id={`toggle-${taskName}`}
           className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
           checked={checked}
           onChange={handleChange}
         />
         <label
-          htmlFor={`toggle-${task}`}
+          htmlFor={`toggle-${taskName}`}
           className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
         ></label>
       </div>
-      <label htmlFor={`toggle-${task}`} className="text-gray-700">
+      <label htmlFor={`toggle-${taskName}`} className="text-gray-700">
         Launch!
       </label>
     </div>

@@ -11,7 +11,7 @@ export const TasksList = ({
       {Object.entries(scripts)
         .filter((ele) => ele[0] !== 'start' && ele[0] !== 'dev')
         .map((ele, i) => (
-          <TasksItem key={i} task={ele[0]} />
+          <TasksItem key={i} taskName={ele[0]} />
         ))}
     </ul>
   );

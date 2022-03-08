@@ -1,80 +1,70 @@
 import { ipcRenderer } from 'electron';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { killProcess } from '../../../utils/killProcess';
-import { taskStateType } from '../../helpers/types';
 import { useModal } from '../../../hooks/useModal';
+import taskReducer from '../../reducers/taskReducer';
 import { Card } from '../../../common/Card';
 import { TaskSwitch } from './TaskSwitch';
 import { TaskModal } from './TaskModal';
 import { TaskStatut } from './TaskStatut';
 
-export const TasksItem = ({ task }: { task: string }) => {
-  // TODO: Its quite a lot of UI states, maybe simpler to have a reducer to manager all.
+// TODO:
+// We should rather manage a list of process on the front so that we don't need a listener for process kill
+// and we can use the list of process in a state for other work such as ask confirmation to leave the tasks page and kill all process.
+// Create a new pid list state and update it each time we start a new task.
+export const TasksItem = ({ taskName }: { taskName: string }) => {
   const [open, toggleModal] = useModal();
   const [log, setLog] = useState('');
   const [saveLog, setSaveLog] = useState('');
-  const [enabled, setEnabled] = useState(false);
-  const [taskState, setTaskState] = useState<taskStateType>('Idle');
+  const [taskRun, dispatchTask] = useReducer(taskReducer, { enabled: false, taskState: 'Idle'});
 
   useEffect(() => {
-    ipcRenderer.on(`child-process-${task}`, (event, arg) => {
+    ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {
       if (!open) {
         setLog((log) => log + arg.toString());
       } else {
         setLog(log + saveLog);
       }
     });
-    ipcRenderer.on(`child-process-error-${task}`, () => {
-      setTaskState('Error');
+    ipcRenderer.on(`child-process-error-${taskName}`, () => {
+      dispatchTask({ type: 'ERROR' });
     });
-    ipcRenderer.on(`child-process-end-${task}`, () => {
-      setTaskState('Success');
+    ipcRenderer.on(`child-process-end-${taskName}`, () => {
+      dispatchTask({ type: 'FINISH' });
     });
-    /*
-    ipcRenderer.on(`child-process-close-${task}`, () => {
-      setTaskState('Error');
-    });*/
-    ipcRenderer.on(`child-process-kill-${task}`, async (event, arg) => {
+    ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
       console.log(arg);
       try {
         await killProcess(arg);
-        setTaskState('Error');
+        setLog((log) => log + 'Task aborted.');
       } catch (error) {
         console.log(error.message);
-        setTaskState('Error');
+      } finally {
+        dispatchTask({ type: 'STOP' });
       }
     });
     return () => {
-      ipcRenderer.removeAllListeners(`child-process-${task}`);
-      ipcRenderer.removeAllListeners(`child-process-error-${task}`);
-      ipcRenderer.removeAllListeners(`child-process-end-${task}`);
-      ipcRenderer.removeAllListeners(`child-process-kill-${task}`);
+      ipcRenderer.removeAllListeners(`child-process-${taskName}`);
+      ipcRenderer.removeAllListeners(`child-process-error-${taskName}`);
+      ipcRenderer.removeAllListeners(`child-process-end-${taskName}`);
+      ipcRenderer.removeAllListeners(`child-process-kill-${taskName}`);
     };
   }, []);
 
   useEffect(() => {
-    if (taskState !== 'Pending') {
-      setEnabled(false);
+    if (!taskRun.enabled && taskRun.taskState === 'Pending') {
+      ipcRenderer.send('kill-process', { task: taskName });
     }
-  }, [taskState]);
-
-  useEffect(() => {
-    if (!enabled && taskState === 'Pending') {
-      ipcRenderer.send('kill-process', { task: task });
-    }
-    if (enabled) {
-      setTaskState('Pending');
-    }
-  }, [enabled]);
+  }, [taskRun.enabled]);
 
   return (
     <Card>
       <div className="flex justify-between items-center h-full">
         <div className="w-1/4 text-left font-bold text-gray-700 hover:opacity-90 transition duration-250">
-          {task}
+          {taskName}
         </div>
         <div className="w-1/4 text-gray-500">
-          <TaskStatut taskState={taskState} />
+          <TaskStatut taskState={taskRun.taskState} />
         </div>
         <div className="w-1/4">
           <button
@@ -84,11 +74,12 @@ export const TasksItem = ({ task }: { task: string }) => {
             Open logs
           </button>
         </div>
-        <TaskSwitch task={task} enabled={enabled} setEnabled={setEnabled} />
+        <TaskSwitch taskName={taskName} enabled={taskRun.enabled} dispatchTask={dispatchTask} />
       </div>
       <TaskModal
-        task={task}
+        taskName={taskName}
         log={log}
+        setLog={setLog}
         open={open}
         toggleModal={toggleModal}
         setSaveLog={setSaveLog}

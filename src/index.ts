@@ -95,7 +95,6 @@ ipcMain.on('open-directory', (event, arg) => {
 
 let listTaskPid: {pid: number, taskName: string}[] = [];
 
-// TODO: pop old process id
 ipcMain.on('run-cmd', (event, arg) => {
   // TODO: Maybe change event name for the task run.
   const taskProcess = spawn(
@@ -112,7 +111,6 @@ ipcMain.on('run-cmd', (event, arg) => {
     taskProcess.stdout.on('data', (data: string) => {
       console.log(data.toString());
       console.log(taskProcess.pid);
-      
       event.sender.send(`child-process-${arg.cmd}`, data.toString())
     });
     taskProcess.stderr.on('data', (data: string) => {
@@ -123,20 +121,15 @@ ipcMain.on('run-cmd', (event, arg) => {
       console.log(error.message);
       event.sender.send(`child-process-error-${arg.cmd}`, error.message);
     });
-    taskProcess.on('close', () => {
-      console.log('close');
-      event.sender.send(`child-process-close-${arg.cmd}`);
-    });
     taskProcess.on('exit', () => {
-      console.log('exit');
-      console.log(`Exit task process: ${arg.cmd}`);
+      console.log(`Exit task process: ${arg.cmd} with pid: ${taskProcess.pid}`);
+      listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.cmd);
+      console.log(listTaskPid);
       event.sender.send(`child-process-end-${arg.cmd}`);
     });
 })
 
 ipcMain.on('kill-process', (event, arg) => {
   const pid = listTaskPid.find((task) => task.taskName === arg.task).pid;
-  listTaskPid = listTaskPid.filter((task) => task.taskName === arg.task);
-  console.log(pid);
   event.sender.send(`child-process-kill-${arg.task}`, pid);
 })
