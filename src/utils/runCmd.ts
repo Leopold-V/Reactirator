@@ -22,13 +22,10 @@ export const runCmd = (cmd: string): Promise<string> => {
 
 export const runCmdToTerminal = (cmd: string, path: string, terminal: any): Promise<void> => {
   return new Promise((resolve) => {
-    const installProcess = spawn(
-      /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
-      ['run', cmd],
-      {
-        cwd: path,
-        shell: false,
-      });
+    const installProcess = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', cmd], {
+      cwd: path,
+      shell: false,
+    });
     installProcess.stdout.on('data', (data: string) => {
       terminal.writeln(data);
     });

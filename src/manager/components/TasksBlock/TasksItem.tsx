@@ -16,7 +16,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
   const [open, toggleModal] = useModal();
   const [log, setLog] = useState('');
   const [saveLog, setSaveLog] = useState('');
-  const [taskRun, dispatchTask] = useReducer(taskReducer, { enabled: false, taskState: 'Idle'});
+  const [taskRun, dispatchTask] = useReducer(taskReducer, { enabled: false, taskState: 'Idle' });
 
   useEffect(() => {
     ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {

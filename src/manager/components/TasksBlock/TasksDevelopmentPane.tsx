@@ -6,7 +6,7 @@ import { TaskMainSwitch } from './TaskSwitch';
 export const TasksDevelopmentPane = ({
   startScript,
   isRunning,
-  setisRunning
+  setisRunning,
 }: {
   startScript: string;
   isRunning: boolean;
@@ -17,10 +17,15 @@ export const TasksDevelopmentPane = ({
   return (
     <Card>
       <div className="flex h-52 text-center">
-        <div className='w-5/12 flex flex-col justify-center space-y-3'>
+        <div className="w-5/12 flex flex-col justify-center space-y-3">
           <h2 className="text-black font-bold text-lg">Development server</h2>
           <div className="justify-self-center">
-            <TaskMainSwitch taskName={startScript} setLog={setLog} isRunning={isRunning} setisRunning={setisRunning} />
+            <TaskMainSwitch
+              taskName={startScript}
+              setLog={setLog}
+              isRunning={isRunning}
+              setisRunning={setisRunning}
+            />
           </div>
         </div>
         <TerminalOutput taskName={startScript} log={log} />

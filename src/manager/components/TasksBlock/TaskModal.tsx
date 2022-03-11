@@ -20,7 +20,7 @@ export const TaskModal = (props: TaskModalProps) => {
 
   const clearLogs = () => {
     setLog('');
-  }
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>

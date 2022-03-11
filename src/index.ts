@@ -93,43 +93,40 @@ ipcMain.on('open-directory', (event, arg) => {
   }
 });
 
-let listTaskPid: {pid: number, taskName: string}[] = [];
+let listTaskPid: { pid: number; taskName: string }[] = [];
 
 ipcMain.on('run-cmd', (event, arg) => {
   // TODO: Maybe change event name for the task run.
-  const taskProcess = spawn(
-    /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
-    ['run', arg.cmd],
-    {
-      cwd: arg.path,
-      shell: false,
-    });
+  const taskProcess = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', arg.cmd], {
+    cwd: arg.path,
+    shell: false,
+  });
 
-    listTaskPid.push({pid: taskProcess.pid, taskName: arg.cmd});
+  listTaskPid.push({ pid: taskProcess.pid, taskName: arg.cmd });
+  console.log(listTaskPid);
+
+  taskProcess.stdout.on('data', (data: string) => {
+    console.log(data.toString());
+    console.log(taskProcess.pid);
+    event.sender.send(`child-process-${arg.cmd}`, data.toString());
+  });
+  taskProcess.stderr.on('data', (data: string) => {
+    console.log(data.toString());
+    event.sender.send(`child-process-${arg.cmd}`, data.toString());
+  });
+  taskProcess.on('error', (error: Error) => {
+    console.log(error.message);
+    event.sender.send(`child-process-error-${arg.cmd}`, error.message);
+  });
+  taskProcess.on('exit', () => {
+    console.log(`Exit task process: ${arg.cmd} with pid: ${taskProcess.pid}`);
+    listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.cmd);
     console.log(listTaskPid);
-    
-    taskProcess.stdout.on('data', (data: string) => {
-      console.log(data.toString());
-      console.log(taskProcess.pid);
-      event.sender.send(`child-process-${arg.cmd}`, data.toString())
-    });
-    taskProcess.stderr.on('data', (data: string) => {
-      console.log(data.toString());
-      event.sender.send(`child-process-${arg.cmd}`, data.toString())
-    });
-    taskProcess.on('error', (error: Error) => {
-      console.log(error.message);
-      event.sender.send(`child-process-error-${arg.cmd}`, error.message);
-    });
-    taskProcess.on('exit', () => {
-      console.log(`Exit task process: ${arg.cmd} with pid: ${taskProcess.pid}`);
-      listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.cmd);
-      console.log(listTaskPid);
-      event.sender.send(`child-process-end-${arg.cmd}`);
-    });
-})
+    event.sender.send(`child-process-end-${arg.cmd}`);
+  });
+});
 
 ipcMain.on('kill-process', (event, arg) => {
   const pid = listTaskPid.find((task) => task.taskName === arg.task).pid;
   event.sender.send(`child-process-kill-${arg.task}`, pid);
-})
+});

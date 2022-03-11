@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
 import { promisifyReadFs } from './utils/promisifyFs';
 import initialPackageJson from './creator/helpers/initialPackageJson';
-import { getSizeOfPackagesList, searchPackages } from './creator/services/package.service';
+import { getSizeOfPackagesList, searchPackages } from './services/package.service';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
 import { ProjectDataProvider } from './manager/components/Contexts/ProjectDataProvider';
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';

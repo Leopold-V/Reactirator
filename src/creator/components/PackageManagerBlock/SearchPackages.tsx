@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, Dispatch } from 'react';
 import { ListPackagesFound } from './ListPackagesFound';
 
 import { actionPackageType, listPackageType } from '../../helpers/types';
-import { searchPackages } from '../../services/package.service';
+import { searchPackages } from '../../../services/package.service';
 
 export const SearchPackages = ({
   dispatchPackages,

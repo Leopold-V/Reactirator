@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
 import { formInputType, structureStateType } from '../../helpers/types';
-import { generateProject } from '../../services/installation.service';
+import { generateProject } from '../../../services/installation.service';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { useDependencies } from '../Contexts/dependenciesProvider';
 import { useGithub } from '../Contexts/GithubProvider';

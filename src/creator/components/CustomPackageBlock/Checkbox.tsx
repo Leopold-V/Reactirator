@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactNode } from 'react';
-import { searchPackages } from '../../services/package.service';
+import { searchPackages } from '../../../services/package.service';
 import { actionPackageType, formInputType } from '../../helpers/types';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 

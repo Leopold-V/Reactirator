@@ -23,7 +23,7 @@ export const TaskStatut = ({ taskState }: { taskState: taskStateType }) => {
     return (
       <div className="flex items-center space-x-1">
         <div className="animate-spin">
-        <CogIcon className="h-5 w-5 text-gray-500 " aria-hidden="true" />
+          <CogIcon className="h-5 w-5 text-gray-500 " aria-hidden="true" />
         </div>
         <span>Pending...</span>
       </div>

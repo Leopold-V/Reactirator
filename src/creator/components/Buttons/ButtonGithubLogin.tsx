@@ -1,5 +1,5 @@
 import React from 'react';
-import { getToken } from '../../services/github.services';
+import { getToken } from '../../../services/github.services';
 import { authGitHub } from '../../helpers/authGithub';
 import { useGithub } from '../Contexts/GithubProvider';
 

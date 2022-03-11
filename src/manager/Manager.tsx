@@ -21,10 +21,16 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
   return (
     <Layout theme={theme} setTheme={setTheme}>
       <div className="space-y-4 w-full h-full relative">
-        <div className="text-center text-2xl font-extrabold">{projectData.name} {isRunning ? '[RUNNING]' : '[OFF]'}</div>
+        <div className="text-center text-2xl font-extrabold">
+          {projectData.name} {isRunning ? '[RUNNING]' : '[OFF]'}
+        </div>
         <hr />
         <LoadingTasksProvider>
-          <Route exact path={`${path}`} render={() => <TasksPage isRunning={isRunning} setisRunning={setisRunning} />} />
+          <Route
+            exact
+            path={`${path}`}
+            render={() => <TasksPage isRunning={isRunning} setisRunning={setisRunning} />}
+          />
           <Route exact path={`${path}/dependencies`} component={DependenciesPage} />
           <Route exact path={`${path}/architecture`} component={ArchitectureManagerPage} />
         </LoadingTasksProvider>
