@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
-import { ipcRenderer } from 'electron';
 import * as ReactDOM from 'react-dom';
+import { ipcRenderer } from 'electron';
+import { Provider } from 'react-redux';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
 import { promisifyReadFs } from './utils/promisifyFs';
 import initialPackageJson from './creator/helpers/initialPackageJson';
@@ -15,6 +16,7 @@ import { Bar } from './common/Bar';
 import { Card } from './common/Card';
 import Creator from './creator';
 import Manager from './manager';
+import store from './store';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -189,9 +191,11 @@ const managerLoader = (manager: JSX.Element) => {
         </div>
       );
     return (
-      <ProjectDataProvider projectData={data} setProjectData={setData}>
-        {manager}
-      </ProjectDataProvider>
+      <Provider store={store}>
+        <ProjectDataProvider projectData={data} setProjectData={setData}>
+          {manager}
+        </ProjectDataProvider>
+      </Provider>
     );
   };
 };

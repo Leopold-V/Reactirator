@@ -1,5 +1,6 @@
 import { ipcRenderer } from 'electron';
 import React, { useEffect, useReducer, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { killProcess } from '../../../utils/killProcess';
 import { useModal } from '../../../hooks/useModal';
 import taskReducer from '../../reducers/taskReducer';
@@ -7,6 +8,7 @@ import { Card } from '../../../common/Card';
 import { TaskSwitch } from './TaskSwitch';
 import { TaskModal } from './TaskModal';
 import { TaskStatut } from './TaskStatut';
+import { errorTask, finishTask, stopTask } from '../../../slices/taskSlice';
 
 // TODO:
 // We should rather manage a list of process on the front so that we don't need a listener for process kill
@@ -16,7 +18,11 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
   const [open, toggleModal] = useModal();
   const [log, setLog] = useState('');
   const [saveLog, setSaveLog] = useState('');
-  const [taskRun, dispatchTask] = useReducer(taskReducer, { enabled: false, taskState: 'Idle' });
+  const [taskRun, dispatchTask] = useReducer(taskReducer, { enabled: false, taskState: 'Idle', isKill: false });
+
+  //@ts-ignore
+  const task = useSelector((state) => state.task)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {
@@ -28,9 +34,11 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
     });
     ipcRenderer.on(`child-process-error-${taskName}`, () => {
       dispatchTask({ type: 'ERROR' });
+      dispatch(errorTask());
     });
     ipcRenderer.on(`child-process-end-${taskName}`, () => {
       dispatchTask({ type: 'FINISH' });
+      dispatch(finishTask());
     });
     ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
       console.log(arg);
@@ -41,6 +49,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
         console.log(error.message);
       } finally {
         dispatchTask({ type: 'STOP' });
+        dispatch(stopTask());
       }
     });
     return () => {
@@ -50,6 +59,11 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
       ipcRenderer.removeAllListeners(`child-process-kill-${taskName}`);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(task);
+  }, [task])
+  
 
   useEffect(() => {
     if (!taskRun.enabled && taskRun.taskState === 'Pending') {

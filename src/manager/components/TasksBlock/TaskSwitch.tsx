@@ -1,11 +1,13 @@
 import { ipcRenderer } from 'electron';
 import React, { Dispatch, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import detect from 'detect-port';
 import './switch.css';
 import { Switch } from '@headlessui/react';
 import { killProcess } from '../../../utils/killProcess';
 import { actionTaskType } from '../../helpers/types';
 import { useProjectData } from '../Contexts/ProjectDataProvider';
+import { pendingTask } from '../../../slices/taskSlice';
 
 export const TaskSwitch = ({
   taskName,
@@ -17,6 +19,9 @@ export const TaskSwitch = ({
   dispatchTask: Dispatch<actionTaskType>;
 }) => {
   const { projectData } = useProjectData();
+    //@ts-ignore
+  const task = useSelector((state) => state.task)
+  const dispatch = useDispatch()
 
   // TODO:
   // Since toggle switch change a lot of state and interaction with the server we should maybe add a debounce hook.
@@ -28,6 +33,7 @@ export const TaskSwitch = ({
     if (enabled) {
       ipcRenderer.send('run-cmd', { path: projectData.projectPath, cmd: taskName });
       dispatchTask({ type: 'PENDING' });
+      dispatch(pendingTask());
     }
   }, [enabled]);
 

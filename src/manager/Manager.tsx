@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import detect from 'detect-port';
+import React, { useState } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 import { Layout } from '../common/Layout';
 import { useProjectData } from './components/Contexts/ProjectDataProvider';
