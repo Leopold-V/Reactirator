@@ -1,14 +1,13 @@
 import { ipcRenderer } from 'electron';
-import React, { useEffect, useReducer, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../hooks';
 import { killProcess } from '../../../utils/killProcess';
 import { useModal } from '../../../hooks/useModal';
-import taskReducer from '../../reducers/taskReducer';
 import { Card } from '../../../common/Card';
 import { TaskSwitch } from './TaskSwitch';
 import { TaskModal } from './TaskModal';
 import { TaskStatut } from './TaskStatut';
-import { errorTask, finishTask, stopTask } from '../../../slices/taskSlice';
+import { errorTask, finishTask, stopTask } from '../../../slices/projectSlice';
 
 // TODO:
 // We should rather manage a list of process on the front so that we don't need a listener for process kill
@@ -18,11 +17,9 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
   const [open, toggleModal] = useModal();
   const [log, setLog] = useState('');
   const [saveLog, setSaveLog] = useState('');
-  const [taskRun, dispatchTask] = useReducer(taskReducer, { enabled: false, taskState: 'Idle', isKill: false });
 
-  //@ts-ignore
-  const task = useSelector((state) => state.task)
-  const dispatch = useDispatch()
+  const task = useAppSelector((state) => state.project.tasks[taskName]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {
@@ -33,12 +30,10 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
       }
     });
     ipcRenderer.on(`child-process-error-${taskName}`, () => {
-      dispatchTask({ type: 'ERROR' });
-      dispatch(errorTask());
+      dispatch(errorTask(taskName));
     });
     ipcRenderer.on(`child-process-end-${taskName}`, () => {
-      dispatchTask({ type: 'FINISH' });
-      dispatch(finishTask());
+      dispatch(finishTask(taskName));
     });
     ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
       console.log(arg);
@@ -48,8 +43,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
       } catch (error) {
         console.log(error.message);
       } finally {
-        dispatchTask({ type: 'STOP' });
-        dispatch(stopTask());
+        dispatch(stopTask(taskName));
       }
     });
     return () => {
@@ -63,13 +57,13 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
   useEffect(() => {
     console.log(task);
   }, [task])
-  
 
   useEffect(() => {
-    if (!taskRun.enabled && taskRun.taskState === 'Pending') {
+    if (!task.enabled && task.taskState === 'Pending') {
+      console.log(task);
       ipcRenderer.send('kill-process', { task: taskName });
     }
-  }, [taskRun.enabled]);
+  }, [task.enabled]);
 
   return (
     <Card>
@@ -78,7 +72,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
           {taskName}
         </div>
         <div className="w-1/4 text-gray-500">
-          <TaskStatut taskState={taskRun.taskState} />
+          <TaskStatut taskState={task.taskState} />
         </div>
         <div className="w-1/4">
           <button
@@ -88,7 +82,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
             Open logs
           </button>
         </div>
-        <TaskSwitch taskName={taskName} enabled={taskRun.enabled} dispatchTask={dispatchTask} />
+        <TaskSwitch taskName={taskName} enabled={task.enabled} />
       </div>
       <TaskModal
         taskName={taskName}

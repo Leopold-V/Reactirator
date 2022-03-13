@@ -1,39 +1,33 @@
 import { ipcRenderer } from 'electron';
-import React, { Dispatch, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import detect from 'detect-port';
-import './switch.css';
 import { Switch } from '@headlessui/react';
 import { killProcess } from '../../../utils/killProcess';
-import { actionTaskType } from '../../helpers/types';
+import { pendingTask, switchTask } from '../../../slices/projectSlice';
+import { useAppDispatch } from '../../../hooks';
 import { useProjectData } from '../Contexts/ProjectDataProvider';
-import { pendingTask } from '../../../slices/taskSlice';
+import './switch.css';
 
 export const TaskSwitch = ({
   taskName,
   enabled,
-  dispatchTask,
 }: {
   taskName: string;
   enabled: boolean;
-  dispatchTask: Dispatch<actionTaskType>;
 }) => {
   const { projectData } = useProjectData();
-    //@ts-ignore
-  const task = useSelector((state) => state.task)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch();
 
   // TODO:
   // Since toggle switch change a lot of state and interaction with the server we should maybe add a debounce hook.
   const handleChange = () => {
-    dispatchTask({ type: 'SWITCH' });
+    dispatch(switchTask(taskName));
   };
 
   useEffect(() => {
     if (enabled) {
       ipcRenderer.send('run-cmd', { path: projectData.projectPath, cmd: taskName });
-      dispatchTask({ type: 'PENDING' });
-      dispatch(pendingTask());
+      dispatch(pendingTask(taskName));
     }
   }, [enabled]);
 

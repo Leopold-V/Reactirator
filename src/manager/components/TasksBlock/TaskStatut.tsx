@@ -1,8 +1,7 @@
 import React from 'react';
 import { BadgeCheckIcon, CogIcon, ExclamationIcon } from '@heroicons/react/outline';
-import { taskStateType } from '../../helpers/types';
 
-export const TaskStatut = ({ taskState }: { taskState: taskStateType }) => {
+export const TaskStatut = ({ taskState }: { taskState: string }) => {
   if (taskState === 'Idle') {
     return <div>Idle</div>;
   } else if (taskState === 'Error') {

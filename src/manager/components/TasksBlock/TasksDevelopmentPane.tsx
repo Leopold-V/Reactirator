@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
+import { useAppSelector } from '../../../hooks';
 import { Card } from '../../../common/Card';
 import { TerminalOutput } from '../Terminal';
 import { TaskMainSwitch } from './TaskSwitch';
 
 export const TasksDevelopmentPane = ({
-  startScript,
   isRunning,
   setisRunning,
 }: {
-  startScript: string;
   isRunning: boolean;
   setisRunning: (running: boolean) => void;
 }) => {
   const [log, setLog] = useState('');
+  const project = useAppSelector(
+    (state) => state.project);
+    console.log(project);
+  const startScript = useAppSelector(
+    (state) => Object.entries(state.project.tasks).find((ele) => ele[0] === 'start' || ele[0] === 'dev')[0]
+    );
 
   return (
     <Card>

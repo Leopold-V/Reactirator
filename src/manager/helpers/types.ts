@@ -8,3 +8,20 @@ export type actionTaskType = {
     isKill: boolean;
   };
 };
+
+export type taskType = {
+  enabled: boolean;
+  taskState: string;
+  isKill: boolean;
+};
+
+export type projectStateType = {
+  projectName: string,
+  projectPath: string,
+  loading?: boolean,
+  tasks: Record<string, taskType>
+}
+
+export type tasksStateType = {
+  tasks: Record<string, taskType>
+}

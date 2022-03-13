@@ -3,7 +3,9 @@ import * as ReactDOM from 'react-dom';
 import { ipcRenderer } from 'electron';
 import { Provider } from 'react-redux';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
+import {store} from './store';
 import { promisifyReadFs } from './utils/promisifyFs';
+import { tasksStateType, taskType } from './manager/helpers/types';
 import initialPackageJson from './creator/helpers/initialPackageJson';
 import { getSizeOfPackagesList, searchPackages } from './services/package.service';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
@@ -16,7 +18,9 @@ import { Bar } from './common/Bar';
 import { Card } from './common/Card';
 import Creator from './creator';
 import Manager from './manager';
-import store from './store';
+import { dispatch } from 'd3';
+import { useAppDispatch } from './hooks';
+import { fetchProject, initProject } from './slices/projectSlice';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -138,6 +142,12 @@ export const creatorLoader = (creator: JSX.Element) => {
   };
 };
 
+/*
+'taskState': 'Idle',
+'enabled': false,
+'isKill': false
+*/
+
 const managerLoader = (manager: JSX.Element) => {
   return () => {
     const [data, setData] = useState(null);
@@ -154,21 +164,9 @@ const managerLoader = (manager: JSX.Element) => {
         async (event: Electron.IpcRendererEvent, arg: any) => {
           const [filepath] = arg;
           if (arg) {
-            try {
-              const content = await promisifyReadFs(`${filepath}/package.json`);
-              const contentObj = JSON.parse(content);
-              if (contentObj.dependencies?.react) {
-                setData({ projectPath: filepath[0], ...contentObj });
-              } else {
-                history.push('/');
-                alert('This is not a React project !');
-              }
-            } catch (error) {
-              history.push('/');
-              alert(error);
-            } finally {
+            store.dispatch(fetchProject(filepath)).then(() => {
               setLoading(false);
-            }
+            });
           }
         }
       );
@@ -178,13 +176,14 @@ const managerLoader = (manager: JSX.Element) => {
       };
     }, []);
 
+    /*
     useEffect(() => {
       if (data) {
         setLoading(false);
       }
-    }, [data]);
+    }, [data]);*/
 
-    if (loading)
+    if (store.getState().project.loading)
       return (
         <div className="pt-8 flex justify-center items-center font-extrabold text-4xl h-screen">
           Loading...

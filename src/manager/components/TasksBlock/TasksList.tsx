@@ -1,13 +1,17 @@
 import React from 'react';
+import { useAppSelector } from '../../../hooks';
 import { TasksItem } from './TasksItem';
 
-export const TasksList = ({ scripts }: { scripts: string[] }) => {
+export const TasksList = () => {
+  const scripts = useAppSelector(
+    (state) => state.project.tasks);
+
   return (
     <ul className="h-72 flex flex-col space-y-2 overflow-y-auto">
-      {Object.entries(scripts)
-        .filter((ele) => ele[0] !== 'start' && ele[0] !== 'dev')
+      {Object.keys(scripts)
+        .filter((ele) => ele !== 'start' && ele !== 'dev')
         .map((ele, i) => (
-          <TasksItem key={i} taskName={ele[0]} />
+          <TasksItem key={i} taskName={ele} />
         ))}
     </ul>
   );
