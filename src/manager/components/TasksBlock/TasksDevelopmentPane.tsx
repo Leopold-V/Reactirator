@@ -4,17 +4,8 @@ import { Card } from '../../../common/Card';
 import { TerminalOutput } from '../Terminal';
 import { TaskMainSwitch } from './TaskSwitch';
 
-export const TasksDevelopmentPane = ({
-  isRunning,
-  setisRunning,
-}: {
-  isRunning: boolean;
-  setisRunning: (running: boolean) => void;
-}) => {
+export const TasksDevelopmentPane = () => {
   const [log, setLog] = useState('');
-  const project = useAppSelector(
-    (state) => state.project);
-    console.log(project);
   const startScript = useAppSelector(
     (state) => Object.entries(state.project.tasks).find((ele) => ele[0] === 'start' || ele[0] === 'dev')[0]
     );
@@ -28,8 +19,6 @@ export const TasksDevelopmentPane = ({
             <TaskMainSwitch
               taskName={startScript}
               setLog={setLog}
-              isRunning={isRunning}
-              setisRunning={setisRunning}
             />
           </div>
         </div>

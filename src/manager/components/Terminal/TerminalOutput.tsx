@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { FitAddon } from 'xterm-addon-fit';
 import { ipcRenderer } from 'electron';
+import { useAppSelector, useAppDispatch } from '../../../hooks';
+import { updateLogs } from '../../../slices/projectSlice';
 
 type terminalOutputProps = {
   taskName: string;
@@ -14,7 +16,9 @@ export const TerminalOutput = React.memo<terminalOutputProps>(
   ({ taskName, log, inModal = false, setSaveLog }) => {
     const xtermRef = useRef(null);
     const [newLog, setNewLog] = useState('');
-
+    const logs = useAppSelector(state => state.project.tasks[taskName].logs);
+    const dispatch = useAppDispatch();
+    
     const fitAddon = new FitAddon();
 
     useEffect(() => {
@@ -22,28 +26,35 @@ export const TerminalOutput = React.memo<terminalOutputProps>(
       xtermRef.current.terminal.setOption('convertEol', true);
       xtermRef.current.terminal.setOption('theme', { background: '#2e3748' });
       fitAddon.fit();
-      xtermRef.current.terminal.writeln(log);
+      //xtermRef.current.terminal.writeln(logs);
       ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {
-        if (inModal) {
+        if (!inModal) {
           //@ts-ignore
-          setSaveLog((saveLog: string) => saveLog + arg.toString());
+          dispatch(updateLogs({ taskName: taskName, logs: arg.toString()}));
         }
-        setNewLog(arg.toString());
       });
       // TODO: clean up ipcRenderer listeners, it might interfer with the task switch listener,
       // so maybe have a different event name between the task item component and this component.
     }, []);
 
     useEffect(() => {
-      xtermRef.current.terminal.writeln(newLog);
-    }, [newLog]);
+      xtermRef.current.terminal.clear();
+      xtermRef.current.terminal.writeln(logs);
+      console.log(logs);
+    }, [logs]);
 
+    /*
+    useEffect(() => {
+      xtermRef.current.terminal.writeln(newLog);
+    }, [newLog]);*/
+
+    /*
     useEffect(() => {
       console.log('log change should write task aborted');
       if (!inModal) {
         xtermRef.current.terminal.writeln(log);
       }
-    }, [log]);
+    }, [log]);*/
 
     return (
       <XTerm

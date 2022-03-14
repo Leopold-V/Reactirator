@@ -1,23 +1,15 @@
 import { ipcRenderer } from 'electron';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import detect from 'detect-port';
 import { Switch } from '@headlessui/react';
 import { killProcess } from '../../../utils/killProcess';
-import { pendingTask, switchTask } from '../../../slices/projectSlice';
-import { useAppDispatch } from '../../../hooks';
-import { useProjectData } from '../Contexts/ProjectDataProvider';
+import { pendingTask, stopTask, switchTask, updateLogs } from '../../../slices/projectSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import './switch.css';
 
-export const TaskSwitch = ({
-  taskName,
-  enabled,
-}: {
-  taskName: string;
-  enabled: boolean;
-}) => {
-  const { projectData } = useProjectData();
+export const TaskSwitch = ({ taskName, enabled, taskState }: { taskName: string; enabled: boolean, taskState: string }) => {
+  const projectPath = useAppSelector((state) => state.project.projectPath);
   const dispatch = useAppDispatch();
-
   // TODO:
   // Since toggle switch change a lot of state and interaction with the server we should maybe add a debounce hook.
   const handleChange = () => {
@@ -25,8 +17,8 @@ export const TaskSwitch = ({
   };
 
   useEffect(() => {
-    if (enabled) {
-      ipcRenderer.send('run-cmd', { path: projectData.projectPath, cmd: taskName });
+    if (enabled && taskState !== 'Pending') {
+      ipcRenderer.send('run-cmd', { path: projectPath, cmd: taskName });
       dispatch(pendingTask(taskName));
     }
   }, [enabled]);
@@ -51,22 +43,13 @@ export const TaskSwitch = ({
 
 const port = 3000;
 
-export const TaskMainSwitch = ({
-  taskName,
-  setLog,
-  isRunning,
-  setisRunning,
-}: {
-  taskName: string;
-  setLog: (log: string) => void;
-  isRunning: boolean;
-  setisRunning: (running: boolean) => void;
-}) => {
-  const { projectData } = useProjectData();
-  const [checked, setChecked] = useState(false);
+export const TaskMainSwitch = ({ taskName, setLog }: { taskName: string, setLog: (log: string) => void }) => {
+  const projectPath = useAppSelector((state) => state.project.projectPath);
+  const task = useAppSelector((state) => state.project.tasks[taskName]);
+  const dispatch = useAppDispatch();
 
   const handleChange = () => {
-    setChecked(!checked);
+    dispatch(switchTask(taskName));
   };
 
   useEffect(() => {
@@ -77,7 +60,7 @@ export const TaskMainSwitch = ({
         console.log(error.message);
       } finally {
         setLog('Task aborted');
-        setisRunning(false);
+        dispatch(stopTask(taskName));
       }
     });
     return () => {
@@ -86,30 +69,28 @@ export const TaskMainSwitch = ({
   }, []);
 
   useEffect(() => {
-    if (checked) {
+    if (task.enabled) {
       detect(port)
         .then((_port) => {
           if (port == _port) {
-            ipcRenderer.send('run-cmd', { path: projectData.projectPath, cmd: taskName });
-            setLog('');
-            setisRunning(true);
+            ipcRenderer.send('run-cmd', { path: projectPath, cmd: taskName });
+            dispatch(pendingTask(taskName));
           } else {
-            setLog('The port 3000 is busy');
-            setisRunning(false);
-            setChecked(false);
+            dispatch(updateLogs({taskName: taskName, logs: 'The port 3000 is busy'}));
+            dispatch(stopTask(taskName));
           }
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [checked]);
+  }, [task.enabled]);
 
   useEffect(() => {
-    if (!checked && isRunning === true) {
+    if (!task.enabled && task.taskState === 'Pending') {
       ipcRenderer.send('kill-process', { task: taskName });
     }
-  }, [checked, isRunning]);
+  }, [task.enabled, task.taskState]);
 
   return (
     <div>
@@ -119,7 +100,7 @@ export const TaskMainSwitch = ({
           name={`toggle-${taskName}`}
           id={`toggle-${taskName}`}
           className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-          checked={checked}
+          checked={task.enabled}
           onChange={handleChange}
         />
         <label

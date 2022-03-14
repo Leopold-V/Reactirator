@@ -4,23 +4,20 @@ import { ipcRenderer } from 'electron';
 import { Provider } from 'react-redux';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
 import {store} from './store';
-import { promisifyReadFs } from './utils/promisifyFs';
-import { tasksStateType, taskType } from './manager/helpers/types';
-import initialPackageJson from './creator/helpers/initialPackageJson';
+import { useAppDispatch, useAppSelector } from './hooks';
 import { getSizeOfPackagesList, searchPackages } from './services/package.service';
+import initialPackageJson from './creator/helpers/initialPackageJson';
+import { fetchProject, resetProject } from './slices/projectSlice';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
-import { ProjectDataProvider } from './manager/components/Contexts/ProjectDataProvider';
+
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './creator/components/Contexts/dependenciesProvider';
 import { GithubProvider } from './creator/components/Contexts/GithubProvider';
 
-import { Bar } from './common/Bar';
-import { Card } from './common/Card';
 import Creator from './creator';
 import Manager from './manager';
-import { dispatch } from 'd3';
-import { useAppDispatch } from './hooks';
-import { fetchProject, initProject } from './slices/projectSlice';
+import { Bar } from './common/Bar';
+import { Card } from './common/Card';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.theme);
@@ -36,24 +33,35 @@ const App = () => {
   }, [theme]);
 
   return (
-    <HashRouter>
-      <Bar />
-      <Switch>
-        <Route exact path="/" render={() => <Menu />} />
-        <Route
-          path="/manager"
-          component={managerLoader(<Manager theme={theme} setTheme={setTheme} />)}
-        />
-        <Route
-          path="/creator"
-          component={creatorLoader(<Creator theme={theme} setTheme={setTheme} />)}
-        />
-      </Switch>
-    </HashRouter>
+    <Provider store={store}>
+      <HashRouter>
+        <Bar />
+        <Switch>
+          <Route exact path="/" render={() => <Menu />} />
+          <Route
+            path="/manager"
+            component={managerLoader(<Manager theme={theme} setTheme={setTheme} />)}
+          />
+          <Route
+            path="/creator"
+            component={creatorLoader(<Creator theme={theme} setTheme={setTheme} />)}
+          />
+        </Switch>
+      </HashRouter>
+    </Provider>
   );
 };
 
 const Menu = () => {
+  const projectLoading = useAppSelector(state => state.project.loading); 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!projectLoading) {
+      dispatch(resetProject());
+    }
+  }, [])
+  
   return (
     <div className="relative bg-gray-50 dark:bg-primary space-y-8 overflow-y-auto flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col justify-center items-center">
@@ -142,17 +150,12 @@ export const creatorLoader = (creator: JSX.Element) => {
   };
 };
 
-/*
-'taskState': 'Idle',
-'enabled': false,
-'isKill': false
-*/
-
 const managerLoader = (manager: JSX.Element) => {
   return () => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
     const history = useHistory();
+
+    const project = useAppSelector(state => state.project);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
       ipcRenderer.send('open-directory');
@@ -164,9 +167,11 @@ const managerLoader = (manager: JSX.Element) => {
         async (event: Electron.IpcRendererEvent, arg: any) => {
           const [filepath] = arg;
           if (arg) {
-            store.dispatch(fetchProject(filepath)).then(() => {
-              setLoading(false);
-            });
+            try {
+              dispatch(fetchProject(filepath));
+            } catch (error) {
+              history.push('/')
+            }
           }
         }
       );
@@ -176,25 +181,16 @@ const managerLoader = (manager: JSX.Element) => {
       };
     }, []);
 
-    /*
-    useEffect(() => {
-      if (data) {
-        setLoading(false);
-      }
-    }, [data]);*/
-
-    if (store.getState().project.loading)
+    if (project.loading)
       return (
         <div className="pt-8 flex justify-center items-center font-extrabold text-4xl h-screen">
           Loading...
         </div>
       );
     return (
-      <Provider store={store}>
-        <ProjectDataProvider projectData={data} setProjectData={setData}>
+        <>
           {manager}
-        </ProjectDataProvider>
-      </Provider>
+        </>
     );
   };
 };

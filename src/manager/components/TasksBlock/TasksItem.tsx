@@ -2,12 +2,13 @@ import { ipcRenderer } from 'electron';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../hooks';
 import { killProcess } from '../../../utils/killProcess';
+import { errorTask, finishTask, stopTask, updateLogs } from '../../../slices/projectSlice';
 import { useModal } from '../../../hooks/useModal';
+
 import { Card } from '../../../common/Card';
 import { TaskSwitch } from './TaskSwitch';
 import { TaskModal } from './TaskModal';
 import { TaskStatut } from './TaskStatut';
-import { errorTask, finishTask, stopTask } from '../../../slices/projectSlice';
 
 // TODO:
 // We should rather manage a list of process on the front so that we don't need a listener for process kill
@@ -25,21 +26,23 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
     ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {
       if (!open) {
         setLog((log) => log + arg.toString());
+        dispatch(updateLogs({ taskName: taskName, logs: arg.toString()}));
       } else {
         setLog(log + saveLog);
       }
     });
     ipcRenderer.on(`child-process-error-${taskName}`, () => {
+      //TODO:
+      //Error should result in an error status, maybe add a new state to act like isKill ?
       dispatch(errorTask(taskName));
     });
     ipcRenderer.on(`child-process-end-${taskName}`, () => {
       dispatch(finishTask(taskName));
     });
     ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
-      console.log(arg);
       try {
         await killProcess(arg);
-        setLog((log) => log + 'Task aborted.');
+        dispatch(updateLogs({taskName: taskName, logs: 'Task aborted.'}));
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -55,12 +58,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
   }, []);
 
   useEffect(() => {
-    console.log(task);
-  }, [task])
-
-  useEffect(() => {
     if (!task.enabled && task.taskState === 'Pending') {
-      console.log(task);
       ipcRenderer.send('kill-process', { task: taskName });
     }
   }, [task.enabled]);
@@ -82,7 +80,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
             Open logs
           </button>
         </div>
-        <TaskSwitch taskName={taskName} enabled={task.enabled} />
+        <TaskSwitch taskName={taskName} enabled={task.enabled} taskState={task.taskState} />
       </div>
       <TaskModal
         taskName={taskName}
