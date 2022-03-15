@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector } from '../../../hooks';
 
 export const DependenciesPage = () => {
-  const project = useAppSelector(state => state.project);
+  const project = useAppSelector((state) => state.project);
   console.log(project);
 
   return (

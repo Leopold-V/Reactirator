@@ -20,7 +20,7 @@ export const fetchProject = createAsyncThunk(
       const contentObj = JSON.parse(content);
       // TODO:
       // Should check react-script to verify if it is a create-react-app and not a react application in general ?
-      if (contentObj.dependencies?.react) {
+      if (contentObj.dependencies.react) {
         const newTaskList: Record<string, taskType> = {};
         Object.keys(contentObj.scripts).map(
           (ele: any) =>
@@ -38,14 +38,13 @@ export const fetchProject = createAsyncThunk(
           dependencies: contentObj.dependencies,
           devDependencies: contentObj.devDependencies,
         };
-      } else {
-        alert('This is not a React project !');
-        return rejectWithValue('This is not a React project !');
       }
     } catch (error) {
-      return rejectWithValue('Error');
+      console.log(error.message);
+      return rejectWithValue('This is not a React project !');
     }
   }
+  //return rejectWithValue('This is not a React project !');
 );
 
 export const projectSlice = createSlice({
@@ -101,13 +100,8 @@ export const projectSlice = createSlice({
     },
     clearLogs: (state, action: PayloadAction<string>) => {
       state.tasks[action.payload].logs = '';
-    }
-  },
-  extraReducers: {
-    [fetchProject.pending.toString()]: (state: projectStateType) => {
-      state.loading = true;
     },
-    [fetchProject.fulfilled.toString()]: (
+    initProject:  (
       state: projectStateType,
       action: PayloadAction<projectStateType>
     ) => {
@@ -117,11 +111,8 @@ export const projectSlice = createSlice({
       state.dependencies = action.payload.dependencies;
       state.devDependencies = action.payload.devDependencies;
       state.tasks = action.payload.tasks;
-    },
-    [fetchProject.rejected.toString()]: (state: projectStateType) => {
-      state.loading = false;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -135,7 +126,7 @@ export const {
   stopTask,
   errorTask,
   updateLogs,
-
+  initProject
 } = projectSlice.actions;
 
 export default projectSlice.reducer;

@@ -3,7 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom';
 import { ipcRenderer } from 'electron';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { killProcess } from '../utils/killProcess';
-import { stopTask, errorTask, finishTask, updateLogs  } from '../slices/projectSlice';
+import { stopTask, errorTask, finishTask, updateLogs } from '../slices/projectSlice';
 
 import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerPage';
 import { DependenciesPage } from './components/pages/DependenciesPage';
@@ -22,11 +22,10 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
 
   useEffect(() => {
     ipcRenderer.on(`task-running`, (event, arg) => {
-        dispatch(updateLogs({ taskName: arg.taskName, logs: arg.data.toString() }));
-      }
-    );
+      dispatch(updateLogs({ taskName: arg.taskName, logs: arg.data.toString() }));
+    });
     ipcRenderer.on(`task-running-error`, (event, arg) => {
-      dispatch(errorTask({taskName: arg.taskName, logs: arg.data}));
+      dispatch(errorTask({ taskName: arg.taskName, logs: arg.data }));
     });
     ipcRenderer.on(`task-running-exit`, (event, arg) => {
       dispatch(finishTask(arg.taskName));

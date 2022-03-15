@@ -3,6 +3,7 @@ import React, { Dispatch } from 'react';
 import { FormSection } from './FormSection';
 import { Checkbox } from './Checkbox';
 import { formInputType, actionPackageType } from '../../helpers/types';
+import { Card } from '../../../common/Card';
 
 export const FormCustomProject = ({
   input,
@@ -14,9 +15,9 @@ export const FormCustomProject = ({
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   return (
-    <div className="bg-gradient-to-br from-blue-300 to-blue-500 text-gray-700 dark:bg-blueGray p-6 rounded shadow hover:shadow-lg transition duration-200">
+    <Card>
       <h2 className="font-extrabold text-xl pb-4 text-center">Customization</h2>
-      <div className="flex items-start space-x-2">
+      <div className="flex space-x-2">
         <FormSection title="Type checker">
           <Checkbox
             name="typescript"
@@ -96,6 +97,6 @@ export const FormCustomProject = ({
           </Checkbox>
         </FormSection>
       </div>
-    </div>
+    </Card>
   );
 };

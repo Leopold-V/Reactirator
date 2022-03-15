@@ -42,11 +42,7 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
         </div>
         <TaskSwitch taskName={taskName} enabled={task.enabled} taskState={task.taskState} />
       </div>
-      <TaskModal
-        taskName={taskName}
-        open={open}
-        toggleModal={toggleModal}
-      />
+      <TaskModal taskName={taskName} open={open} toggleModal={toggleModal} />
     </Card>
   );
 };

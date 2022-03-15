@@ -1,14 +1,15 @@
+import { ipcRenderer } from 'electron';
 import React, { useEffect, useReducer, useState } from 'react';
 import * as ReactDOM from 'react-dom';
-import { ipcRenderer } from 'electron';
-import { Provider } from 'react-redux';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
-import {store} from './store';
+import { Provider } from 'react-redux';
+import ClipLoader from "react-spinners/ClipLoader";
+import { store } from './store';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { getSizeOfPackagesList, searchPackages } from './services/package.service';
 import initialPackageJson from './creator/helpers/initialPackageJson';
-import { fetchProject, resetProject } from './slices/projectSlice';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
+import { initProject, resetProject } from './slices/projectSlice';
 
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './creator/components/Contexts/dependenciesProvider';
@@ -18,6 +19,8 @@ import Creator from './creator';
 import Manager from './manager';
 import { Bar } from './common/Bar';
 import { Card } from './common/Card';
+import { promisifyReadFs } from './utils/promisifyFs';
+import { taskType } from './manager/helpers/types';
 
 const App = () => {
   // TODO:
@@ -55,15 +58,15 @@ const App = () => {
 };
 
 const Menu = () => {
-  const projectLoading = useAppSelector(state => state.project.loading); 
+  const projectLoading = useAppSelector((state) => state.project.loading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!projectLoading) {
       dispatch(resetProject());
     }
-  }, [])
-  
+  }, []);
+
   return (
     <div className="relative bg-gray-50 dark:bg-primary space-y-8 overflow-y-auto flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col justify-center items-center">
@@ -134,8 +137,9 @@ export const creatorLoader = (creator: JSX.Element) => {
 
     if (loading)
       return (
-        <div className="pt-8 flex justify-center items-center font-extrabold text-4xl h-screen">
-          Loading...
+        <div className="pt-8 flex flex-col justify-center items-center font-bold text-2xl h-screen space-y-8">
+          <ClipLoader color="#3672D7" loading={loading} size={150} />
+          <div>Loading...</div>
         </div>
       );
     return (
@@ -155,8 +159,8 @@ export const creatorLoader = (creator: JSX.Element) => {
 const managerLoader = (manager: JSX.Element) => {
   return () => {
     const history = useHistory();
+    const [loading, setLoading] = useState(true);
 
-    const project = useAppSelector(state => state.project);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -168,14 +172,34 @@ const managerLoader = (manager: JSX.Element) => {
         'open-dialog-directory-selected',
         async (event: Electron.IpcRendererEvent, arg: any) => {
           const [filepath] = arg;
-          if (arg) {
-            try {
-              dispatch(fetchProject(filepath));
-            } catch (error) {
-              history.push('/')
+          try {
+            const content = await promisifyReadFs(`${filepath}/package.json`);
+            const contentObj = JSON.parse(content);
+            if (contentObj.dependencies.react) {
+              const newTaskList: Record<string, taskType> = {};
+              Object.keys(contentObj.scripts).map(
+                (ele: any) =>
+                  (newTaskList[ele] = {
+                    taskState: 'Idle',
+                    enabled: false,
+                    isKill: false,
+                    logs: '',
+                  })
+              );
+              dispatch(
+                initProject({
+                  projectName: contentObj.name,
+                  projectPath: filepath[0],
+                  tasks: newTaskList,
+                  dependencies: contentObj.dependencies,
+                  devDependencies: contentObj.devDependencies,
+                })
+              );
+              setLoading(false);
             }
-          } else {
-            history.push('/')
+          } catch (error) {
+            history.push('/');
+            alert('This is not a react project!');
           }
         }
       );
@@ -185,17 +209,14 @@ const managerLoader = (manager: JSX.Element) => {
       };
     }, []);
 
-    if (project.loading)
+    if (loading)
       return (
-        <div className="pt-8 flex justify-center items-center font-extrabold text-4xl h-screen">
-          Loading...
+        <div className="bg-gray-50 flex flex-col justify-center items-center font-bold text-2xl h-screen space-y-8">
+          <ClipLoader color="#3672D7" loading={loading} size={150} />
+          <div>Loading...</div>
         </div>
       );
-    return (
-        <>
-          {manager}
-        </>
-    );
+    return <>{manager}</>;
   };
 };
 

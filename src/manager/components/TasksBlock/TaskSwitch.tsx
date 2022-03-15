@@ -6,7 +6,15 @@ import { pendingTask, switchTask, updateLogs } from '../../../slices/projectSlic
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import './switch.css';
 
-export const TaskSwitch = ({ taskName, enabled, taskState }: { taskName: string; enabled: boolean, taskState: string }) => {
+export const TaskSwitch = ({
+  taskName,
+  enabled,
+  taskState,
+}: {
+  taskName: string;
+  enabled: boolean;
+  taskState: string;
+}) => {
   const projectPath = useAppSelector((state) => state.project.projectPath);
   const dispatch = useAppDispatch();
   // TODO:
@@ -59,7 +67,9 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
             ipcRenderer.send('run-cmd', { path: projectPath, taskName: taskName });
             dispatch(pendingTask(taskName));
           } else {
-            dispatch(updateLogs({taskName: taskName, logs: '\n\nThe port 3000 is busy. Task aborted.'}));
+            dispatch(
+              updateLogs({ taskName: taskName, logs: '\n\nThe port 3000 is busy. Task aborted.' })
+            );
             dispatch(switchTask(taskName));
           }
         })
