@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/outline';
-import { useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { clearLogs } from '../../../slices/projectSlice';
 
 import { TerminalOutput } from '../Terminal';
@@ -15,6 +15,7 @@ type TaskModalProps = {
 export const TaskModal = (props: TaskModalProps) => {
   const { taskName, open, toggleModal } = props;
   const cancelButtonRef = useRef(null);
+  const taskState = useAppSelector((state) => state.project.tasks[taskName].taskState);
   const dispatch = useAppDispatch();
 
   const handleClear = () => {
@@ -56,22 +57,28 @@ export const TaskModal = (props: TaskModalProps) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="relative inline-block bg-white rounded overflow-hidden shadow-xl transform transition-all align-middle">
-              <div className="py-4 px-6 flex flex-col justify-center items-center">
-                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
-                  <InformationCircleIcon className="h-8 w-8 text-blue-700" aria-hidden="true" />
+            <div className="relative w-1/2 inline-block bg-white rounded overflow-hidden shadow-xl transform transition-all align-middle">
+              <div className="flex flex-col justify-center items-center">
+                <div className="py-8 px-6 bg-gray-100 flex w-full items-center justify-start">
+                  <div className="flex items-center justify-center absolute h-12 w-12 rounded-full bg-blue-100">
+                    <InformationCircleIcon className="h-8 w-8 text-blue-700" aria-hidden="true" />
+                  </div>
+                  <div className="flex-grow">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-xl capitalize font-bold leading-6 text-gray-700"
+                    >
+                      {taskName}
+                    </Dialog.Title>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg my-4 font-extrabold leading-6 text-gray-700"
-                  >
-                    {taskName.toUpperCase()}
-                  </Dialog.Title>
-                  <TerminalOutput
-                    taskName={taskName}
-                    inModal={true}
-                  />
+                <div className="pb-6 px-4 w-full divide-y">
+                  <Dialog.Description className="text-gray-700 py-4">
+                    Task status: <span className="text-black font-semibold">{taskState}</span>
+                  </Dialog.Description>
+                  <div className="pt-6">
+                    <TerminalOutput taskName={taskName} inModal={true} />
+                  </div>
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

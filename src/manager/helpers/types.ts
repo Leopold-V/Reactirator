@@ -11,7 +11,7 @@ export type actionTaskType = {
 
 export type taskType = {
   enabled: boolean;
-  taskState: string;
+  taskState: taskStateType;
   isKill: boolean;
   logs: string;
 };

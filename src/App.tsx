@@ -174,6 +174,8 @@ const managerLoader = (manager: JSX.Element) => {
             } catch (error) {
               history.push('/')
             }
+          } else {
+            history.push('/')
           }
         }
       );

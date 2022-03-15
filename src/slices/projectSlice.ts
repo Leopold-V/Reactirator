@@ -18,6 +18,8 @@ export const fetchProject = createAsyncThunk(
     try {
       const content = await promisifyReadFs(`${filepath}/package.json`);
       const contentObj = JSON.parse(content);
+      // TODO:
+      // Should check react-script to verify if it is a create-react-app and not a react application in general ?
       if (contentObj.dependencies?.react) {
         const newTaskList: Record<string, taskType> = {};
         Object.keys(contentObj.scripts).map(
@@ -86,7 +88,7 @@ export const projectSlice = createSlice({
       state.tasks[action.payload].taskState = 'Error';
       state.tasks[action.payload].enabled = false;
       state.tasks[action.payload].isKill = true;
-      state.tasks[action.payload].logs += '\n\n Task aborted';
+      state.tasks[action.payload].logs += '\n\n Task aborted.';
     },
     errorTask: (state, action: PayloadAction<{ taskName: string; logs: string }>) => {
       state.tasks[action.payload.taskName].taskState = 'Error';

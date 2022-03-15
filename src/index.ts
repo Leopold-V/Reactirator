@@ -1,6 +1,7 @@
 import { app, BrowserWindow, dialog, ipcMain, session } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import { spawn } from 'child_process';
+import { killProcess } from './utils/killProcess';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -135,4 +136,16 @@ ipcMain.on('run-cmd', (event, arg) => {
 ipcMain.on('kill-process', (event, arg) => {
   const pid = listTaskPid.find((task) => task.taskName === arg.taskName).pid;
   event.sender.send(`task-running-kill`, {taskName: arg.taskName, pid: pid});
+});
+
+ipcMain.on('kill-all-running-process', () => {
+  try {
+    listTaskPid.forEach(async (ele) => {
+      await killProcess(ele.pid);
+      listTaskPid.filter((ele2) => ele2.pid = ele.pid)
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+  console.log(listTaskPid);
 });

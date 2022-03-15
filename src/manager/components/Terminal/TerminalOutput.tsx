@@ -28,7 +28,7 @@ export const TerminalOutput = React.memo<terminalOutputProps>(({ taskName, inMod
 
   return (
     <XTerm
-      className={`${inModal ? 'w-96' : 'w-7/12'} bg-blueGray`}
+      className={`${inModal ? 'h-48' : 'h-full'} bg-blueGray`}
       addons={[fitAddon]}
       ref={xtermRef}
     />

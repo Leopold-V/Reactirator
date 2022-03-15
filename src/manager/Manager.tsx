@@ -45,6 +45,7 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
       ipcRenderer.removeAllListeners(`task-running-error`);
       ipcRenderer.removeAllListeners(`task-running-exit`);
       ipcRenderer.removeAllListeners(`task-running-kill`);
+      ipcRenderer.send('kill-all-running-process');
     };
   }, []);
 

@@ -11,8 +11,8 @@ export const TasksDevelopmentPane = () => {
 
   return (
     <Card>
-      <div className="flex h-52 text-center">
-        <div className="w-5/12 flex flex-col justify-center space-y-3">
+      <div className="flex h-52">
+        <div className="w-5/12 flex flex-col justify-center items-center space-y-3">
           <h2 className="text-black font-bold text-lg">Development server</h2>
           <div className="justify-self-center">
             <TaskMainSwitch
@@ -20,7 +20,9 @@ export const TasksDevelopmentPane = () => {
             />
           </div>
         </div>
-        <TerminalOutput taskName={startScript} />
+        <div className="w-7/12">
+          <TerminalOutput taskName={startScript} />
+        </div>
       </div>
     </Card>
   );
