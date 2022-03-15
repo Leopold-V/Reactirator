@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppSelector } from '../../../hooks';
 import { Card } from '../../../common/Card';
 import { TerminalOutput } from '../Terminal';
 import { TaskMainSwitch } from './TaskSwitch';
 
 export const TasksDevelopmentPane = () => {
-  const [log, setLog] = useState('');
   const startScript = useAppSelector(
     (state) => Object.entries(state.project.tasks).find((ele) => ele[0] === 'start' || ele[0] === 'dev')[0]
     );
@@ -18,11 +17,10 @@ export const TasksDevelopmentPane = () => {
           <div className="justify-self-center">
             <TaskMainSwitch
               taskName={startScript}
-              setLog={setLog}
             />
           </div>
         </div>
-        <TerminalOutput taskName={startScript} log={log} />
+        <TerminalOutput taskName={startScript} />
       </div>
     </Card>
   );

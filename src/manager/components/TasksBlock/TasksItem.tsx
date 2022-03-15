@@ -1,8 +1,6 @@
 import { ipcRenderer } from 'electron';
-import React, { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../hooks';
-import { killProcess } from '../../../utils/killProcess';
-import { errorTask, finishTask, stopTask, updateLogs } from '../../../slices/projectSlice';
+import React, { useEffect } from 'react';
+import { useAppSelector } from '../../../hooks';
 import { useModal } from '../../../hooks/useModal';
 
 import { Card } from '../../../common/Card';
@@ -16,50 +14,12 @@ import { TaskStatut } from './TaskStatut';
 // Create a new pid list state and update it each time we start a new task.
 export const TasksItem = ({ taskName }: { taskName: string }) => {
   const [open, toggleModal] = useModal();
-  const [log, setLog] = useState('');
-  const [saveLog, setSaveLog] = useState('');
 
   const task = useAppSelector((state) => state.project.tasks[taskName]);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    ipcRenderer.on(`child-process-${taskName}`, (event, arg) => {
-      if (!open) {
-        setLog((log) => log + arg.toString());
-        dispatch(updateLogs({ taskName: taskName, logs: arg.toString()}));
-      } else {
-        setLog(log + saveLog);
-      }
-    });
-    ipcRenderer.on(`child-process-error-${taskName}`, () => {
-      //TODO:
-      //Error should result in an error status, maybe add a new state to act like isKill ?
-      dispatch(errorTask(taskName));
-    });
-    ipcRenderer.on(`child-process-end-${taskName}`, () => {
-      dispatch(finishTask(taskName));
-    });
-    ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
-      try {
-        await killProcess(arg);
-        dispatch(updateLogs({taskName: taskName, logs: 'Task aborted.'}));
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        dispatch(stopTask(taskName));
-      }
-    });
-    return () => {
-      ipcRenderer.removeAllListeners(`child-process-${taskName}`);
-      ipcRenderer.removeAllListeners(`child-process-error-${taskName}`);
-      ipcRenderer.removeAllListeners(`child-process-end-${taskName}`);
-      ipcRenderer.removeAllListeners(`child-process-kill-${taskName}`);
-    };
-  }, []);
 
   useEffect(() => {
     if (!task.enabled && task.taskState === 'Pending') {
-      ipcRenderer.send('kill-process', { task: taskName });
+      ipcRenderer.send('kill-process', { taskName: taskName });
     }
   }, [task.enabled]);
 
@@ -84,11 +44,8 @@ export const TasksItem = ({ taskName }: { taskName: string }) => {
       </div>
       <TaskModal
         taskName={taskName}
-        log={log}
-        setLog={setLog}
         open={open}
         toggleModal={toggleModal}
-        setSaveLog={setSaveLog}
       />
     </Card>
   );

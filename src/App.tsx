@@ -20,6 +20,8 @@ import { Bar } from './common/Bar';
 import { Card } from './common/Card';
 
 const App = () => {
+  // TODO:
+  // integrate theme in redux store ?
   const [theme, setTheme] = useState(localStorage.theme);
   useEffect(() => {
     if (

@@ -2,8 +2,7 @@ import { ipcRenderer } from 'electron';
 import React, { useEffect } from 'react';
 import detect from 'detect-port';
 import { Switch } from '@headlessui/react';
-import { killProcess } from '../../../utils/killProcess';
-import { pendingTask, stopTask, switchTask, updateLogs } from '../../../slices/projectSlice';
+import { pendingTask, switchTask, updateLogs } from '../../../slices/projectSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import './switch.css';
 
@@ -18,7 +17,7 @@ export const TaskSwitch = ({ taskName, enabled, taskState }: { taskName: string;
 
   useEffect(() => {
     if (enabled && taskState !== 'Pending') {
-      ipcRenderer.send('run-cmd', { path: projectPath, cmd: taskName });
+      ipcRenderer.send('run-cmd', { path: projectPath, taskName: taskName });
       dispatch(pendingTask(taskName));
     }
   }, [enabled]);
@@ -43,7 +42,7 @@ export const TaskSwitch = ({ taskName, enabled, taskState }: { taskName: string;
 
 const port = 3000;
 
-export const TaskMainSwitch = ({ taskName, setLog }: { taskName: string, setLog: (log: string) => void }) => {
+export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
   const projectPath = useAppSelector((state) => state.project.projectPath);
   const task = useAppSelector((state) => state.project.tasks[taskName]);
   const dispatch = useAppDispatch();
@@ -53,31 +52,15 @@ export const TaskMainSwitch = ({ taskName, setLog }: { taskName: string, setLog:
   };
 
   useEffect(() => {
-    ipcRenderer.on(`child-process-kill-${taskName}`, async (event, arg) => {
-      try {
-        await killProcess(arg);
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        setLog('Task aborted');
-        dispatch(stopTask(taskName));
-      }
-    });
-    return () => {
-      ipcRenderer.removeAllListeners(`child-process-kill-${taskName}`);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (task.enabled) {
+    if (task.enabled && task.taskState !== 'Pending') {
       detect(port)
         .then((_port) => {
           if (port == _port) {
-            ipcRenderer.send('run-cmd', { path: projectPath, cmd: taskName });
+            ipcRenderer.send('run-cmd', { path: projectPath, taskName: taskName });
             dispatch(pendingTask(taskName));
           } else {
-            dispatch(updateLogs({taskName: taskName, logs: 'The port 3000 is busy'}));
-            dispatch(stopTask(taskName));
+            dispatch(updateLogs({taskName: taskName, logs: '\n\nThe port 3000 is busy. Task aborted'}));
+            dispatch(switchTask(taskName));
           }
         })
         .catch((err) => {
@@ -88,7 +71,7 @@ export const TaskMainSwitch = ({ taskName, setLog }: { taskName: string, setLog:
 
   useEffect(() => {
     if (!task.enabled && task.taskState === 'Pending') {
-      ipcRenderer.send('kill-process', { task: taskName });
+      ipcRenderer.send('kill-process', { taskName: taskName });
     }
   }, [task.enabled, task.taskState]);
 

@@ -7,9 +7,8 @@ export const TasksPage = () => {
     <>
       <h1 className="pb-2 text-lg text-gray-700 font-bold">Tasks:</h1>
       <div className="space-y-4">
-        <TasksDevelopmentPane
-        />
-        <TasksList  />
+        <TasksDevelopmentPane />
+        <TasksList />
       </div>
     </>
   );

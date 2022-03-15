@@ -9,7 +9,7 @@ const initialState: projectStateType = {
   loading: true,
   tasks: {},
   dependencies: {},
-  devDependencies: {}
+  devDependencies: {},
 };
 
 export const fetchProject = createAsyncThunk(
@@ -26,7 +26,7 @@ export const fetchProject = createAsyncThunk(
               taskState: 'Idle',
               enabled: false,
               isKill: false,
-              logs: ''
+              logs: '',
             })
         );
         return {
@@ -70,6 +70,7 @@ export const projectSlice = createSlice({
       state.tasks[action.payload].isKill = false;
     },
     pendingTask: (state, action: PayloadAction<string>) => {
+      state.tasks[action.payload].logs = '';
       state.tasks[action.payload].taskState = 'Pending';
       state.tasks[action.payload].enabled = true;
     },
@@ -85,14 +86,19 @@ export const projectSlice = createSlice({
       state.tasks[action.payload].taskState = 'Error';
       state.tasks[action.payload].enabled = false;
       state.tasks[action.payload].isKill = true;
+      state.tasks[action.payload].logs += '\n\n Task aborted';
     },
-    errorTask: (state, action: PayloadAction<string>) => {
-      state.tasks[action.payload].taskState = 'Error';
-      state.tasks[action.payload].enabled = false;
-      state.tasks[action.payload].isKill = false;
+    errorTask: (state, action: PayloadAction<{ taskName: string; logs: string }>) => {
+      state.tasks[action.payload.taskName].taskState = 'Error';
+      state.tasks[action.payload.taskName].enabled = false;
+      state.tasks[action.payload.taskName].isKill = false;
+      state.tasks[action.payload.taskName].logs = action.payload.logs;
     },
-    updateLogs: (state, action: PayloadAction<{taskName: string, logs: string}>) => {
+    updateLogs: (state, action: PayloadAction<{ taskName: string; logs: string }>) => {
       state.tasks[action.payload.taskName].logs += action.payload.logs;
+    },
+    clearLogs: (state, action: PayloadAction<string>) => {
+      state.tasks[action.payload].logs = '';
     }
   },
   extraReducers: {
@@ -117,6 +123,7 @@ export const projectSlice = createSlice({
 });
 
 export const {
+  clearLogs,
   resetProject,
   initTasks,
   switchTask,
@@ -125,7 +132,8 @@ export const {
   finishTask,
   stopTask,
   errorTask,
-  updateLogs
+  updateLogs,
+
 } = projectSlice.actions;
 
 export default projectSlice.reducer;
