@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useState, Dispatch } from 'react';
 import { nanoid } from 'nanoid';
 import { validateFileName } from '../../../utils/validateInput';
 import { structureStateType, FileStructureType } from '../../helpers/types';
+import { Card } from '../../../common/Card';
 
 export const CreateComponent = ({
   structure,
@@ -54,15 +55,15 @@ export const CreateComponent = ({
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-300 to-blue-500 flex-grow border-gray-200 shadow text-gray-700 p-6 rounded-lg flex flex-col justify-center hover:shadow-lg transition duration-200">
-      <form className="space-y-4 text-center" onSubmit={handleSubmit}>
+    <Card>
+      <form className="space-y-4 w-full flex flex-col items-center" onSubmit={handleSubmit}>
         <h2 className="text-center text-lg font-bold">Component</h2>
-        <div className="space-x-3">
-          <label className="font-semibold" htmlFor="filename">
-            Name:{' '}
+        <div className="space-x-3 w-10/12 flex justify-between items-center">
+          <label className="font-semibold text-gray-700" htmlFor="filename">
+            Name
           </label>
           <input
-            className="input"
+            className="input w-3/4"
             type="text"
             name="filename"
             id="filename"
@@ -71,14 +72,15 @@ export const CreateComponent = ({
             value={filename}
           />
         </div>
-        <div className="space-x-3">
-          <label className="font-semibold" htmlFor="filelocation">
-            Location:{' '}
+        <div className="space-x-3 w-10/12 flex justify-between items-center">
+          <label htmlFor="filelocation" className="font-semibold text-gray-700">
+            Location
           </label>
           <select
-            className="shadow rounded px-2 dark:text-gray-900"
             id="filelocation"
+            name="filelocation"
             onChange={handleSelect}
+            className="mt-1 mx-auto w-3/4 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
           >
             {structure
               .filter((ele: FileStructureType) => ele.isFolder)
@@ -90,7 +92,7 @@ export const CreateComponent = ({
           </select>
         </div>
         <div className="font-semibold">Mode: </div>
-        <div className="flex justify-center space-x-4" onChange={handleChangeMode}>
+        <div className="flex justify-center space-x-3" onChange={handleChangeMode}>
           <div>
             <input type="radio" id="rfc" name="mode" value="rfc" checked={mode === 'rfc'} />
             <label className="px-2" htmlFor="rfc">
@@ -123,13 +125,10 @@ export const CreateComponent = ({
           </div>
         </div>
         <div className="text-red-600 h-4">{error && error}</div>
-        <button
-          className="flex items-center mx-auto shadow-red bg-gray-900 opacity-100 px-4 py-2 outline-none font-bold
-              tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
-        >
+        <button className="mx-auto px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           Create
         </button>
       </form>
-    </div>
+    </Card>
   );
 };

@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import React, { ChangeEvent, Dispatch, FormEvent, useState } from 'react';
+import { Card } from '../../../common/Card';
 import { validateFileName } from '../../../utils/validateInput';
 import { structureStateType, FileStructureType } from '../../helpers/types';
 
@@ -48,15 +49,15 @@ export const CreateFolder = ({
   };
 
   return (
-    <div className="bg-yellow-200 flex-grow border-gray-200 shadow text-gray-700 p-6 rounded-lg flex flex-col justify-center hover:shadow-lg transition duration-200">
-      <form className="space-y-4 text-center" onSubmit={handleSubmit}>
+    <Card>
+      <form className="space-y-4 w-full flex flex-col items-center" onSubmit={handleSubmit}>
         <h2 className="text-center text-lg font-bold">Folder</h2>
-        <div className="space-x-3">
-          <label className="font-semibold" htmlFor="foldername">
-            Name:{' '}
+        <div className="space-x-3 w-10/12 flex justify-between items-center">
+          <label className="font-semibold text-gray-700" htmlFor="foldername">
+            Name
           </label>
           <input
-            className="input"
+            className="input w-3/4"
             type="text"
             name="foldername"
             id="foldername"
@@ -65,13 +66,14 @@ export const CreateFolder = ({
             value={foldername}
           />
         </div>
-        <div className="space-x-3">
-          <label className="font-semibold" htmlFor="folderlocation">
-            Location:{' '}
+        <div className="space-x-3 w-10/12 flex justify-between items-center">
+          <label htmlFor="folderlocation" className="font-semibold text-gray-700">
+            Location
           </label>
           <select
-            className="shadow rounded px-2 dark:text-gray-700"
             id="folderlocation"
+            name="folderlocation"
+            className="mt-1 mx-auto w-3/4 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             onChange={handleSelect}
           >
             {structure
@@ -84,13 +86,32 @@ export const CreateFolder = ({
           </select>
         </div>
         <div className="text-red-600 h-4">{error && error}</div>
-        <button
-          className="flex items-center mx-auto shadow-red bg-gray-900 opacity-100 px-4 py-2 outline-none font-bold
-              tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
-        >
+        <button className="mx-auto px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           Create
         </button>
       </form>
-    </div>
+    </Card>
   );
 };
+
+/*
+    <div>
+      <label htmlFor="folderlocation" className="block text-sm font-medium text-gray-700">
+        Location
+      </label>
+      <select
+        id="folderlocation"
+        name="folderlocation"
+        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        onChange={handleSelect}
+      >
+        {structure
+          .filter((ele: FileStructureType) => ele.isFolder)
+          .map((ele) => (
+            <option key={ele.id} data-id={ele.id}>
+              {ele.name}
+            </option>
+          ))}
+      </select>
+    </div>
+  */

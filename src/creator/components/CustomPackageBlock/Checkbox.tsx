@@ -33,9 +33,6 @@ export const Checkbox = ({
     }
   };
 
-  /* ${
-    input[name] ? 'bg-blue-600' : 'bg-gray-300'
-  } */
   return (
     <Switch.Group>
       <div className="flex items-center justify-between w-2/3 py-1">
@@ -43,8 +40,6 @@ export const Checkbox = ({
         <Switch
           checked={input[name]}
           onChange={handleChange}
-          name={name}
-          id={name}
           className={`flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none`}
         >
           <span className="sr-only">Run</span>
@@ -66,19 +61,3 @@ export const Checkbox = ({
     </Switch.Group>
   );
 };
-
-/*
-<div className="flex flex-row items-center py-1">
-<label className="pr-2 text-sm" htmlFor={name}>
-  {children}
-</label>
-<input
-  className=""
-  type="checkbox"
-  onChange={handleChange}
-  name={name}
-  id={name}
-  checked={input[name]}
-/>
-</div>
-*/

@@ -60,7 +60,7 @@ export const SearchPackages = ({
           <input
             id="search_package"
             name="search_package"
-            className="block w-full text-gray-700 bg-gray-100 border border-gray-300 rounded-md py-2 pl-10 pr-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            className="w-full input"
             placeholder="Search"
             type="search_package"
             onChange={handleChange}

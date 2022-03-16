@@ -1,7 +1,6 @@
 module.exports = {
-  purge: [
-    './src/**/*.html',
-    './src/**/*.js',
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
@@ -52,11 +51,5 @@ module.exports = {
        },
     },
   },
-  variants: {
-    extend: {
-      ringWidth: ['dark'],
-      display: ['hover', 'focus'],
-    }
-  },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')]
 }

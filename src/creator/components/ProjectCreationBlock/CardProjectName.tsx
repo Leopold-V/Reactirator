@@ -41,7 +41,7 @@ export const CardProjectName = ({
         <input
           onChange={handleChange}
           value={input.appname}
-          className="w-10/12 block text-gray-700 text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+          className="w-10/12 input"
           type="text"
           name="appname"
           id="appname"
@@ -51,7 +51,7 @@ export const CardProjectName = ({
         <input
           onChange={handleChange}
           value={input.version}
-          className="w-10/12 block text-gray-700 text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+          className="w-10/12 input"
           type="text"
           name="version"
           id="version"
@@ -61,7 +61,7 @@ export const CardProjectName = ({
         <textarea
           onChange={handleChange}
           value={input.description}
-          className="w-10/12 resize-none block text-gray-700 text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+          className="w-10/12 resize-none input"
           name="description"
           id="description"
           placeholder="Description"

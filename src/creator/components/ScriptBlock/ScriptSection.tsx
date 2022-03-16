@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { ButtonAddScript } from '../Buttons';
 import { ListScripts } from './ListScripts';
+import { Card } from '../../../common/Card';
 
 export const ScriptSection = () => {
   const { packageJson, dispatchJson } = usePackageJson();
@@ -23,9 +24,8 @@ export const ScriptSection = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-300 to-blue-500 text-gray-700 rounded shadow py-6 px-2 flex flex-col justify-start items-center space-y-4 hover:shadow-lg transition duration-200">
+    <Card>
       <h2 className="font-extrabold text-gray-700 text-xl text-center py-2">Scripts edit</h2>
-
       <form className="flex flex-col items-center" onSubmit={handleAdd}>
         <div className="flex flex-col sm:flex-row justify-center flex-wrap">
           <input
@@ -48,6 +48,6 @@ export const ScriptSection = () => {
         <ButtonAddScript />
       </form>
       <ListScripts scripts={packageJson.scripts} />
-    </div>
+    </Card>
   );
 };
