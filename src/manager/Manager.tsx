@@ -51,8 +51,15 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
   return (
     <Layout theme={theme} setTheme={setTheme}>
       <div className="space-y-4 w-full h-full relative">
-        <div className="text-center text-2xl font-extrabold">
-          {projectName} {taskStart.taskState === 'Pending' ? '[RUNNING]' : '[OFF]'}
+        <div className="flex items-center justify-center space-x-3">
+          <span className="text-center text-2xl font-extrabold">{projectName}</span>
+          <span
+            className={`${taskStart.taskState === 'Pending' ? 'bg-green-100' : 'bg-gray-100'}
+              h-4 w-4 mt-1 rounded-full flex items-center justify-center`}
+            aria-hidden="true"
+          >
+            <span className={`${taskStart.taskState === 'Pending' ? 'bg-green-400' : 'bg-gray-400'} h-2 w-2 rounded-full`} />
+          </span>
         </div>
         <hr />
         <Route exact path={`${path}`} render={() => <TasksPage />} />

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { formInputType } from '../../helpers/types';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { ButtonCreation } from '../Buttons';
+import { Card } from '../../../common/Card';
 
 export const CardProjectName = ({
   input,
@@ -34,13 +35,13 @@ export const CardProjectName = ({
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-300 to-blue-500 text-gray-700 p-6 rounded-lg flex flex-col justify-center shadow hover:shadow-lg transition duration-200">
-      <h2 className="font-extrabold text-xl pb-6 text-center">🚀 Create a project 🚀</h2>
+    <Card>
+      <h2 className="font-extrabold text-xl pb-6 text-center">Create a project</h2>
       <div className="flex flex-col justify-center items-center w-full pb-6 space-y-4">
         <input
           onChange={handleChange}
           value={input.appname}
-          className="input w-10/12 bg-white"
+          className="w-10/12 block text-gray-700 text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
           type="text"
           name="appname"
           id="appname"
@@ -50,7 +51,7 @@ export const CardProjectName = ({
         <input
           onChange={handleChange}
           value={input.version}
-          className="input w-10/12 bg-white"
+          className="w-10/12 block text-gray-700 text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
           type="text"
           name="version"
           id="version"
@@ -60,7 +61,7 @@ export const CardProjectName = ({
         <textarea
           onChange={handleChange}
           value={input.description}
-          className="resize-none input w-10/12"
+          className="w-10/12 resize-none block text-gray-700 text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
           name="description"
           id="description"
           placeholder="Description"
@@ -68,6 +69,6 @@ export const CardProjectName = ({
         />
       </div>
       <ButtonCreation input={input} />
-    </div>
+    </Card>
   );
 };

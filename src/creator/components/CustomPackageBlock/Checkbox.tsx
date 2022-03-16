@@ -33,6 +33,9 @@ export const Checkbox = ({
     }
   };
 
+  /* ${
+    input[name] ? 'bg-blue-600' : 'bg-gray-300'
+  } */
   return (
     <Switch.Group>
       <div className="flex items-center justify-between w-2/3 py-1">
@@ -42,15 +45,21 @@ export const Checkbox = ({
           onChange={handleChange}
           name={name}
           id={name}
-          className={`${
-            input[name] ? 'bg-blue-600' : 'bg-gray-300'
-          } relative inline-flex items-center h-6 rounded-full w-11`}
+          className={`flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none`}
         >
           <span className="sr-only">Run</span>
+          <span aria-hidden="true" className="pointer-events-none absolute w-full h-full rounded-md" />
+          <span
+            aria-hidden="true"
+            className={`
+              ${input[name] ? 'bg-indigo-600' : 'bg-gray-300'}
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            `}
+          />
           <span
             className={`${
-              input[name] ? 'translate-x-6' : 'translate-x-1'
-            } inline-block w-4 h-4 transform bg-white rounded-full transition ease-in-out duration-200`}
+              input[name] ? 'translate-x-5' : 'translate-x-1'
+            } pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200`}
           />
         </Switch>
       </div>

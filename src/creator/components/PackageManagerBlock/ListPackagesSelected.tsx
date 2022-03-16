@@ -16,7 +16,7 @@ export const ListPackagesSelected = ({
   return (
     <Droppable droppableId={type}>
       {(provided) => (
-        <ul className="w-full min-h-small" ref={provided.innerRef} {...provided.droppableProps}>
+        <ul className="text-center w-3/4 min-h-small" ref={provided.innerRef} {...provided.droppableProps}>
           {listPackages.length === 0 && (
             <div className="pt-2 text-center text-sm text-gray-400">Empty list</div>
           )}

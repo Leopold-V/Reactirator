@@ -21,7 +21,7 @@ export const ItemPackage = ({
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className="text-black border-1 text-sm font-semibold bg-blue-400 opacity-90 hover:opacity-80 transition duration-200
+          className="text-gray-200 border-1 text-sm font-semibold bg-indigo-600 opacity-90 hover:opacity-80 transition duration-200
                  rounded flex items-center justify-start shadow h-9 my-2 w-full"
         >
           <ButtonRemovePackage
