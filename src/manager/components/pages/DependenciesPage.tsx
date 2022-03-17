@@ -1,28 +1,18 @@
 import React from 'react';
-import { useAppSelector } from '../../../hooks';
+import { SearchPackages } from '../../../creator/components/PackageManagerBlock';
+import { useAppDispatch } from '../../../hooks';
+import { DependenciesList } from '../DependenciesBlock';
 
 export const DependenciesPage = () => {
-  const project = useAppSelector((state) => state.project);
-  console.log(project);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="space-y-2">
-      <h2 className="font-bold">Dependencies:</h2>
-      <ul>
-        {Object.entries(project.dependencies).map((ele) => (
-          <li>
-            {ele[0]}: {ele[1]}
-          </li>
-        ))}
-      </ul>
-      <h2 className="font-bold">Dev dependencies:</h2>
-      <ul>
-        {Object.entries(project.devDependencies).map((ele) => (
-          <li>
-            {ele[0]}: {ele[1]}
-          </li>
-        ))}
-      </ul>
+      <SearchPackages dispatchPackages={dispatch} />
+      <h2 className="font-bold py-2">Dependencies:</h2>
+      <div className="w-1/2 bg-white shadow rounded overflow-hidden">
+        <DependenciesList />
+      </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { Dispatch } from 'react';
+import { Card } from '../../../common/Card';
 import { FileStructureType, structureStateType } from '../../helpers/types';
 import { TreeItem } from './TreeItem';
 
@@ -12,21 +13,23 @@ export const TreeFolder = ({
   const rootItem = structure.filter((ele: FileStructureType) => ele.ancestor === '');
 
   return (
-    <div className="bg-white flex flex-col w-5/12 border-gray-200 shadow text-gray-700 dark:bg-blueGray dark:text-white p-6 rounded-lg hover:shadow-lg transition duration-200">
-      <h2 className="font-extrabold text-xl text-center pb-6">Project Structure</h2>
-      <ul className="py-2">
-        {rootItem.map((ele) => (
-          <TreeItem
-            key={ele.id}
-            id={ele.id}
-            structure={structure}
-            name={ele.name}
-            isFolder={ele.isFolder}
-            dispatchStructure={dispatchStructure}
-            ancestor={ele.ancestor}
-          />
-        ))}
-      </ul>
-    </div>
+    <Card height="100%">
+      <div className="w-full">
+        <h2 className="font-extrabold text-xl text-center pb-6">Project Structure</h2>
+        <ul className="py-2 w-full">
+          {rootItem.map((ele) => (
+            <TreeItem
+              key={ele.id}
+              id={ele.id}
+              structure={structure}
+              name={ele.name}
+              isFolder={ele.isFolder}
+              dispatchStructure={dispatchStructure}
+              ancestor={ele.ancestor}
+            />
+          ))}
+        </ul>
+      </div>
+    </Card>
   );
 };

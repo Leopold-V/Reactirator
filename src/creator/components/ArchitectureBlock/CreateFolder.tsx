@@ -1,8 +1,12 @@
 import { nanoid } from 'nanoid';
 import React, { ChangeEvent, Dispatch, FormEvent, useState } from 'react';
-import { Card } from '../../../common/Card';
+
 import { validateFileName } from '../../../utils/validateInput';
 import { structureStateType, FileStructureType } from '../../helpers/types';
+
+import { Button } from '../../../common/Button';
+import { Card } from '../../../common/Card';
+import { Input } from '../../../common/Input';
 
 export const CreateFolder = ({
   structure,
@@ -56,8 +60,8 @@ export const CreateFolder = ({
           <label className="font-semibold text-gray-700" htmlFor="foldername">
             Name
           </label>
-          <input
-            className="input w-3/4"
+          <Input
+            className="w-2/3"
             type="text"
             name="foldername"
             id="foldername"
@@ -73,7 +77,7 @@ export const CreateFolder = ({
           <select
             id="folderlocation"
             name="folderlocation"
-            className="mt-1 mx-auto w-3/4 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            className="mt-1 mx-auto w-2/3 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             onChange={handleSelect}
           >
             {structure
@@ -86,9 +90,9 @@ export const CreateFolder = ({
           </select>
         </div>
         <div className="text-red-600 h-4">{error && error}</div>
-        <button className="mx-auto px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <Button>
           Create
-        </button>
+        </Button>
       </form>
     </Card>
   );

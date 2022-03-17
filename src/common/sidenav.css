@@ -45,6 +45,7 @@
 
 .nav__link:hover {
   color: white;
+  background-color: #384257;
 }
 
 .nav__link:hover svg {
@@ -53,12 +54,8 @@
 
 .nav__link.active {
   color: white;
-  background: rgb(66, 158, 255);
-  background: linear-gradient(
-    135deg,
-    rgba(66, 158, 255, 0.6951914554884453) 0%,
-    rgba(81, 0, 255, 1) 100%
-  );
+  background: rgb(79 70 229);
+  background: rgb(79 70 229);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
 }
 

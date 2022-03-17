@@ -16,12 +16,14 @@ export const ItemPackage = ({
 }) => {
   return (
     <Draggable draggableId={packageName} index={index} key={packageName}>
-      {(provided) => (
+      {(provided, snapshot) => { 
+        console.log(snapshot.isDragging)
+        return (
         <li
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className="text-gray-200 border-1 text-sm font-semibold bg-indigo-600 opacity-90 hover:opacity-80 transition duration-200
+          className="bg-indigo-600 text-gray-200 border-1 text-sm font-semibold opacity-90 hover:opacity-80 transition duration-200
                  rounded flex items-center justify-start shadow h-9 my-2 w-full"
         >
           <ButtonRemovePackage
@@ -31,7 +33,7 @@ export const ItemPackage = ({
           />
           <div className="text-center w-full px-2 overflow-ellipsis">{packageName}</div>
         </li>
-      )}
+      )}}
     </Draggable>
   );
 };

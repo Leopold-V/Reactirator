@@ -6,6 +6,7 @@ import { actionPackageType, listPackageType } from '../../helpers/types';
 import { searchPackages } from '../../../services/package.service';
 import { Card } from '../../../common/Card';
 import { SearchIcon } from '@heroicons/react/outline';
+import { Input } from '../../../common/Input';
 
 export const SearchPackages = ({
   dispatchPackages,
@@ -57,10 +58,10 @@ export const SearchPackages = ({
           <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
             <SearchIcon className="h-5 w-5 text-gray-700" aria-hidden="true" />
           </div>
-          <input
+          <Input
             id="search_package"
             name="search_package"
-            className="w-full input"
+            className="w-full"
             placeholder="Search"
             type="search_package"
             onChange={handleChange}

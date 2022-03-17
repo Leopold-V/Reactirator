@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { formInputType } from '../../helpers/types';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { ButtonCreation } from '../Buttons';
 import { Card } from '../../../common/Card';
+import { Input, TextArea } from '../../../common/Input';
 
 export const CardProjectName = ({
   input,
@@ -30,35 +31,31 @@ export const CardProjectName = ({
     });
   };
 
-  useEffect(() => {
-    appname_ref.current.focus();
-  }, []);
-
   return (
     <Card>
       <h2 className="font-extrabold text-xl pb-6 text-center">Create a project</h2>
       <div className="flex flex-col justify-center items-center w-full pb-6 space-y-4">
-        <input
+        <Input
           onChange={handleChange}
           value={input.appname}
-          className="w-10/12 input"
+          className="w-10/12"
           type="text"
           name="appname"
           id="appname"
           placeholder="Application name"
           ref={appname_ref}
         />
-        <input
+        <Input
           onChange={handleChange}
           value={input.version}
-          className="w-10/12 input"
+          className="w-10/12"
           type="text"
           name="version"
           id="version"
           placeholder="Version"
           ref={version_ref}
         />
-        <textarea
+        <TextArea
           onChange={handleChange}
           value={input.description}
           className="w-10/12 resize-none input"

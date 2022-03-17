@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron';
 import React, { useEffect } from 'react';
 import detect from 'detect-port';
 import { Switch } from '@headlessui/react';
-import { pendingTask, switchTask, updateLogs } from '../../../slices/projectSlice';
+import { pendingTask, switchTask, updateLogs } from '../../../slices/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 export const TaskSwitch = ({
@@ -55,7 +55,7 @@ function classNames(...classes: string[]) {
 
 export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
   const projectPath = useAppSelector((state) => state.project.projectPath);
-  const task = useAppSelector((state) => state.project.tasks[taskName]);
+  const task = useAppSelector((state) => state.tasks.tasks[taskName]);
   const dispatch = useAppDispatch();
 
   const handleChange = () => {

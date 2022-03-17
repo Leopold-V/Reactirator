@@ -133,10 +133,14 @@ ipcMain.on('run-cmd', (event, arg) => {
     event.sender.send(`task-running-error`, { taskName: arg.taskName, data: error.message });
   });
   taskProcess.on('exit', () => {
+    console.log('exit event');
     console.log(`Exit task process: ${arg.taskName} with pid: ${taskProcess.pid}`);
     listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.taskName);
     console.log(listTaskPid);
     event.sender.send(`task-running-exit`, { taskName: arg.taskName });
+  });
+  taskProcess.on('close', () => {
+    console.log('Close event ', taskProcess.pid);
   });
 });
 

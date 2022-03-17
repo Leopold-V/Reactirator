@@ -2,7 +2,7 @@ import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/outline';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { clearLogs } from '../../../slices/projectSlice';
+import { clearLogs } from '../../../slices/taskSlice';
 
 import { TerminalOutput } from '../Terminal';
 
@@ -15,7 +15,7 @@ type TaskModalProps = {
 export const TaskModal = (props: TaskModalProps) => {
   const { taskName, open, toggleModal } = props;
   const cancelButtonRef = useRef(null);
-  const taskState = useAppSelector((state) => state.project.tasks[taskName].taskState);
+  const taskState = useAppSelector((state) => state.tasks.tasks[taskName].taskState);
   const dispatch = useAppDispatch();
 
   const handleClear = () => {
@@ -59,7 +59,7 @@ export const TaskModal = (props: TaskModalProps) => {
           >
             <div className="relative w-1/2 inline-block bg-white rounded overflow-hidden shadow-xl transform transition-all align-middle">
               <div className="flex flex-col justify-center items-center">
-                <div className="py-8 px-6 bg-gray-100 flex w-full items-center justify-start">
+                <div className="pt-8 px-6 flex w-full items-center justify-start">
                   <div className="flex items-center justify-center absolute h-12 w-12 rounded-full bg-blue-100">
                     <InformationCircleIcon className="h-8 w-8 text-blue-700" aria-hidden="true" />
                   </div>

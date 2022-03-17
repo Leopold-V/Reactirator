@@ -8,14 +8,9 @@ import { TaskSwitch } from './TaskSwitch';
 import { TaskModal } from './TaskModal';
 import { TaskStatut } from './TaskStatut';
 
-// TODO:
-// We should rather manage a list of process on the front so that we don't need a listener for process kill
-// and we can use the list of process in a state for other work such as ask confirmation to leave the tasks page and kill all process.
-// Create a new pid list state and update it each time we start a new task.
 export const TasksItem = ({ taskName }: { taskName: string }) => {
   const [open, toggleModal] = useModal();
-
-  const task = useAppSelector((state) => state.project.tasks[taskName]);
+  const task = useAppSelector((state) => state.tasks.tasks[taskName]);
 
   useEffect(() => {
     if (!task.enabled && task.taskState === 'Pending') {

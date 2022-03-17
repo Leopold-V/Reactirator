@@ -1,7 +1,7 @@
 import React, { Dispatch } from 'react';
 
 import { FormSection } from './FormSection';
-import { Checkbox } from './Checkbox';
+import { SwitchPackage } from './SwitchPackage';
 import { formInputType, actionPackageType } from '../../helpers/types';
 import { Card } from '../../../common/Card';
 
@@ -19,7 +19,7 @@ export const FormCustomProject = ({
       <h2 className="font-extrabold text-xl pb-4 text-center">Customization</h2>
       <div className="flex space-x-2">
         <FormSection title="Type checker">
-          <Checkbox
+          <SwitchPackage
             name="typescript"
             packageName="typescript"
             setInput={setInput}
@@ -27,8 +27,8 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Typescript
-          </Checkbox>
-          <Checkbox
+          </SwitchPackage>
+          <SwitchPackage
             name="flow"
             packageName="flow-bin"
             setInput={setInput}
@@ -36,10 +36,10 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Flow
-          </Checkbox>
+          </SwitchPackage>
         </FormSection>
         <FormSection title="Styles">
-          <Checkbox
+          <SwitchPackage
             name="tailwind"
             packageName="tailwind"
             setInput={setInput}
@@ -47,8 +47,8 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Tailwind
-          </Checkbox>
-          <Checkbox
+          </SwitchPackage>
+          <SwitchPackage
             name="bootstrap"
             packageName="bootstrap"
             setInput={setInput}
@@ -56,8 +56,8 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Bootstrap
-          </Checkbox>
-          <Checkbox
+          </SwitchPackage>
+          <SwitchPackage
             name="normalize"
             packageName="normalize.css"
             setInput={setInput}
@@ -65,10 +65,10 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             CSS reset
-          </Checkbox>
+          </SwitchPackage>
         </FormSection>
         <FormSection title="Tools">
-          <Checkbox
+          <SwitchPackage
             name="prettier"
             packageName="prettier"
             setInput={setInput}
@@ -76,8 +76,8 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Prettier
-          </Checkbox>
-          <Checkbox
+          </SwitchPackage>
+          <SwitchPackage
             name="sourcemapexplorer"
             packageName="source-map-explorer"
             setInput={setInput}
@@ -85,8 +85,8 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Bundle analyze
-          </Checkbox>
-          <Checkbox
+          </SwitchPackage>
+          <SwitchPackage
             name="storybook"
             packageName="storybook"
             setInput={setInput}
@@ -94,7 +94,7 @@ export const FormCustomProject = ({
             dispatchPackages={dispatchPackages}
           >
             Storybook
-          </Checkbox>
+          </SwitchPackage>
         </FormSection>
       </div>
     </Card>

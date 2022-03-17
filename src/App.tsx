@@ -3,7 +3,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ClipLoader from "react-spinners/ClipLoader";
+import ClipLoader from 'react-spinners/ClipLoader';
 import { store } from './store';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { getSizeOfPackagesList, searchPackages } from './services/package.service';
@@ -21,10 +21,12 @@ import { Bar } from './common/Bar';
 import { Card } from './common/Card';
 import { promisifyReadFs } from './utils/promisifyFs';
 import { taskType } from './manager/helpers/types';
+import { initTasks } from './slices/taskSlice';
+import { initDependencies } from './slices/dependenciesSlice';
 
 const App = () => {
   // TODO:
-  // integrate theme in redux store ?
+  // integrate theme in redux store ? Or remove it.
   const [theme, setTheme] = useState(localStorage.theme);
   useEffect(() => {
     if (
@@ -190,9 +192,18 @@ const managerLoader = (manager: JSX.Element) => {
                 initProject({
                   projectName: contentObj.name,
                   projectPath: filepath[0],
+                })
+              );
+              dispatch(
+                initTasks({
                   tasks: newTaskList,
+                })
+              );
+              dispatch(
+                initDependencies({
                   dependencies: contentObj.dependencies,
                   devDependencies: contentObj.devDependencies,
+                  depSelected: Object.keys(contentObj.dependencies)[0]
                 })
               );
               setLoading(false);

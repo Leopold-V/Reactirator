@@ -10,7 +10,7 @@ type terminalOutputProps = {
 
 export const TerminalOutput = React.memo<terminalOutputProps>(({ taskName, inModal = false }) => {
   const xtermRef = useRef(null);
-  const logs = useAppSelector((state) => state.project.tasks[taskName].logs);
+  const logs = useAppSelector((state) => state.tasks.tasks[taskName].logs);
 
   const fitAddon = new FitAddon();
 

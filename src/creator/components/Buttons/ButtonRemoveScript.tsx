@@ -12,15 +12,12 @@ export const ButtonRemoveScript = ({ name }: { name: string }) => {
 
   return (
     <button
+      type="button"
+      className="flex-shrink-0 ml-1 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
       onClick={handleClick}
-      className="p-1 h-full bg-blue-50 hover:bg-red-200 border-none focus:outline-none transition duration-200"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="red">
-        <path
-          fillRule="evenodd"
-          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-          clipRule="evenodd"
-        />
+      <svg className="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+        <path strokeLinecap="round" strokeWidth="1.5" d="M1 1l6 6m0-6L1 7" />
       </svg>
     </button>
   );

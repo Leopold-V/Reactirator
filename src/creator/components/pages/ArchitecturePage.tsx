@@ -10,13 +10,13 @@ export const ArchitecturePage = ({
   dispatch: Dispatch<any>;
 }) => {
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex space-x-8">
+    <div className="flex w-full space-x-8">
+      <div className="flex-grow">
         <TreeFolder structure={structure} dispatchStructure={dispatch} />
-        <div className="flex flex-col flex-grow space-y-8">
-          <CreateFolder structure={structure} dispatchStructure={dispatch} />
-          <CreateComponent structure={structure} dispatchStructure={dispatch} />
-        </div>
+      </div>
+      <div className="flex flex-col w-1/2 space-y-8">
+        <CreateFolder structure={structure} dispatchStructure={dispatch} />
+        <CreateComponent structure={structure} dispatchStructure={dispatch} />
       </div>
     </div>
   );

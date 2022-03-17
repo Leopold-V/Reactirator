@@ -3,21 +3,20 @@ import { Route, useRouteMatch } from 'react-router-dom';
 import { ipcRenderer } from 'electron';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { killProcess } from '../utils/killProcess';
-import { stopTask, errorTask, finishTask, updateLogs } from '../slices/projectSlice';
+import { stopTask, errorTask, finishTask, updateLogs } from '../slices/taskSlice';
 
 import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerPage';
 import { DependenciesPage } from './components/pages/DependenciesPage';
 import { TasksPage } from './components/pages/TasksPage';
 import { Layout } from '../common/Layout';
+import { HeaderManager } from './components/HeaderManager';
 
-// TODO:
-// Should kill all running process and ask for confirmation if we leave the manager application
 const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
   const { path } = useRouteMatch();
   const projectName = useAppSelector((state) => state.project.projectName);
   // TODO:
   // It implicitly means the selected project should ALWAYS have a script called "start" OR "dev" to launch the project.
-  const taskStart = useAppSelector((state) => state.project.tasks['start' || 'dev']);
+  const taskState = useAppSelector((state) => state.tasks.tasks['start' || 'dev'].taskState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -50,17 +49,8 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
 
   return (
     <Layout theme={theme} setTheme={setTheme}>
-      <div className="space-y-4 w-full h-full relative">
-        <div className="flex items-center justify-center space-x-3">
-          <span className="text-center text-2xl font-extrabold">{projectName}</span>
-          <span
-            className={`${taskStart.taskState === 'Pending' ? 'bg-green-100' : 'bg-gray-100'}
-              h-4 w-4 mt-1 rounded-full flex items-center justify-center`}
-            aria-hidden="true"
-          >
-            <span className={`${taskStart.taskState === 'Pending' ? 'bg-green-400' : 'bg-gray-400'} h-2 w-2 rounded-full`} />
-          </span>
-        </div>
+      <div className="space-y-4 w-full h-full">
+       <HeaderManager projectName={projectName} taskState={taskState} />
         <hr />
         <Route exact path={`${path}`} render={() => <TasksPage />} />
         <Route exact path={`${path}/dependencies`} component={DependenciesPage} />

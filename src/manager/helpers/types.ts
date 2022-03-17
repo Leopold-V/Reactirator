@@ -20,11 +20,14 @@ export type projectStateType = {
   projectName: string;
   projectPath: string;
   loading?: boolean;
-  tasks: Record<string, taskType>;
-  dependencies: Record<string, string>;
-  devDependencies: Record<string, string>;
 };
 
 export type tasksStateType = {
   tasks: Record<string, taskType>;
+};
+
+export type dependenciesStateType = {
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
+  depSelected: string
 };
