@@ -26,8 +26,14 @@ export type tasksStateType = {
   tasks: Record<string, taskType>;
 };
 
+export type depType = {
+  depName: string,
+  depVersion: string,
+  isDevDep: boolean
+}
+
 export type dependenciesStateType = {
   dependencies: Record<string, string>;
   devDependencies: Record<string, string>;
-  depSelected: string
+  depSelected: depType
 };

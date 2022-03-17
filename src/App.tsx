@@ -23,6 +23,7 @@ import { promisifyReadFs } from './utils/promisifyFs';
 import { taskType } from './manager/helpers/types';
 import { initTasks } from './slices/taskSlice';
 import { initDependencies } from './slices/dependenciesSlice';
+import { formatDeps } from './utils/formatDeps';
 
 const App = () => {
   // TODO:
@@ -201,9 +202,13 @@ const managerLoader = (manager: JSX.Element) => {
               );
               dispatch(
                 initDependencies({
-                  dependencies: contentObj.dependencies,
-                  devDependencies: contentObj.devDependencies,
-                  depSelected: Object.keys(contentObj.dependencies)[0]
+                  dependencies: formatDeps(contentObj.dependencies),
+                  devDependencies: formatDeps(contentObj.devDependencies),
+                  depSelected: {
+                    depName: Object.keys(contentObj.dependencies)[0],
+                    depVersion: Object.entries(formatDeps(contentObj.dependencies))[0][1],
+                    isDevDep: true
+                  }
                 })
               );
               setLoading(false);

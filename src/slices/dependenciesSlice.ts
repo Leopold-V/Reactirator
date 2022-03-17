@@ -1,11 +1,15 @@
 // eslint-disable-next-line import/named
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { dependenciesStateType } from '../manager/helpers/types';
+import { dependenciesStateType, depType } from '../manager/helpers/types';
 
 const initialState: dependenciesStateType = {
   dependencies: {},
   devDependencies: {},
-  depSelected: ''
+  depSelected: {
+    depName: '',
+    depVersion: '',
+    isDevDep: false
+  }
 };
 
 export const dependenciesSlice = createSlice({
@@ -20,7 +24,7 @@ export const dependenciesSlice = createSlice({
       state.devDependencies = action.payload.devDependencies;
       state.depSelected = action.payload.depSelected;
     },
-    selectDep: (state: dependenciesStateType, action: PayloadAction<string>) => {
+    selectDep: (state: dependenciesStateType, action: PayloadAction<depType>) => {
       state.depSelected = action.payload;
     }
   }
