@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 import { ipcRenderer } from 'electron';
+
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { killProcess } from '../utils/killProcess';
 import { stopTask, errorTask, finishTask, updateLogs } from '../slices/taskSlice';
+import { removeDep } from '../slices/dependenciesSlice';
 
 import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerPage';
 import { DependenciesPage } from './components/pages/DependenciesPage';
@@ -37,6 +39,10 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
       } finally {
         dispatch(stopTask(arg.taskName));
       }
+    });
+    ipcRenderer.on('dep-uninstall-exit', (event, arg) => {
+      console.log(arg);
+      dispatch(removeDep({ depName: arg.depName, isDevDep: arg.isDevDep}));
     });
     return () => {
       ipcRenderer.removeAllListeners(`task-running`);

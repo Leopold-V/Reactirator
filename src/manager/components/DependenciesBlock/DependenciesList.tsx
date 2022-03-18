@@ -10,10 +10,10 @@ export const DependenciesList = () => {
   return (
     <ul className="h-[26rem] w-full flex flex-col divide-y divide-gray-200 overflow-y-auto">
     {Object.entries(dependencies.dependencies).map((ele) => (
-      <DependenciesItem key={ele[0]} depName={ele[0]} depVersion={ele[1]} isDevDep={true} />
+      <DependenciesItem key={ele[0]} depName={ele[0]} depVersion={ele[1].version} isDevDep={false} />
     ))}
     {Object.entries(dependencies.devDependencies).map((ele) => (
-      <DependenciesItem key={ele[0]} depName={ele[0]} depVersion={ele[1]} isDevDep={false} />
+      <DependenciesItem key={ele[0]} depName={ele[0]} depVersion={ele[1].version} isDevDep={true} />
     ))}
   </ul>
   )

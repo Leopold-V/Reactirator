@@ -104,9 +104,11 @@ ipcMain.on('open-directory', (event, arg) => {
   }
 });
 
+// TODO:
+// Maybe rename the "taskName property to something more generic since we're using it for tasks + dependencies name as well"
 let listTaskPid: { pid: number; taskName: string }[] = [];
 
-ipcMain.on('run-cmd', (event, arg) => {
+ipcMain.on('run-cmd', (event, arg: { path: string, taskName: string }) => {
   const taskProcess = spawn(
     /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
     ['run', arg.taskName],
@@ -125,7 +127,7 @@ ipcMain.on('run-cmd', (event, arg) => {
     event.sender.send(`task-running`, { taskName: arg.taskName, data: data.toString() });
   });
   taskProcess.stderr.on('data', (data: string) => {
-    console.log(data.toString());
+    console.log('#Error : ' + data.toString());
     event.sender.send(`task-running-error`, { taskName: arg.taskName, data: data.toString() });
   });
   taskProcess.on('error', (error: Error) => {
@@ -133,16 +135,42 @@ ipcMain.on('run-cmd', (event, arg) => {
     event.sender.send(`task-running-error`, { taskName: arg.taskName, data: error.message });
   });
   taskProcess.on('exit', () => {
-    console.log('exit event');
     console.log(`Exit task process: ${arg.taskName} with pid: ${taskProcess.pid}`);
     listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.taskName);
     console.log(listTaskPid);
     event.sender.send(`task-running-exit`, { taskName: arg.taskName });
   });
-  taskProcess.on('close', () => {
-    console.log('Close event ', taskProcess.pid);
-  });
 });
+
+ipcMain.on('dep-uninstall', (event, arg: { path: string, depName: string, isDevDep: boolean }) => {
+  const depProcess = spawn(
+    /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
+    ['uninstall', arg.depName],
+    {
+      cwd: arg.path,
+      shell: false,
+    }
+  );
+  listTaskPid.push({ pid: depProcess.pid, taskName: arg.depName });
+  console.log(listTaskPid);
+
+  depProcess.stdout.on('data', (data: string) => {
+    console.log(data.toString());
+  });
+  depProcess.stderr.on('data', (data: string) => {
+    console.log('#Error : ' + data.toString());
+  });
+  depProcess.on('error', (error: Error) => {
+    console.log(error.message);
+  });
+
+  depProcess.on('exit', () => {
+    console.log(`Exit dependency process: ${arg.depName} with pid: ${depProcess.pid}`);
+    listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.depName);
+    console.log(listTaskPid);
+    event.sender.send(`dep-uninstall-exit`, { depName: arg.depName, isDevDep: arg.isDevDep });
+  });
+})
 
 ipcMain.on('kill-process', (event, arg) => {
   const pid = listTaskPid.find((task) => task.taskName === arg.taskName).pid;

@@ -1,19 +1,15 @@
-import React, { useState, useRef, useEffect, Dispatch } from 'react';
-
-import { ListPackagesFound } from './ListPackagesFound';
-
-import { actionPackageType, listPackageType } from '../../helpers/types';
-import { searchPackages } from '../../../services/package.service';
-import { Card } from '../../../common/Card';
+import React, { useState, useRef, useEffect } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
-import { Input } from '../../../common/Input';
 
-export const SearchPackages = ({
-  dispatchPackages,
-}: {
-  dispatchPackages: Dispatch<actionPackageType>;
-}) => {
-  const [input, setInput] = useState<listPackageType>([]);
+import { searchPackages } from '../../../services/package.service';
+import { dependencyFoundType } from '../../../manager/helpers/types';
+
+import { Card } from '../../../common/Card';
+import { Input } from '../../../common/Input';
+import { ListDependenciesFound } from './ListDependenciesFound';
+
+export const DependenciesSearch = () => {
+  const [input, setInput] = useState<dependencyFoundType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const input_ref = useRef(null);
@@ -22,11 +18,15 @@ export const SearchPackages = ({
     if (e.target.value !== '') {
       try {
         const packagesFound = await searchPackages(e.target.value);
-        const results: listPackageType = packagesFound.map((ele: any) => ({
+        const results: dependencyFoundType[] = packagesFound.map((ele: any) => ({
           name: ele.package.name,
           version: ele.package.version,
           description: ele.package.description,
           score: ele.score.final,
+          links: {
+            npm: ele.package.links.npm,
+            repository: ele.package.links.repository
+          }
         }));
         setInput(results);
       } catch (error) {
@@ -67,7 +67,7 @@ export const SearchPackages = ({
             onChange={handleChange}
           />
         </div>
-        {isOpen && <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />}
+        {isOpen && <ListDependenciesFound results={input} />}
       </div>
     </Card>
   );

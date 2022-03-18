@@ -26,14 +26,36 @@ export type tasksStateType = {
   tasks: Record<string, taskType>;
 };
 
-export type depType = {
+// TODO:
+// Rename to "name" and "version"
+export type depSelectType = {
   depName: string,
   depVersion: string,
   isDevDep: boolean
 }
 
+export type depType = {
+  name: string
+  version: string,
+  status: depStatusType,
+  isDevDep: boolean
+}
+
 export type dependenciesStateType = {
-  dependencies: Record<string, string>;
-  devDependencies: Record<string, string>;
-  depSelected: depType
+  dependencies: Record<string, depType>;
+  devDependencies: Record<string, depType>;
+  depSelected: depSelectType
 };
+
+export type dependencyFoundType = {
+  name: string;
+  version: string;
+  description: string;
+  score: number;
+  links: {
+    npm: string,
+    repository: string
+  }
+};
+
+export type depStatusType = 'Idle' | 'Pending';
