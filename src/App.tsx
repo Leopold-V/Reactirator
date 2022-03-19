@@ -10,6 +10,11 @@ import { getSizeOfPackagesList, searchPackages } from './services/package.servic
 import initialPackageJson from './creator/helpers/initialPackageJson';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
 import { initProject, resetProject } from './slices/projectSlice';
+import { promisifyReadFs } from './utils/promisifyFs';
+import { taskType } from './manager/helpers/types';
+import { initTasks } from './slices/taskSlice';
+import { initDependencies } from './slices/dependenciesSlice';
+import { formatDeps } from './utils/formatDeps';
 
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './creator/components/Contexts/dependenciesProvider';
@@ -19,11 +24,6 @@ import Creator from './creator';
 import Manager from './manager';
 import { Bar } from './common/Bar';
 import { Card } from './common/Card';
-import { promisifyReadFs } from './utils/promisifyFs';
-import { taskType } from './manager/helpers/types';
-import { initTasks } from './slices/taskSlice';
-import { initDependencies } from './slices/dependenciesSlice';
-import { formatDeps } from './utils/formatDeps';
 
 const App = () => {
   return (
@@ -64,12 +64,12 @@ const Menu = () => {
       <div className="flex justify-center items-center space-x-4">
         <Link to="/creator">
           <Card large={true}>
-            <div className="text-xl text-center font-semibold w-32">Creation</div>
+            <div className="text-xl text-center font-semibold w-32">Create a new Project</div>
           </Card>
         </Link>
         <Link to="/manager">
           <Card large={true}>
-            <div className="text-xl text-center font-semibold w-32">Development</div>
+            <div className="text-xl text-center font-semibold w-32">Open a project</div>
           </Card>
         </Link>
       </div>
