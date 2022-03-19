@@ -5,7 +5,7 @@ import { ipcRenderer } from 'electron';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { killProcess } from '../utils/killProcess';
 import { stopTask, errorTask, finishTask, updateLogs } from '../slices/taskSlice';
-import { removeDep } from '../slices/dependenciesSlice';
+import { removeDep, selectDep, updateDep } from '../slices/dependenciesSlice';
 
 import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerPage';
 import { DependenciesPage } from './components/pages/DependenciesPage';
@@ -40,15 +40,27 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
         dispatch(stopTask(arg.taskName));
       }
     });
-    ipcRenderer.on('dep-uninstall-exit', (event, arg) => {
-      console.log(arg);
+    ipcRenderer.on('dep-install-exit', (event, arg: { depName: string, isDevDep: boolean, version: string }) => {
+      console.log(arg.version);
+      dispatch(updateDep({ name: arg.depName, isDevDep: arg.isDevDep, version: arg.version, status: 'Idle'}));
+      dispatch(selectDep({depName: arg.depName, depVersion: arg.version, isDevDep: arg.isDevDep}));
+    });
+    ipcRenderer.on('dep-uninstall-exit', (event, arg:  { depName: string, isDevDep: boolean }) => {
       dispatch(removeDep({ depName: arg.depName, isDevDep: arg.isDevDep}));
     });
+    ipcRenderer.on('dep-update-exit', (event, arg: { depName: string, isDevDep: boolean, version: string }) => {
+      dispatch(updateDep({ name: arg.depName, isDevDep: arg.isDevDep, version: arg.version, status: 'Idle'}));
+      dispatch(selectDep({ depName: arg.depName, depVersion: arg.version, isDevDep: arg.isDevDep}));
+    });
+
     return () => {
       ipcRenderer.removeAllListeners(`task-running`);
       ipcRenderer.removeAllListeners(`task-running-error`);
       ipcRenderer.removeAllListeners(`task-running-exit`);
       ipcRenderer.removeAllListeners(`task-running-kill`);
+      ipcRenderer.removeAllListeners('dep-uninstall-exit');
+      ipcRenderer.removeAllListeners('dep-install-exit');
+      ipcRenderer.removeAllListeners('dep-update-exit');
       ipcRenderer.send('kill-all-running-process');
     };
   }, []);

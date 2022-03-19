@@ -142,16 +142,17 @@ ipcMain.on('run-cmd', (event, arg: { path: string, taskName: string }) => {
   });
 });
 
-ipcMain.on('dep-uninstall', (event, arg: { path: string, depName: string, isDevDep: boolean }) => {
+
+ipcMain.on('dep-install', (event, arg: { path: string, depName: string, isDevDep: boolean, version: string }) => {
   const depProcess = spawn(
     /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
-    ['uninstall', arg.depName],
+    ['install', arg.depName],
     {
       cwd: arg.path,
       shell: false,
     }
   );
-  listTaskPid.push({ pid: depProcess.pid, taskName: arg.depName });
+  listTaskPid.push({ pid: depProcess.pid, taskName: arg.depName + '-install' });
   console.log(listTaskPid);
 
   depProcess.stdout.on('data', (data: string) => {
@@ -166,11 +167,72 @@ ipcMain.on('dep-uninstall', (event, arg: { path: string, depName: string, isDevD
 
   depProcess.on('exit', () => {
     console.log(`Exit dependency process: ${arg.depName} with pid: ${depProcess.pid}`);
-    listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.depName);
+    listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.depName + '-install');
+    console.log(listTaskPid);
+    console.log(arg.version);
+    event.sender.send(`dep-install-exit`, { depName: arg.depName, isDevDep: arg.isDevDep, version: arg.version });
+  });
+})
+
+ipcMain.on('dep-uninstall', (event, arg: { path: string, depName: string, isDevDep: boolean }) => {
+  const depProcess = spawn(
+    /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
+    ['uninstall', arg.depName],
+    {
+      cwd: arg.path,
+      shell: false,
+    }
+  );
+  listTaskPid.push({ pid: depProcess.pid, taskName: arg.depName + '-uninstall' });
+  console.log(listTaskPid);
+
+  depProcess.stdout.on('data', (data: string) => {
+    console.log(data.toString());
+  });
+  depProcess.stderr.on('data', (data: string) => {
+    console.log('#Error : ' + data.toString());
+  });
+  depProcess.on('error', (error: Error) => {
+    console.log(error.message);
+  });
+
+  depProcess.on('exit', () => {
+    console.log(`Exit dependency process: ${arg.depName} with pid: ${depProcess.pid}`);
+    listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.depName + '-uninstall');
     console.log(listTaskPid);
     event.sender.send(`dep-uninstall-exit`, { depName: arg.depName, isDevDep: arg.isDevDep });
   });
-})
+});
+
+ipcMain.on('dep-update', (event, arg: { path: string, depName: string, isDevDep: boolean, version: string }) => {
+  const depProcess = spawn(
+    /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
+    ['install', `${arg.depName}@${arg.version}`],
+    {
+      cwd: arg.path,
+      shell: false,
+    }
+  );
+  listTaskPid.push({ pid: depProcess.pid, taskName: arg.depName + '-update' });
+  console.log(listTaskPid);
+
+  depProcess.stdout.on('data', (data: string) => {
+    console.log(data.toString());
+  });
+  depProcess.stderr.on('data', (data: string) => {
+    console.log('#Error : ' + data.toString());
+  });
+  depProcess.on('error', (error: Error) => {
+    console.log(error.message);
+  });
+
+  depProcess.on('exit', () => {
+    console.log(`Exit dependency process: ${arg.depName} with pid: ${depProcess.pid}`);
+    listTaskPid = listTaskPid.filter((task) => task.taskName !== arg.depName + '-update');
+    console.log(listTaskPid);
+    event.sender.send(`dep-update-exit`, { depName: arg.depName, isDevDep: arg.isDevDep, version: arg.version });
+  });
+});
 
 ipcMain.on('kill-process', (event, arg) => {
   const pid = listTaskPid.find((task) => task.taskName === arg.taskName).pid;

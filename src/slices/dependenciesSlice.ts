@@ -34,6 +34,10 @@ export const dependenciesSlice = createSlice({
       state[depCategory][depName].status = action.payload.status;
       state[depCategory][depName].isDevDep = action.payload.isDevDep;
     },
+    installDep:(state: dependenciesStateType, action: PayloadAction<depType>) => {
+      const depCategory = action.payload.isDevDep ? 'devDependencies' : 'dependencies';
+      state[depCategory][action.payload.name] = action.payload;
+    },
     removeDep: (state: dependenciesStateType, action: PayloadAction<{depName: string, isDevDep: boolean}>) => {
       const depCategory = action.payload.isDevDep ? 'devDependencies' : 'dependencies';
       if (state.depSelected.depName === action.payload.depName) {
@@ -53,7 +57,8 @@ export const {
     initDependencies,
     selectDep,
     updateDep,
-    removeDep
+    removeDep,
+    installDep
 } = dependenciesSlice.actions;
 
 export default dependenciesSlice.reducer;

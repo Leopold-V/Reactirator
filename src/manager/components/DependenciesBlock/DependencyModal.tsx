@@ -1,10 +1,24 @@
-import React, { Fragment, useRef } from 'react';
+import { ipcRenderer } from 'electron';
+import React, { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 import { dependencyFoundType } from '../../../manager/helpers/types';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { installDep } from '../../../slices/dependenciesSlice';
+import { DependencyModalRadio } from './DependencyModalRadio';
 
 export const DependencyModal = ({ depData, open, toggleModal }: { depData: dependencyFoundType, open: boolean, toggleModal: () => void}) => {
-    const cancelButtonRef = useRef(null);
+  const cancelButtonRef = useRef(null);
+  const [selectedType, setSelectedType] = useState('Dependency')
+  const projectPath = useAppSelector((state) => state.project.projectPath);
+  const dependencies = useAppSelector(state => state.dependencies);
+  const dispatch = useAppDispatch();
+
+    const handleInstallDep = () => {
+      console.log(selectedType);
+      ipcRenderer.send('dep-install', { path: projectPath, depName: depData.name, isDevDep: selectedType === 'devDependency' ? true : false, version: depData.version});
+      dispatch(installDep({ name: depData.name, version: depData.version, status: 'Pending', isDevDep: selectedType === 'devDependency' ? true : false}));
+    }
 
     return (
       <Transition.Root show={open} as={Fragment}>
@@ -80,12 +94,17 @@ export const DependencyModal = ({ depData, open, toggleModal }: { depData: depen
                             </a>
                           </dd>
                         </div>
+                        <div className="py-5 px-6">
+                          <DependencyModalRadio selectedType={selectedType} setSelectedType={setSelectedType} />
+                        </div>
                       </dl>
                 </div>
                 <div className="bg-gray-50 w-full px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <button
+                    disabled={dependencies.dependencies[depData.name]?.status === 'Pending' || dependencies.devDependencies[depData.name]?.status === 'Pending'}
+                    onClick={handleInstallDep}
                     type="button"
-                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 disabled:opacity-70 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                     ref={cancelButtonRef}
                   >
                     Install

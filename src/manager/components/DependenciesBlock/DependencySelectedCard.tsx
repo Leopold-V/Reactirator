@@ -1,22 +1,52 @@
 import { ipcRenderer } from 'electron';
 import React, { useEffect, useState } from 'react';
-import { BadgeCheckIcon } from '@heroicons/react/outline';
+import { BadgeCheckIcon, CogIcon } from '@heroicons/react/outline';
 
 import { searchPackagesV2 } from '../../../services/package.service';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { updateDep } from '../../../slices/dependenciesSlice';
 
-import { Card } from '../../../common/Card';
 import { ButtonDelete, ButtonSecondary } from '../../../common/Button';
+import { Card } from '../../../common/Card';
 
 export const DependencySelectedCard = () => {
   const [data, setdata] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const selectedDeps = useAppSelector((state) => state.dependencies.depSelected);
   const projectPath = useAppSelector((state) => state.project.projectPath);
+  const dependencyStatus = useAppSelector(
+    (state) =>
+      state.dependencies[selectedDeps.isDevDep ? 'devDependencies' : 'dependencies'][
+        selectedDeps.depName
+      ].status
+  );
+
   const dispatch = useAppDispatch();
 
+  const updateDependency = () => {
+    ipcRenderer.send('dep-update', {
+      depName: selectedDeps.depName,
+      path: projectPath,
+      isDevDep: selectedDeps.isDevDep,
+      version: data.collected.metadata.version
+    });
+    dispatch(
+      updateDep({
+        name: selectedDeps.depName,
+        version: selectedDeps.depVersion,
+        isDevDep: selectedDeps.isDevDep,
+        status: 'Pending',
+      })
+    );
+  }
+
   const removeDependency = () => {
-    ipcRenderer.send('dep-uninstall', { depName: selectedDeps.depName, path: projectPath, isDevDep: selectedDeps.isDevDep });
+    ipcRenderer.send('dep-uninstall', {
+      depName: selectedDeps.depName,
+      path: projectPath,
+      isDevDep: selectedDeps.isDevDep,
+    });
     dispatch(
       updateDep({
         name: selectedDeps.depName,
@@ -30,11 +60,15 @@ export const DependencySelectedCard = () => {
   //TODO:
   //Error handling, UI display.
   const getData = async () => {
+    setLoading(true);
     try {
       const pkgData = await searchPackagesV2(selectedDeps.depName);
       setdata(pkgData);
+      setLoading(false);
+      setError(false);
     } catch (error) {
       console.log(error);
+      setLoading(true);
     }
   };
 
@@ -42,12 +76,14 @@ export const DependencySelectedCard = () => {
     getData();
   }, [selectedDeps]);
 
-  if (!data)
-    return (
-      <Card>
-        <div className="flex items-center justify-center font-bold text-lg">Loading...</div>
-      </Card>
-    );
+  if (error) return (
+    <Card>
+      <div className="flex items-center justify-center">
+        The request to the server failed, rety later or report the problem if it persists.
+      </div>
+    </Card>
+  )
+  if (loading) return null;
   return (
     <div className="bg-white shadow overflow-hidden rounded">
       <CardHeader
@@ -66,13 +102,20 @@ export const DependencySelectedCard = () => {
               <dd className="text-sm text-gray-900">{data.collected.metadata.version} </dd>
             </div>
             <div className="col-span-1">
-              {selectedDeps.depVersion !== data.collected.metadata.version ? (
-                <ButtonSecondary>Update</ButtonSecondary>
+              {dependencyStatus !== 'Pending' ? (
+                selectedDeps.depVersion !== data.collected.metadata.version ? (
+                  <ButtonSecondary onClick={updateDependency}>Update</ButtonSecondary>
+                ) : (
+                  <div className="pt-4 flex justify-center items-center space-x-1">
+                    <BadgeCheckIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
+                    <span className="text-sm text-gray-700">Up-to-date</span>
+                  </div>
+                )
               ) : (
-                <div className="pt-4 flex justify-center items-center space-x-1">
-                  <BadgeCheckIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
-                  <span className="text-sm text-gray-700">Up-to-date</span>
-                </div>
+                <CogIcon
+                  className="h-6 w-6 ml-2 mt-2 animate-spin text-gray-700 "
+                  aria-hidden="true"
+                />
               )}
             </div>
           </div>
@@ -103,7 +146,9 @@ export const DependencySelectedCard = () => {
           <div className="py-5 grid grid-cols-3 gap-4 px-6">
             <dt className="text-sm font-medium text-gray-500">Danger zone</dt>
             <dd className="col-span-2">
-              <ButtonDelete onClick={removeDependency}>Uninstall</ButtonDelete>
+              <ButtonDelete disabled={dependencyStatus === 'Pending'} onClick={removeDependency}>
+                Uninstall
+              </ButtonDelete>
             </dd>
           </div>
         </dl>

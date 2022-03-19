@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { InformationCircleIcon } from '@heroicons/react/outline';
+
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { clearLogs } from '../../../slices/taskSlice';
 
@@ -60,9 +60,6 @@ export const TaskModal = (props: TaskModalProps) => {
             <div className="relative w-1/2 inline-block bg-white rounded overflow-hidden shadow-xl transform transition-all align-middle">
               <div className="flex flex-col justify-center items-center">
                 <div className="pt-8 px-6 flex w-full items-center justify-start">
-                  <div className="flex items-center justify-center absolute h-12 w-12 rounded-full bg-blue-100">
-                    <InformationCircleIcon className="h-8 w-8 text-blue-700" aria-hidden="true" />
-                  </div>
                   <div className="flex-grow">
                     <Dialog.Title
                       as="h3"

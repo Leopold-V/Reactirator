@@ -207,7 +207,7 @@ const managerLoader = (manager: JSX.Element) => {
                   depSelected: {
                     depName: Object.keys(contentObj.dependencies)[0],
                     depVersion: Object.entries(formatDeps(contentObj.dependencies, true))[0][1].version,
-                    isDevDep: true
+                    isDevDep: false
                   }
                 })
               );
