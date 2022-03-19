@@ -1,4 +1,5 @@
 const API_URL = 'https://api.npms.io/v2/search?q=';
+const API_URL2 = 'https://api.npms.io/v2/package/'
 const REGISTRY_URL = 'https://registry.npmjs.org';
 
 export const searchPackages = async (packageName: string, size = 30): Promise<any> => {
@@ -9,6 +10,17 @@ export const searchPackages = async (packageName: string, size = 30): Promise<an
   });
   const res = await rep.json();
   return res.results;
+};
+
+export const searchPackagesV2 = async (packageName: string): Promise<any> => {
+  const formatedPackageName = packageName.replace('/', '%2F'); // npm.io doesn't support scope.
+  const rep = await fetch(`${API_URL2}${formatedPackageName}`, {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  });
+  const res = await rep.json();
+  return res;
 };
 
 export const getOnePackage = async (name: string, version: string): Promise<any> => {

@@ -1,6 +1,6 @@
-import { AuthOptions } from '../helpers/types';
-import { Constants } from '../helpers/gitServicesOptions';
-import { GithubStateType } from '../components/Contexts/GithubProvider';
+import { AuthOptions } from '../creator/helpers/types';
+import { Constants } from '../creator/helpers/gitServicesOptions';
+import { GithubStateType } from '../creator/components/Contexts/GithubProvider';
 
 const PROXY_URL = 'https://cors.bridged.cc'; // use to prevent cors blockage when fetching github access_token endpoint from client side.
 

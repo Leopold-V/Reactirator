@@ -1,5 +1,6 @@
-import { remote, shell } from 'electron';
-
+import { shell } from 'electron';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const remote = require('@electron/remote');
 import './index.css';
 import './App';
 
@@ -17,11 +18,16 @@ window.onbeforeunload = () => {
 };
 
 function addExternalLink() {
+  console.log('Add external link');
   document.getElementById('button_git').addEventListener('click', () => {
     shell.openExternal('https://github.com/Leopold-V/Reactirator.git');
   });
   document.getElementById('button_bug').addEventListener('click', () => {
     shell.openExternal('https://github.com/Leopold-V/Reactirator/issues/new/choose');
+  });
+  document.getElementById('open_project').addEventListener('click', () => {
+    console.log('yes');
+    shell.openExternal('https://localhost:3000');
   });
 }
 

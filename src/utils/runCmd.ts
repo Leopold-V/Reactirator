@@ -1,8 +1,8 @@
-import { exec } from 'child_process';
+import child_process, { spawn } from 'child_process';
 
-const runCmd = (cmd: string): Promise<string> => {
+export const runCmd = (cmd: string): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const installProcess = exec(cmd, (error: Error, data: string) => {
+    const installProcess = child_process.exec(cmd, (error: Error, data: string) => {
       if (error) {
         reject(error);
       }
@@ -20,4 +20,23 @@ const runCmd = (cmd: string): Promise<string> => {
   });
 };
 
-export default runCmd;
+export const runCmdToTerminal = (cmd: string, path: string, terminal: any): Promise<void> => {
+  return new Promise((resolve) => {
+    const installProcess = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', cmd], {
+      cwd: path,
+      shell: false,
+    });
+    installProcess.stdout.on('data', (data: string) => {
+      terminal.writeln(data);
+    });
+    installProcess.stderr.on('data', (data: string) => {
+      terminal.writeln(data);
+    });
+    installProcess.on('error', (error: Error) => {
+      terminal.writeln(error.message);
+    });
+    installProcess.on('close', () => {
+      resolve();
+    });
+  });
+};

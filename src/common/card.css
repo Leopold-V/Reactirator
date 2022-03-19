@@ -1,0 +1,21 @@
+.card {
+  background: white;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  text-align: left;
+  padding: 1rem 2rem;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+
+.card.lg {
+  padding: 3rem;
+}
+
+.card:hover {
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid transparent;
+}
