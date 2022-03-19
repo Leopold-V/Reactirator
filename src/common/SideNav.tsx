@@ -2,24 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './sidenav.css';
 
-export const SideNav = ({
-  theme,
-  setTheme,
-}: {
-  theme: string;
-  setTheme: (theme: string) => void;
-}) => {
+export const SideNav = () => {
   const location = useLocation();
-
-  const changeTheme = async () => {
-    if (localStorage.theme === 'dark') {
-      localStorage.setItem('theme', 'light');
-      setTheme('light');
-    } else {
-      localStorage.setItem('theme', 'dark');
-      setTheme('dark');
-    }
-  };
 
   return (
     <div className="nav bg-primary">
@@ -62,40 +46,6 @@ export const SideNav = ({
             <line x1="4" y1="7" x2="7.75" y2="9.4" />
             <line x1="20" y1="7" x2="16.25" y2="9.4" />
           </svg>
-        </button>
-        <button className="btn-theme" onClick={changeTheme}>
-          <span className="mr-2">Theme</span>
-          {theme === 'dark' ? (
-            <svg
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="rgb(255, 240, 193)"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          ) : (
-            <svg
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="rgb(255, 240, 193)"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-          )}
         </button>
       </div>
     </div>

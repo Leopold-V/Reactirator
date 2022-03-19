@@ -13,7 +13,7 @@ import { TasksPage } from './components/pages/TasksPage';
 import { Layout } from '../common/Layout';
 import { HeaderManager } from './components/HeaderManager';
 
-const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
+const Manager = () => {
   const { path } = useRouteMatch();
   const projectName = useAppSelector((state) => state.project.projectName);
   // TODO:
@@ -66,7 +66,7 @@ const Manager = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
   }, []);
 
   return (
-    <Layout theme={theme} setTheme={setTheme}>
+    <Layout>
       <div className="space-y-4 w-full h-full">
        <HeaderManager projectName={projectName} taskState={taskState} />
         <hr />

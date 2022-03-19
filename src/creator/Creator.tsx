@@ -10,7 +10,7 @@ import { DocumentationPage } from './components/pages/DocumentationPage';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
 import { Layout } from '../common/Layout';
 
-const Creator = ({ theme, setTheme }: { theme: string; setTheme: (theme: string) => void }) => {
+const Creator = () => {
   const [input, setInput] = useState(initialState);
   const [readme, setReadme] = useState('');
   const [structure, dispatch] = useReducer(
@@ -21,7 +21,7 @@ const Creator = ({ theme, setTheme }: { theme: string; setTheme: (theme: string)
   const { path } = useRouteMatch();
 
   return (
-    <Layout theme={theme} setTheme={setTheme}>
+    <Layout>
       <Route
         exact
         path={path}

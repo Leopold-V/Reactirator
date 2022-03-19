@@ -26,20 +26,6 @@ import { initDependencies } from './slices/dependenciesSlice';
 import { formatDeps } from './utils/formatDeps';
 
 const App = () => {
-  // TODO:
-  // integrate theme in redux store ? Or remove it.
-  const [theme, setTheme] = useState(localStorage.theme);
-  useEffect(() => {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
-
   return (
     <Provider store={store}>
       <HashRouter>
@@ -48,11 +34,11 @@ const App = () => {
           <Route exact path="/" render={() => <Menu />} />
           <Route
             path="/manager"
-            component={managerLoader(<Manager theme={theme} setTheme={setTheme} />)}
+            component={managerLoader(<Manager />)}
           />
           <Route
             path="/creator"
-            component={creatorLoader(<Creator theme={theme} setTheme={setTheme} />)}
+            component={creatorLoader(<Creator />)}
           />
         </Switch>
       </HashRouter>

@@ -3,21 +3,16 @@ import { SideNav } from './SideNav';
 import './layout.css';
 import { Toaster } from 'react-hot-toast';
 
-export const Layout = ({
-  theme,
-  setTheme,
-  children,
+export const Layout = ({children,
 }: {
-  theme: string;
-  setTheme: (theme: string) => void;
   children: ReactNode;
 }) => {
   return (
     <div
       id="layout"
-      className="relative bg-gray-50 dark:bg-primary overflow-y-auto pt-8 flex flex-row h-screen"
+      className="relative bg-gray-50 overflow-y-auto pt-8 flex flex-row h-screen"
     >
-      <SideNav theme={theme} setTheme={setTheme} />
+      <SideNav />
       <div className="flex w-full px-8 py-7">{children}</div>
       <Toaster
         position="top-center"
