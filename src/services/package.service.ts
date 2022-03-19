@@ -1,5 +1,5 @@
 const API_URL = 'https://api.npms.io/v2/search?q=';
-const API_URL2 = 'https://api.npms.io/v2/package/'
+const API_URL2 = 'https://api.npms.io/v2/package/';
 const REGISTRY_URL = 'https://registry.npmjs.org';
 
 export const searchPackages = async (packageName: string, size = 30): Promise<any> => {

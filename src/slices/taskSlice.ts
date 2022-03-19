@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { tasksStateType } from '../manager/helpers/types';
 
 const initialState: tasksStateType = {
-  tasks: {}
+  tasks: {},
 };
 
 export const taskSlice = createSlice({
@@ -49,8 +49,8 @@ export const taskSlice = createSlice({
     },
     clearLogs: (state, action: PayloadAction<string>) => {
       state.tasks[action.payload].logs = '';
-    }
-  }
+    },
+  },
 });
 
 export const {

@@ -25,8 +25,8 @@ export const DependenciesSearch = () => {
           score: ele.score.final,
           links: {
             npm: ele.package.links.npm,
-            repository: ele.package.links.repository
-          }
+            repository: ele.package.links.repository,
+          },
         }));
         setInput(results);
       } catch (error) {

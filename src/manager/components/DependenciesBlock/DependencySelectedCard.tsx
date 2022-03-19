@@ -29,7 +29,7 @@ export const DependencySelectedCard = () => {
       depName: selectedDeps.depName,
       path: projectPath,
       isDevDep: selectedDeps.isDevDep,
-      version: data.collected.metadata.version
+      version: data.collected.metadata.version,
     });
     dispatch(
       updateDep({
@@ -39,7 +39,7 @@ export const DependencySelectedCard = () => {
         status: 'Pending',
       })
     );
-  }
+  };
 
   const removeDependency = () => {
     ipcRenderer.send('dep-uninstall', {
@@ -76,13 +76,14 @@ export const DependencySelectedCard = () => {
     getData();
   }, [selectedDeps]);
 
-  if (error) return (
-    <Card>
-      <div className="flex items-center justify-center">
-        The request to the server failed, rety later or report the problem if it persists.
-      </div>
-    </Card>
-  )
+  if (error)
+    return (
+      <Card>
+        <div className="flex items-center justify-center">
+          The request to the server failed, rety later or report the problem if it persists.
+        </div>
+      </Card>
+    );
   if (loading) return null;
   return (
     <div className="bg-white shadow overflow-hidden rounded">

@@ -44,7 +44,10 @@ export const SwitchPackage = ({
           className={`flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none`}
         >
           <span className="sr-only">Run</span>
-          <span aria-hidden="true" className="pointer-events-none absolute w-full h-full rounded-md" />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute w-full h-full rounded-md"
+          />
           <span
             aria-hidden="true"
             className={`

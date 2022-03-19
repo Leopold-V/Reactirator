@@ -40,18 +40,42 @@ const Manager = () => {
         dispatch(stopTask(arg.taskName));
       }
     });
-    ipcRenderer.on('dep-install-exit', (event, arg: { depName: string, isDevDep: boolean, version: string }) => {
-      console.log(arg.version);
-      dispatch(updateDep({ name: arg.depName, isDevDep: arg.isDevDep, version: arg.version, status: 'Idle'}));
-      dispatch(selectDep({depName: arg.depName, depVersion: arg.version, isDevDep: arg.isDevDep}));
+    ipcRenderer.on(
+      'dep-install-exit',
+      (event, arg: { depName: string; isDevDep: boolean; version: string }) => {
+        console.log(arg.version);
+        dispatch(
+          updateDep({
+            name: arg.depName,
+            isDevDep: arg.isDevDep,
+            version: arg.version,
+            status: 'Idle',
+          })
+        );
+        dispatch(
+          selectDep({ depName: arg.depName, depVersion: arg.version, isDevDep: arg.isDevDep })
+        );
+      }
+    );
+    ipcRenderer.on('dep-uninstall-exit', (event, arg: { depName: string; isDevDep: boolean }) => {
+      dispatch(removeDep({ depName: arg.depName, isDevDep: arg.isDevDep }));
     });
-    ipcRenderer.on('dep-uninstall-exit', (event, arg:  { depName: string, isDevDep: boolean }) => {
-      dispatch(removeDep({ depName: arg.depName, isDevDep: arg.isDevDep}));
-    });
-    ipcRenderer.on('dep-update-exit', (event, arg: { depName: string, isDevDep: boolean, version: string }) => {
-      dispatch(updateDep({ name: arg.depName, isDevDep: arg.isDevDep, version: arg.version, status: 'Idle'}));
-      dispatch(selectDep({ depName: arg.depName, depVersion: arg.version, isDevDep: arg.isDevDep}));
-    });
+    ipcRenderer.on(
+      'dep-update-exit',
+      (event, arg: { depName: string; isDevDep: boolean; version: string }) => {
+        dispatch(
+          updateDep({
+            name: arg.depName,
+            isDevDep: arg.isDevDep,
+            version: arg.version,
+            status: 'Idle',
+          })
+        );
+        dispatch(
+          selectDep({ depName: arg.depName, depVersion: arg.version, isDevDep: arg.isDevDep })
+        );
+      }
+    );
 
     return () => {
       ipcRenderer.removeAllListeners(`task-running`);
@@ -68,7 +92,7 @@ const Manager = () => {
   return (
     <Layout>
       <div className="space-y-4 w-full h-full">
-       <HeaderManager projectName={projectName} taskState={taskState} />
+        <HeaderManager projectName={projectName} taskState={taskState} />
         <hr />
         <Route exact path={`${path}`} render={() => <TasksPage />} />
         <Route exact path={`${path}/dependencies`} component={DependenciesPage} />

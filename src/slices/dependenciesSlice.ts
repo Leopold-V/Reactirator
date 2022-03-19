@@ -8,15 +8,15 @@ const initialState: dependenciesStateType = {
   depSelected: {
     depName: '',
     depVersion: '',
-    isDevDep: false
-  }
+    isDevDep: false,
+  },
 };
 
 export const dependenciesSlice = createSlice({
   name: 'dependencies',
   initialState,
   reducers: {
-    initDependencies:  (
+    initDependencies: (
       state: dependenciesStateType,
       action: PayloadAction<dependenciesStateType>
     ) => {
@@ -34,31 +34,29 @@ export const dependenciesSlice = createSlice({
       state[depCategory][depName].status = action.payload.status;
       state[depCategory][depName].isDevDep = action.payload.isDevDep;
     },
-    installDep:(state: dependenciesStateType, action: PayloadAction<depType>) => {
+    installDep: (state: dependenciesStateType, action: PayloadAction<depType>) => {
       const depCategory = action.payload.isDevDep ? 'devDependencies' : 'dependencies';
       state[depCategory][action.payload.name] = action.payload;
     },
-    removeDep: (state: dependenciesStateType, action: PayloadAction<{depName: string, isDevDep: boolean}>) => {
+    removeDep: (
+      state: dependenciesStateType,
+      action: PayloadAction<{ depName: string; isDevDep: boolean }>
+    ) => {
       const depCategory = action.payload.isDevDep ? 'devDependencies' : 'dependencies';
       if (state.depSelected.depName === action.payload.depName) {
         const newSelectedDep = Object.entries(state.dependencies)[0][1];
         state.depSelected = {
           depName: newSelectedDep.name,
           depVersion: newSelectedDep.version,
-          isDevDep: newSelectedDep.isDevDep
-        }
+          isDevDep: newSelectedDep.isDevDep,
+        };
       }
       delete state[depCategory][action.payload.depName];
-    }
-  }
+    },
+  },
 });
 
-export const {
-    initDependencies,
-    selectDep,
-    updateDep,
-    removeDep,
-    installDep
-} = dependenciesSlice.actions;
+export const { initDependencies, selectDep, updateDep, removeDep, installDep } =
+  dependenciesSlice.actions;
 
 export default dependenciesSlice.reducer;

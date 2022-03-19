@@ -32,14 +32,8 @@ const App = () => {
         <Bar />
         <Switch>
           <Route exact path="/" render={() => <Menu />} />
-          <Route
-            path="/manager"
-            component={managerLoader(<Manager />)}
-          />
-          <Route
-            path="/creator"
-            component={creatorLoader(<Creator />)}
-          />
+          <Route path="/manager" component={managerLoader(<Manager />)} />
+          <Route path="/creator" component={creatorLoader(<Creator />)} />
         </Switch>
       </HashRouter>
     </Provider>
@@ -192,9 +186,10 @@ const managerLoader = (manager: JSX.Element) => {
                   devDependencies: formatDeps(contentObj.devDependencies, true),
                   depSelected: {
                     depName: Object.keys(contentObj.dependencies)[0],
-                    depVersion: Object.entries(formatDeps(contentObj.dependencies, true))[0][1].version,
-                    isDevDep: false
-                  }
+                    depVersion: Object.entries(formatDeps(contentObj.dependencies, true))[0][1]
+                      .version,
+                    isDevDep: false,
+                  },
                 })
               );
               setLoading(false);

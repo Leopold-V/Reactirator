@@ -48,9 +48,7 @@ export const ScriptSection = () => {
             value={input.cmd}
           />
         </div>
-        <Button>
-          Add
-        </Button>
+        <Button>Add</Button>
       </form>
       <ListScripts scripts={packageJson.scripts} />
     </Card>

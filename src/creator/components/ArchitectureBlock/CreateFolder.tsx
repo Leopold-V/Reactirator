@@ -90,9 +90,7 @@ export const CreateFolder = ({
           </select>
         </div>
         <div className="text-red-600 h-4">{error && error}</div>
-        <Button>
-          Create
-        </Button>
+        <Button>Create</Button>
       </form>
     </Card>
   );

@@ -18,7 +18,12 @@ export const ListDependenciesFound = ({ results }: { results: dependencyFoundTyp
         ref={ref}
       >
         {results.map((ele: dependencyFoundType) => (
-          <DependencyItemFound key={ele.name} dep={ele} setDepData={setDepData} toggleModal={toggleModal} />
+          <DependencyItemFound
+            key={ele.name}
+            dep={ele}
+            setDepData={setDepData}
+            toggleModal={toggleModal}
+          />
         ))}
       </ul>
       <DependencyModal depData={depData} open={open} toggleModal={toggleModal} />

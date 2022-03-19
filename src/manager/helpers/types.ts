@@ -29,22 +29,22 @@ export type tasksStateType = {
 // TODO:
 // Rename to "name" and "version"
 export type depSelectType = {
-  depName: string,
-  depVersion: string,
-  isDevDep: boolean
-}
+  depName: string;
+  depVersion: string;
+  isDevDep: boolean;
+};
 
 export type depType = {
-  name: string
-  version: string,
-  status: depStatusType,
-  isDevDep: boolean
-}
+  name: string;
+  version: string;
+  status: depStatusType;
+  isDevDep: boolean;
+};
 
 export type dependenciesStateType = {
   dependencies: Record<string, depType>;
   devDependencies: Record<string, depType>;
-  depSelected: depSelectType
+  depSelected: depSelectType;
 };
 
 export type dependencyFoundType = {
@@ -53,9 +53,9 @@ export type dependencyFoundType = {
   description: string;
   score: number;
   links: {
-    npm: string,
-    repository: string
-  }
+    npm: string;
+    repository: string;
+  };
 };
 
 export type depStatusType = 'Idle' | 'Pending';

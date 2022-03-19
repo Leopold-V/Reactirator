@@ -15,7 +15,7 @@ export const CardDependencies = ({
   const { loading } = useLoading();
 
   return (
-    <Card >
+    <Card>
       <div className="flex flex-col items-center">
         <h2 className="font-bold pb-2">
           {title} ({listPackages.length}) :

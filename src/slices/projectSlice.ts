@@ -17,20 +17,14 @@ export const projectSlice = createSlice({
       state.projectName = initialState.projectName;
       state.projectPath = initialState.projectPath;
     },
-    initProject:  (
-      state: projectStateType,
-      action: PayloadAction<projectStateType>
-    ) => {
+    initProject: (state: projectStateType, action: PayloadAction<projectStateType>) => {
       state.loading = false;
       state.projectName = action.payload.projectName;
       state.projectPath = action.payload.projectPath;
-    }
-  }
+    },
+  },
 });
 
-export const {
-  resetProject,
-  initProject
-} = projectSlice.actions;
+export const { resetProject, initProject } = projectSlice.actions;
 
 export default projectSlice.reducer;

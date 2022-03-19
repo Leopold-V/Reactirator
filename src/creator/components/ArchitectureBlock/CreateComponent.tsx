@@ -98,40 +98,73 @@ export const CreateComponent = ({
         <div className="font-semibold">Mode: </div>
         <div className="flex justify-center space-x-3 text-sm w-full" onChange={handleChangeMode}>
           <div>
-            <input type="radio" id="rfc" name="mode" value="rfc" checked={mode === 'rfc'} readOnly />
+            <input
+              type="radio"
+              id="rfc"
+              name="mode"
+              value="rfc"
+              checked={mode === 'rfc'}
+              readOnly
+            />
             <label className="px-1" htmlFor="rfc">
               rfc
             </label>
           </div>
           <div>
-            <input type="radio" id="rcc" name="mode" value="rcc" checked={mode === 'rcc'} readOnly />
+            <input
+              type="radio"
+              id="rcc"
+              name="mode"
+              value="rcc"
+              checked={mode === 'rcc'}
+              readOnly
+            />
             <label className="px-2" htmlFor="rcc">
               rcc
             </label>
           </div>
           <div>
-            <input type="radio" id="rfce" name="mode" value="rfce" checked={mode === 'rfce'} readOnly />
+            <input
+              type="radio"
+              id="rfce"
+              name="mode"
+              value="rfce"
+              checked={mode === 'rfce'}
+              readOnly
+            />
             <label className="px-2" htmlFor="rfce">
               rfce
             </label>
           </div>
           <div>
-            <input type="radio" id="rafc" name="mode" value="rafc" checked={mode === 'rafc'} readOnly />
+            <input
+              type="radio"
+              id="rafc"
+              name="mode"
+              value="rafc"
+              checked={mode === 'rafc'}
+              readOnly
+            />
             <label className="px-2" htmlFor="rafc">
               rafc
             </label>
           </div>
           <div>
-            <input type="radio" id="rafce" name="mode" value="rafce" checked={mode === 'rafce'} readOnly />
+            <input
+              type="radio"
+              id="rafce"
+              name="mode"
+              value="rafce"
+              checked={mode === 'rafce'}
+              readOnly
+            />
             <label className="px-2" htmlFor="rafce">
               rafce
             </label>
           </div>
         </div>
         <div className="text-red-600 h-4">{error && error}</div>
-        <Button>
-          Create
-        </Button>
+        <Button>Create</Button>
       </form>
     </Card>
   );

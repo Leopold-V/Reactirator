@@ -50,7 +50,7 @@ export const TaskSwitch = ({
 
 const port = 3000;
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
@@ -89,7 +89,7 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
   }, [task.enabled, task.taskState]);
 
   return (
-<Switch
+    <Switch
       checked={task.enabled}
       onChange={handleChange}
       className={classNames(
