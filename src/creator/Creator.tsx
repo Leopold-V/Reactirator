@@ -41,6 +41,11 @@ const Creator = () => {
       />
       <Route
         exact
+        path={`${path}/features`}
+        render={() => <PackagesPage input={input} setInput={setInput} />}
+      />
+      <Route
+        exact
         path={`${path}/packages`}
         render={() => <PackagesPage input={input} setInput={setInput} />}
       />
@@ -49,9 +54,14 @@ const Creator = () => {
         path={`${path}/documentation`}
         render={() => <DocumentationPage readme={readme} setReadme={setReadme} />}
       />
-      <Route
+      {/* <Route
         exact
         path={`${path}/architecture`}
+        render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
+      /> */}
+      <Route
+        exact
+        path={`${path}/components`}
         render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
       />
       <Route exact path={`${path}/command`} component={CommandPage} />
