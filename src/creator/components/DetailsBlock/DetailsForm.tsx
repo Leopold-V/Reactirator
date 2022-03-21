@@ -4,6 +4,7 @@ import { formInputType } from '../../helpers/types';
 
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 import { TextArea, Input } from '../../../common/Input';
+import { Title } from '../../../common/Typo';
 
 export const DetailsForm = ({
     input,
@@ -20,7 +21,6 @@ export const DetailsForm = ({
     const version_ref = useRef<HTMLInputElement>(null);
   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      console.log(appname_ref.current.value, version_ref.current.value, description_ref.current.value);
       setInput({ ...input, [e.target.name]: e.target.value });
       packageJson.name = e.target.value;
       dispatchJson({
@@ -35,7 +35,7 @@ export const DetailsForm = ({
 
   return (
     <div className="w-1/3 space-y-2">
-      <h3 className="block font-semibold text-gray-700 text-center py-2">Application information</h3>
+      <Title title="Application information" />
       <div>
         <label htmlFor="appname" className="block text-sm font-medium text-gray-700">
           Name

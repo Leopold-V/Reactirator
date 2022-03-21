@@ -11,8 +11,8 @@ export const LayoutCreator = ({ children }: { children: ReactNode }) => {
         <div className="flex justify-center mx-auto pt-4 pb-12">
             <StepBar />
         </div>
-        <div className="flex w-full px-8 py-7">{children}</div>
-        <div className="w-full text-center">
+        <div className="flex w-full px-8 py-4">{children}</div>
+        <div className="w-full text-center absolute bottom-6">
           <StepControlButtons />
         </div>
       <Toaster

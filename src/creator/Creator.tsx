@@ -6,11 +6,11 @@ import initialStructure from './helpers/initialStructure';
 import structureReducer from './reducers/structureReducer';
 
 import { PackagesPage } from './components/pages/PackagesPage';
-// import { OverviewPage } from './components/pages/OverviewPage';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
 import { DetailsPage } from './components/pages/DetailsPage';
+import { FeaturesPage } from './components/pages/FeaturesPage';
 import { LayoutCreator } from './components/LayoutCreator';
 
 const Creator = () => {
@@ -25,13 +25,6 @@ const Creator = () => {
 
   return (
     <LayoutCreator>
-      {/* <Route
-        exact
-        path={path}
-        render={() => (
-          <OverviewPage structure={structure} input={input} setInput={setInput} readme={readme} />
-        )}
-      /> */}
       <Route
         exact
         path={path}
@@ -42,12 +35,12 @@ const Creator = () => {
       <Route
         exact
         path={`${path}/features`}
-        render={() => <PackagesPage input={input} setInput={setInput} />}
+        render={() => <FeaturesPage input={input} setInput={setInput} />}
       />
       <Route
         exact
         path={`${path}/packages`}
-        render={() => <PackagesPage input={input} setInput={setInput} />}
+        render={() => <PackagesPage />}
       />
       <Route
         exact

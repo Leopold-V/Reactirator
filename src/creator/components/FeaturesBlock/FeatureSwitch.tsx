@@ -5,7 +5,7 @@ import { actionPackageType, formInputType } from '../../helpers/types';
 
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
-export const SwitchPackage = ({
+export const FeatureSwitch = ({
   children,
   name,
   packageName,
@@ -36,12 +36,12 @@ export const SwitchPackage = ({
 
   return (
     <Switch.Group>
-      <div className="flex items-center justify-between w-2/3 py-1">
-        <Switch.Label>{children}</Switch.Label>
+      <div className="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200">
+        <Switch.Label className="flex-grow cursor-pointer py-2 pl-4 text-sm">{children}</Switch.Label>
         <Switch
           checked={input[name]}
           onChange={handleChange}
-          className={`flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none`}
+          className={`flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none`}
         >
           <span className="sr-only">Run</span>
           <span
