@@ -15,6 +15,8 @@ import { ModalInstallation } from '../InstallationBlock';
 import { CardPackageJson } from '../PackageJsonBlock';
 import { CardProjectName } from '../ProjectCreationBlock';
 import { GithubSection } from '../GithubBlock';
+import { Button } from '../../../common/Button';
+import { useHistory } from 'react-router-dom';
 
 type argType = [filepath: string, input: formInputType];
 
@@ -31,10 +33,15 @@ export const OverviewPage = ({
 }) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
   const { github } = useGithub();
+
+  const handleNav = () => {
+    history.push('/creator/packages');
+  }
 
   useEffect(() => {
     ipcRenderer.on(
@@ -71,8 +78,8 @@ export const OverviewPage = ({
   }, [listPackages, github]);
 
   return (
-    <div className="flex items-start justify-between w-full">
-      <div className="flex flex-col w-6/12 space-y-8 h-full mr-8">
+    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col w-6/12 space-y-8 h-full mr-8">
         <CardProjectName input={input} setInput={setInput} />
         <GithubSection />
       </div>

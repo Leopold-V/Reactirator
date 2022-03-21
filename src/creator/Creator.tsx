@@ -1,14 +1,17 @@
 import React, { useState, useReducer } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
+
 import initialState from './helpers/initialState';
 import initialStructure from './helpers/initialStructure';
 import structureReducer from './reducers/structureReducer';
+
 import { PackagesPage } from './components/pages/PackagesPage';
-import { OverviewPage } from './components/pages/OverviewPage';
+// import { OverviewPage } from './components/pages/OverviewPage';
 import { CommandPage } from './components/pages/CommandPage';
 import { DocumentationPage } from './components/pages/DocumentationPage';
 import { ArchitecturePage } from './components/pages/ArchitecturePage';
-import { Layout } from '../common/Layout';
+import { DetailsPage } from './components/pages/DetailsPage';
+import { LayoutCreator } from './components/LayoutCreator';
 
 const Creator = () => {
   const [input, setInput] = useState(initialState);
@@ -21,12 +24,19 @@ const Creator = () => {
   const { path } = useRouteMatch();
 
   return (
-    <Layout>
-      <Route
+    <LayoutCreator>
+      {/* <Route
         exact
         path={path}
         render={() => (
           <OverviewPage structure={structure} input={input} setInput={setInput} readme={readme} />
+        )}
+      /> */}
+      <Route
+        exact
+        path={path}
+        render={() => (
+          <DetailsPage input={input} setInput={setInput} />
         )}
       />
       <Route
@@ -45,7 +55,7 @@ const Creator = () => {
         render={() => <ArchitecturePage structure={structure} dispatch={dispatch} />}
       />
       <Route exact path={`${path}/command`} component={CommandPage} />
-    </Layout>
+    </LayoutCreator>
   );
 };
 

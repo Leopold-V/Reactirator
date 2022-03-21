@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { Input } from '../../../common/Input';
 import { useGithub } from '../Contexts/GithubProvider';
 
 export const GithubForm = () => {
@@ -14,23 +15,22 @@ export const GithubForm = () => {
   };
 
   return (
-    <div className="text-center space-y-4">
-      <div className="my-2 space-y-3">
-        <h3>
-          <label htmlFor="reponame">Name :</label>
-        </h3>
-        <input
-          className="input"
+    <div className="space-y-2">
+      <div>
+        <label htmlFor="reponame" className="block text-sm font-medium text-gray-700">
+          Name
+        </label>
+        <Input
           type="text"
           value={github.reponame}
+          className="w-full"
           name="reponame"
           id="reponame"
           placeholder="repo name"
           onChange={handleChange}
         />
       </div>
-      <div className="my-2 space-y-3">
-        <h3>Repo visibility :</h3>
+      <div>
         <div className="flex justify-center space-x-4" onChange={handleChangeCheckbox}>
           <div className="space-x-2">
             <input
@@ -40,9 +40,9 @@ export const GithubForm = () => {
               value="public"
               checked={github.visibility === 'public'}
             />
-            <label htmlFor="public">Public</label>
+            <label className="text-sm" htmlFor="public">Public</label>
           </div>
-          <div className="space-x-2">
+          <div className="space-x-2 text-sm">
             <input
               type="radio"
               id="private"
@@ -50,7 +50,7 @@ export const GithubForm = () => {
               value="private"
               checked={github.visibility === 'private'}
             />
-            <label htmlFor="private">Private</label>
+            <label className="text-sm" htmlFor="private">Private</label>
           </div>
         </div>
       </div>
