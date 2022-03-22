@@ -4,22 +4,24 @@ import * as ReactDOM from 'react-dom';
 import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
+
+import { getSizeOfPackagesList, searchPackages } from './services/package.service';
+import { promisifyReadFs } from './utils/promisifyFs';
+import { formatDeps } from './utils/formatDeps';
+import initialPackageJson from './creator/helpers/initialPackageJson';
+import { taskType } from './manager/helpers/types';
 import { store } from './store';
 import { useAppDispatch, useAppSelector } from './hooks';
-import { getSizeOfPackagesList, searchPackages } from './services/package.service';
-import initialPackageJson from './creator/helpers/initialPackageJson';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
-import { initProject, resetProject } from './slices/projectSlice';
-import { promisifyReadFs } from './utils/promisifyFs';
-import { taskType } from './manager/helpers/types';
 import { initTasks } from './slices/taskSlice';
 import { initDependencies } from './slices/dependenciesSlice';
-import { formatDeps } from './utils/formatDeps';
+import { initProject, resetProject } from './slices/projectSlice';
 
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './creator/components/Contexts/dependenciesProvider';
 import { GithubProvider } from './creator/components/Contexts/GithubProvider';
 
+import { SuccessPage } from './creator/components/pages/SuccessPage';
 import Creator from './creator';
 import Manager from './manager';
 import { Bar } from './common/Bar';
@@ -34,6 +36,7 @@ const App = () => {
           <Route exact path="/" render={() => <Menu />} />
           <Route path="/manager" component={managerLoader(<Manager />)} />
           <Route path="/creator" component={creatorLoader(<Creator />)} />
+          <Route path="/success" component={SuccessPage} />
         </Switch>
       </HashRouter>
     </Provider>
