@@ -1,5 +1,5 @@
 import React, { Dispatch } from 'react';
-import { Card } from '../../../common/Card';
+import { Title } from '../../../common/Typo';
 import { FileStructureType, structureStateType } from '../../helpers/types';
 import { TreeItem } from './TreeItem';
 
@@ -13,9 +13,8 @@ export const TreeFolder = ({
   const rootItem = structure.filter((ele: FileStructureType) => ele.ancestor === '');
 
   return (
-    <Card height="100%">
-      <div className="w-full">
-        <h2 className="font-extrabold text-xl text-center pb-6">Project Structure</h2>
+      <div className="w-full shadow-sm bg-white rounded-sm flex flex-col h-96 overflow-y-auto">
+        <Title title="Project Structure" />
         <ul className="py-2 w-full">
           {rootItem.map((ele) => (
             <TreeItem
@@ -30,6 +29,5 @@ export const TreeFolder = ({
           ))}
         </ul>
       </div>
-    </Card>
   );
 };
