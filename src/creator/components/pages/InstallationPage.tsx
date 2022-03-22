@@ -18,14 +18,20 @@ import { CardPackageJson } from '../PackageJsonBlock';
 import { ButtonCreation } from '../Buttons';
 import { ModalInstallation } from '../InstallationBlock';
 
-export const InstallationPage = ({ input, structure }: { input: formInputType,   structure: structureStateType }) => {
-    const [show, toggleModal] = useModal();
-    const [loading, setLoading] = useState(false);
-    const history = useHistory();
+export const InstallationPage = ({
+  input,
+  structure,
+}: {
+  input: formInputType;
+  structure: structureStateType;
+}) => {
+  const [show, toggleModal] = useModal();
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
-    const { listPackages } = useDependencies();
-    const { packageJson } = usePackageJson();
-    const { github } = useGithub();
+  const { listPackages } = useDependencies();
+  const { packageJson } = usePackageJson();
+  const { github } = useGithub();
 
   useEffect(() => {
     ipcRenderer.on(
@@ -48,8 +54,8 @@ export const InstallationPage = ({ input, structure }: { input: formInputType,  
               {
                 loading: 'Installation start !',
                 success: () => {
-                    history.push('/success');
-                    return `Successfully installed !`
+                  history.push('/success');
+                  return `Successfully installed !`;
                 },
                 error: () => `An error happened`,
               },

@@ -10,12 +10,12 @@ export const ManagerMenuSelection = () => {
       <p className="mt-1 text-sm text-gray-500">Pick a React project and start working.</p>
       <div className="mt-6">
         <Link
-          to='/manager'
+          to="/manager"
           className="inline-flex transition duration-200 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Open project
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};

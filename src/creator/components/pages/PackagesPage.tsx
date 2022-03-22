@@ -10,8 +10,8 @@ export const PackagesPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full space-y-2">
-        <Title title="Add packages" />
-        <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
+      <Title title="Add packages" />
+      <PackagesManager listPackages={listPackages} dispatchPackages={dispatch} />
     </div>
   );
 };

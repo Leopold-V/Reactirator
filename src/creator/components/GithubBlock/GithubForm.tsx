@@ -40,7 +40,9 @@ export const GithubForm = () => {
               value="public"
               checked={github.visibility === 'public'}
             />
-            <label className="text-sm" htmlFor="public">Public</label>
+            <label className="text-sm" htmlFor="public">
+              Public
+            </label>
           </div>
           <div className="space-x-2">
             <input
@@ -50,7 +52,9 @@ export const GithubForm = () => {
               value="private"
               checked={github.visibility === 'private'}
             />
-            <label className="text-sm" htmlFor="private">Private</label>
+            <label className="text-sm" htmlFor="private">
+              Private
+            </label>
           </div>
         </div>
       </div>

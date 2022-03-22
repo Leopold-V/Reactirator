@@ -14,8 +14,8 @@ export const DetailsPage = ({
 }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full space-y-2">
-        <DetailsForm input={input} setInput={setInput} />
-        <GithubSection />
+      <DetailsForm input={input} setInput={setInput} />
+      <GithubSection />
     </div>
   );
 };

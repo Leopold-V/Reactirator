@@ -37,7 +37,9 @@ export const FeatureSwitch = ({
   return (
     <Switch.Group>
       <div className="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200">
-        <Switch.Label className="flex-grow cursor-pointer py-2 pl-4 text-sm">{children}</Switch.Label>
+        <Switch.Label className="flex-grow cursor-pointer py-2 pl-4 text-sm">
+          {children}
+        </Switch.Label>
         <Switch
           checked={input[name]}
           onChange={handleChange}

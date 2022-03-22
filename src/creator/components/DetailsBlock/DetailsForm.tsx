@@ -7,31 +7,30 @@ import { TextArea, Input } from '../../../common/Input';
 import { Title } from '../../../common/Typo';
 
 export const DetailsForm = ({
-    input,
-    setInput,
-  }: {
-    input: formInputType;
-    setInput: (input: formInputType) => void;
-  }) => {
+  input,
+  setInput,
+}: {
+  input: formInputType;
+  setInput: (input: formInputType) => void;
+}) => {
+  const { packageJson, dispatchJson } = usePackageJson();
 
-    const { packageJson, dispatchJson } = usePackageJson();
-  
-    const appname_ref = useRef<HTMLInputElement>(null);
-    const description_ref = useRef<HTMLTextAreaElement>(null);
-    const version_ref = useRef<HTMLInputElement>(null);
-  
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      setInput({ ...input, [e.target.name]: e.target.value });
-      packageJson.name = e.target.value;
-      dispatchJson({
-        type: 'CHANGE_INFO',
-        payload: {
-          name: appname_ref.current.value,
-          version: version_ref.current.value,
-          description: description_ref.current.value,
-        },
-      });
-    };
+  const appname_ref = useRef<HTMLInputElement>(null);
+  const description_ref = useRef<HTMLTextAreaElement>(null);
+  const version_ref = useRef<HTMLInputElement>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+    packageJson.name = e.target.value;
+    dispatchJson({
+      type: 'CHANGE_INFO',
+      payload: {
+        name: appname_ref.current.value,
+        version: version_ref.current.value,
+        description: description_ref.current.value,
+      },
+    });
+  };
 
   return (
     <div className="w-1/3 space-y-2">

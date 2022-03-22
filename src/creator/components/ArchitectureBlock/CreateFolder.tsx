@@ -54,45 +54,43 @@ export const CreateFolder = ({
   };
 
   return (
-      <form className="space-y-2 px-4 w-full flex flex-col items-center" onSubmit={handleSubmit}>
-        <Title title="Folder" />
-        <div className="w-11/12">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="foldername">
-            Name
-          </label>
-          <Input
-            className="w-full"
-            type="text"
-            name="foldername"
-            id="foldername"
-            placeholder="e.g. component"
-            onChange={handleChange}
-            value={foldername}
-          />
-        </div>
-        <div className="w-11/12">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="folderlocation">
-            Location
-          </label>
-          <select
-            id="folderlocation"
-            name="folderlocation"
-            className="block w-full pl-3 pr-10 py-2 text-sm border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-            onChange={handleSelect}
-          >
-            {structure
-              .filter((ele: FileStructureType) => ele.isFolder)
-              .map((ele) => (
-                <option key={ele.id} data-id={ele.id}>
-                  {ele.name}
-                </option>
-              ))}
-          </select>
-        </div>
-        <div className="text-red-600 h-4">{error && error}</div>
-          <ButtonOutline>
-            Create
-          </ButtonOutline>
-      </form>
+    <form className="space-y-2 px-4 w-full flex flex-col items-center" onSubmit={handleSubmit}>
+      <Title title="Folder" />
+      <div className="w-11/12">
+        <label className="block text-sm font-medium text-gray-700" htmlFor="foldername">
+          Name
+        </label>
+        <Input
+          className="w-full"
+          type="text"
+          name="foldername"
+          id="foldername"
+          placeholder="e.g. component"
+          onChange={handleChange}
+          value={foldername}
+        />
+      </div>
+      <div className="w-11/12">
+        <label className="block text-sm font-medium text-gray-700" htmlFor="folderlocation">
+          Location
+        </label>
+        <select
+          id="folderlocation"
+          name="folderlocation"
+          className="block w-full pl-3 pr-10 py-2 text-sm border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          onChange={handleSelect}
+        >
+          {structure
+            .filter((ele: FileStructureType) => ele.isFolder)
+            .map((ele) => (
+              <option key={ele.id} data-id={ele.id}>
+                {ele.name}
+              </option>
+            ))}
+        </select>
+      </div>
+      <div className="text-red-600 h-4">{error && error}</div>
+      <ButtonOutline>Create</ButtonOutline>
+    </form>
   );
 };

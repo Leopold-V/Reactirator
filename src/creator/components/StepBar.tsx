@@ -62,7 +62,10 @@ export const StepBar = () => {
                 >
                   <span className="w-12 h-9 flex items-center">
                     <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-white border-2 border-indigo-600 hover:border-indigo-800 rounded-full group-hover:bg-gray-50 transition duration-200">
-                      <span className="h-2.5 w-2.5 bg-indigo-600 hover:border-indigo-800 rounded-full" aria-hidden="true" />
+                      <span
+                        className="h-2.5 w-2.5 bg-indigo-600 hover:border-indigo-800 rounded-full"
+                        aria-hidden="true"
+                      />
                     </span>
                   </span>
 

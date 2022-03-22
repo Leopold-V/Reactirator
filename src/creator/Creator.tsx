@@ -23,23 +23,13 @@ const Creator = () => {
 
   return (
     <LayoutCreator>
-      <Route
-        exact
-        path={path}
-        render={() => (
-          <DetailsPage input={input} setInput={setInput} />
-        )}
-      />
+      <Route exact path={path} render={() => <DetailsPage input={input} setInput={setInput} />} />
       <Route
         exact
         path={`${path}/features`}
         render={() => <FeaturesPage input={input} setInput={setInput} />}
       />
-      <Route
-        exact
-        path={`${path}/packages`}
-        render={() => <PackagesPage />}
-      />
+      <Route exact path={`${path}/packages`} render={() => <PackagesPage />} />
       <Route
         exact
         path={`${path}/components`}

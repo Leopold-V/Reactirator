@@ -50,19 +50,19 @@ export const SearchPackages = ({
   }, []);
 
   return (
-        <div ref={input_ref} className="relative w-2/3">
-          <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-            <SearchIcon className="h-5 w-5 text-gray-700" aria-hidden="true" />
-          </div>
-          <Input
-            id="search_package"
-            name="search_package"
-            className="w-full"
-            placeholder="Search"
-            type="search_package"
-            onChange={handleChange}
-          />
-        {isOpen && <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />}
-        </div>
+    <div ref={input_ref} className="relative w-2/3">
+      <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+        <SearchIcon className="h-5 w-5 text-gray-700" aria-hidden="true" />
+      </div>
+      <Input
+        id="search_package"
+        name="search_package"
+        className="w-full"
+        placeholder="Search"
+        type="search_package"
+        onChange={handleChange}
+      />
+      {isOpen && <ListPackagesFound dispatchPackages={dispatchPackages} results={input} />}
+    </div>
   );
 };

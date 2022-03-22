@@ -57,14 +57,19 @@ const Menu = () => {
   return (
     <div className="relative bg-gray-50 dark:bg-primary space-y-8 overflow-y-auto flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col justify-center items-center space-y-4 mb-12">
-        <div
-          className="flex rounded flex-col items-center space-y-4 justify-around font-extrabold text-4xl"
-        >
+        <div className="flex rounded flex-col items-center space-y-4 justify-around font-extrabold text-4xl">
           <img src="../assets/icons/png/64x64.png" alt="icon" />
           <span className="dark:text-white">Reactirator</span>
         </div>
         <div>
-          A <a href="https://reactjs.org/" className="text-indigo-600 font-medium transition duration-200">React</a> application manager tool.
+          A{' '}
+          <a
+            href="https://reactjs.org/"
+            className="text-indigo-600 font-medium transition duration-200"
+          >
+            React
+          </a>{' '}
+          application manager tool.
         </div>
       </div>
       <div className="flex justify-center items-center divide-x-2 divide-gray-200 w-2/3">
