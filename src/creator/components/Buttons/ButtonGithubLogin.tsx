@@ -22,8 +22,8 @@ export const ButtonGithubLogin = ({ setLoading }: { setLoading: (loading: boolea
   return (
     <button
       onClick={handleAuthentication}
-      className="flex items-center mx-auto shadow-red bg-gray-900 opacity-100 px-4 py-2 outline-none font-bold
-              tracking-wider text-white rounded-lg hover:opacity-90 focus:outline-none transition duration-250"
+      className="flex items-center text-sm mx-auto shadow bg-gray-700 opacity-100 px-4 py-2 outline-none font-semibold
+              tracking-wider text-white rounded hover:opacity-90 focus:outline-none transition duration-250"
     >
       <span className="mr-2">Login</span>
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="#fff" width="20">

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useGithub } from '../Contexts/GithubProvider';
 import { GithubForm } from './GithubForm';
 import { ButtonGithubLogin } from '../Buttons';
+import { Title } from '../../../common/Typo';
 
 export const GithubSection = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ export const GithubSection = () => {
     );
   return (
     <div className="flex flex-col justify-center pt-3 w-1/3">
-      <h3 className="block font-semibold text-gray-700 text-center py-2">Initialize a github repository</h3>
+      <Title title="Initialize a github repository" />
       {!github.token ? <ButtonGithubLogin setLoading={setLoading} /> : <GithubForm />}
     </div>
   );

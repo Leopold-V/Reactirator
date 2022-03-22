@@ -42,7 +42,7 @@ export const GithubForm = () => {
             />
             <label className="text-sm" htmlFor="public">Public</label>
           </div>
-          <div className="space-x-2 text-sm">
+          <div className="space-x-2">
             <input
               type="radio"
               id="private"
