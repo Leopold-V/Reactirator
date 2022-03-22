@@ -17,5 +17,5 @@ export const ButtonCreation = ({ input }: { input: formInputType }) => {
     }
   };
 
-  return <Button onClick={handleSubmit}>Create</Button>;
+  return <Button onClick={handleSubmit}>Install</Button>;
 };

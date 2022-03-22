@@ -34,21 +34,21 @@ export const StepControlButtons = () => {
           type="button"
           onClick={goBack}
           className={`${
-            location.pathname === '/creator/components' ? 'rounded-sm' : 'rounded-l-md'
-          } relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500`}
+            location.pathname === '/creator/installation' ? 'rounded-sm' : 'rounded-l-md'
+          } relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200`}
         >
           <span className="sr-only">Previous</span>
           <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
           Back
         </button>
       )}
-      {location.pathname !== '/creator/components' && (
+      {location.pathname !== '/creator/installation' && (
         <button
           type="button"
           onClick={goNext}
           className={`${
             location.pathname === '/creator' ? 'rounded-sm' : 'rounded-r-md'
-          } relative inline-flex items-center px-2 py-2 border border-transparent bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500`}
+          } relative inline-flex items-center px-2 py-2 border border-transparent bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200`}
         >
           <span className="sr-only">Next</span>
           Next
