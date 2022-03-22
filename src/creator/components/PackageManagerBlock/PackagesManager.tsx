@@ -18,12 +18,9 @@ export const PackagesManager = ({
   //const { baseSize } = usePackageJson();
   return (
     <LoadingPackageProvider>
-      <div className="flex space-x-8">
-        <div className="flex flex-col justify-center space-y-8 w-full">
-          <SearchPackages dispatchPackages={dispatchPackages} />
-          <ListPackages dispatchPackages={dispatchPackages} listPackages={listPackages} />
-        </div>
-        {/* <PackagesSizeMemoized listPackages={listPackages} baseSize={baseSize} /> */}
+      <div className="flex flex-col justify-center items-center space-y-8 w-2/3">
+        <SearchPackages dispatchPackages={dispatchPackages} />
+        <ListPackages dispatchPackages={dispatchPackages} listPackages={listPackages} />
       </div>
     </LoadingPackageProvider>
   );
