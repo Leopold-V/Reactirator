@@ -25,7 +25,8 @@ import { SuccessPage } from './creator/components/pages/SuccessPage';
 import Creator from './creator';
 import Manager from './manager';
 import { Bar } from './common/Bar';
-import { Card } from './common/Card';
+import { CreatorMenuSelection } from './common/CreatorMenuSelection';
+import { ManagerMenuSelection } from './common/ManagerMenuSelection';
 
 const App = () => {
   return (
@@ -55,26 +56,20 @@ const Menu = () => {
 
   return (
     <div className="relative bg-gray-50 dark:bg-primary space-y-8 overflow-y-auto flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col justify-center items-center">
-        <Link
+      <div className="flex flex-col justify-center items-center space-y-4 mb-12">
+        <div
           className="flex rounded flex-col items-center space-y-4 justify-around font-extrabold text-4xl"
-          to="/"
         >
           <img src="../assets/icons/png/64x64.png" alt="icon" />
           <span className="dark:text-white">Reactirator</span>
-        </Link>
+        </div>
+        <div>
+          A <a href="https://reactjs.org/" className="text-indigo-600 font-medium transition duration-200">React</a> application manager tool.
+        </div>
       </div>
-      <div className="flex justify-center items-center space-x-4">
-        <Link to="/creator">
-          <Card large={true}>
-            <div className="text-xl text-center font-semibold w-32">Create a new Project</div>
-          </Card>
-        </Link>
-        <Link to="/manager">
-          <Card large={true}>
-            <div className="text-xl text-center font-semibold w-32">Open a project</div>
-          </Card>
-        </Link>
+      <div className="flex justify-center items-center divide-x-2 divide-gray-200 w-2/3">
+        <CreatorMenuSelection />
+        <ManagerMenuSelection />
       </div>
     </div>
   );
