@@ -2,9 +2,14 @@ import { spawnSync } from 'child_process';
 import os from 'os';
 import psTree from 'ps-tree';
 
+// This function has been copied from:
+// https://github.com/joshwcomeau/guppy/blob/master/src/services/kill-process-id.service.js
+// All credit to his creator.
+
+// TODO:
+// Convert to ES6 async/await.
 const isWin = /^win/.test(os.platform());
 
-// TODO: to test
 export const killProcess = (doomedProcessId: any): Promise<any> => {
   return new Promise((resolve, reject) => {
     if (isWin) {
