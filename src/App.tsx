@@ -1,29 +1,32 @@
 import { ipcRenderer } from 'electron';
 import React, { useEffect, useReducer, useState } from 'react';
 import * as ReactDOM from 'react-dom';
-import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
+import { HashRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
+
+import { getSizeOfPackagesList, searchPackages } from './services/package.service';
+import { promisifyReadFs } from './utils/promisifyFs';
+import { formatDeps } from './utils/formatDeps';
+import initialPackageJson from './creator/helpers/initialPackageJson';
+import { taskType } from './manager/helpers/types';
 import { store } from './store';
 import { useAppDispatch, useAppSelector } from './hooks';
-import { getSizeOfPackagesList, searchPackages } from './services/package.service';
-import initialPackageJson from './creator/helpers/initialPackageJson';
 import jsonPackageReducer from './creator/reducers/jsonPackageReducer';
+import { initTasks } from './slices/taskSlice';
+import { initDependencies } from './slices/dependenciesSlice';
 import { initProject, resetProject } from './slices/projectSlice';
 
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './creator/components/Contexts/dependenciesProvider';
 import { GithubProvider } from './creator/components/Contexts/GithubProvider';
 
+import { SuccessPage } from './creator/components/pages/SuccessPage';
 import Creator from './creator';
 import Manager from './manager';
 import { Bar } from './common/Bar';
-import { Card } from './common/Card';
-import { promisifyReadFs } from './utils/promisifyFs';
-import { taskType } from './manager/helpers/types';
-import { initTasks } from './slices/taskSlice';
-import { initDependencies } from './slices/dependenciesSlice';
-import { formatDeps } from './utils/formatDeps';
+import { CreatorMenuSelection } from './common/CreatorMenuSelection';
+import { ManagerMenuSelection } from './common/ManagerMenuSelection';
 
 const App = () => {
   return (
@@ -34,6 +37,7 @@ const App = () => {
           <Route exact path="/" render={() => <Menu />} />
           <Route path="/manager" component={managerLoader(<Manager />)} />
           <Route path="/creator" component={creatorLoader(<Creator />)} />
+          <Route path="/success" component={SuccessPage} />
         </Switch>
       </HashRouter>
     </Provider>
@@ -52,26 +56,26 @@ const Menu = () => {
 
   return (
     <div className="relative bg-gray-50 dark:bg-primary space-y-8 overflow-y-auto flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col justify-center items-center">
-        <Link
-          className="flex rounded flex-col items-center space-y-4 justify-around font-extrabold text-4xl"
-          to="/"
-        >
+      <div className="flex flex-col justify-center items-center space-y-4 mb-12">
+        <div className="flex rounded flex-col items-center space-y-4 justify-around font-extrabold text-4xl">
           <img src="../assets/icons/png/64x64.png" alt="icon" />
           <span className="dark:text-white">Reactirator</span>
-        </Link>
+        </div>
+        <div>
+          A{' '}
+          <a
+            href="https://reactjs.org/"
+            id="open_react"
+            className="text-indigo-600 font-medium transition duration-200"
+          >
+            React
+          </a>{' '}
+          application manager tool.
+        </div>
       </div>
-      <div className="flex justify-center items-center space-x-4">
-        <Link to="/creator">
-          <Card large={true}>
-            <div className="text-xl text-center font-semibold w-32">Creation</div>
-          </Card>
-        </Link>
-        <Link to="/manager">
-          <Card large={true}>
-            <div className="text-xl text-center font-semibold w-32">Development</div>
-          </Card>
-        </Link>
+      <div className="flex justify-center items-center divide-x-2 divide-gray-200 w-2/3">
+        <CreatorMenuSelection />
+        <ManagerMenuSelection />
       </div>
     </div>
   );

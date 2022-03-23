@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
+import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line import/no-named-as-default
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
-import { toast } from 'react-hot-toast';
-
-import { toastInstallMsg, toastInstallStyle } from '../../helpers/toast';
-import { formInputType, structureStateType } from '../../helpers/types';
 import { generateProject } from '../../../services/installation.service';
-import { usePackageJson } from '../Contexts/PackageJsonProvider';
-import { useDependencies } from '../Contexts/dependenciesProvider';
-import { useGithub } from '../Contexts/GithubProvider';
+import { formInputType, structureStateType } from '../../helpers/types';
+import { toastInstallStyle } from '../../helpers/toast';
+
 import { useModal } from '../../../hooks/useModal';
+import { useDependencies } from '../Contexts/dependenciesProvider';
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { useGithub } from '../Contexts/GithubProvider';
 
-import { ModalInstallation } from '../InstallationBlock';
+import { Title } from '../../../common/Typo';
 import { CardPackageJson } from '../PackageJsonBlock';
-import { CardProjectName } from '../ProjectCreationBlock';
-import { GithubSection } from '../GithubBlock';
+import { ButtonCreation } from '../Buttons';
+import { ModalInstallation } from '../InstallationBlock';
 
-type argType = [filepath: string, input: formInputType];
-
-export const OverviewPage = ({
-  structure,
+export const InstallationPage = ({
   input,
-  setInput,
-  readme,
+  structure,
 }: {
-  structure: structureStateType;
   input: formInputType;
-  setInput: (input: formInputType) => void;
-  readme: string;
+  structure: structureStateType;
 }) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const { listPackages } = useDependencies();
   const { packageJson } = usePackageJson();
@@ -39,7 +36,7 @@ export const OverviewPage = ({
   useEffect(() => {
     ipcRenderer.on(
       'open-dialog-directory-selected',
-      async (event: Electron.IpcRendererEvent, arg: argType) => {
+      async (event: Electron.IpcRendererEvent, arg) => {
         const [filepath, input] = arg;
         if (arg) {
           setLoading(true);
@@ -52,10 +49,16 @@ export const OverviewPage = ({
                 listPackages,
                 structure,
                 packageJson.scripts,
-                readme,
                 github
               ),
-              toastInstallMsg,
+              {
+                loading: 'Installation start !',
+                success: () => {
+                  history.push('/success');
+                  return `Successfully installed !`;
+                },
+                error: () => `An error happened`,
+              },
               toastInstallStyle
             );
           } catch (error) {
@@ -71,13 +74,11 @@ export const OverviewPage = ({
   }, [listPackages, github]);
 
   return (
-    <div className="flex items-start justify-between w-full">
-      <div className="flex flex-col w-6/12 space-y-8 h-full mr-8">
-        <CardProjectName input={input} setInput={setInput} />
-        <GithubSection />
-      </div>
-      <div className="w-6/12 h-full">
-        <CardPackageJson />
+    <div className="flex flex-col items-center justify-center w-full space-y-2">
+      <Title title="Overview of your configuration: " />
+      <CardPackageJson />
+      <div className="py-3">
+        <ButtonCreation input={input} />
       </div>
       <ModalInstallation loading={loading} show={show} toggleModal={toggleModal} />
     </div>

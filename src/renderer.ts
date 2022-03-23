@@ -18,7 +18,6 @@ window.onbeforeunload = () => {
 };
 
 function addExternalLink() {
-  console.log('Add external link');
   document.getElementById('button_git').addEventListener('click', () => {
     shell.openExternal('https://github.com/Leopold-V/Reactirator.git');
   });
@@ -26,8 +25,10 @@ function addExternalLink() {
     shell.openExternal('https://github.com/Leopold-V/Reactirator/issues/new/choose');
   });
   document.getElementById('open_project').addEventListener('click', () => {
-    console.log('yes');
     shell.openExternal('https://localhost:3000');
+  });
+  document.getElementById('open_react').addEventListener('click', () => {
+    shell.openExternal('https://reactjs.org');
   });
 }
 

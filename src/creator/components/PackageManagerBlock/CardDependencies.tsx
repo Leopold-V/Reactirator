@@ -1,7 +1,8 @@
 import React from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { Card } from '../../../common/Card';
+
 import { useLoading } from '../Contexts/LoadingPackageProvider';
+import { Card } from '../../../common/Card';
 
 export const CardDependencies = ({
   children,
@@ -17,10 +18,10 @@ export const CardDependencies = ({
   return (
     <Card>
       <div className="flex flex-col items-center">
-        <h2 className="font-bold pb-2">
+        <h2 className="font-medium pb-2">
           {title} ({listPackages.length}) :
         </h2>
-        <div className="overflow-y-auto max-h-36 w-full flex justify-center">
+        <div className="overflow-y-auto max-h-56 w-full flex justify-center">
           {loading ? <ClipLoader color="#6366F1" loading={loading} size={40} /> : children}
         </div>
       </div>

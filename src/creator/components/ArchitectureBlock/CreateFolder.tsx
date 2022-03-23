@@ -1,12 +1,12 @@
-import { nanoid } from 'nanoid';
 import React, { ChangeEvent, Dispatch, FormEvent, useState } from 'react';
+import { nanoid } from 'nanoid';
 
 import { validateFileName } from '../../../utils/validateInput';
 import { structureStateType, FileStructureType } from '../../helpers/types';
 
-import { Button } from '../../../common/Button';
-import { Card } from '../../../common/Card';
 import { Input } from '../../../common/Input';
+import { Title } from '../../../common/Typo';
+import { ButtonOutline } from '../../..//common/Button';
 
 export const CreateFolder = ({
   structure,
@@ -29,6 +29,7 @@ export const CreateFolder = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    console.log(foldername);
     const isNameExist = structure.filter(
       (ele) =>
         ele.name.toLocaleLowerCase() === foldername.toLocaleLowerCase() && ele.ancestor === select
@@ -53,67 +54,43 @@ export const CreateFolder = ({
   };
 
   return (
-    <Card>
-      <form className="space-y-4 w-full flex flex-col items-center" onSubmit={handleSubmit}>
-        <h2 className="text-center text-lg font-bold">Folder</h2>
-        <div className="space-x-3 w-10/12 flex justify-between items-center">
-          <label className="font-semibold text-gray-700" htmlFor="foldername">
-            Name
-          </label>
-          <Input
-            className="w-2/3"
-            type="text"
-            name="foldername"
-            id="foldername"
-            placeholder="folder name"
-            onChange={handleChange}
-            value={foldername}
-          />
-        </div>
-        <div className="space-x-3 w-10/12 flex justify-between items-center">
-          <label htmlFor="folderlocation" className="font-semibold text-gray-700">
-            Location
-          </label>
-          <select
-            id="folderlocation"
-            name="folderlocation"
-            className="mt-1 mx-auto w-2/3 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-            onChange={handleSelect}
-          >
-            {structure
-              .filter((ele: FileStructureType) => ele.isFolder)
-              .map((ele) => (
-                <option key={ele.id} data-id={ele.id}>
-                  {ele.name}
-                </option>
-              ))}
-          </select>
-        </div>
-        <div className="text-red-600 h-4">{error && error}</div>
-        <Button>Create</Button>
-      </form>
-    </Card>
+    <form className="space-y-2 px-4 w-full flex flex-col items-center" onSubmit={handleSubmit}>
+      <Title title="Folder" />
+      <div className="w-11/12">
+        <label className="block text-sm font-medium text-gray-700" htmlFor="foldername">
+          Name
+        </label>
+        <Input
+          className="w-full"
+          type="text"
+          name="foldername"
+          id="foldername"
+          placeholder="e.g. component"
+          onChange={handleChange}
+          value={foldername}
+        />
+      </div>
+      <div className="w-11/12">
+        <label className="block text-sm font-medium text-gray-700" htmlFor="folderlocation">
+          Location
+        </label>
+        <select
+          id="folderlocation"
+          name="folderlocation"
+          className="block w-full pl-3 pr-10 py-2 text-sm border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          onChange={handleSelect}
+        >
+          {structure
+            .filter((ele: FileStructureType) => ele.isFolder)
+            .map((ele) => (
+              <option key={ele.id} data-id={ele.id}>
+                {ele.name}
+              </option>
+            ))}
+        </select>
+      </div>
+      <div className="text-red-600 h-4">{error && error}</div>
+      <ButtonOutline>Create</ButtonOutline>
+    </form>
   );
 };
-
-/*
-    <div>
-      <label htmlFor="folderlocation" className="block text-sm font-medium text-gray-700">
-        Location
-      </label>
-      <select
-        id="folderlocation"
-        name="folderlocation"
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-        onChange={handleSelect}
-      >
-        {structure
-          .filter((ele: FileStructureType) => ele.isFolder)
-          .map((ele) => (
-            <option key={ele.id} data-id={ele.id}>
-              {ele.name}
-            </option>
-          ))}
-      </select>
-    </div>
-  */

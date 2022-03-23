@@ -12,7 +12,6 @@ export const generateProject = async (
   listPackages: depStateType,
   structure: structureStateType,
   scripts: Record<string, unknown>,
-  readme: string,
   github: GithubStateType
 ): Promise<void> => {
   const fullPath = `${filepath}\\${input.appname}`;
@@ -24,9 +23,6 @@ export const generateProject = async (
   await installPackages(fullPath, listPackages);
   await installScripts(fullPath, scripts);
 
-  if (readme) {
-    await writeReadme(fullPath, readme);
-  }
   if (input.bootstrap) {
     await installBootstrap(fullPath, input.typescript);
   }
@@ -97,9 +93,9 @@ const installScripts = async (
   await promisifyWriteFs(`${fullPath}\\package.json`, JSON.stringify(packagejson));
 };
 
-const writeReadme = async (fullPath: string, markdownContent: string): Promise<void> => {
-  await promisifyWriteFs(`${fullPath}\\readme.md`, markdownContent);
-};
+// const writeReadme = async (fullPath: string, markdownContent: string): Promise<void> => {
+//   await promisifyWriteFs(`${fullPath}\\readme.md`, markdownContent);
+// };
 
 const installStorybook = async (fullPath: string): Promise<void> => {
   await runCmd(`cd ${fullPath} && npx -p @storybook/cli sb init`);

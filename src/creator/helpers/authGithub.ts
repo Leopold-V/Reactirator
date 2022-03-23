@@ -1,7 +1,6 @@
 import { AuthOptions } from './types';
 import { Constants } from './gitServicesOptions';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { BrowserWindow } = require('@electron/remote');
+import { BrowserWindow } from '@electron/remote';
 
 export const authGitHub = (
   authOptions = Constants.DEFAULT_AUTH_OPTIONS

@@ -1,6 +1,8 @@
 import useMouse from '@react-hook/mouse-position';
 import React, { Dispatch, useRef, useState } from 'react';
+
 import { actionPackageType, listPackageType, packageFoundType } from '../../helpers/types';
+
 import { ItemPackageFound } from './ItemPackageFound';
 import { ItemPackageTooltip } from './ItemPackageTooltip';
 
@@ -24,7 +26,7 @@ export const ListPackagesFound = ({
   return (
     <>
       <ul
-        className="absolute w-5/12 z-10 text-gray-800 top-23 max-h-medium overflow-y-scroll shadow"
+        className="absolute left-1/2 -translate-x-1/2 w-7/12 z-10 text-gray-800 max-h-medium overflow-y-scroll shadow"
         ref={ref}
       >
         {results.map((ele) => (

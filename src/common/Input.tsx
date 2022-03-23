@@ -26,7 +26,7 @@ export const Input = React.forwardRef<any, inputProps>(
         type={type}
         className={`${
           className ? className : ''
-        } block text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm`}
+        } block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm`}
         value={value}
         name={name}
         id={id}
@@ -44,7 +44,7 @@ export const TextArea = React.forwardRef<any, textAreaProps>(
       <textarea
         className={`${
           className ? className : ''
-        } block text-center bg-gray-100 border border-gray-300 rounded-md py-2 px-3 placeholder-gray-500 focus:outline-none focus:bg-gray-50 focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm`}
+        } block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm`}
         value={value}
         name={name}
         id={id}

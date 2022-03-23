@@ -12,3 +12,17 @@ window.fetchWithNode = async (url) => {
   const res = await rep.json();
   return res;
 };
+
+window.fetchPostWithNode = async (url, data) => {
+  const rep = await fetchNode(url, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+  const res = await rep.json();
+  return res;
+};

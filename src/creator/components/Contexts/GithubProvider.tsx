@@ -1,7 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
-import { useContext } from 'react';
-import { createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { ReactNode } from 'react-markdown';
 
 export type GithubStateType = {
