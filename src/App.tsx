@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import React, { useEffect, useReducer, useState } from 'react';
 import * as ReactDOM from 'react-dom';
-import { HashRouter, Link, Route, Switch, useHistory } from 'react-router-dom';
+import { HashRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 
@@ -65,6 +65,7 @@ const Menu = () => {
           A{' '}
           <a
             href="https://reactjs.org/"
+            id="open_react"
             className="text-indigo-600 font-medium transition duration-200"
           >
             React
