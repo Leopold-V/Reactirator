@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
-import { Title } from '../../../common/Typo';
 
 export const SuccessPage = () => {
   return (
@@ -10,7 +9,7 @@ export const SuccessPage = () => {
         <div className="flex flex-col items-center justify-center w-full space-y-4">
           <h1 className="font-bold text-2xl text-indigo-500 leading-4 py-6">Congratulation !</h1>
           <div className="w-1/3">
-            <img src="../../assets/undraw_well_done.svg" alt="well_done" />
+            <img src="../assets/undraw_well_done.svg" alt="well_done" />
           </div>
           <p className="py-6">Your project has been created successfully.</p>
           <Link
