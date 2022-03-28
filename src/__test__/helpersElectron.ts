@@ -27,4 +27,4 @@ export const startApp = async () => {
   appWindow.on('console', console.log);
 
   return { appWindow, appInfo, electronApp };
-}
+};

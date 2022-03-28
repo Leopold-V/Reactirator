@@ -19,7 +19,10 @@ export const ButtonAddPackage = ({
     const target = e.target as HTMLElement;
     setLoading(true);
     try {
-      const packageRegistryInfo = await searchPackageInRegistry(target.dataset.name, target.dataset.version);
+      const packageRegistryInfo = await searchPackageInRegistry(
+        target.dataset.name,
+        target.dataset.version
+      );
       dispatchPackages({
         type: 'ADD',
         payload: {

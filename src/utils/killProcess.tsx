@@ -41,4 +41,4 @@ export const killAllProcess = async (listProcess: { pid: number; taskName: strin
     }
   }
   return newListProcess;
-}
+};

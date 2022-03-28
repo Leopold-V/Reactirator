@@ -119,10 +119,7 @@ export const creatorLoader = (creator: JSX.Element) => {
         </div>
       );
     return (
-      <PackageJsonProvider
-        packageJson={packageJson}
-        dispatchJson={dispatchJson}
-      >
+      <PackageJsonProvider packageJson={packageJson} dispatchJson={dispatchJson}>
         <DependenciesProvider>
           <GithubProvider>{creator}</GithubProvider>
         </DependenciesProvider>
