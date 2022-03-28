@@ -20,19 +20,20 @@
 Reactirator is a desktop application built with Electron using TypeScript, React and Node.
 It has two parts which can be considered as two differents applications:
 
-##### **The creator:** generate React.js project. 
+#### **The creator:** generate React.js project. 
   <div align="center">
 	  <img src="https://i.gyazo.com/21ba6bb674f4c1b0be2a02252572b385.png" width="400" />
   </div>
 You will follow an installation process where you can select famous React configurations/features, look for packages, pre-generate folders and components etc.
 
-##### The manager: manage React.js project. 
+#### The manager: manage React.js project. 
 
   <div align="center">
 	  <img src="https://i.gyazo.com/41d20f117adafee2113c4d31adc6ee58.png" width="400" />
   </div>
   
 Basically it is a task runner: start your development server, your tests, build, execute any tasks you have in your scripts section, or modify your project dependencies.
+<br>
 <br>
 Reactirator aims to be very beginner friendly but also to be a real time saver for more confirmed developper : get ride of the configs steps, simply push buttons and focus on your code.
 Under the hood the application automatized all of this by running cli commands.
