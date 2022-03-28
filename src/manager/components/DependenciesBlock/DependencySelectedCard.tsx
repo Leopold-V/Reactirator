@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron';
 import React, { useEffect, useState } from 'react';
 import { BadgeCheckIcon, CogIcon } from '@heroicons/react/outline';
 
-import { searchPackagesV2 } from '../../../services/package.service';
+import { searchOnePackage } from '../../../services/package.service';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { updateDep } from '../../../slices/dependenciesSlice';
 
@@ -10,6 +10,8 @@ import { ButtonDelete, ButtonSecondary } from '../../../common/Button';
 import { Card } from '../../../common/Card';
 
 export const DependencySelectedCard = () => {
+  // TODO
+  // create a single state for data + loading + error
   const [data, setdata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -57,18 +59,17 @@ export const DependencySelectedCard = () => {
     );
   };
 
-  //TODO:
-  //Error handling, UI display.
   const getData = async () => {
     setLoading(true);
     try {
-      const pkgData = await searchPackagesV2(selectedDeps.depName);
+      const pkgData = await searchOnePackage(selectedDeps.depName);
       setdata(pkgData);
       setLoading(false);
       setError(false);
     } catch (error) {
       console.log(error);
-      setLoading(true);
+      setError(true);
+      setLoading(false);
     }
   };
 

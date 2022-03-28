@@ -5,7 +5,7 @@ import { HashRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-import { searchPackages } from './services/package.service';
+import { searchOnePackage } from './services/package.service';
 import { promisifyReadFs } from './utils/promisifyFs';
 import { formatDeps } from './utils/formatDeps';
 import initialPackageJson from './creator/helpers/initialPackageJson';
@@ -89,21 +89,19 @@ export const creatorLoader = (creator: JSX.Element) => {
     );
     const [loading, setLoading] = useState(true);
 
-    const getVersionsOfBaseDeps = async (): Promise<any[]> => {
-      const list = [];
+    const getVersionsOfBaseDeps = async (): Promise<void> => {
       for (const ele in packageJson.dependencies) {
-        const res = await searchPackages(ele, 1);
-        list.push(res[0]);
+        const res = await searchOnePackage(ele);
+        console.log(res);
         dispatchJson({
           type: 'ADD',
           payload: {
             category: 'dependencies',
-            name: res[0].package.name,
-            version: res[0].package.version,
+            name: res.collected.metadata.name,
+            version: res.collected.metadata.version,
           },
         });
       }
-      return list;
     };
 
     useEffect(() => {

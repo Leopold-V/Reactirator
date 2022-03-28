@@ -1,6 +1,6 @@
 import React, { Dispatch } from 'react';
 
-import { getOnePackage } from '../../../services/package.service';
+import { searchPackageInRegistry } from '../../../services/package.service';
 import { actionPackageType, packageFoundType } from '../../helpers/types';
 import { useLoading } from '../Contexts/LoadingPackageProvider';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
@@ -19,7 +19,7 @@ export const ButtonAddPackage = ({
     const target = e.target as HTMLElement;
     setLoading(true);
     try {
-      const packageRegistryInfo = await getOnePackage(target.dataset.name, target.dataset.version);
+      const packageRegistryInfo = await searchPackageInRegistry(target.dataset.name, target.dataset.version);
       dispatchPackages({
         type: 'ADD',
         payload: {

@@ -1,6 +1,6 @@
 import { Switch } from '@headlessui/react';
 import React, { Dispatch, ReactNode } from 'react';
-import { searchPackages } from '../../../services/package.service';
+import { searchOnePackage } from '../../../services/package.service';
 import { actionPackageType, formInputType } from '../../helpers/types';
 
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
@@ -24,10 +24,10 @@ export const FeatureSwitch = ({
   const handleChange = async () => {
     setInput({ ...input, [name]: !input[name] });
     try {
-      const packageFound = await searchPackages(packageName);
+      const packageFound = await searchOnePackage(packageName);
       dispatchJson({
         type: name,
-        payload: { version: packageFound[0].package.version },
+        payload: { version: packageFound.collected.metadata.version },
       });
     } catch (error) {
       console.log(error);
