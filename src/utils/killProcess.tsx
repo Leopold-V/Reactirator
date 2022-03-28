@@ -26,3 +26,19 @@ export const killProcess = (doomedProcessId: any): Promise<any> => {
     }
   });
 };
+
+export const killAllProcess = async (listProcess: { pid: number; taskName: string }[]) => {
+  console.log('kill all running process');
+  const newListProcess = [...listProcess];
+  if (listProcess.length > 0) {
+    try {
+      listProcess.forEach(async (ele) => {
+        await killProcess(ele.pid);
+        newListProcess.filter((ele2) => (ele2.pid = ele.pid));
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  return newListProcess;
+}
