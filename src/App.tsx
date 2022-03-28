@@ -5,7 +5,7 @@ import { HashRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-import { getSizeOfPackagesList, searchPackages } from './services/package.service';
+import { searchPackages } from './services/package.service';
 import { promisifyReadFs } from './utils/promisifyFs';
 import { formatDeps } from './utils/formatDeps';
 import initialPackageJson from './creator/helpers/initialPackageJson';
@@ -44,7 +44,7 @@ const App = () => {
   );
 };
 
-const Menu = () => {
+export const Menu = () => {
   const projectLoading = useAppSelector((state) => state.project.loading);
   const dispatch = useAppDispatch();
 
@@ -87,7 +87,6 @@ export const creatorLoader = (creator: JSX.Element) => {
       jsonPackageReducer,
       JSON.parse(JSON.stringify(initialPackageJson))
     );
-    const [baseSize, setBaseSize] = useState(0);
     const [loading, setLoading] = useState(true);
 
     const getVersionsOfBaseDeps = async (): Promise<any[]> => {
@@ -107,17 +106,9 @@ export const creatorLoader = (creator: JSX.Element) => {
       return list;
     };
 
-    const initializeTotalSize = async (listPkg: any[]): Promise<void> => {
-      // initial size with only CRA dependencies
-      const totalSize = await getSizeOfPackagesList(listPkg);
-      const totalSizeInKb = Math.floor(totalSize / 1000);
-      setBaseSize(totalSizeInKb);
-    };
-
     useEffect(() => {
       (async () => {
-        const updatedDepsList = await getVersionsOfBaseDeps();
-        await initializeTotalSize(updatedDepsList);
+        await getVersionsOfBaseDeps();
         setLoading(false);
       })();
     }, []);
@@ -133,7 +124,6 @@ export const creatorLoader = (creator: JSX.Element) => {
       <PackageJsonProvider
         packageJson={packageJson}
         dispatchJson={dispatchJson}
-        baseSize={baseSize}
       >
         <DependenciesProvider>
           <GithubProvider>{creator}</GithubProvider>
@@ -226,3 +216,5 @@ function render() {
 }
 
 render();
+
+export default App;

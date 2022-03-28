@@ -5,8 +5,6 @@ import { LoadingPackageProvider } from '../Contexts/LoadingPackageProvider';
 
 import { SearchPackages } from './SearchPackages';
 import { ListPackages } from './ListPackages';
-//import { PackagesSizeMemoized } from '../PackageCharts';
-//import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
 export const PackagesManager = ({
   listPackages,
@@ -15,7 +13,6 @@ export const PackagesManager = ({
   listPackages: depStateType;
   dispatchPackages: Dispatch<actionPackageType>;
 }) => {
-  //const { baseSize } = usePackageJson();
   return (
     <LoadingPackageProvider>
       <div className="flex flex-col justify-center items-center space-y-8 w-2/3">
