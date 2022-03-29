@@ -64,13 +64,12 @@ export const Menu = () => {
         </div>
         <div>
           A{' '}
-          <a
-            href="https://reactjs.org/"
+          <button
             id="open_react"
-            className="text-indigo-600 font-medium transition duration-200"
+            className="text-indigo-600 font-medium transition duration-200 cursor-pointer"
           >
             React
-          </a>{' '}
+          </button>{' '}
           application manager tool.
         </div>
       </div>

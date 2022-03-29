@@ -21,12 +21,6 @@ function addExternalLink() {
   document.getElementById('button_git').addEventListener('click', () => {
     shell.openExternal('https://github.com/Leopold-V/Reactirator.git');
   });
-  document.getElementById('button_bug').addEventListener('click', () => {
-    shell.openExternal('https://github.com/Leopold-V/Reactirator/issues/new/choose');
-  });
-  document.getElementById('open_project').addEventListener('click', () => {
-    shell.openExternal('https://localhost:3000');
-  });
   document.getElementById('open_react').addEventListener('click', () => {
     shell.openExternal('https://reactjs.org');
   });
