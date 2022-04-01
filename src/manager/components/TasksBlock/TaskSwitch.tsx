@@ -1,10 +1,10 @@
 import { ipcRenderer } from 'electron';
 import React, { useCallback, useEffect } from 'react';
-import detect from 'detect-port';
+// import detect from 'detect-port';
 import { Switch } from '@headlessui/react';
 import throttle from 'lodash.throttle';
 
-import { pendingTask, switchTask, updateLogs } from '../../../slices/taskSlice';
+import { pendingTask, switchTask } from '../../../slices/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 export const TaskSwitch = ({
@@ -54,7 +54,8 @@ export const TaskSwitch = ({
   );
 };
 
-const port = 3000;
+//const port = 3000;
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
@@ -75,6 +76,9 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
 
   useEffect(() => {
     if (task.enabled && task.taskState !== 'Pending') {
+      ipcRenderer.send('run-cmd', { path: projectPath, taskName: taskName });
+      dispatch(pendingTask(taskName));
+      /*
       detect(port)
         .then((_port) => {
           if (port == _port) {
@@ -90,6 +94,7 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
         .catch((err) => {
           console.log(err);
         });
+        */
     }
   }, [task.enabled]);
 

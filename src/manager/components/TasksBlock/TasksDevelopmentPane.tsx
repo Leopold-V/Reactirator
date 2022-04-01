@@ -1,4 +1,4 @@
-import { shell } from 'electron';
+// import { shell } from 'electron';
 import React from 'react';
 import { useAppSelector } from '../../../hooks';
 
@@ -12,9 +12,11 @@ export const TasksDevelopmentPane = () => {
       Object.entries(state.tasks.tasks).find((ele) => ele[0] === 'start' || ele[0] === 'dev')[0]
   );
 
+  /*
   const redirectToBug = () => {
     shell.openExternal('https://localhost:3000');
   };
+  */
 
   return (
     <Card>
@@ -24,6 +26,7 @@ export const TasksDevelopmentPane = () => {
           <div className="justify-self-center">
             <TaskMainSwitch taskName={startScript} />
           </div>
+          {/*
           <button
             id="open_project"
             className="flex items-center absolute bottom-4 space-x-1 cursor-pointer"
@@ -45,6 +48,7 @@ export const TasksDevelopmentPane = () => {
             </svg>
             <span className="text-sm text-gray-500">Open in browser</span>
           </button>
+          */}
         </div>
         <div className="w-7/12">
           <TerminalOutput taskName={startScript} />

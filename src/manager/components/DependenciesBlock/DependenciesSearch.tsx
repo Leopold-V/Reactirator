@@ -53,7 +53,7 @@ export const DependenciesSearch = () => {
   return (
     <Card>
       <div ref={input_ref} className="flex flex-col items-center relative">
-        <h2 className="font-extrabold text-xl pb-4 text-center">Add packages</h2>
+        <h2 className="font-extrabold text-lg text-gray-700 pb-4 text-center">Add packages</h2>
         <div className="relative w-1/2 mb-3">
           <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
             <SearchIcon className="h-5 w-5 text-gray-700" aria-hidden="true" />
