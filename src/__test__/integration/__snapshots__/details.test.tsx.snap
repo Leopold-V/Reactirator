@@ -1,0 +1,591 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add change information about the project should render the details page 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="w-1/3 space-y-2"
+      >
+        <h3
+          class="undefined block font-bold text-black text-center py-2"
+        >
+          Application information
+        </h3>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="appname"
+          >
+            Name
+          </label>
+          <div
+            class="mt-1"
+          >
+            <input
+              class=" w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              id="appname"
+              name="appname"
+              placeholder="App. name"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="version"
+          >
+            Version
+          </label>
+          <div
+            class="mt-1"
+          >
+            <input
+              class="w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              id="version"
+              name="version"
+              placeholder="Version"
+              type="text"
+              value="0.1.0"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="description"
+          >
+            Description
+          </label>
+          <div
+            class="mt-1"
+          >
+            <textarea
+              class="resize-none w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              id="description"
+              name="description"
+              placeholder="Description"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="p-4 rounded text-xs bg-blueGray h-80 overflow-y-auto overflow-x-hidden shadow hover:shadow-lg transition duration-200 text-yellow-300"
+        id="packagejson"
+      >
+        <pre
+          data-testid="packagejson"
+        >
+          {
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "",
+    "@testing-library/react": "",
+    "@testing-library/user-event": "",
+    "react": "",
+    "react-dom": "",
+    "react-scripts": "",
+    "web-vitals": ""
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "&gt;0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
+        </pre>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="w-1/3 space-y-2"
+    >
+      <h3
+        class="undefined block font-bold text-black text-center py-2"
+      >
+        Application information
+      </h3>
+      <div>
+        <label
+          class="block text-sm font-medium text-gray-700"
+          for="appname"
+        >
+          Name
+        </label>
+        <div
+          class="mt-1"
+        >
+          <input
+            class=" w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            id="appname"
+            name="appname"
+            placeholder="App. name"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div>
+        <label
+          class="block text-sm font-medium text-gray-700"
+          for="version"
+        >
+          Version
+        </label>
+        <div
+          class="mt-1"
+        >
+          <input
+            class="w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            id="version"
+            name="version"
+            placeholder="Version"
+            type="text"
+            value="0.1.0"
+          />
+        </div>
+      </div>
+      <div>
+        <label
+          class="block text-sm font-medium text-gray-700"
+          for="description"
+        >
+          Description
+        </label>
+        <div
+          class="mt-1"
+        >
+          <textarea
+            class="resize-none w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            id="description"
+            name="description"
+            placeholder="Description"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="p-4 rounded text-xs bg-blueGray h-80 overflow-y-auto overflow-x-hidden shadow hover:shadow-lg transition duration-200 text-yellow-300"
+      id="packagejson"
+    >
+      <pre
+        data-testid="packagejson"
+      >
+        {
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "",
+    "@testing-library/react": "",
+    "@testing-library/user-event": "",
+    "react": "",
+    "react-dom": "",
+    "react-scripts": "",
+    "web-vitals": ""
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "&gt;0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
+      </pre>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`change information about the project should render the details page 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="w-1/3 space-y-2"
+      >
+        <h3
+          class="undefined block font-bold text-black text-center py-2"
+        >
+          Application information
+        </h3>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="appname"
+          >
+            Name
+          </label>
+          <div
+            class="mt-1"
+          >
+            <input
+              class=" w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              id="appname"
+              name="appname"
+              placeholder="App. name"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="version"
+          >
+            Version
+          </label>
+          <div
+            class="mt-1"
+          >
+            <input
+              class="w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              id="version"
+              name="version"
+              placeholder="Version"
+              type="text"
+              value="0.1.0"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700"
+            for="description"
+          >
+            Description
+          </label>
+          <div
+            class="mt-1"
+          >
+            <textarea
+              class="resize-none w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              id="description"
+              name="description"
+              placeholder="Description"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="p-4 rounded text-xs bg-blueGray h-80 overflow-y-auto overflow-x-hidden shadow hover:shadow-lg transition duration-200 text-yellow-300"
+        id="packagejson"
+      >
+        <pre
+          data-testid="packagejson"
+        >
+          {
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "",
+    "@testing-library/react": "",
+    "@testing-library/user-event": "",
+    "react": "",
+    "react-dom": "",
+    "react-scripts": "",
+    "web-vitals": ""
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "&gt;0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
+        </pre>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="w-1/3 space-y-2"
+    >
+      <h3
+        class="undefined block font-bold text-black text-center py-2"
+      >
+        Application information
+      </h3>
+      <div>
+        <label
+          class="block text-sm font-medium text-gray-700"
+          for="appname"
+        >
+          Name
+        </label>
+        <div
+          class="mt-1"
+        >
+          <input
+            class=" w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            id="appname"
+            name="appname"
+            placeholder="App. name"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div>
+        <label
+          class="block text-sm font-medium text-gray-700"
+          for="version"
+        >
+          Version
+        </label>
+        <div
+          class="mt-1"
+        >
+          <input
+            class="w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            id="version"
+            name="version"
+            placeholder="Version"
+            type="text"
+            value="0.1.0"
+          />
+        </div>
+      </div>
+      <div>
+        <label
+          class="block text-sm font-medium text-gray-700"
+          for="description"
+        >
+          Description
+        </label>
+        <div
+          class="mt-1"
+        >
+          <textarea
+            class="resize-none w-full block text-center bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            id="description"
+            name="description"
+            placeholder="Description"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="p-4 rounded text-xs bg-blueGray h-80 overflow-y-auto overflow-x-hidden shadow hover:shadow-lg transition duration-200 text-yellow-300"
+      id="packagejson"
+    >
+      <pre
+        data-testid="packagejson"
+      >
+        {
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "",
+    "@testing-library/react": "",
+    "@testing-library/user-event": "",
+    "react": "",
+    "react-dom": "",
+    "react-scripts": "",
+    "web-vitals": ""
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "&gt;0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
+      </pre>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

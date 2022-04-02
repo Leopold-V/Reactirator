@@ -1,16 +1,14 @@
-import React, { Dispatch } from 'react';
+import React from 'react';
 
 import { FeatureSwitch } from './';
-import { formInputType, actionPackageType } from '../../helpers/types';
+import { formInputType } from '../../helpers/types';
 
 export const FeaturesList = ({
   input,
   setInput,
-  dispatchPackages,
 }: {
   input: formInputType;
   setInput: (input: formInputType) => void;
-  dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   return (
     <div className="flex flex-col w-1/2 bg-white shadow overflow-auto h-96 rounded-md divide-y divide-gray-200">
@@ -21,7 +19,6 @@ export const FeaturesList = ({
           packageName={feature.packageName}
           setInput={setInput}
           input={input}
-          dispatchPackages={dispatchPackages}
         >
           <div className="flex items-center text-gray-700 font-medium">{feature.title}</div>
           <div className="text-gray-400">{feature.description}</div>

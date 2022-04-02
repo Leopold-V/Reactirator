@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "test": "npm run test:e2e && npm run jest ./src/__test__/integration/",
-    "test:integration": "jest --watch ./src/__test__/integration/",
+    "test:integration": "jest ./src/__test__/integration/",
     "test:e2e": "npx playwright test ./src/__test__/e2e/",
     "lint": "eslint --ext .ts .",
     "format": "prettier --write \"src/**/*.(js|jsx|ts|tsx|css|scss)\"",

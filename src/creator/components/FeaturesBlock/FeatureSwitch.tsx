@@ -1,7 +1,7 @@
 import { Switch } from '@headlessui/react';
-import React, { Dispatch, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { searchOnePackage } from '../../../services/package.service';
-import { actionPackageType, formInputType } from '../../helpers/types';
+import { formInputType } from '../../helpers/types';
 
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
 
@@ -17,7 +17,6 @@ export const FeatureSwitch = ({
   packageName: string;
   setInput: (input: formInputType) => void;
   input: any;
-  dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   const { dispatchJson } = usePackageJson();
 
