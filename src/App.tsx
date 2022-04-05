@@ -162,7 +162,7 @@ const managerLoader = (manager: JSX.Element) => {
       });
       ipcRenderer.on(
         'open-dialog-directory-selected',
-        async (event: Electron.IpcRendererEvent, arg: any) => {
+        async (event: Electron.IpcRendererEvent, arg) => {
           const [filepath] = arg;
           try {
             const content = await promisifyReadFs(`${filepath}/package.json`);
@@ -170,7 +170,7 @@ const managerLoader = (manager: JSX.Element) => {
             if (contentObj.dependencies.react) {
               const newTaskList: Record<string, taskType> = {};
               Object.keys(contentObj.scripts).map(
-                (ele: any) =>
+                (ele) =>
                   (newTaskList[ele] = {
                     taskState: 'Idle',
                     enabled: false,

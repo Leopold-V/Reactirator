@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
 
 import { searchPackages } from '../../../services/package.service';
@@ -18,7 +18,7 @@ export const DependenciesSearch = () => {
     if (e.target.value !== '') {
       try {
         const packagesFound = await searchPackages(e.target.value);
-        const results: dependencyFoundType[] = packagesFound.map((ele: any) => ({
+        const results: dependencyFoundType[] = packagesFound.map((ele) => ({
           name: ele.package.name,
           version: ele.package.version,
           description: ele.package.description,
@@ -37,7 +37,7 @@ export const DependenciesSearch = () => {
     }
   };
 
-  const handleClick = (e: any): void => {
+  const handleClick = (e: MouseEvent): void => {
     if (input_ref.current.contains(e.target)) {
       setIsOpen(true);
     } else {
@@ -46,7 +46,9 @@ export const DependenciesSearch = () => {
   };
 
   useEffect(() => {
+    //@ts-ignore
     document.addEventListener('click', handleClick);
+    //@ts-ignore
     return () => document.removeEventListener('click', handleClick);
   }, []);
 

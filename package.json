@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "make:msi": "node build_msi.ts",
     "publish": "electron-forge publish",
-    "test": "npm run test:e2e && npm run jest ./src/__test__/integration/",
+    "test": "npm run test:e2e && jest ./src/__test__/integration/",
     "test:integration": "jest ./src/__test__/integration/",
     "test:e2e": "npx playwright test ./src/__test__/e2e/",
     "lint": "eslint --ext .ts .",

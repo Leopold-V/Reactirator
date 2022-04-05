@@ -52,7 +52,7 @@ export type dependencyFoundType = {
   version: string;
   description: string;
   score: number;
-  links: {
+  links?: {
     npm: string;
     repository: string;
   };
