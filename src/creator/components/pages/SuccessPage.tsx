@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
+//TODO:
+//Add open in editor button
 export const SuccessPage = () => {
   return (
     <div id="layout" className="relative bg-gray-50 h-screen">
