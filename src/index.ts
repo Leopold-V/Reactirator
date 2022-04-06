@@ -16,7 +16,9 @@ if (require('electron-squirrel-startup')) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('update-electron-app')();
+require('update-electron-app')({
+  logger: require('electron-log')
+});
 
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
