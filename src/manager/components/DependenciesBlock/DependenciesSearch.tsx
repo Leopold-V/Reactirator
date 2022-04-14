@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
 
 import { searchPackages } from '../../../services/package.service';
@@ -18,7 +18,7 @@ export const DependenciesSearch = () => {
     if (e.target.value !== '') {
       try {
         const packagesFound = await searchPackages(e.target.value);
-        const results: dependencyFoundType[] = packagesFound.map((ele: any) => ({
+        const results: dependencyFoundType[] = packagesFound.map((ele) => ({
           name: ele.package.name,
           version: ele.package.version,
           description: ele.package.description,
@@ -37,7 +37,7 @@ export const DependenciesSearch = () => {
     }
   };
 
-  const handleClick = (e: any): void => {
+  const handleClick = (e: MouseEvent): void => {
     if (input_ref.current.contains(e.target)) {
       setIsOpen(true);
     } else {
@@ -46,14 +46,16 @@ export const DependenciesSearch = () => {
   };
 
   useEffect(() => {
+    //@ts-ignore
     document.addEventListener('click', handleClick);
+    //@ts-ignore
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
   return (
     <Card>
       <div ref={input_ref} className="flex flex-col items-center relative">
-        <h2 className="font-extrabold text-xl pb-4 text-center">Add packages</h2>
+        <h2 className="font-extrabold text-lg text-gray-700 pb-4 text-center">Add packages</h2>
         <div className="relative w-1/2 mb-3">
           <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
             <SearchIcon className="h-5 w-5 text-gray-700" aria-hidden="true" />

@@ -89,3 +89,6 @@ typings/
 
 # Electron-Forge
 out/
+
+# Msi installer
+windows_installer

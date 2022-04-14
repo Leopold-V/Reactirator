@@ -1,9 +1,14 @@
+import { shell } from 'electron';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './sidenav.css';
 
 export const SideNav = () => {
   const location = useLocation();
+
+  const redirectToBug = () => {
+    shell.openExternal('https://github.com/Leopold-V/Reactirator/issues/new/choose');
+  };
 
   return (
     <div className="nav bg-primary">
@@ -21,7 +26,7 @@ export const SideNav = () => {
       </div>
 
       <div className="nav__footer">
-        <button className="btn-bug" id="button_bug">
+        <button className="btn-bug" id="button_bug" onClick={redirectToBug}>
           <span className="mr-2">Report a bug</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +241,7 @@ const NavListManager = ({ pathname }: { pathname: string }) => {
           <span className="nav__item-name">Dependencies</span>
         </Link>
       </li>
-      <li className="nav__item">
+      {/* <li className="nav__item">
         <Link
           className={`nav__link ${pathname === '/manager/architecture' ? 'active' : ''}`}
           to="/manager/architecture"
@@ -259,7 +264,7 @@ const NavListManager = ({ pathname }: { pathname: string }) => {
           </svg>
           <span className="nav__item-name">Architecture</span>
         </Link>
-      </li>
+      </li> */}
     </ul>
   );
 };

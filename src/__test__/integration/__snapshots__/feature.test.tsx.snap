@@ -1,0 +1,956 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add feature to the project should render the feature page 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="flex flex-col items-center justify-center w-full space-y-2"
+      >
+        <h3
+          class="undefined block font-bold text-black text-center py-2"
+        >
+          Features
+        </h3>
+        <div
+          class="flex flex-col w-1/2 bg-white shadow overflow-auto h-96 rounded-md divide-y divide-gray-200"
+        >
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-1"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Typescript
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                A strongly typed programming language.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-1"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-2"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-3"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Flow
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                A Static Type Checker for JavaScript.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-3"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-4"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-5"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Prettier
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                An opinionated code formatter.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-5"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-6"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-7"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Bundle analyze
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                Visualize size of files with an interactive zoomable treemap.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-7"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-8"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-9"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Storybook
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                A tool for building UI components and pages in isolation.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-9"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-10"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-11"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Tailwindcss
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                A utility-first CSS framework.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-11"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-12"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-13"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Bootstrap
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                CSS Framework for developing responsive websites.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-13"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-14"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+          <div
+            class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+          >
+            <label
+              class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+              id="headlessui-label-15"
+            >
+              <div
+                class="flex items-center text-gray-700 font-medium"
+              >
+                Css reset
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                Reset stylesheet to reduce browser inconsistencies.
+              </div>
+            </label>
+            <button
+              aria-checked="false"
+              aria-labelledby="headlessui-label-15"
+              class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+              id="headlessui-switch-16"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Run
+              </span>
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute w-full h-full rounded-md"
+              />
+              <span
+                aria-hidden="true"
+                class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+              />
+              <span
+                class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="p-4 rounded text-xs bg-blueGray h-80 overflow-y-auto overflow-x-hidden shadow hover:shadow-lg transition duration-200 text-yellow-300"
+        id="packagejson"
+      >
+        <pre
+          data-testid="packagejson"
+        >
+          {
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "",
+    "@testing-library/react": "",
+    "@testing-library/user-event": "",
+    "react": "",
+    "react-dom": "",
+    "react-scripts": "",
+    "web-vitals": ""
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "&gt;0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
+        </pre>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="flex flex-col items-center justify-center w-full space-y-2"
+    >
+      <h3
+        class="undefined block font-bold text-black text-center py-2"
+      >
+        Features
+      </h3>
+      <div
+        class="flex flex-col w-1/2 bg-white shadow overflow-auto h-96 rounded-md divide-y divide-gray-200"
+      >
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-1"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Typescript
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              A strongly typed programming language.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-1"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-2"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-3"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Flow
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              A Static Type Checker for JavaScript.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-3"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-4"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-5"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Prettier
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              An opinionated code formatter.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-5"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-6"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-7"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Bundle analyze
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              Visualize size of files with an interactive zoomable treemap.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-7"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-8"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-9"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Storybook
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              A tool for building UI components and pages in isolation.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-9"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-10"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-11"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Tailwindcss
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              A utility-first CSS framework.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-11"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-12"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-13"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Bootstrap
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              CSS Framework for developing responsive websites.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-13"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-14"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-between hover:bg-gray-50 pr-2 transition duration-200"
+        >
+          <label
+            class="flex-grow cursor-pointer py-2 pl-4 text-sm"
+            id="headlessui-label-15"
+          >
+            <div
+              class="flex items-center text-gray-700 font-medium"
+            >
+              Css reset
+            </div>
+            <div
+              class="text-gray-400"
+            >
+              Reset stylesheet to reduce browser inconsistencies.
+            </div>
+          </label>
+          <button
+            aria-checked="false"
+            aria-labelledby="headlessui-label-15"
+            class="flex-shrink-0 group relative py-2 rounded-full inline-flex items-center justify-center h-full w-10 cursor-pointer focus:outline-none"
+            id="headlessui-switch-16"
+            role="switch"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="sr-only"
+            >
+              Run
+            </span>
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute w-full h-full rounded-md"
+            />
+            <span
+              aria-hidden="true"
+              class="
+              bg-gray-300
+              pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200
+            "
+            />
+            <span
+              class="translate-x-1 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="p-4 rounded text-xs bg-blueGray h-80 overflow-y-auto overflow-x-hidden shadow hover:shadow-lg transition duration-200 text-yellow-300"
+      id="packagejson"
+    >
+      <pre
+        data-testid="packagejson"
+      >
+        {
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "",
+    "@testing-library/react": "",
+    "@testing-library/user-event": "",
+    "react": "",
+    "react-dom": "",
+    "react-scripts": "",
+    "web-vitals": ""
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "&gt;0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
+      </pre>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

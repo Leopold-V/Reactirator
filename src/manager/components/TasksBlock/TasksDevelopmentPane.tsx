@@ -1,5 +1,9 @@
+// import { shell } from 'electron';
 import React from 'react';
+
+import launchEditor from 'react-dev-utils/launchEditor';
 import { useAppSelector } from '../../../hooks';
+
 import { Card } from '../../../common/Card';
 import { TerminalOutput } from '../Terminal';
 import { TaskMainSwitch } from './TaskSwitch';
@@ -9,6 +13,11 @@ export const TasksDevelopmentPane = () => {
     (state) =>
       Object.entries(state.tasks.tasks).find((ele) => ele[0] === 'start' || ele[0] === 'dev')[0]
   );
+  const projectPath = useAppSelector((state) => state.project.projectPath);
+
+  const redirectToEditor = () => {
+    launchEditor(projectPath, 1, 1);
+  };
 
   return (
     <Card>
@@ -18,9 +27,10 @@ export const TasksDevelopmentPane = () => {
           <div className="justify-self-center">
             <TaskMainSwitch taskName={startScript} />
           </div>
-          <a
+          <button
             id="open_project"
             className="flex items-center absolute bottom-4 space-x-1 cursor-pointer"
+            onClick={redirectToEditor}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +46,8 @@ export const TasksDevelopmentPane = () => {
                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               />
             </svg>
-            <span className="text-sm text-gray-500">Open in browser</span>
-          </a>
+            <span className="text-sm text-gray-500">Open in editor</span>
+          </button>
         </div>
         <div className="w-7/12">
           <TerminalOutput taskName={startScript} />

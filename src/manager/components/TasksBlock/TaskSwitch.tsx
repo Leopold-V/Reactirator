@@ -1,8 +1,10 @@
 import { ipcRenderer } from 'electron';
-import React, { useEffect } from 'react';
-import detect from 'detect-port';
+import React, { useCallback, useEffect } from 'react';
+// import detect from 'detect-port';
 import { Switch } from '@headlessui/react';
-import { pendingTask, switchTask, updateLogs } from '../../../slices/taskSlice';
+import throttle from 'lodash.throttle';
+
+import { pendingTask, switchTask } from '../../../slices/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 export const TaskSwitch = ({
@@ -16,10 +18,14 @@ export const TaskSwitch = ({
 }) => {
   const projectPath = useAppSelector((state) => state.project.projectPath);
   const dispatch = useAppDispatch();
-  // TODO:
-  // Since toggle switch change a lot of state and interaction with the server we should maybe add a debounce hook.
+
+  const debouncedSwitch = useCallback(
+    throttle(() => dispatch(switchTask(taskName)), 1000),
+    []
+  );
+
   const handleChange = () => {
-    dispatch(switchTask(taskName));
+    debouncedSwitch();
   };
 
   useEffect(() => {
@@ -48,7 +54,8 @@ export const TaskSwitch = ({
   );
 };
 
-const port = 3000;
+//const port = 3000;
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
@@ -58,12 +65,20 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
   const task = useAppSelector((state) => state.tasks.tasks[taskName]);
   const dispatch = useAppDispatch();
 
+  const debouncedSwitch = useCallback(
+    throttle(() => dispatch(switchTask(taskName)), 1000),
+    []
+  );
+
   const handleChange = () => {
-    dispatch(switchTask(taskName));
+    debouncedSwitch();
   };
 
   useEffect(() => {
     if (task.enabled && task.taskState !== 'Pending') {
+      ipcRenderer.send('run-cmd', { path: projectPath, taskName: taskName });
+      dispatch(pendingTask(taskName));
+      /*
       detect(port)
         .then((_port) => {
           if (port == _port) {
@@ -79,6 +94,7 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
         .catch((err) => {
           console.log(err);
         });
+        */
     }
   }, [task.enabled]);
 
@@ -136,25 +152,3 @@ export const TaskMainSwitch = ({ taskName }: { taskName: string }) => {
     </Switch>
   );
 };
-
-/*
-    <div>
-      <div className="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-        <input
-          type="checkbox"
-          name={`toggle-${taskName}`}
-          id={`toggle-${taskName}`}
-          className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-          checked={task.enabled}
-          onChange={handleChange}
-        />
-        <label
-          htmlFor={`toggle-${taskName}`}
-          className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
-        ></label>
-      </div>
-      <label htmlFor={`toggle-${taskName}`} className="text-gray-700">
-        Launch!
-      </label>
-    </div>
-*/
