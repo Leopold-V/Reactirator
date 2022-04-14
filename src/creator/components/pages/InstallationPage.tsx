@@ -41,7 +41,7 @@ export const InstallationPage = ({
         if (arg) {
           setLoading(true);
           toggleModal();
-          const projectPath = filepath + `\\${input.appname}\\`
+          const projectPath = filepath + `\\${input.appname}\\`;
           try {
             await toast.promise(
               generateProject(
@@ -55,7 +55,7 @@ export const InstallationPage = ({
               {
                 loading: 'Installation start !',
                 success: () => {
-                  history.push({pathname: '/success', state: projectPath});
+                  history.push({ pathname: '/success', state: projectPath });
                   return `Successfully installed !`;
                 },
                 error: () => `An error happened`,

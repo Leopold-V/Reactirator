@@ -23,13 +23,13 @@ describe('Add feature to the project', () => {
   });
 
   it('should activate typescript feature', async () => {
-    jest.spyOn(packageService, 'searchOnePackage').mockResolvedValue(({
-        collected: {
-            metadata: {
-                version: '1.0.0'
-            }
-        }
-    }))
+    jest.spyOn(packageService, 'searchOnePackage').mockResolvedValue({
+      collected: {
+        metadata: {
+          version: '1.0.0',
+        },
+      },
+    });
     render(<FakeFeaturePage />);
     fireEvent.click(screen.getByText('Bootstrap'));
     await waitFor(() => screen.queryByText('bootstrap'));

@@ -3,7 +3,7 @@ import launchEditor from 'react-dev-utils/launchEditor';
 import { Link } from 'react-router-dom';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 
-export const SuccessPage = ({ location }: {location: { pathname: string, state: string }}) => {
+export const SuccessPage = ({ location }: { location: { pathname: string; state: string } }) => {
   const projectPath = location.state;
 
   const redirectToEditor = () => {
