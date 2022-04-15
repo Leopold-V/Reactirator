@@ -8,6 +8,7 @@ import { updateDep } from '../../../slices/dependenciesSlice';
 
 import { ButtonDelete, ButtonSecondary } from '../../../common/Button';
 import { Card } from '../../../common/Card';
+import { ScoreNpmPophover } from './ScoreNpmPophover';
 
 export const DependencySelectedCard = () => {
   // TODO
@@ -15,6 +16,7 @@ export const DependencySelectedCard = () => {
   const [data, setdata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [popHoverOpen, setPopHoverOpen] = useState(false);
   const selectedDeps = useAppSelector((state) => state.dependencies.depSelected);
   const projectPath = useAppSelector((state) => state.project.projectPath);
   const dependencyStatus = useAppSelector(
@@ -73,6 +75,14 @@ export const DependencySelectedCard = () => {
     }
   };
 
+  const showNpmScore = () => {
+    setPopHoverOpen(true);
+  };
+
+  const hideNpmScore = () => {
+    setPopHoverOpen(false);
+  };
+
   useEffect(() => {
     getData();
   }, [selectedDeps]);
@@ -94,7 +104,7 @@ export const DependencySelectedCard = () => {
       />
       <div className="border-t border-gray-200 p-0">
         <dl className="divide-y divide-gray-200">
-          <div className="py-5 grid grid-cols-3 gap-4 px-6">
+          <div className="py-4 grid grid-cols-3 gap-4 px-6">
             <div className="col-span-1">
               <dt className="text-sm font-medium text-gray-500">Installed version</dt>
               <dd className="text-sm text-gray-900">{selectedDeps.depVersion}</dd>
@@ -121,7 +131,7 @@ export const DependencySelectedCard = () => {
               )}
             </div>
           </div>
-          <div className="py-5 grid grid-cols-3 gap-4 px-6">
+          <div className="py-4 grid grid-cols-3 gap-4 px-6">
             <dt className="text-sm font-medium text-gray-500">Links</dt>
             <dd className="text-sm text-gray-900 col-span-2">
               <a
@@ -139,13 +149,27 @@ export const DependencySelectedCard = () => {
               </a>
             </dd>
           </div>
-          <div className="py-5 grid grid-cols-3 gap-4 px-6">
+          <div className="py-4 grid grid-cols-3 gap-4 px-6">
             <dt className="text-sm font-medium text-gray-500">Type</dt>
             <dd className="text-sm text-gray-900 col-span-2">
               {selectedDeps.isDevDep ? 'DevDependencies' : 'Dependencies'}
             </dd>
           </div>
-          <div className="py-5 grid grid-cols-3 gap-4 px-6">
+          <div className="py-4 grid grid-cols-3 gap-4 px-6">
+            <dt className="text-sm flex flex-row">
+              <span className="font-medium text-gray-500">Score</span>
+              <span
+                onMouseEnter={showNpmScore}
+                onMouseLeave={hideNpmScore}
+                className="text-indigo-500 hover:text-indigo-700 cursor-pointer font-semibold transition duration-200"
+              >
+                &nbsp;(?)
+              </span>
+              <ScoreNpmPophover scoreDetail={data.score.detail} open={popHoverOpen} />
+            </dt>
+            <dd className="text-sm text-gray-900 col-span-2">{data.score.final.toFixed(3)}</dd>
+          </div>
+          <div className="py-4 grid grid-cols-3 gap-4 px-6">
             <dt className="text-sm font-medium text-gray-500">Danger zone</dt>
             <dd className="col-span-2">
               <ButtonDelete disabled={dependencyStatus === 'Pending'} onClick={removeDependency}>

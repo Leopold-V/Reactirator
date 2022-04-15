@@ -5,7 +5,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { dependencyFoundType } from '../../../manager/helpers/types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { installDep } from '../../../slices/dependenciesSlice';
+
 import { DependencyModalRadio } from './DependencyModalRadio';
+import { ScoreNpmPophover } from './ScoreNpmPophover';
 
 export const DependencyModal = ({
   depData,
@@ -18,6 +20,7 @@ export const DependencyModal = ({
 }) => {
   const cancelButtonRef = useRef(null);
   const [selectedType, setSelectedType] = useState('Dependency');
+  const [popHoverOpen, setPopHoverOpen] = useState(false);
   const projectPath = useAppSelector((state) => state.project.projectPath);
   const dependencies = useAppSelector((state) => state.dependencies);
   const dispatch = useAppDispatch();
@@ -38,6 +41,14 @@ export const DependencyModal = ({
         isDevDep: selectedType === 'devDependency' ? true : false,
       })
     );
+  };
+
+  const showNpmScore = () => {
+    setPopHoverOpen(true);
+  };
+
+  const hideNpmScore = () => {
+    setPopHoverOpen(false);
   };
 
   return (
@@ -93,7 +104,17 @@ export const DependencyModal = ({
                         <dd className="text-sm text-gray-900 col-span-2">{depData.version}</dd>
                       </div>
                       <div className="py-5 grid grid-cols-3 gap-4 px-6">
-                        <dt className="text-sm font-medium text-gray-500">Npm score</dt>
+                        <dt className="text-sm flex flex-row">
+                          <span className="font-medium text-gray-500">Npm score</span>
+                          <span
+                            onMouseEnter={showNpmScore}
+                            onMouseLeave={hideNpmScore}
+                            className="text-indigo-500 hover:text-indigo-700 cursor-pointer font-semibold transition duration-200"
+                          >
+                            &nbsp;(?)
+                          </span>
+                          <ScoreNpmPophover scoreDetail={depData.scoreDetail} open={popHoverOpen} />
+                        </dt>
                         <dd className="text-sm text-gray-900 col-span-2">
                           {depData.score.toFixed(3)}
                         </dd>
