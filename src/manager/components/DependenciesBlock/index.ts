@@ -5,3 +5,5 @@ export { DependenciesSearch } from './DependenciesSearch';
 export { ListDependenciesFound } from './ListDependenciesFound';
 export { DependencyItemFound } from './DependencyItemFound';
 export { DependencyModal } from './DependencyModal';
+export { DependencyModalRadio } from './DependencyModalRadio';
+export { ScoreNpmPophover } from './ScoreNpmPophover';
