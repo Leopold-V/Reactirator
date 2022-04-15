@@ -77,11 +77,11 @@ export const DependencySelectedCard = () => {
 
   const showNpmScore = () => {
     setPopHoverOpen(true);
-  }
+  };
 
   const hideNpmScore = () => {
     setPopHoverOpen(false);
-  }
+  };
 
   useEffect(() => {
     getData();
@@ -159,16 +159,15 @@ export const DependencySelectedCard = () => {
             <dt className="text-sm flex flex-row">
               <span className="font-medium text-gray-500">Score</span>
               <span
-              onMouseEnter={showNpmScore}
-              onMouseLeave={hideNpmScore}
-              className="text-indigo-500 hover:text-indigo-700 cursor-pointer font-semibold transition duration-200">
+                onMouseEnter={showNpmScore}
+                onMouseLeave={hideNpmScore}
+                className="text-indigo-500 hover:text-indigo-700 cursor-pointer font-semibold transition duration-200"
+              >
                 &nbsp;(?)
               </span>
               <ScoreNpmPophover scoreDetail={data.score.detail} open={popHoverOpen} />
             </dt>
-            <dd className="text-sm text-gray-900 col-span-2">
-              {data.score.final.toFixed(3)}
-            </dd>
+            <dd className="text-sm text-gray-900 col-span-2">{data.score.final.toFixed(3)}</dd>
           </div>
           <div className="py-4 grid grid-cols-3 gap-4 px-6">
             <dt className="text-sm font-medium text-gray-500">Danger zone</dt>

@@ -45,11 +45,11 @@ export const DependencyModal = ({
 
   const showNpmScore = () => {
     setPopHoverOpen(true);
-  }
+  };
 
   const hideNpmScore = () => {
     setPopHoverOpen(false);
-  }
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -106,10 +106,11 @@ export const DependencyModal = ({
                       <div className="py-5 grid grid-cols-3 gap-4 px-6">
                         <dt className="text-sm flex flex-row">
                           <span className="font-medium text-gray-500">Npm score</span>
-                          <span 
-                          onMouseEnter={showNpmScore}
-                          onMouseLeave={hideNpmScore}
-                          className="text-indigo-500 hover:text-indigo-700 cursor-pointer font-semibold transition duration-200">
+                          <span
+                            onMouseEnter={showNpmScore}
+                            onMouseLeave={hideNpmScore}
+                            className="text-indigo-500 hover:text-indigo-700 cursor-pointer font-semibold transition duration-200"
+                          >
                             &nbsp;(?)
                           </span>
                           <ScoreNpmPophover scoreDetail={depData.scoreDetail} open={popHoverOpen} />

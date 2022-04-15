@@ -26,7 +26,7 @@ export const DependenciesSearch = () => {
           scoreDetail: {
             quality: ele.score.detail.quality,
             popularity: ele.score.detail.popularity,
-            maintenance: ele.score.detail.maintenance
+            maintenance: ele.score.detail.maintenance,
           },
           links: {
             npm: ele.package.links.npm,

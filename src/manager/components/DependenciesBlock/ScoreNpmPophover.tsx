@@ -5,8 +5,8 @@ type scoreNpmPophoverProps = {
     quality: number;
     popularity: number;
     maintenance: number;
-  },
-  open: boolean
+  };
+  open: boolean;
 };
 
 export const ScoreNpmPophover = ({ scoreDetail, open }: scoreNpmPophoverProps) => {
