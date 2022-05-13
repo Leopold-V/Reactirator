@@ -53,7 +53,7 @@ export const DependencyModal = ({
 
   const openLinkExternal = (e: MouseEvent<HTMLButtonElement>) => {
     shell.openExternal(e.currentTarget.dataset.link);
-  }
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -127,7 +127,7 @@ export const DependencyModal = ({
                         <dt className="text-sm font-medium text-gray-500">Links</dt>
                         <dd className="text-sm text-gray-900 col-span-2">
                           <button
-                          onClick={openLinkExternal}
+                            onClick={openLinkExternal}
                             data-link={`${depData.links.npm}`}
                             className="font-semibold hover:text-indigo-600 transition duration-200"
                           >

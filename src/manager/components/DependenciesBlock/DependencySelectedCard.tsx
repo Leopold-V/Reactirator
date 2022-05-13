@@ -85,7 +85,7 @@ export const DependencySelectedCard = () => {
 
   const openLinkExternal = (e: MouseEvent<HTMLButtonElement>) => {
     shell.openExternal(e.currentTarget.dataset.link);
-  }
+  };
 
   useEffect(() => {
     getData();
