@@ -42,6 +42,7 @@ For now the project creation is generated on top of [``create-react-app``](https
 ## Upcoming features
 - A React components generator in the manager part.
 - Support for Next.js and other frameworks to determined ?
+- More documentation and explanations about how Reactirator works.
 
 **More in the [list ideas](https://github.com/Leopold-V/Reactirator/ideas) ! Anyone is free to suggest new features to make Reactirator a better tool.
 
@@ -66,7 +67,3 @@ Please respect the contributor [Code Of Conduct](https://github.com/leopold-v/Re
 ## Author
 
 👤 **Leopold-V**
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
