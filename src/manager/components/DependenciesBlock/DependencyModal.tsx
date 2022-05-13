@@ -1,5 +1,5 @@
-import { ipcRenderer } from 'electron';
-import React, { Fragment, useRef, useState } from 'react';
+import { ipcRenderer, shell } from 'electron';
+import React, { Fragment, MouseEvent, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 import { dependencyFoundType } from '../../../manager/helpers/types';
@@ -50,6 +50,10 @@ export const DependencyModal = ({
   const hideNpmScore = () => {
     setPopHoverOpen(false);
   };
+
+  const openLinkExternal = (e: MouseEvent<HTMLButtonElement>) => {
+    shell.openExternal(e.currentTarget.dataset.link);
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -122,19 +126,21 @@ export const DependencyModal = ({
                       <div className="py-5 grid grid-cols-3 gap-4 px-6">
                         <dt className="text-sm font-medium text-gray-500">Links</dt>
                         <dd className="text-sm text-gray-900 col-span-2">
-                          <a
-                            href={`${depData.links.npm}`}
+                          <button
+                          onClick={openLinkExternal}
+                            data-link={`${depData.links.npm}`}
                             className="font-semibold hover:text-indigo-600 transition duration-200"
                           >
                             Npm
-                          </a>
+                          </button>
                           &nbsp;-&nbsp;
-                          <a
-                            href={`${depData.links.repository}`}
+                          <button
+                            onClick={openLinkExternal}
+                            data-link={`${depData.links.repository}`}
                             className="font-semibold hover:text-indigo-600 transition duration-200"
                           >
                             Github
-                          </a>
+                          </button>
                         </dd>
                       </div>
                       <div className="py-5 px-6">
