@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import dependenciesSlice from './slices/dependenciesSlice';
 import projectReducer from './slices/projectSlice';
+import projectSrcSlice from './slices/projectSrcSlice';
 import taskSlice from './slices/taskSlice';
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
     project: projectReducer,
     tasks: taskSlice,
     dependencies: dependenciesSlice,
+    projectSrc: projectSrcSlice
   },
 });
 

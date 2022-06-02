@@ -106,10 +106,30 @@ ipcMain.on('open-directory', (event, arg) => {
   const filePath: string[] = dialog.showOpenDialogSync(window, {
     properties: ['openFile', 'openDirectory'],
   });
-  if (filePath) {
-    event.sender.send('open-dialog-directory-selected', [filePath, arg]);
+  if (arg === 'component') {
+    if (filePath) {
+        event.sender.send('open-dialog-directory-selected-component', [filePath, arg]);
+      } else {
+        event.sender.send('open-dialog-directory-not-selected-component');
+      }
   } else {
-    event.sender.send('open-dialog-directory-not-selected');
+    if (filePath) {
+        event.sender.send('open-dialog-directory-selected', [filePath, arg]);
+      } else {
+        event.sender.send('open-dialog-directory-not-selected');
+      }
+    }
+});
+
+ipcMain.on('open-directory-component', (event, arg) => {
+  const window = BrowserWindow.fromWebContents(event.sender);
+  const filePath: string[] = dialog.showOpenDialogSync(window, {
+    properties: ['openFile', 'openDirectory'],
+  });
+  if (filePath) {
+    event.sender.send('open-dialog-directory-selected-component', [filePath, arg]);
+  } else {
+    event.sender.send('open-dialog-directory-not-selected-co');
   }
 });
 

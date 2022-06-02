@@ -241,7 +241,7 @@ const NavListManager = ({ pathname }: { pathname: string }) => {
           <span className="nav__item-name">Dependencies</span>
         </Link>
       </li>
-      {/* <li className="nav__item">
+      <li className="nav__item">
         <Link
           className={`nav__link ${pathname === '/manager/architecture' ? 'active' : ''}`}
           to="/manager/architecture"
@@ -264,7 +264,7 @@ const NavListManager = ({ pathname }: { pathname: string }) => {
           </svg>
           <span className="nav__item-name">Architecture</span>
         </Link>
-      </li> */}
+      </li>
     </ul>
   );
 };
