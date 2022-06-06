@@ -100,12 +100,13 @@ export const DependencySelectedCard = () => {
         </div>
       </Card>
     );
-  if (loading) 
+  if (loading)
     return (
       <div className="flex flex-col space-y-4 items-center justify-center h-full">
         <ClipLoader size={40} color="#5852c9" />
         <div className="text-gray-700 text-sm">Loading package data...</div>
-      </div>);
+      </div>
+    );
   return (
     <div className="bg-white shadow overflow-hidden rounded">
       <CardHeader

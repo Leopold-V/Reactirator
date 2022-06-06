@@ -9,7 +9,7 @@ export const store = configureStore({
     project: projectReducer,
     tasks: taskSlice,
     dependencies: dependenciesSlice,
-    projectSrc: projectSrcSlice
+    projectSrc: projectSrcSlice,
   },
 });
 

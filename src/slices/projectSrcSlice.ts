@@ -4,7 +4,7 @@ import initialStructure from '../manager/helpers/initialStructure';
 import { FileStructureType, projectSrcStateType } from '../manager/helpers/types';
 
 const initialState: projectSrcStateType = {
-  projectSrc: initialStructure
+  projectSrc: initialStructure,
 };
 
 export const projectSrcSlice = createSlice({

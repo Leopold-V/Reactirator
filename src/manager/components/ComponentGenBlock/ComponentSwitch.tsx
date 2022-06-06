@@ -13,7 +13,6 @@ export const ComponentSwitch = ({
   setInput: (input: formCompType) => void;
   input: any;
 }) => {
-
   const handleChange = async () => {
     setInput({ ...input, [name]: !input[name] });
   };

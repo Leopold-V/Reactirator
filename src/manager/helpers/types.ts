@@ -19,6 +19,7 @@ export type taskType = {
 export type projectStateType = {
   projectName: string;
   projectPath: string;
+  isTypescript: boolean;
   loading?: boolean;
 };
 
@@ -36,7 +37,7 @@ export type FileStructureType = {
 };
 
 export type projectSrcStateType = {
-  projectSrc: FileStructureType[]
+  projectSrc: FileStructureType[];
 };
 
 // TODO:
@@ -79,5 +80,5 @@ export type dependencyFoundType = {
 export type depStatusType = 'Idle' | 'Pending';
 
 export type formCompType = {
-  functionComponent: boolean 
-}
+  functionComponent: boolean;
+};
