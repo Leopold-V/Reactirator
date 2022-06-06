@@ -1,6 +1,7 @@
 import { ipcRenderer, shell } from 'electron';
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { BadgeCheckIcon, CogIcon } from '@heroicons/react/outline';
+import { ClipLoader } from 'react-spinners';
 
 import { searchOnePackage } from '../../../services/package.service';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -99,7 +100,13 @@ export const DependencySelectedCard = () => {
         </div>
       </Card>
     );
-  if (loading) return null;
+  if (loading)
+    return (
+      <div className="flex flex-col space-y-4 items-center justify-center h-full">
+        <ClipLoader size={40} color="#5852c9" />
+        <div className="text-gray-700 text-sm">Loading package data...</div>
+      </div>
+    );
   return (
     <div className="bg-white shadow overflow-hidden rounded">
       <CardHeader

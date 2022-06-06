@@ -33,3 +33,11 @@ export const promisifyAppendFs = (fullpath: string, dataToWrite: string): Promis
     });
   });
 };
+
+export const fileExist = (path: string): Promise<string> => {
+  return new Promise((resolve) => {
+    if (fs.existsSync(path)) {
+      resolve(true);
+    } else resolve(false);
+  });
+};

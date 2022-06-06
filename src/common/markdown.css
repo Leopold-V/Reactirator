@@ -1,0 +1,20 @@
+.markdown {
+  @apply break-words text-sm py-0 my-0 overflow-y-auto h-64;
+}
+
+.markdown code {
+  @apply font-mono inline rounded px-1;
+}
+
+.markdown pre {
+  @apply rounded;
+}
+
+.markdown pre code {
+  @apply block overflow-visible rounded-none;
+}
+
+/* Override pygments style background color. */
+.markdown .highlight pre {
+  @apply bg-gray-200 border-gray-500 !important;
+}

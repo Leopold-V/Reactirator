@@ -28,6 +28,8 @@ import Manager from './manager';
 import { Bar } from './common/Bar';
 import { CreatorMenuSelection } from './common/CreatorMenuSelection';
 import { ManagerMenuSelection } from './common/ManagerMenuSelection';
+//import { initProjectSrc } from './slices/projectSrcSlice';
+//import readSrcFolder from './utils/readSrcFolder';
 
 const App = () => {
   return (
@@ -165,6 +167,7 @@ const managerLoader = (manager: JSX.Element) => {
         async (event: Electron.IpcRendererEvent, arg) => {
           const [filepath] = arg;
           try {
+            //const projectSrc = await readSrcFolder(`${filepath}/src`);
             const content = await promisifyReadFs(`${filepath}/package.json`);
             const contentObj = JSON.parse(content);
             if (contentObj.dependencies.react) {
@@ -182,6 +185,7 @@ const managerLoader = (manager: JSX.Element) => {
                 initProject({
                   projectName: contentObj.name,
                   projectPath: filepath[0],
+                  isTypescript: contentObj.dependencies.typescript ? true : false,
                 })
               );
               dispatch(
@@ -201,6 +205,7 @@ const managerLoader = (manager: JSX.Element) => {
                   },
                 })
               );
+              //dispatch(initProjectSrc(projectSrc));
               setLoading(false);
             }
           } catch (error) {

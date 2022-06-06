@@ -52,6 +52,34 @@ const ${name} = () => {
 };
 
 export default ${name};`;
+
+    case 'rafcp':
+      return `import React from 'react';
+import PropTypes from 'prop-types'
+      
+const ${name} = props => {
+  return (
+    <div></div>
+  )
+}
+
+${name}.propTypes = {}
+
+export default ${name}`;
+
+    case 'rmc':
+      return `import React, { memo } from 'react';
+
+const ${name} = memo(() => {
+  return (
+    <div></div>
+  )
+});
+
+export default ${name};`;
+
+    default:
+      console.log('Error unknown component case');
   }
 };
 
