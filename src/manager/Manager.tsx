@@ -7,7 +7,7 @@ import { killProcess } from '../utils/killProcess';
 import { stopTask, errorTask, finishTask, updateLogs } from '../slices/taskSlice';
 import { removeDep, selectDep, updateDep } from '../slices/dependenciesSlice';
 
-import { ArchitectureManagerPage } from './components/pages/ArchitectureManagerPage';
+import { ComponentGeneratorPage } from './components/pages/ComponentGeneratorPage';
 import { DependenciesPage } from './components/pages/DependenciesPage';
 import { TasksPage } from './components/pages/TasksPage';
 import { Layout } from '../common/Layout';
@@ -96,7 +96,7 @@ const Manager = () => {
         <hr />
         <Route exact path={`${path}`} render={() => <TasksPage />} />
         <Route exact path={`${path}/dependencies`} component={DependenciesPage} />
-        <Route exact path={`${path}/architecture`} component={ArchitectureManagerPage} />
+        <Route exact path={`${path}/component`} component={ComponentGeneratorPage} />
       </div>
     </Layout>
   );

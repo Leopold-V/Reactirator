@@ -10,7 +10,7 @@ const initialInput: formCompType = {
   functionComponent: false,
 };
 
-export const ArchitectureManagerPage = () => {
+export const ComponentGeneratorPage = () => {
   const [location, setLocation] = useState('');
   const [input, setInput] = useState(initialInput);
   const selectLocation = () => {
