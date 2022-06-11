@@ -1,7 +1,7 @@
 // import { shell } from 'electron';
 import React from 'react';
-
 import launchEditor from 'react-dev-utils/launchEditor';
+
 import { useAppSelector } from '../../../hooks';
 
 import { Card } from '../../../common/Card';
@@ -9,12 +9,8 @@ import { TerminalOutput } from '../Terminal';
 import { TaskMainSwitch } from './TaskSwitch';
 
 export const TasksDevelopmentPane = () => {
-  const startScript = useAppSelector(
-    (state) =>
-      Object.entries(state.tasks.tasks).find((ele) => ele[0] === 'start' || ele[0] === 'dev')[0]
-  );
+  const startScript = useAppSelector((state) => state.project.scriptDev);
   const projectPath = useAppSelector((state) => state.project.projectPath);
-
   const redirectToEditor = () => {
     launchEditor(projectPath, 1, 1);
   };

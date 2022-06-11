@@ -19,6 +19,8 @@ export type taskType = {
 export type projectStateType = {
   projectName: string;
   projectPath: string;
+  starter: string;
+  scriptDev: string;
   isTypescript: boolean;
   loading?: boolean;
 };
