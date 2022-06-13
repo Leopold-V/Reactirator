@@ -4,6 +4,7 @@ import { ipcRenderer } from 'electron';
 
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { killProcess } from '../utils/killProcess';
+import findStartScript from '../utils/findStartScript';
 import { stopTask, errorTask, finishTask, updateLogs } from '../slices/taskSlice';
 import { removeDep, selectDep, updateDep } from '../slices/dependenciesSlice';
 
@@ -16,9 +17,11 @@ import { HeaderManager } from './components/HeaderManager';
 const Manager = () => {
   const { path } = useRouteMatch();
   const projectName = useAppSelector((state) => state.project.projectName);
-  // TODO:
-  // It implicitly means the selected project should ALWAYS have a script called "start" OR "dev" to launch the project.
-  const taskState = useAppSelector((state) => state.tasks.tasks['start' || 'dev'].taskState);
+  const starter = useAppSelector((state) => state.project.starter);
+
+  const taskState = useAppSelector(
+    (state) => state.tasks.tasks[findStartScript(starter) || 'start' || 'dev'].taskState
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {

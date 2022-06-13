@@ -9,6 +9,7 @@ import { ArrowLeftIcon } from '@heroicons/react/outline';
 import { searchOnePackage } from './services/package.service';
 import { promisifyReadFs } from './utils/promisifyFs';
 import { formatDeps } from './utils/formatDeps';
+import findStarter from './utils/findStarter';
 import initialPackageJson from './creator/helpers/initialPackageJson';
 import { taskType } from './manager/helpers/types';
 import { store } from './store';
@@ -28,6 +29,7 @@ import Manager from './manager';
 import { Bar } from './common/Bar';
 import { CreatorMenuSelection } from './common/CreatorMenuSelection';
 import { ManagerMenuSelection } from './common/ManagerMenuSelection';
+import findStartScript from './utils/findStartScript';
 //import { initProjectSrc } from './slices/projectSrcSlice';
 //import readSrcFolder from './utils/readSrcFolder';
 
@@ -170,6 +172,11 @@ const managerLoader = (manager: JSX.Element) => {
             //const projectSrc = await readSrcFolder(`${filepath}/src`);
             const content = await promisifyReadFs(`${filepath}/package.json`);
             const contentObj = JSON.parse(content);
+            const starter = findStarter(contentObj);
+            const scriptDev =
+              findStartScript(starter) ||
+              (contentObj.scripts.dev && 'dev') ||
+              (contentObj.scripts.start && 'start');
             if (contentObj.dependencies.react) {
               const newTaskList: Record<string, taskType> = {};
               Object.keys(contentObj.scripts).map(
@@ -185,6 +192,8 @@ const managerLoader = (manager: JSX.Element) => {
                 initProject({
                   projectName: contentObj.name,
                   projectPath: filepath[0],
+                  starter: starter,
+                  scriptDev: scriptDev,
                   isTypescript: contentObj.dependencies.typescript ? true : false,
                 })
               );
@@ -196,7 +205,9 @@ const managerLoader = (manager: JSX.Element) => {
               dispatch(
                 initDependencies({
                   dependencies: formatDeps(contentObj.dependencies, false),
-                  devDependencies: formatDeps(contentObj.devDependencies, true),
+                  devDependencies: contentObj.devDependencies
+                    ? formatDeps(contentObj.devDependencies, true)
+                    : {},
                   depSelected: {
                     depName: Object.keys(contentObj.dependencies)[0],
                     depVersion: Object.entries(formatDeps(contentObj.dependencies, true))[0][1]
@@ -207,8 +218,12 @@ const managerLoader = (manager: JSX.Element) => {
               );
               //dispatch(initProjectSrc(projectSrc));
               setLoading(false);
+            } else {
+              history.push('/');
+              alert('This is not a react project!');
             }
           } catch (error) {
+            console.log(error);
             history.push('/');
             alert('This is not a react project!');
           }
