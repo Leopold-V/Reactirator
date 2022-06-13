@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { FitAddon } from 'xterm-addon-fit';
 
-export const TerminalOutputInstallation = ({ logs }: { logs: string}) => {
+export const TerminalOutputInstallation = ({ logs }: { logs: string }) => {
   const xtermRef = useRef(null);
 
   const fitAddon = new FitAddon();
@@ -19,11 +19,5 @@ export const TerminalOutputInstallation = ({ logs }: { logs: string}) => {
     xtermRef.current.terminal.writeln(logs);
   }, [logs]);
 
-  return (
-    <XTerm
-      className="h-full w-full bg-blueGray p-4"
-      addons={[fitAddon]}
-      ref={xtermRef}
-    />
-  );
+  return <XTerm className="h-full w-full bg-blueGray p-4" addons={[fitAddon]} ref={xtermRef} />;
 };

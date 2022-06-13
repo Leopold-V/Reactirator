@@ -19,7 +19,9 @@ const Manager = () => {
   const projectName = useAppSelector((state) => state.project.projectName);
   const starter = useAppSelector((state) => state.project.starter);
 
-  const taskState = useAppSelector((state) => state.tasks.tasks[findStartScript(starter) || 'start' || 'dev'].taskState);
+  const taskState = useAppSelector(
+    (state) => state.tasks.tasks[findStartScript(starter) || 'start' || 'dev'].taskState
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {

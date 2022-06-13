@@ -173,7 +173,10 @@ const managerLoader = (manager: JSX.Element) => {
             const content = await promisifyReadFs(`${filepath}/package.json`);
             const contentObj = JSON.parse(content);
             const starter = findStarter(contentObj);
-            const scriptDev = findStartScript(starter) || (contentObj.scripts.dev && 'dev') || (contentObj.scripts.start && 'start');
+            const scriptDev =
+              findStartScript(starter) ||
+              (contentObj.scripts.dev && 'dev') ||
+              (contentObj.scripts.start && 'start');
             if (contentObj.dependencies.react) {
               const newTaskList: Record<string, taskType> = {};
               Object.keys(contentObj.scripts).map(
@@ -202,7 +205,9 @@ const managerLoader = (manager: JSX.Element) => {
               dispatch(
                 initDependencies({
                   dependencies: formatDeps(contentObj.dependencies, false),
-                  devDependencies: contentObj.devDependencies ? formatDeps(contentObj.devDependencies, true) : {},
+                  devDependencies: contentObj.devDependencies
+                    ? formatDeps(contentObj.devDependencies, true)
+                    : {},
                   depSelected: {
                     depName: Object.keys(contentObj.dependencies)[0],
                     depVersion: Object.entries(formatDeps(contentObj.dependencies, true))[0][1]
