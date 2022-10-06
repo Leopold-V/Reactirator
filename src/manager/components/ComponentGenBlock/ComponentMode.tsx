@@ -1,91 +1,82 @@
-import React, { ChangeEvent } from 'react';
+import React, { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
 
-export const ComponentMode = ({
+const modeList = ['rfc', 'rcc', 'rfce', 'rafc', 'rafce', 'rafcp', 'rmc'];
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
+export const SelectComponentMode = ({
   mode,
   setMode,
 }: {
   mode: string;
   setMode: (mode: string) => void;
 }) => {
-  const handleChangeMode = (e: ChangeEvent<HTMLInputElement>) => {
-    setMode(e.target.value);
-  };
-
   return (
-    <div>
-      <h2>Mode: </h2>
-      <div className="flex justify-center space-x-5 text-sm w-full" onChange={handleChangeMode}>
-        <div className="flex">
-          <input type="radio" id="rfc" name="mode" value="rfc" checked={mode === 'rfc'} readOnly />
-          <label className="px-2" htmlFor="rfc">
-            rfc
-          </label>
-        </div>
-        <div className="flex">
-          <input type="radio" id="rcc" name="mode" value="rcc" checked={mode === 'rcc'} readOnly />
-          <label className="px-2" htmlFor="rcc">
-            rcc
-          </label>
-        </div>
-        <div className="flex">
-          <input
-            type="radio"
-            id="rfce"
-            name="mode"
-            value="rfce"
-            checked={mode === 'rfce'}
-            readOnly
-          />
-          <label className="px-2" htmlFor="rfce">
-            rfce
-          </label>
-        </div>
-        <div className="flex">
-          <input
-            type="radio"
-            id="rafc"
-            name="mode"
-            value="rafc"
-            checked={mode === 'rafc'}
-            readOnly
-          />
-          <label className="px-2" htmlFor="rafc">
-            rafc
-          </label>
-        </div>
-        <div className="flex">
-          <input
-            type="radio"
-            id="rafce"
-            name="mode"
-            value="rafce"
-            checked={mode === 'rafce'}
-            readOnly
-          />
-          <label className="px-2" htmlFor="rafce">
-            rafce
-          </label>
-        </div>
-        <div className="flex">
-          <input
-            type="radio"
-            id="rafcp"
-            name="mode"
-            value="rafcp"
-            checked={mode === 'rafcp'}
-            readOnly
-          />
-          <label className="px-2" htmlFor="rafcp">
-            rafcp
-          </label>
-        </div>
-        <div className="flex">
-          <input type="radio" id="rmc" name="mode" value="rmc" checked={mode === 'rmc'} readOnly />
-          <label className="px-2" htmlFor="rmc">
-            rmc
-          </label>
-        </div>
-      </div>
-    </div>
+    <Listbox value={mode} onChange={setMode}>
+      {({ open }) => (
+        <>
+          <Listbox.Label className="block font-medium text-gray-700">Mode</Listbox.Label>
+          <div className="relative mt-1">
+            <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+              <span className="block truncate">{mode}</span>
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              </span>
+            </Listbox.Button>
+
+            <Transition
+              show={open}
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                {modeList.map((ele, i) => (
+                  <Listbox.Option
+                    key={i}
+                    className={({ active }) =>
+                      classNames(
+                        active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                      )
+                    }
+                    value={ele}
+                  >
+                    {({ active, selected }) => (
+                      <>
+                        <span
+                          className={classNames(
+                            selected ? 'font-semibold' : 'font-normal',
+                            'block truncate'
+                          )}
+                        >
+                          {ele}
+                        </span>
+
+                        {selected ? (
+                          <span
+                            className={classNames(
+                              active ? 'text-white' : 'text-indigo-600',
+                              'absolute inset-y-0 right-0 flex items-center pr-4'
+                            )}
+                          >
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </>
+      )}
+    </Listbox>
   );
 };
