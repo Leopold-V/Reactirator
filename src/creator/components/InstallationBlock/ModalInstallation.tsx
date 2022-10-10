@@ -20,7 +20,7 @@ export const ModalInstallation = ({
     Hook(
       window.console,
       (log) => {
-        setLogs((logs) => logs + log.data[0] + '\n');
+        setLogs(log.data[0] + '\n'); // if (logs) => logs + log.data[0] then all logs are displayed with each new log.
       },
       false
     );

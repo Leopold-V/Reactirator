@@ -11,8 +11,7 @@ import { useAppSelector } from '../../../hooks';
 import { Button } from '../../../common/Button';
 import { Input } from '../../../common/Input';
 import { toastInstallStyle, toastValidationStyle } from '../../../creator/helpers/toast';
-//import { ListComponentOptions } from './ListComponentOptions';
-import { ComponentMode } from './ComponentMode';
+import { SelectComponentMode } from './ComponentMode';
 import { ComponentPreview } from './ComponentPreview';
 
 type FormComponentProps = {
@@ -21,7 +20,7 @@ type FormComponentProps = {
   location: string;
 };
 
-export const FormComponent = ({ input, setInput, location }: FormComponentProps) => {
+export const FormComponent = ({ location }: FormComponentProps) => {
   const isTypescript = useAppSelector((state) => state.project.isTypescript);
   const [name, setName] = useState('');
   const [mode, setMode] = useState('rfc');
@@ -93,7 +92,7 @@ export const FormComponent = ({ input, setInput, location }: FormComponentProps)
           onChange={handleChangeName}
         />
       </div>
-      <ComponentMode mode={mode} setMode={setMode} />
+      <SelectComponentMode mode={mode} setMode={setMode} />
       {/* <ListComponentOptions input={input} setInput={setInput} /> */}
       <ComponentPreview componentCode={componentCode} />
       <div className="text-center">
