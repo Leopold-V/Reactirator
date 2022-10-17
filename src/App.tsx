@@ -10,7 +10,11 @@ import { searchOnePackage } from './services/package.service';
 import { promisifyReadFs } from './utils/promisifyFs';
 import { formatDeps } from './utils/formatDeps';
 import findStarter from './utils/findStarter';
-import initialPackageJson from './creator/helpers/initialPackageJson';
+import findStartScript from './utils/findStartScript';
+import {
+  initialPackageJsonCRA,
+  initialPackageJsonVite,
+} from './creator/helpers/initialPackageJson';
 import { taskType } from './manager/helpers/types';
 import { store } from './store';
 import { useAppDispatch, useAppSelector } from './hooks';
@@ -22,14 +26,14 @@ import { initProject, resetProject } from './slices/projectSlice';
 import { PackageJsonProvider } from './creator/components/Contexts/PackageJsonProvider';
 import { DependenciesProvider } from './creator/components/Contexts/dependenciesProvider';
 import { GithubProvider } from './creator/components/Contexts/GithubProvider';
-
 import { SuccessPage } from './creator/components/pages/SuccessPage';
 import Creator from './creator';
+import CreatorVite from './creator/CreatorVite';
 import Manager from './manager';
 import { Bar } from './common/Bar';
-import { CreatorMenuSelection } from './common/CreatorMenuSelection';
-import { ManagerMenuSelection } from './common/ManagerMenuSelection';
-import findStartScript from './utils/findStartScript';
+import { CreatorMenuSelection } from './creator/CreatorMenuSelection';
+import { ManagerMenuSelection } from './manager/ManagerMenuSelection';
+import { starterType } from './creator/helpers/types';
 //import { initProjectSrc } from './slices/projectSrcSlice';
 //import readSrcFolder from './utils/readSrcFolder';
 
@@ -41,7 +45,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" render={() => <Menu />} />
           <Route path="/manager" component={managerLoader(<Manager />)} />
-          <Route path="/creator" component={creatorLoader(<Creator />)} />
+          <Route path="/creator" component={creatorLoader(<Creator />, 'cra')} />
+          <Route path="/creatorVite" component={creatorLoader(<CreatorVite />, 'vite')} />
           <Route path="/success" component={SuccessPage} />
         </Switch>
       </HashRouter>
@@ -85,11 +90,13 @@ export const Menu = () => {
   );
 };
 
-export const creatorLoader = (creator: JSX.Element) => {
+export const creatorLoader = (creator: JSX.Element, starterChoice: starterType) => {
   return () => {
     const [packageJson, dispatchJson] = useReducer(
       jsonPackageReducer,
-      JSON.parse(JSON.stringify(initialPackageJson))
+      JSON.parse(
+        JSON.stringify(starterChoice === 'cra' ? initialPackageJsonCRA : initialPackageJsonVite)
+      )
     );
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -101,6 +108,17 @@ export const creatorLoader = (creator: JSX.Element) => {
           type: 'ADD',
           payload: {
             category: 'dependencies',
+            name: res.collected.metadata.name,
+            version: res.collected.metadata.version,
+          },
+        });
+      }
+      for (const ele in packageJson.devDependencies) {
+        const res = await searchOnePackage(ele);
+        dispatchJson({
+          type: 'ADD',
+          payload: {
+            category: 'devDependencies',
             name: res.collected.metadata.name,
             version: res.collected.metadata.version,
           },

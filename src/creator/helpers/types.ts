@@ -95,3 +95,5 @@ export type AuthOptions = {
   clientId: string;
   clientSecret: string;
 };
+
+export type starterType = 'vite' | 'cra';

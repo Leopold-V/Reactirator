@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { useLocation, useHistory } from 'react-router-dom';
 
-import steps from '../helpers/steps';
+import { starterType } from '../helpers/types';
+import { stepsCRA, stepsVite } from '../helpers/steps';
 
-export const StepControlButtons = () => {
+export const StepControlButtons = ({ starter }: { starter: starterType }) => {
   const location = useLocation();
   const history = useHistory();
+  const [steps, setSteps] = useState(starter === 'cra' ? [...stepsCRA] : [...stepsVite]);
   const [stepsUrl, setStepsUrl] = useState({
     previousStep: '',
     nextStep: '',

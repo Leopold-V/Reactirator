@@ -1,4 +1,4 @@
-const initialPackageJson = {
+export const initialPackageJsonCRA = {
   name: '',
   version: '0.1.0',
   description: '',
@@ -28,4 +28,25 @@ const initialPackageJson = {
   devDependencies: {},
 };
 
-export default initialPackageJson;
+export const initialPackageJsonVite = {
+  name: '',
+  private: true,
+  version: '0.1.0',
+  type: 'module',
+  scripts: {
+    dev: 'vite',
+    build: 'tsc && vite build',
+    preview: 'vite preview',
+  },
+  dependencies: {
+    react: '',
+    'react-dom': '',
+  },
+  devDependencies: {
+    '@types/react': '',
+    '@types/react-dom': '',
+    '@vitejs/plugin-react': '',
+    typescript: '',
+    vite: '',
+  },
+};

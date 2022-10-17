@@ -12,7 +12,7 @@ import { FeaturesPage } from './components/pages/FeaturesPage';
 import { LayoutCreator } from './components/LayoutCreator';
 import { InstallationPage } from './components/pages/InstallationPage';
 
-const Creator = () => {
+const CreatorVite = () => {
   const [input, setInput] = useState(initialState);
   const [structure, dispatch] = useReducer(
     structureReducer,
@@ -22,7 +22,7 @@ const Creator = () => {
   const { path } = useRouteMatch();
 
   return (
-    <LayoutCreator starter="cra">
+    <LayoutCreator starter="vite">
       <Route exact path={path} render={() => <DetailsPage input={input} setInput={setInput} />} />
       <Route
         exact
@@ -44,4 +44,4 @@ const Creator = () => {
   );
 };
 
-export default Creator;
+export default CreatorVite;
