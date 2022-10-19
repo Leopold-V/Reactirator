@@ -3,10 +3,60 @@ import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import { runCmd } from '../utils/runCmd';
 import createTemplateComponent from '../utils/createTemplateComponent';
-import { depStateType, formInputType, structureStateType } from '../creator/helpers/types';
+import {
+  depStateType,
+  formInputType,
+  starterType,
+  structureStateType,
+} from '../creator/helpers/types';
 import { GithubStateType } from '../creator/components/Contexts/GithubProvider';
 
 export const generateProject = async (
+  filepath: string,
+  input: formInputType,
+  listPackages: depStateType,
+  structure: structureStateType,
+  scripts: Record<string, unknown>,
+  github: GithubStateType,
+  starter: starterType
+) => {
+  if (starter === 'vite') {
+    return await generateViteProject(filepath, input, listPackages, structure, scripts, github);
+  }
+  return await generateCRAProject(filepath, input, listPackages, structure, scripts, github);
+};
+
+export const generateViteProject = async (
+  filepath: string,
+  input: formInputType,
+  listPackages: depStateType,
+  structure: structureStateType,
+  scripts: Record<string, unknown>,
+  github: GithubStateType
+): Promise<void> => {
+  const fullPath = `${filepath}\\${input.appname}`;
+
+  // TODO: handle npm 6.x versions
+
+  // Ok for npm 7+
+  input.typescript
+    ? await runCmd(
+        `cd ${filepath} && npm create vite@latest ${input.appname} -- --template react-ts`
+      )
+    : await runCmd(`cd ${filepath} && npm create vite@latest ${input.appname} -- --template react`);
+
+  await installPackages(fullPath, listPackages);
+  await installScripts(fullPath, scripts);
+
+  if (github.token && github.reponame) {
+    await createGithubRepo(github);
+  }
+  if (structure.length > 2) {
+    await generateStructure(structure, fullPath, input.typescript);
+  }
+};
+
+export const generateCRAProject = async (
   filepath: string,
   input: formInputType,
   listPackages: depStateType,

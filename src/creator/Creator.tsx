@@ -38,7 +38,7 @@ const Creator = () => {
       <Route
         exact
         path={`${path}/installation`}
-        render={() => <InstallationPage input={input} structure={structure} />}
+        render={() => <InstallationPage input={input} structure={structure} starter="cra" />}
       />
     </LayoutCreator>
   );
