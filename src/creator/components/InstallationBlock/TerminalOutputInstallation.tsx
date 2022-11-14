@@ -1,11 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+// @ts-nocheck
+import React, { useEffect, useRef, useState } from 'react';
 import { XTerm } from 'xterm-for-react';
 import { FitAddon } from 'xterm-addon-fit';
+import { Hook, Unhook } from 'console-feed';
 
-export const TerminalOutputInstallation = ({ logs }: { logs: string }) => {
+export const TerminalOutputInstallation = () => {
   const xtermRef = useRef(null);
 
   const fitAddon = new FitAddon();
+  const [logs, setLogs] = useState('');
+
+  useEffect(() => {
+    Hook(
+      window.console,
+      (log) => {
+        setLogs(log.data[0] + '\n'); // if (logs) => logs + log.data[0] then all logs are displayed with each new log.
+      },
+      false
+    );
+    return () => Unhook(window.console);
+  }, []);
 
   useEffect(() => {
     xtermRef.current.terminal.setOption('fontSize', 14);
@@ -15,7 +29,6 @@ export const TerminalOutputInstallation = ({ logs }: { logs: string }) => {
   }, []);
 
   useEffect(() => {
-    xtermRef.current.terminal.clear();
     xtermRef.current.terminal.writeln(logs);
   }, [logs]);
 
