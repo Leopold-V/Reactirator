@@ -5,7 +5,7 @@ const findStartScript = (starterName: string) => {
   if (starterName === 'next' || starterName === 'remix' || starterName === 'vite') {
     return 'dev';
   }
-  return false;
+  return null;
 };
 
 export default findStartScript;
