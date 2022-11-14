@@ -48,6 +48,28 @@ export const generateViteProject = async (
   await installPackages(fullPath, listPackages);
   await installScripts(fullPath, scripts);
 
+  if (input.bootstrap) {
+    await installBootstrap(fullPath, input.typescript);
+  }
+  if (input.normalize) {
+    await installNormalize(fullPath);
+  }
+  if (input.tailwind) {
+    await installTailwind(fullPath);
+  }
+  if (input.prettier) {
+    await installPrettier(fullPath);
+  }
+  if (input.flow) {
+    await installFlow(fullPath);
+  }
+  if (input.sourcemapexplorer) {
+    await installSourceMapExplorer(fullPath);
+  }
+  if (input.storybook) {
+    await installStorybook(fullPath);
+  }
+
   if (github.token && github.reponame) {
     await createGithubRepo(github);
   }
@@ -164,11 +186,11 @@ const installBootstrap = async (fullPath: string, withTypescript: boolean): Prom
   await runCmd(`cd ${fullPath} && npm install bootstrap`);
   withTypescript
     ? await writeFileAtTop(
-        `${fullPath}\\src\\index.tsx`,
+        `${fullPath}\\src\\main.tsx`,
         "import 'bootstrap/dist/css/bootstrap.css';\n"
       )
     : await writeFileAtTop(
-        `${fullPath}\\src\\index.js`,
+        `${fullPath}\\src\\main.jsx`,
         "import 'bootstrap/dist/css/bootstrap.css';\n"
       );
 };
