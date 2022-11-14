@@ -3,10 +3,82 @@ import { writeFileAtTop } from '../utils/writeFileAtTop';
 import { promisifyReadFs, promisifyWriteFs } from '../utils/promisifyFs';
 import { runCmd } from '../utils/runCmd';
 import createTemplateComponent from '../utils/createTemplateComponent';
-import { depStateType, formInputType, structureStateType } from '../creator/helpers/types';
+import {
+  depStateType,
+  formInputType,
+  starterType,
+  structureStateType,
+} from '../creator/helpers/types';
 import { GithubStateType } from '../creator/components/Contexts/GithubProvider';
 
 export const generateProject = async (
+  filepath: string,
+  input: formInputType,
+  listPackages: depStateType,
+  structure: structureStateType,
+  scripts: Record<string, unknown>,
+  github: GithubStateType,
+  starter: starterType
+) => {
+  if (starter === 'vite') {
+    return await generateViteProject(filepath, input, listPackages, structure, scripts, github);
+  }
+  return await generateCRAProject(filepath, input, listPackages, structure, scripts, github);
+};
+
+export const generateViteProject = async (
+  filepath: string,
+  input: formInputType,
+  listPackages: depStateType,
+  structure: structureStateType,
+  scripts: Record<string, unknown>,
+  github: GithubStateType
+): Promise<void> => {
+  const fullPath = `${filepath}\\${input.appname}`;
+
+  // TODO: handle npm 6.x versions
+
+  // Ok for npm 7+
+  input.typescript
+    ? await runCmd(
+        `cd ${filepath} && npm create vite@latest ${input.appname} -- --template react-ts`
+      )
+    : await runCmd(`cd ${filepath} && npm create vite@latest ${input.appname} -- --template react`);
+
+  await installPackages(fullPath, listPackages);
+  await installScripts(fullPath, scripts);
+
+  if (input.bootstrap) {
+    await installBootstrap(fullPath, input.typescript);
+  }
+  if (input.normalize) {
+    await installNormalize(fullPath);
+  }
+  if (input.tailwind) {
+    await installTailwind(fullPath);
+  }
+  if (input.prettier) {
+    await installPrettier(fullPath);
+  }
+  if (input.flow) {
+    await installFlow(fullPath);
+  }
+  if (input.sourcemapexplorer) {
+    await installSourceMapExplorer(fullPath);
+  }
+  if (input.storybook) {
+    await installStorybook(fullPath);
+  }
+
+  if (github.token && github.reponame) {
+    await createGithubRepo(github);
+  }
+  if (structure.length > 2) {
+    await generateStructure(structure, fullPath, input.typescript);
+  }
+};
+
+export const generateCRAProject = async (
   filepath: string,
   input: formInputType,
   listPackages: depStateType,
@@ -114,11 +186,11 @@ const installBootstrap = async (fullPath: string, withTypescript: boolean): Prom
   await runCmd(`cd ${fullPath} && npm install bootstrap`);
   withTypescript
     ? await writeFileAtTop(
-        `${fullPath}\\src\\index.tsx`,
+        `${fullPath}\\src\\main.tsx`,
         "import 'bootstrap/dist/css/bootstrap.css';\n"
       )
     : await writeFileAtTop(
-        `${fullPath}\\src\\index.js`,
+        `${fullPath}\\src\\main.jsx`,
         "import 'bootstrap/dist/css/bootstrap.css';\n"
       );
 };

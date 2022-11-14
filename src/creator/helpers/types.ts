@@ -95,3 +95,8 @@ export type AuthOptions = {
   clientId: string;
   clientSecret: string;
 };
+
+/**
+ * The name of the tool to generate a react project, only CRA (create-react-app) or vite are supported at this time
+ */
+export type starterType = 'vite' | 'cra';

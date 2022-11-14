@@ -5,8 +5,15 @@ import { ArrowLeftIcon } from '@heroicons/react/outline';
 import { StepBar } from './StepBar';
 import { StepControlButtons } from './StepControlButtons';
 import { Link } from 'react-router-dom';
+import { starterType } from '../helpers/types';
 
-export const LayoutCreator = ({ children }: { children: ReactNode }) => {
+export const LayoutCreator = ({
+  children,
+  starter,
+}: {
+  children: ReactNode;
+  starter: starterType;
+}) => {
   return (
     <div id="layout" className="relative bg-gray-50 h-screen">
       <div className="absolute left-6 top-12">
@@ -25,11 +32,11 @@ export const LayoutCreator = ({ children }: { children: ReactNode }) => {
         <h1 className=" text-lg text-black">Creation process</h1>
       </div>
       <div className="flex justify-center mx-auto pt-4 pb-12">
-        <StepBar />
+        <StepBar starter={starter} />
       </div>
       <div className="flex w-full px-8 py-4">{children}</div>
       <div className="w-full text-center absolute bottom-6">
-        <StepControlButtons />
+        <StepControlButtons starter={starter} />
       </div>
       <Toaster
         position="top-center"

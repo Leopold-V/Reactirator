@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CheckIcon } from '@heroicons/react/solid';
 
-import initialSteps from '../helpers/steps';
+import { stepsCRA, stepsVite } from '../helpers/steps';
+import { starterType } from '../helpers/types';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export const StepBar = () => {
+export const StepBar = ({ starter }: { starter: starterType }) => {
   const location = useLocation();
-  const [steps, setSteps] = useState([...initialSteps]);
+  const [steps, setSteps] = useState(starter === 'cra' ? [...stepsCRA] : [...stepsVite]);
 
   useEffect(() => {
     const currentStepIndex = steps.find((ele) => ele.href === location.pathname).index;

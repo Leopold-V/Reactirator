@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { useLocation, useHistory } from 'react-router-dom';
 
-import steps from '../helpers/steps';
+import { starterType } from '../helpers/types';
+import { stepsCRA, stepsVite } from '../helpers/steps';
 
-export const StepControlButtons = () => {
+export const StepControlButtons = ({ starter }: { starter: starterType }) => {
   const location = useLocation();
   const history = useHistory();
+  const [steps, setSteps] = useState(starter === 'cra' ? [...stepsCRA] : [...stepsVite]);
   const [stepsUrl, setStepsUrl] = useState({
     previousStep: '',
     nextStep: '',
@@ -29,7 +31,7 @@ export const StepControlButtons = () => {
 
   return (
     <span className="relative z-0 inline-flex shadow-sm rounded-md">
-      {location.pathname !== '/creator' && (
+      {location.pathname !== '/creator' && location.pathname !== '/creatorVite' && (
         <button
           type="button"
           onClick={goBack}
@@ -42,19 +44,20 @@ export const StepControlButtons = () => {
           Back
         </button>
       )}
-      {location.pathname !== '/creator/installation' && (
-        <button
-          type="button"
-          onClick={goNext}
-          className={`${
-            location.pathname === '/creator' ? 'rounded-sm' : 'rounded-r-md'
-          } relative inline-flex items-center px-2 py-2 border border-transparent bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200`}
-        >
-          <span className="sr-only">Next</span>
-          Next
-          <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-        </button>
-      )}
+      {location.pathname !== '/creator/installation' &&
+        location.pathname !== '/creatorVite/installation' && (
+          <button
+            type="button"
+            onClick={goNext}
+            className={`${
+              location.pathname === '/creator' ? 'rounded-sm' : 'rounded-r-md'
+            } relative inline-flex items-center px-2 py-2 border border-transparent bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200`}
+          >
+            <span className="sr-only">Next</span>
+            Next
+            <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+          </button>
+        )}
     </span>
   );
 };

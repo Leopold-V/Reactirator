@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 
 import { generateProject } from '../../../services/installation.service';
-import { formInputType, structureStateType } from '../../helpers/types';
+import { formInputType, starterType, structureStateType } from '../../helpers/types';
 import { toastInstallStyle } from '../../helpers/toast';
 
 import { useModal } from '../../../hooks/useModal';
@@ -21,9 +21,11 @@ import { ModalInstallation } from '../InstallationBlock';
 export const InstallationPage = ({
   input,
   structure,
+  starter,
 }: {
   input: formInputType;
   structure: structureStateType;
+  starter: starterType;
 }) => {
   const [show, toggleModal] = useModal();
   const [loading, setLoading] = useState(false);
@@ -50,7 +52,8 @@ export const InstallationPage = ({
                 listPackages,
                 structure,
                 packageJson.scripts,
-                github
+                github,
+                starter
               ),
               {
                 loading: 'Installation start !',
