@@ -17,9 +17,7 @@ const Manager = () => {
   const { path } = useRouteMatch();
   const projectName = useAppSelector((state) => state.project.projectName);
   const scriptDev = useAppSelector((state) => state.project.scriptDev);
-  const taskState = useAppSelector(
-    (state) => state.tasks.tasks[scriptDev].taskState
-  );
+  const taskState = useAppSelector((state) => state.tasks.tasks[scriptDev].taskState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

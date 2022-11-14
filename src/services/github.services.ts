@@ -4,7 +4,7 @@ import { GithubStateType } from '../creator/components/Contexts/GithubProvider';
 
 export const createGithubRepo = async (github: GithubStateType) => {
   try {
-    const isRepoPrivate = github.visibility === 'private' ? true : false
+    const isRepoPrivate = github.visibility === 'private' ? true : false;
     await fetch('https://api.github.com/user/repos', {
       method: 'POST',
       headers: {
@@ -12,7 +12,7 @@ export const createGithubRepo = async (github: GithubStateType) => {
         Accept: 'application/vnd.github.v3+json',
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({ name: github.reponame, 'private': isRepoPrivate }),
+      body: JSON.stringify({ name: github.reponame, private: isRepoPrivate }),
     });
   } catch (error) {
     console.log(error);
