@@ -32,5 +32,5 @@ export const TerminalOutputInstallation = () => {
     xtermRef.current.terminal.writeln(logs);
   }, [logs]);
 
-  return <XTerm className="h-full w-full bg-blueGray p-4" addons={[fitAddon]} ref={xtermRef} />;
+  return <XTerm className="h-full w-full bg-blueGray pl-2" addons={[fitAddon]} ref={xtermRef} />;
 };
