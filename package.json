@@ -76,7 +76,7 @@
       "plugins": [
         {
           "name": "@electron-forge/plugin-webpack",
-          "config" : {
+          "config": {
             "mainConfig": "./webpack.main.config.js",
             "renderer": {
               "config": "./webpack.renderer.config.js",
@@ -103,13 +103,13 @@
     }
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.57",
-    "@electron-forge/maker-deb": "^6.0.0-beta.57",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
-    "@electron-forge/maker-zip": "^6.0.0-beta.57",
-    "@electron-forge/plugin-webpack": "^6.0.0-beta.57",
-    "@electron-forge/publisher-github": "^6.0.0-beta.57",
+    "@electron-forge/cli": "^6.0.3",
+    "@electron-forge/maker-deb": "^6.0.3",
+    "@electron-forge/maker-rpm": "^6.0.3",
+    "@electron-forge/maker-squirrel": "^6.0.3",
+    "@electron-forge/maker-zip": "^6.0.3",
+    "@electron-forge/plugin-webpack": "^6.0.3",
+    "@electron-forge/publisher-github": "^6.0.3",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@playwright/test": "^1.20.1",
     "@tailwindcss/forms": "^0.5.0",
@@ -136,6 +136,7 @@
     "dotenv-webpack": "^7.0.3",
     "electron": "13.1.2",
     "electron-devtools-installer": "^3.2.0",
+    "electron-forge": "^5.2.4",
     "electron-icon-maker": "^0.0.5",
     "electron-playwright-helpers": "^1.1.1",
     "electron-wix-msi": "^3.2.0",
