@@ -1,7 +1,8 @@
 import React, { useState, useReducer } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 
-import initialState from './helpers/initialState';
+import { formInputType } from './helpers/types';
+import { initialState } from './helpers/initialState';
 import initialStructure from './helpers/initialStructure';
 import structureReducer from './reducers/structureReducer';
 
@@ -13,7 +14,7 @@ import { LayoutCreator } from './components/LayoutCreator';
 import { InstallationPage } from './components/pages/InstallationPage';
 
 const Creator = () => {
-  const [input, setInput] = useState(initialState);
+  const [input, setInput] = useState<formInputType>(initialState);
   const [structure, dispatch] = useReducer(
     structureReducer,
     JSON.parse(JSON.stringify(initialStructure))
@@ -27,7 +28,7 @@ const Creator = () => {
       <Route
         exact
         path={`${path}/features`}
-        render={() => <FeaturesPage input={input} setInput={setInput} />}
+        render={() => <FeaturesPage input={input} setInput={setInput} starter="cra" />}
       />
       <Route exact path={`${path}/packages`} render={() => <PackagesPage />} />
       <Route

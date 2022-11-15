@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   appname: '',
   description: '',
   version: '0.1.0',
@@ -17,4 +17,19 @@ const initialState = {
   storybook: false,
 };
 
-export default initialState;
+export const initialStateVite = {
+  appname: '',
+  description: '',
+  version: '0.1.0',
+  typescript: false,
+  prettier: false,
+  flow: false,
+  tailwind: false,
+  bootstrap: false,
+  materialui: false,
+  reactbootstrap: false,
+  normalize: false,
+  reactrouter: false,
+  proptypes: false,
+  sourcemapexplorer: false,
+};

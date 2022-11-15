@@ -7,14 +7,14 @@ export type formInputType = {
   flow: boolean;
   tailwind: boolean;
   bootstrap: boolean;
-  reactbootstrap: boolean;
-  materialui: boolean;
-  styledcomponents: boolean;
+  reactbootstrap?: boolean;
+  materialui?: boolean;
+  styledcomponents?: boolean;
   normalize: boolean;
-  reactrouter: boolean;
-  proptypes: boolean;
+  reactrouter?: boolean;
+  proptypes?: boolean;
   sourcemapexplorer: boolean;
-  storybook: boolean;
+  storybook?: boolean;
 };
 
 export type actionPackageType = {
@@ -100,3 +100,15 @@ export type AuthOptions = {
  * The name of the tool to generate a react project, only CRA (create-react-app) or vite are supported at this time
  */
 export type starterType = 'vite' | 'cra';
+
+/**
+ * The structure to display each features (e.g tailwind, typescript) which can be installed in a project from the feature page.
+ */
+export type featureType = {
+  title: string;
+  description: string;
+  name: string;
+  packageName: string;
+  link: string;
+};
+
