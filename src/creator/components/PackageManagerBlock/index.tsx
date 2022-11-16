@@ -8,4 +8,3 @@ export { SearchPackages } from './SearchPackages';
 export { CardDependencies } from './CardDependencies';
 export { PackagesManager } from './PackagesManager';
 export { DependencyModalCreator } from './DependencyModalCreator';
-

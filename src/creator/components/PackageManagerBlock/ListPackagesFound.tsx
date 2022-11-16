@@ -37,7 +37,12 @@ export const ListPackagesFound = ({
           />
         ))}
       </ul>
-      <DependencyModalCreator dispatchPackages={dispatchPackages} depData={depData} open={open} toggleModal={toggleModal} />
+      <DependencyModalCreator
+        dispatchPackages={dispatchPackages}
+        depData={depData}
+        open={open}
+        toggleModal={toggleModal}
+      />
     </>
   );
 };

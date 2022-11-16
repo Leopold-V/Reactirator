@@ -34,7 +34,7 @@ export const SearchPackages = ({
           links: {
             npm: ele.package.links.npm,
             repository: ele.package.links.repository,
-          }
+          },
         }));
         setInput(results);
       } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 
-import {initialStateVite} from './helpers/initialState';
+import { initialStateVite } from './helpers/initialState';
 import initialStructure from './helpers/initialStructure';
 import structureReducer from './reducers/structureReducer';
 
