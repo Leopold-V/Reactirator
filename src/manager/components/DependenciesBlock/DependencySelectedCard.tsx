@@ -9,7 +9,7 @@ import { updateDep } from '../../../slices/dependenciesSlice';
 
 import { ButtonDelete, ButtonSecondary } from '../../../common/Button';
 import { Card } from '../../../common/Card';
-import { ScoreNpmPophover } from './ScoreNpmPophover';
+import { ScoreNpmPophover } from '../../../common/ScoreNpmPophover';
 
 export const DependencySelectedCard = () => {
   // TODO

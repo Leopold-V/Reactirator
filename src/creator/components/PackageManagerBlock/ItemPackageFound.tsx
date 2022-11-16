@@ -1,35 +1,31 @@
 import React, { Dispatch } from 'react';
 import { actionPackageType, packageFoundType } from '../../helpers/types';
 import { usePackageJson } from '../Contexts/PackageJsonProvider';
-import { ButtonAddPackage } from '../Buttons';
+import { dependencyFoundType } from '../../../manager/helpers/types';
 
 type propsType = {
   packageData: packageFoundType;
   dispatchPackages: Dispatch<actionPackageType>;
-  setIsShown: (isShown: boolean) => void;
-  setData: (data: packageFoundType) => void;
+  setDepData: (dep: dependencyFoundType) => void;
+  toggleModal: () => void;
+  dep: dependencyFoundType;
 };
 
 export const ItemPackageFound = (props: propsType) => {
   const { packageJson } = usePackageJson();
 
-  const { packageData, dispatchPackages, setIsShown, setData } = { ...props };
+  const { packageData, dep, setDepData, toggleModal } = { ...props };
 
-  const handleMouseEnter = () => {
-    setData(packageData);
-    setIsShown(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsShown(false);
+  const handleOpen = async () => {
+    setDepData(dep);
+    toggleModal();
   };
 
   return (
     <li
       key={packageData.name}
       className="flex items-center justify-center w-full h-9 relative"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onClick={handleOpen}
     >
       {Object.keys(packageJson.dependencies).includes(packageData.name) ||
       Object.keys(packageJson.devDependencies).includes(packageData.name) ? (
@@ -37,7 +33,12 @@ export const ItemPackageFound = (props: propsType) => {
           {packageData.name}
         </div>
       ) : (
-        <ButtonAddPackage packageData={packageData} dispatchPackages={dispatchPackages} />
+        <div
+        className="flex items-center justify-center text-sm font-semibold bg-white hover:bg-blue-100 transition duration-200
+              w-full h-full px-2 cursor-pointer"
+        >
+        {packageData.name}
+      </div>
       )}
     </li>
   );

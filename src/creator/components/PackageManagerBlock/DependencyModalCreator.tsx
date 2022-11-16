@@ -1,46 +1,66 @@
-import { ipcRenderer, shell } from 'electron';
-import React, { Fragment, MouseEvent, useRef, useState } from 'react';
+import { shell } from 'electron';
+import React, { Dispatch, Fragment, MouseEvent, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
+import { searchPackageInRegistry } from '../../../services/package.service';
+import { actionPackageType } from '../../helpers/types';
 import { dependencyFoundType } from '../../../manager/helpers/types';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { installDep } from '../../../slices/dependenciesSlice';
+
+import { usePackageJson } from '../Contexts/PackageJsonProvider';
+import { useLoading } from '../Contexts/LoadingPackageProvider';
 
 import { DependencyModalRadio } from '../../../common/DependencyModalRadio';
 import { ScoreNpmPophover } from '../../../common/ScoreNpmPophover';
 
-export const DependencyModal = ({
+export const DependencyModalCreator = ({
   depData,
   open,
   toggleModal,
+  dispatchPackages,
 }: {
   depData: dependencyFoundType;
   open: boolean;
   toggleModal: () => void;
+  dispatchPackages: Dispatch<actionPackageType>;
 }) => {
   const cancelButtonRef = useRef(null);
   const [selectedType, setSelectedType] = useState('Dependency');
   const [popHoverOpen, setPopHoverOpen] = useState(false);
-  const projectPath = useAppSelector((state) => state.project.projectPath);
-  const dependencies = useAppSelector((state) => state.dependencies);
-  const dispatch = useAppDispatch();
+  const { packageJson, dispatchJson } = usePackageJson();
+  const { loading, setLoading } = useLoading();
 
-  const handleInstallDep = () => {
-    console.log(selectedType);
-    ipcRenderer.send('dep-install', {
-      path: projectPath,
-      depName: depData.name,
-      isDevDep: selectedType === 'devDependency' ? true : false,
-      version: depData.version,
-    });
-    dispatch(
-      installDep({
-        name: depData.name,
-        version: depData.version,
-        status: 'Pending',
-        isDevDep: selectedType === 'devDependency' ? true : false,
-      })
-    );
+  const addPackages = async (e: React.MouseEvent<HTMLElement>): Promise<void> => {
+    const target = e.target as HTMLElement;
+    setLoading(true);
+    const category = selectedType === 'devDependency' ? 'devDependencies' : 'dependencies';
+    try {
+      const packageRegistryInfo = await searchPackageInRegistry(
+        target.dataset.name,
+        target.dataset.version
+      );
+      dispatchPackages({
+        type: 'ADD',
+        payload: {
+          destination: category,
+          name: target.dataset.name,
+          size: packageRegistryInfo.dist.unpackedSize,
+          version: target.dataset.version,
+          dependencies: packageRegistryInfo.dependencies,
+        },
+      });
+      dispatchJson({
+        type: 'ADD',
+        payload: {
+          category: category,
+          name: target.dataset.name,
+          version: target.dataset.version,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const showNpmScore = () => {
@@ -153,16 +173,15 @@ export const DependencyModal = ({
                   </div>
                   <div className="bg-gray-50 w-full px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button
-                      disabled={
-                        dependencies.dependencies[depData.name]?.status === 'Pending' ||
-                        dependencies.devDependencies[depData.name]?.status === 'Pending'
-                      }
-                      onClick={handleInstallDep}
+                      disabled={loading || packageJson.dependencies[depData.name] || packageJson.devDependencies[depData.name]}
+                      onClick={addPackages}
                       type="button"
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 disabled:opacity-70 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                       ref={cancelButtonRef}
+                      data-name={depData.name}
+                      data-version={depData.version}
                     >
-                      Install
+                      Add
                     </button>
                     <button
                       type="button"

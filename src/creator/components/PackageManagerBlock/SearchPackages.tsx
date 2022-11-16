@@ -26,6 +26,15 @@ export const SearchPackages = ({
           version: ele.package.version,
           description: ele.package.description,
           score: ele.score.final,
+          scoreDetail: {
+            quality: ele.score.detail.quality,
+            popularity: ele.score.detail.popularity,
+            maintenance: ele.score.detail.maintenance,
+          },
+          links: {
+            npm: ele.package.links.npm,
+            repository: ele.package.links.repository,
+          }
         }));
         setInput(results);
       } catch (error) {

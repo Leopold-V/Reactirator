@@ -1,10 +1,12 @@
-import useMouse from '@react-hook/mouse-position';
 import React, { Dispatch, useRef, useState } from 'react';
+import { useModal } from '../../../hooks/useModal';
+import { dependencyFoundType } from '../../../manager/helpers/types';
 
-import { actionPackageType, listPackageType, packageFoundType } from '../../helpers/types';
+import { DependencyModalCreator } from './';
+
+import { actionPackageType, listPackageType } from '../../helpers/types';
 
 import { ItemPackageFound } from './ItemPackageFound';
-import { ItemPackageTooltip } from './ItemPackageTooltip';
 
 export const ListPackagesFound = ({
   results,
@@ -15,13 +17,8 @@ export const ListPackagesFound = ({
 }) => {
   const ref = useRef(null);
 
-  const [isShown, setIsShown] = useState(false);
-  const [data, setData] = useState<packageFoundType | null>(null);
-
-  const mouse = useMouse(ref, {
-    enterDelay: 100,
-    leaveDelay: 100,
-  });
+  const [open, toggleModal] = useModal();
+  const [depData, setDepData] = useState<dependencyFoundType>(null);
 
   return (
     <>
@@ -34,12 +31,13 @@ export const ListPackagesFound = ({
             key={ele.name}
             packageData={ele}
             dispatchPackages={dispatchPackages}
-            setIsShown={setIsShown}
-            setData={setData}
+            dep={ele}
+            setDepData={setDepData}
+            toggleModal={toggleModal}
           />
         ))}
       </ul>
-      <ItemPackageTooltip data={data} mouse={mouse} isShown={isShown} />
+      <DependencyModalCreator dispatchPackages={dispatchPackages} depData={depData} open={open} toggleModal={toggleModal} />
     </>
   );
 };
