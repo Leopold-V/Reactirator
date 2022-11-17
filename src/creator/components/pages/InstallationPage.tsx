@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 
+import { mixpanelTracker } from '../../../analytics/mixpanel.service';
 import { generateProject } from '../../../services/installation.service';
 import { formInputType, starterType, structureStateType } from '../../helpers/types';
 import { toastInstallStyle } from '../../helpers/toast';
@@ -58,6 +59,12 @@ export const InstallationPage = ({
               {
                 loading: 'Installation start !',
                 success: () => {
+                  mixpanelTracker('new-project', {
+                    input,
+                    listPackages,
+                    structure,
+                    starter,
+                  });
                   history.push({ pathname: '/success', state: projectPath });
                   return `Successfully installed !`;
                 },

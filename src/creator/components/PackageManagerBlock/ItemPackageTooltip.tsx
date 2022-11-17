@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/named
-import { MousePosition } from '@react-hook/mouse-position';
 import React from 'react';
 import { packageFoundType } from '../../helpers/types';
 
@@ -9,7 +8,7 @@ export const ItemPackageTooltip = ({
   isShown,
 }: {
   data: packageFoundType;
-  mouse: MousePosition;
+  mouse: any;
   isShown: boolean;
 }) => {
   if (!isShown) return null;

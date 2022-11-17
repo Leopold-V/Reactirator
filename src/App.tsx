@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 
+import { mixpanelTracker } from './analytics/mixpanel.service';
 import { searchOnePackage } from './services/package.service';
 import { promisifyReadFs } from './utils/promisifyFs';
 import { formatDeps } from './utils/formatDeps';
@@ -15,6 +16,7 @@ import {
   initialPackageJsonCRA,
   initialPackageJsonVite,
 } from './creator/helpers/initialPackageJson';
+import { starterType } from './creator/helpers/types';
 import { taskType } from './manager/helpers/types';
 import { store } from './store';
 import { useAppDispatch, useAppSelector } from './hooks';
@@ -33,11 +35,12 @@ import Manager from './manager';
 import { Bar } from './common/Bar';
 import { CreatorMenuSelection } from './creator/CreatorMenuSelection';
 import { ManagerMenuSelection } from './manager/ManagerMenuSelection';
-import { starterType } from './creator/helpers/types';
 //import { initProjectSrc } from './slices/projectSrcSlice';
 //import readSrcFolder from './utils/readSrcFolder';
 
 const App = () => {
+  mixpanelTracker('app-launch');
+
   return (
     <Provider store={store}>
       <HashRouter>
@@ -235,6 +238,12 @@ const managerLoader = (manager: JSX.Element) => {
                 })
               );
               //dispatch(initProjectSrc(projectSrc));
+              mixpanelTracker('project-open', {
+                  projectName: contentObj.name,
+                  starter: starter,
+                  scriptDev: scriptDev,
+                  isTypescript: contentObj.dependencies.typescript ? true : false,
+              });
               setLoading(false);
             } else {
               history.push('/');

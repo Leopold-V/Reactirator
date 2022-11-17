@@ -3,6 +3,7 @@ import installExtension, {
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS,
 } from 'electron-devtools-installer';
+import ElectronStore from 'electron-store';
 import { spawn } from 'child_process';
 import { killAllProcess } from './utils/killProcess';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -10,6 +11,8 @@ declare const SPLASH_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('@electron/remote/main').initialize();
+
+ElectronStore.initRenderer();
 
 if (require('electron-squirrel-startup')) {
   app.quit();
