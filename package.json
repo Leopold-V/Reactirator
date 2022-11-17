@@ -139,6 +139,7 @@
     "electron-forge": "^5.2.4",
     "electron-icon-maker": "^0.0.5",
     "electron-playwright-helpers": "^1.1.1",
+    "electron-prebuilt-compile": "^8.2.0",
     "electron-wix-msi": "^3.2.0",
     "eslint": "^7.24.0",
     "eslint-plugin-import": "^2.22.1",
