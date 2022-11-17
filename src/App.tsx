@@ -239,10 +239,10 @@ const managerLoader = (manager: JSX.Element) => {
               );
               //dispatch(initProjectSrc(projectSrc));
               mixpanelTracker('project-open', {
-                  projectName: contentObj.name,
-                  starter: starter,
-                  scriptDev: scriptDev,
-                  isTypescript: contentObj.dependencies.typescript ? true : false,
+                projectName: contentObj.name,
+                starter: starter,
+                scriptDev: scriptDev,
+                isTypescript: contentObj.dependencies.typescript ? true : false,
               });
               setLoading(false);
             } else {
