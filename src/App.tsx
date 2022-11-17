@@ -34,10 +34,13 @@ import { Bar } from './common/Bar';
 import { CreatorMenuSelection } from './creator/CreatorMenuSelection';
 import { ManagerMenuSelection } from './manager/ManagerMenuSelection';
 import { starterType } from './creator/helpers/types';
+import { mixpanelTracker } from './analytics/mixpanel.service';
 //import { initProjectSrc } from './slices/projectSrcSlice';
 //import readSrcFolder from './utils/readSrcFolder';
 
 const App = () => {
+  mixpanelTracker('app-launch');
+
   return (
     <Provider store={store}>
       <HashRouter>
@@ -235,6 +238,12 @@ const managerLoader = (manager: JSX.Element) => {
                 })
               );
               //dispatch(initProjectSrc(projectSrc));
+              mixpanelTracker('project-open', {
+                projectName: contentObj.name,
+                starter: starter,
+                scriptDev: scriptDev,
+                isTypescript: contentObj.dependencies.typescript ? true : false,
+              });
               setLoading(false);
             } else {
               history.push('/');
