@@ -34,7 +34,10 @@ export const generateViteProject = async (
   scripts: Record<string, unknown>,
   github: GithubStateType
 ): Promise<void> => {
-  const fullPath = process.platform === "darwin" ? `${filepath}/${input.appname}` :  `${filepath}\\${input.appname}`;
+  const fullPath =
+    process.platform === 'darwin'
+      ? `${filepath}/${input.appname}`
+      : `${filepath}\\${input.appname}`;
 
   // TODO: handle npm 6.x versions
 
@@ -86,7 +89,10 @@ export const generateCRAProject = async (
   scripts: Record<string, unknown>,
   github: GithubStateType
 ): Promise<void> => {
-  const fullPath = process.platform === "darwin" ?  `${filepath}/${input.appname}` : `${filepath}\\${input.appname}`;
+  const fullPath =
+    process.platform === 'darwin'
+      ? `${filepath}/${input.appname}`
+      : `${filepath}\\${input.appname}`;
 
   input.typescript
     ? await runCmd(`cd ${filepath} && npx create-react-app ${input.appname} --template typescript`)
@@ -131,14 +137,11 @@ const generateStructure = async (
 ) => {
   for (let i = 2; i < structure.length; i++) {
     if (structure[i].isFolder) {
-      const folderPath = process.platform === "darwin" ?
-         `${fullPath}${structure[i].path.split('/').slice(0, -1).join('/')}` : 
-         `${fullPath}${structure[i].path.split('\\').slice(0, -1).join('\\')}`; 
-      await runCmd(
-        `cd ${folderPath} && mkdir ${
-          structure[i].name
-        }`
-      );
+      const folderPath =
+        process.platform === 'darwin'
+          ? `${fullPath}${structure[i].path.split('/').slice(0, -1).join('/')}`
+          : `${fullPath}${structure[i].path.split('\\').slice(0, -1).join('\\')}`;
+      await runCmd(`cd ${folderPath} && mkdir ${structure[i].name}`);
     } else {
       const templateComponent = createTemplateComponent(structure[i].mode, structure[i].name);
       await promisifyWriteFs(
@@ -162,10 +165,14 @@ const installScripts = async (
   fullPath: string,
   scripts: Record<string, unknown>
 ): Promise<void> => {
-  const data = process.platform === "darwin" ?  await promisifyReadFs(`${fullPath}/package.json`) :  await promisifyReadFs(`${fullPath}\\package.json`);
+  const data =
+    process.platform === 'darwin'
+      ? await promisifyReadFs(`${fullPath}/package.json`)
+      : await promisifyReadFs(`${fullPath}\\package.json`);
   const packagejson = JSON.parse(data);
   packagejson.scripts = scripts;
-  const writeFsPath = process.platform === "darwin" ? `${fullPath}/package.json` :  `${fullPath}\\package.json`; 
+  const writeFsPath =
+    process.platform === 'darwin' ? `${fullPath}/package.json` : `${fullPath}\\package.json`;
   await promisifyWriteFs(writeFsPath, JSON.stringify(packagejson));
 };
 
@@ -188,27 +195,21 @@ const installSourceMapExplorer = async (fullPath: string): Promise<void> => {
 
 const installBootstrap = async (fullPath: string, withTypescript: boolean): Promise<void> => {
   await runCmd(`cd ${fullPath} && npm install bootstrap`);
-  const mainPath = withTypescript && process.platform === "darwin" ? (
-    `${fullPath}/src/main.tsx`
-  ) : withTypescript ? (
-    `${fullPath}\\src\\main.tsx`
-  ) : (
-    `${fullPath}\\src\\main.jsx`
-  )
+  const mainPath =
+    withTypescript && process.platform === 'darwin'
+      ? `${fullPath}/src/main.tsx`
+      : withTypescript
+      ? `${fullPath}\\src\\main.tsx`
+      : `${fullPath}\\src\\main.jsx`;
 
   withTypescript
-    ? await writeFileAtTop(
-        mainPath,
-        "import 'bootstrap/dist/css/bootstrap.css';\n"
-      )
-    : await writeFileAtTop(
-        mainPath,
-        "import 'bootstrap/dist/css/bootstrap.css';\n"
-      );
+    ? await writeFileAtTop(mainPath, "import 'bootstrap/dist/css/bootstrap.css';\n")
+    : await writeFileAtTop(mainPath, "import 'bootstrap/dist/css/bootstrap.css';\n");
 };
 
 const installNormalize = async (fullPath: string): Promise<void> => {
-  const writeFileAtTopPath = process.platform === "darwin" ? `${fullPath}/src/index.css` : `${fullPath}\\src\\index.css`;
+  const writeFileAtTopPath =
+    process.platform === 'darwin' ? `${fullPath}/src/index.css` : `${fullPath}\\src\\index.css`;
   await writeFileAtTop(writeFileAtTopPath, '@import-normalize;\n');
 };
 
@@ -216,20 +217,24 @@ const installPrettier = async (fullPath: string): Promise<void> => {
   await runCmd(
     `cd ${fullPath} && npm install --save-dev --save-exact prettier && echo {}> .prettierrc.json`
   );
-  const prettierignorePath = process.platform === "darwin" ? `${fullPath}/src/.prettierignore` : `${fullPath}\\src\\.prettierignore`; 
-  await promisifyWriteFs(
-    prettierignorePath,
-    `# Ignore artifacts:\nbuild\ncoverage\n`
-  );
+  const prettierignorePath =
+    process.platform === 'darwin'
+      ? `${fullPath}/src/.prettierignore`
+      : `${fullPath}\\src\\.prettierignore`;
+  await promisifyWriteFs(prettierignorePath, `# Ignore artifacts:\nbuild\ncoverage\n`);
 };
 
 const installTailwind = async (fullPath: string): Promise<void> => {
   await runCmd(
     `cd ${fullPath} && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init`
   );
-  const promisifyWriteFsPath = process.platform === "darwin" ? `${fullPath}/tailwind.config.js` : `${fullPath}\\tailwind.config.js`
+  const promisifyWriteFsPath =
+    process.platform === 'darwin'
+      ? `${fullPath}/tailwind.config.js`
+      : `${fullPath}\\tailwind.config.js`;
   await promisifyWriteFs(promisifyWriteFsPath, tailwindConfig);
-  const writeFileAtTopPath = process.platform === "darwin" ? `${fullPath}/src/index.css` : `${fullPath}\\src\\index.css`; 
+  const writeFileAtTopPath =
+    process.platform === 'darwin' ? `${fullPath}/src/index.css` : `${fullPath}\\src\\index.css`;
   await writeFileAtTop(writeFileAtTopPath, tailwindimport);
 };
 
