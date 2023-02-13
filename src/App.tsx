@@ -215,7 +215,7 @@ const managerLoader = (manager: JSX.Element) => {
                   projectPath: filepath[0],
                   starter: starter,
                   scriptDev: scriptDev,
-                  isTypescript: contentObj.dependencies.typescript ? true : false,
+                  isTypescript: (contentObj.dependencies.typescript || contentObj.devDependencies.typescript) ? true : false,
                 })
               );
               dispatch(
@@ -242,7 +242,7 @@ const managerLoader = (manager: JSX.Element) => {
                 projectName: contentObj.name,
                 starter: starter,
                 scriptDev: scriptDev,
-                isTypescript: contentObj.dependencies.typescript ? true : false,
+                isTypescript:  (contentObj.dependencies.typescript || contentObj.devDependencies.typescript) ? true : false,
               });
               setLoading(false);
             } else {
